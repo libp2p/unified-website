@@ -31,7 +31,7 @@ jobs:
           sudo mv zola /usr/local/bin/zola
 
       - name: Build Zola site
-        run: zola build --base-url="https://${{ secrets.LIBP2P_DOMAIN }}/"
+        run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/"
 
       - name: Set up Node.js for ipfs-car
         uses: actions/setup-node@v4
