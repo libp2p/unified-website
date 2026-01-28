@@ -1,7 +1,7 @@
 # Unified libp2p Website Configuration
 # Consolidates: website-new, blog, docs, connectivity-site
 
-base_url = "https://libp2p.io"
+base_url = "https://libp2p.myfilebase.com"
 title = "libp2p - A modular network stack"
 description = "Run your network applications free from runtime and address services, independently of their location."
 author = "The libp2p Foundation"
