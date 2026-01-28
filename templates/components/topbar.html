@@ -1,9 +1,10 @@
+{% import "macros.html" as macros %}
 {# Top Navigation Bar Component #}
 <header class="topbar">
     <div class="topbar__container">
         {# Logo #}
-        <a href="{{ get_url(path='/') }}" class="topbar__logo">
-            <img src="{{ get_url(path='/img/logo_small.png') }}" alt="libp2p logo">
+        <a href="{{ macros::rel() }}" class="topbar__logo">
+            <img src="{{ macros::rel() }}img/logo_small.png" alt="libp2p logo">
         </a>
 
         {# Desktop Navigation #}
@@ -17,7 +18,7 @@
                         {{ item.name }}
                     </a>
                 {% else %}
-                    <a href="{{ get_url(path=item.url) }}"
+                    <a href="{{ macros::rel() }}{{ item.url | trim_start_matches(pat='/') }}"
                        class="topbar__link {% if current_path is defined and current_path and current_path is starting_with(item.url) and item.url != '/' %}topbar__link--active{% elif current_path is defined and current_path == '/' and item.url == '/' %}topbar__link--active{% endif %}">
                         {{ item.name }}
                     </a>
@@ -65,8 +66,8 @@
 {# Mobile Navigation #}
 <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
     <div class="mobile-nav__header">
-        <a href="{{ get_url(path='/') }}" class="topbar__logo">
-            <img src="{{ get_url(path='/img/logo_small.png') }}" alt="libp2p logo">
+        <a href="{{ macros::rel() }}" class="topbar__logo">
+            <img src="{{ macros::rel() }}img/logo_small.png" alt="libp2p logo">
         </a>
         <button type="button" class="mobile-nav__close" aria-label="Close menu" data-menu-close>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -90,7 +91,7 @@
                     </svg>
                 </a>
             {% else %}
-                <a href="{{ get_url(path=item.url) }}"
+                <a href="{{ macros::rel() }}{{ item.url | trim_start_matches(pat='/') }}"
                    class="mobile-nav__link {% if current_path is defined and current_path and current_path is starting_with(item.url) and item.url != '/' %}mobile-nav__link--active{% elif current_path is defined and current_path == '/' and item.url == '/' %}mobile-nav__link--active{% endif %}">
                     {{ item.name }}
                 </a>

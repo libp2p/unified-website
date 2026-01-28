@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block title %}{{ section.title }}{% endblock %}
 
@@ -78,7 +79,7 @@
             {# Breadcrumbs #}
             <nav class="breadcrumbs" aria-label="Breadcrumb">
                 <span class="breadcrumbs__item">
-                    <a href="{{ get_url(path='/guides/') }}">Guides</a>
+                    <a href="{{ macros::rel() }}guides/">Guides</a>
                 </span>
                 <span class="breadcrumbs__separator">/</span>
                 <span class="breadcrumbs__item">{{ section.title }}</span>

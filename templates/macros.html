@@ -1,0 +1,17 @@
+{# Calculate relative path prefix based on current page depth #}
+{# Usage: {{ macros::rel() }}css/main.css #}
+{% macro rel() %}
+{%- set parts = current_path | default(value="/") | split(pat="/") -%}
+{%- set prefix = "" -%}
+{%- for part in parts -%}
+{%- if part != "" -%}
+{%- set_global prefix = prefix ~ "../" -%}
+{%- endif -%}
+{%- endfor -%}
+{{ prefix }}
+{%- endmacro %}
+
+{# Absolute URL macro for social sharing, canonical URLs, OG images #}
+{% macro abs_url(path) %}
+{{ config.base_url | trim_end_matches(pat="/") }}{{ path }}
+{%- endmacro %}

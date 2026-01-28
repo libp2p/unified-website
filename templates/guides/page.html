@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block title %}{{ page.title }}{% endblock %}
 
@@ -16,7 +17,7 @@
                 {# Breadcrumbs #}
                 <nav class="breadcrumbs" aria-label="Breadcrumb">
                     <span class="breadcrumbs__item">
-                        <a href="{{ get_url(path='/guides/') }}">Guides</a>
+                        <a href="{{ macros::rel() }}guides/">Guides</a>
                     </span>
                     {% if page.ancestors | length > 1 %}
                         {% for ancestor_path in page.ancestors %}
@@ -128,7 +129,7 @@
 {% block scripts %}
 {# Load Mermaid if needed #}
 {% if page.content is containing("mermaid") %}
-<script src="{{ get_url(path='/js/mermaid.min.js') }}"></script>
+<script src="{{ macros::rel() }}js/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad: true, theme: 'neutral'});</script>
 {% endif %}
 
