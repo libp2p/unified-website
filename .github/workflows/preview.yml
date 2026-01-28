@@ -39,7 +39,7 @@ jobs:
           echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
 
       - name: Build Zola site
-        run: zola build --base-url="https://${{ secrets.LIBP2P_DOMAIN }}/preview/${{ steps.vars.outputs.prefix }}/"
+        run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/preview/${{ steps.vars.outputs.prefix }}/"
 
       - name: Set up Node.js for ipfs-car
         uses: actions/setup-node@v4
