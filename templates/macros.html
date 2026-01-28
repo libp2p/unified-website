@@ -19,7 +19,12 @@
 {# Convert an absolute permalink to a relative path #}
 {# Usage: {{ macros::rel_link(permalink=page.permalink) }} #}
 {% macro rel_link(permalink) %}
-{%- set path = permalink | replace(from=config.base_url, to="") -%}
+{%- set base = config.base_url | trim_end_matches(pat="/") -%}
+{%- if base != "" -%}
+{%- set path = permalink | trim_start_matches(pat=base) -%}
+{%- else -%}
+{%- set path = permalink -%}
+{%- endif -%}
 {%- set path = path | trim_start_matches(pat="/") -%}
 {%- set parts = current_path | default(value="/") | split(pat="/") -%}
 {%- set prefix = "" -%}

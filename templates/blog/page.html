@@ -8,7 +8,7 @@
     {% if page.extra.header_image %}
     <meta property="og:image" content="{{ page.extra.header_image | safe }}">
     {% else %}
-    <meta property="og:image" content="{{ macros::abs_url(path='/img/og-image.png') }}">
+    <meta property="og:image" content="{{ macros::rel_link(permalink='/img/og-image.png') }}">
     {% endif %}
 {% endblock %}
 
@@ -33,7 +33,7 @@
         "name": "libp2p",
         "logo": {
             "@type": "ImageObject",
-            "url": "{{ macros::abs_url(path='/img/logo_small.png') }}"
+            "url": "{{ macros::rel_link(permalink='/img/logo_small.png') }}"
         }
     }
 }
@@ -44,7 +44,7 @@
 {# Header image (full width) #}
 {% if page.extra.header_image %}
 <div class="blog-post-hero">
-    <img src="{{ page.extra.header_image }}" alt="{{ page.title }}" class="blog-post-hero__image">
+    <img src="{{ macros::rel_link(permalink=page.extra.header_image) }}" alt="{{ page.title }}" class="blog-post-hero__image">
 </div>
 {% endif %}
 

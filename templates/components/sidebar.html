@@ -20,7 +20,7 @@
                 <ul class="sidebar__list">
                     {# Subsection index #}
                     <li class="sidebar__item">
-                        <a href="{{ subsection.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=subsection.permalink) }}"
                            class="sidebar__link {% if current_path == subsection.path %}sidebar__link--active{% endif %}">
                             Overview
                         </a>
@@ -29,7 +29,7 @@
                     {# Pages in subsection #}
                     {% for page in subsection.pages  %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -40,7 +40,7 @@
                     {% for nested_path in subsection.subsections %}
                         {% set nested = get_section(path=nested_path) %}
                         <li class="sidebar__item">
-                            <a href="{{ nested.permalink }}"
+                            <a href="{{ macros::rel_link(permalink=nested.permalink) }}"
                                class="sidebar__link {% if current_path == nested.path %}sidebar__link--active{% endif %}">
                                 {{ nested.title }}
                             </a>
@@ -48,7 +48,7 @@
                             <ul class="sidebar__nested">
                                 {% for page in nested.pages  %}
                                 <li class="sidebar__item">
-                                    <a href="{{ page.permalink }}"
+                                    <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                                        class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                                         {{ page.title }}
                                     </a>
@@ -112,7 +112,7 @@
                 <ul class="sidebar__list">
                     {% for page in get_started_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -134,7 +134,7 @@
                 <ul class="sidebar__list">
                     {% for page in fundamentals_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -156,7 +156,7 @@
                 <ul class="sidebar__list">
                     {% for page in transports_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -178,7 +178,7 @@
                 <ul class="sidebar__list">
                     {% for page in secure_channels_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -200,7 +200,7 @@
                 <ul class="sidebar__list">
                     {% for page in multiplexing_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -222,7 +222,7 @@
                 <ul class="sidebar__list">
                     {% for page in nat_traversal_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -244,7 +244,7 @@
                 <ul class="sidebar__list">
                     {% for page in pubsub_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -266,7 +266,7 @@
                 <ul class="sidebar__list">
                     {% for page in discovery_routing_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -288,7 +288,7 @@
                 <ul class="sidebar__list">
                     {% for page in connectivity_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>
@@ -307,7 +307,7 @@
                 <ul class="sidebar__list">
                     {% for page in other_pages %}
                     <li class="sidebar__item">
-                        <a href="{{ page.permalink }}"
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>

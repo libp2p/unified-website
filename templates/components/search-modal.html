@@ -1,0 +1,47 @@
+{# Search Modal Component #}
+<div class="search-modal" id="search-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-modal__container">
+        <header class="search-modal__header">
+            <span class="search-modal__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </span>
+            <input
+                type="text"
+                class="search-modal__input"
+                id="search-modal-input"
+                placeholder="Search documentation..."
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            >
+            <kbd class="search-modal__kbd">Esc</kbd>
+        </header>
+        <div class="search-modal__body">
+            <div class="search-modal__loading" id="search-modal-loading" style="display: none;">
+                Loading search index...
+            </div>
+            <div class="search-modal__empty" id="search-modal-empty" style="display: none;">
+                No results found
+            </div>
+            <ul class="search-modal__results" id="search-modal-results" role="listbox">
+            </ul>
+        </div>
+        <footer class="search-modal__footer">
+            <div class="search-modal__hints">
+                <span class="search-modal__hint">
+                    <kbd>&uarr;</kbd><kbd>&darr;</kbd> to navigate
+                </span>
+                <span class="search-modal__hint">
+                    <kbd>&crarr;</kbd> to select
+                </span>
+                <span class="search-modal__hint">
+                    <kbd>Esc</kbd> to close
+                </span>
+            </div>
+        </footer>
+    </div>
+</div>

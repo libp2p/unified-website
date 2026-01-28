@@ -32,8 +32,14 @@ jobs:
           chmod +x zola
           sudo mv zola /usr/local/bin/zola
 
+      - name: Determine preview path prefix
+        id: vars
+        run: |
+          echo "prefix=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
+          echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+
       - name: Build Zola site
-        run: zola build
+        run: zola build --base-url="https://${{ secrets.LIBP2P_DOMAIN }}/preview/${{ steps.vars.outputs.prefix }}/"
 
       - name: Set up Node.js for ipfs-car
         uses: actions/setup-node@v4
@@ -65,12 +71,6 @@ jobs:
           aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
           aws configure set default.region $AWS_DEFAULT_REGION
           aws configure list
-
-      - name: Determine preview path prefix
-        id: vars
-        run: |
-          echo "prefix=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
-          echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
 
       - name: Upload CAR to preview bucket (with import=car)
         id: upload
