@@ -54,7 +54,7 @@ jobs:
 
       - name: Configure AWS credentials for Filebase
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FILEBASE_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ vars.FILEBASE_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.FILEBASE_SECRET_KEY }}
           AWS_DEFAULT_REGION: us-east-1   # Filebase ignores region, but required
         run: |
@@ -71,11 +71,11 @@ jobs:
         run: |
           aws --endpoint https://s3.filebase.com \
             s3 cp libp2p.car \
-            s3://${{ secrets.FILEBASE_BUCKET_PROD }}/ \
+            s3://${{ vars.FILEBASE_BUCKET_PROD }}/ \
             --metadata 'import=car'
           aws --endpoint https://s3.filebase.com \
             s3api head-object \
-            --bucket ${{ secrets.FILEBASE_BUCKET_PROD }} \
+            --bucket ${{ vars.FILEBASE_BUCKET_PROD }} \
             --key libp2p.car > head-object.log 2>&1
 
           # Extract CID from debug log (x-amz-meta-cid header)
