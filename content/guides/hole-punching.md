@@ -181,5 +181,5 @@ a hole punching phase.
   blog post by Max Inden.
 - Research paper on
   [decentralized hole punching by Protocol Labs Research](https://research.protocol.ai/publications/decentralized-hole-punching/)
-- Keep up with the [libp2p implementations page](https://libp2p.io/implementations/) for
+- Keep up with the [libp2p implementations page](https://github.com/libp2p/libp2p#implementations) for
   the state on different hole punching implementations.

@@ -11,7 +11,7 @@ tags = ["libp2p"]
 author = "Marco Munizaga"
 header_image = "/img/blog/interop-testing.png"
 +++
-There are many [implementations](https://libp2p.io/implementations/) of libp2p with varying degrees of feature completeness. Each implementation has transports, secure channels, and muxers that they support. How do we make sure that each implementation can communicate with every other implementation? And how do we check that they can communicate over each supported combination?
+There are many [implementations](https://github.com/libp2p/libp2p#implementations) of libp2p with varying degrees of feature completeness. Each implementation has transports, secure channels, and muxers that they support. How do we make sure that each implementation can communicate with every other implementation? And how do we check that they can communicate over each supported combination?
 
 In this post I'll cover how we test every implementation on every strategy, on many versions, and highlight some open problems that you can contribute to.
 

@@ -28,12 +28,12 @@
         {% for page in term.pages %}
             <article class="blog-card">
                 {% if page.extra.header_image %}
-                <a href="{{ page.permalink }}" class="blog-card__image">
+                <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="blog-card__image">
                     <img src="{{ page.extra.header_image }}" alt="{{ page.title }}" loading="lazy">
                 </a>
                 {% endif %}
                 <div class="blog-card__content">
-                    <a href="{{ page.permalink }}" class="blog-card__title-link">
+                    <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="blog-card__title-link">
                         <h2 class="blog-card__title">{{ page.title }}</h2>
                     </a>
                     {% if page.description %}

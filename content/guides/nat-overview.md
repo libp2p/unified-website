@@ -34,5 +34,5 @@ allow it to listen for incoming traffic. This is usually the simplest option if 
 
 {% alert(type="info") %}
 Support for automatic NAT configuration varies by libp2p implementation.
-Check the [current implementation status](https://libp2p.io/implementations/#nat-traversal) for details.
+Check the [current implementation status](https://github.com/libp2p/libp2p#implementations) for details.
 {% end %}
