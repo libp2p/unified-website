@@ -79,7 +79,7 @@ The most critical change for our peer-to-peer use case is the new verification o
 
 Option (2) allows us to use WebTransport on *any* libp2p node without manual configuration!
 
-It works because when setting up a WebTransport server, the libp2p node will generate a self-signed TLS certificate and calculate the certificate hash. It then advertises the following [multiaddress](https://docs.libp2p.io/concepts/fundamentals/addressing/) to the network:
+It works because when setting up a WebTransport server, the libp2p node will generate a self-signed TLS certificate and calculate the certificate hash. It then advertises the following [multiaddress](/guides/addressing/) to the network:
 
 `/ip4/1.2.3.4/udp/4001/quic/webtransport/certhash/<hash>`
 
@@ -137,7 +137,7 @@ Yes, please! WebTransport already works between browsers and servers in applicat
 
 ## Resources and How you can help contribute
 
-- [Documentation on WebTransport](https://docs.libp2p.io/concepts/transports/webtransport/)
+- [Documentation on WebTransport](/guides/webtransport/)
 - [Connectivity site section on the protocol](/guides/browser-connectivity#webtransport)
 - [Specification on WebTransport](https://github.com/libp2p/specs/tree/master/webtransport)
 

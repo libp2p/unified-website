@@ -35,7 +35,7 @@ Direct connections are especially useful for video and audio calling, because th
 
 However, the reality of public internet networking—given routers, NAT layers, VPNs, and firewalls—is such that p2p connectivity is riddled with challenges. These are commonly overcome by running additional infrastructure such as signaling, [STUN](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols), and [TURN](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols) servers, some of which are standardized as part of WebRTC.
 
-While WebRTC is a solution to peer-to-peer connectivity in the context of browsers. Libp2p encompasses a wider scope with building blocks for constructing peer-to-peer apps that support WebRTC in addition to [other transports, such as QUIC, TCP, WebSocket, WebTransport](https://connectivity.libp2p.io/), and essentially form a mesh topology:
+While WebRTC is a solution to peer-to-peer connectivity in the context of browsers. Libp2p encompasses a wider scope with building blocks for constructing peer-to-peer apps that support WebRTC in addition to [other transports, such as QUIC, TCP, WebSocket, WebTransport](/guides/browser-connectivity/), and essentially form a mesh topology:
 
 ![mesh topology](/webrtc-guide/mesh.png)
 

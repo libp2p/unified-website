@@ -230,5 +230,5 @@ check out the [Distributed Hash Tables guide][dht] on the IPFS documentation sit
 [relay_go]: https://github.com/libp2p/go-libp2p-circuit
 
 libp2p provides a protocol for tunneling traffic through relay peers when two peers are unable to connect to each other
-directly. See the [Circuit Relay documentation](https://docs.libp2p.io/concepts/nat/circuit-relay/) for more information on working with relays, including notes on relay
+directly. See the [Circuit Relay documentation](/guides/circuit-relay/) for more information on working with relays, including notes on relay
 addresses and how to enable automatic relay connection when behind an intractable NAT.

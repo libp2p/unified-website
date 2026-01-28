@@ -67,7 +67,7 @@ This is a problem for libp2p. Most nodes on the network don't even have a domain
 
 There are currently two solutions for obtaining TLS certificates:
 
-1. **[AutoTLS](https://blog.libp2p.io/autotls/)** is a service run by the [Shipyard team](https://ipshipyard.com) granting users a DNS name unique to their PeerID at `[PeerID].libp2p.direct` so they can use ACME to issue a [Let's Encrypt](https://letsencrypt.org/) wildcard TLS certificate for every libp2p node.
+1. **[AutoTLS](/blog/autotls/)** is a service run by the [Shipyard team](https://ipshipyard.com) granting users a DNS name unique to their PeerID at `[PeerID].libp2p.direct` so they can use ACME to issue a [Let's Encrypt](https://letsencrypt.org/) wildcard TLS certificate for every libp2p node.
 
 2. **IP Certificates**: Let's Encrypt is [starting to support IP certificates](https://letsencrypt.org/2025/01/16/6-day-and-ip-certs/). While these are great and remove a dependency on libp2p.direct, they are not usable unless the node can run on port 80 or 443 which is a difficult restriction.
 
@@ -83,7 +83,7 @@ WebSocket is widely supported but requires TLS certificates for secure contexts.
 
 ### Further Reading
 
-- [AutoTLS (libp2p.direct) Release Blog Post](https://blog.libp2p.io/autotls)
+- [AutoTLS (libp2p.direct) Release Blog Post](/blog/autotls/)
 - [Code and specification for libp2p.direct (p2p-forge)](https://github.com/ipshipyard/p2p-forge/)
 - [How Plex assigns certificates to their users](https://words.filippo.io/how-plex-is-doing-https-for-all-its-users/)
 - [Let's Encrypt IP certificate announcement](https://letsencrypt.org/2025/01/16/6-day-and-ip-certs/)
@@ -158,7 +158,7 @@ WebTransport browser support is growing rapidly.
 
 ### Further Reading
 
-- [WebTransport libp2p Blog Article](https://blog.libp2p.io/2022-12-19-libp2p-webtransport/)
+- [WebTransport libp2p Blog Article](/blog/2022-12-19-libp2p-webtransport/)
 - [libp2p WebTransport Specification](https://github.com/libp2p/specs/tree/master/webtransport)
 - [webtransport-go implementation](https://github.com/marten-seemann/webtransport-go)
 - [Can I Use WebTransport?](https://caniuse.com/webtransport)
@@ -222,9 +222,9 @@ As WebRTC is built to facilitate video conferencing between browsers, browsers a
 ### Further Reading
 
 - [WebRTC Direct specification](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md)
-- [WebRTC Direct blog post](https://blog.libp2p.io/libp2p-webrtc-browser-to-server/)
+- [WebRTC Direct blog post](/blog/libp2p-webrtc-browser-to-server/)
 - [WebRTC (Browser → Browser) specification](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md)
-- [Browser-to-Browser WebRTC with js-libp2p guide](https://blog.libp2p.io/libp2p-webrtc-browser-to-browser/)
+- [Browser-to-Browser WebRTC with js-libp2p guide](/guides/browser-connectivity/)
 
 ---
 
