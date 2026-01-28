@@ -1,0 +1,248 @@
+// ===========================================
+// STATUS/INTEROP GRID (for Status page)
+// ===========================================
+
+.status-grid {
+    margin: $spacing-6 0;
+    overflow-x: auto;
+
+    &__table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: $font-size-sm;
+
+        th, td {
+            padding: $spacing-2 $spacing-3;
+            text-align: center;
+            border: 1px solid $color-gray-200;
+            min-width: 80px;
+        }
+
+        th {
+            background-color: $color-gray-50;
+            font-weight: $font-weight-semibold;
+            color: $color-gray-700;
+            white-space: nowrap;
+        }
+
+        // First column (row headers)
+        th:first-child,
+        td:first-child {
+            text-align: left;
+            font-weight: $font-weight-medium;
+            background-color: $color-gray-50;
+            position: sticky;
+            left: 0;
+            z-index: 1;
+        }
+
+        // Corner cell
+        thead th:first-child {
+            z-index: 2;
+        }
+    }
+
+    // Status cells
+    .status-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 32px;
+
+        &--pass {
+            background-color: rgba($status-pass, 0.15);
+            color: $status-pass;
+        }
+
+        &--fail {
+            background-color: rgba($status-fail, 0.15);
+            color: $status-fail;
+        }
+
+        &--partial {
+            background-color: rgba($status-partial, 0.15);
+            color: $status-partial;
+        }
+
+        &--wip {
+            background-color: rgba($status-wip, 0.15);
+            color: $status-wip;
+        }
+
+        &--na {
+            background-color: $color-gray-100;
+            color: $color-gray-400;
+        }
+
+        &--unknown {
+            background-color: $color-gray-100;
+            color: $color-gray-400;
+        }
+    }
+
+    // Status icons
+    .status-icon {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+    }
+}
+
+// Compact status indicator
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-1;
+    padding: $spacing-0-5 $spacing-2;
+    border-radius: $radius-full;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+
+    &--pass {
+        background-color: rgba($status-pass, 0.15);
+        color: darken($status-pass, 10%);
+    }
+
+    &--fail {
+        background-color: rgba($status-fail, 0.15);
+        color: darken($status-fail, 10%);
+    }
+
+    &--partial {
+        background-color: rgba($status-partial, 0.15);
+        color: darken($status-partial, 15%);
+    }
+
+    &--wip {
+        background-color: rgba($status-wip, 0.15);
+        color: darken($status-wip, 10%);
+    }
+
+    &--na {
+        background-color: $color-gray-100;
+        color: $color-gray-500;
+    }
+
+    &__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: currentColor;
+    }
+}
+
+// Status legend
+.status-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-4;
+    margin: $spacing-4 0;
+    padding: $spacing-3;
+    background-color: $color-gray-50;
+    border-radius: $radius-md;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+    }
+
+    &__color {
+        width: 16px;
+        height: 16px;
+        border-radius: $radius-sm;
+
+        &--pass { background-color: $status-pass; }
+        &--fail { background-color: $status-fail; }
+        &--partial { background-color: $status-partial; }
+        &--wip { background-color: $status-wip; }
+        &--na { background-color: $status-na; }
+    }
+}
+
+// Implementation matrix (larger grid)
+.impl-matrix {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: $spacing-4;
+
+        h3 {
+            margin: 0;
+        }
+    }
+
+    &__filters {
+        display: flex;
+        gap: $spacing-2;
+    }
+
+    &__filter {
+        padding: $spacing-1-5 $spacing-3;
+        font-size: $font-size-sm;
+        background-color: $color-gray-100;
+        border: 1px solid $color-gray-200;
+        border-radius: $radius-md;
+        cursor: pointer;
+        transition: all $transition-fast $ease-in-out;
+
+        &:hover {
+            background-color: $color-gray-200;
+        }
+
+        &--active {
+            background-color: $color-primary;
+            border-color: $color-primary;
+            color: $color-white;
+        }
+    }
+}
+
+// Support matrix (from shortcode)
+.support-matrix {
+    margin: $spacing-4 0;
+    padding: $spacing-4;
+    background-color: $color-gray-50;
+    border-radius: $radius-lg;
+
+    &__title {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-700;
+        margin-bottom: $spacing-3;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: $spacing-2;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-2 $spacing-3;
+        background-color: $color-white;
+        border-radius: $radius-md;
+        font-size: $font-size-sm;
+    }
+
+    &__impl {
+        color: $color-gray-700;
+    }
+
+    &__status {
+        font-size: $font-size-lg;
+        line-height: 1;
+
+        &--pass { color: $status-pass; }
+        &--fail { color: $status-fail; }
+        &--partial { color: $status-partial; }
+        &--wip { color: $status-wip; }
+        &--na { color: $status-na; }
+        &--unknown { color: $status-unknown; }
+    }
+}

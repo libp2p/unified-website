@@ -1,0 +1,46 @@
+{#
+Alert/Callout Shortcode
+
+Usage:
+{% alert(type="note") %}
+Your content here with **markdown** support.
+{% end %}
+
+{% alert(type="tip", title="Pro Tip") %}
+Custom title example.
+{% end %}
+
+Types: note, tip, warning, danger, info
+#}
+
+{% set alert_type = type | default(value="note") %}
+{% set alert_title = title | default(value="") %}
+
+{% set icon = "" %}
+{% set default_title = "" %}
+
+{% if alert_type == "note" or alert_type == "info" %}
+    {% set icon = "&#128712;" %}
+    {% set default_title = "Note" %}
+{% elif alert_type == "tip" or alert_type == "success" %}
+    {% set icon = "&#128161;" %}
+    {% set default_title = "Tip" %}
+{% elif alert_type == "warning" or alert_type == "caution" %}
+    {% set icon = "&#9888;" %}
+    {% set default_title = "Warning" %}
+{% elif alert_type == "danger" or alert_type == "error" %}
+    {% set icon = "&#128721;" %}
+    {% set default_title = "Danger" %}
+{% endif %}
+
+{% set display_title = alert_title | default(value=default_title) %}
+
+<div class="alert alert--{{ alert_type }}">
+    <span class="alert__icon">{{ icon | safe }}</span>
+    <div class="alert__content">
+        {% if display_title %}
+        <strong class="alert__title">{{ display_title }}</strong>
+        {% endif %}
+        {{ body | safe }}
+    </div>
+</div>

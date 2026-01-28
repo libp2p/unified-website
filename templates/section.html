@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }}{% endblock %}
+
+{% block body_class %}section{% endblock %}
+{% block main_class %}section-main{% endblock %}
+
+{% block content %}
+<div class="section-page">
+    <div class="container">
+        <header class="section-header">
+            <h1 class="section-title">{{ section.title }}</h1>
+            {% if section.description %}
+                <p class="section-description">{{ section.description }}</p>
+            {% endif %}
+        </header>
+
+        {% if section.content %}
+        <div class="section-content prose">
+            {{ section.content | safe }}
+        </div>
+        {% endif %}
+
+        {# List subsections #}
+        {% if section.subsections %}
+        <div class="section-subsections">
+            <h2>Sections</h2>
+            <ul class="subsection-list">
+                {% for subsection_path in section.subsections %}
+                    {% set subsection = get_section(path=subsection_path) %}
+                    <li>
+                        <a href="{{ subsection.permalink }}">
+                            <strong>{{ subsection.title }}</strong>
+                            {% if subsection.description %}
+                                <span>{{ subsection.description }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {# List pages in this section #}
+        {% if section.pages %}
+        <div class="section-pages">
+            {% if section.subsections %}<h2>Pages</h2>{% endif %}
+            <ul class="page-list">
+                {% for page in section.pages %}
+                    <li>
+                        <a href="{{ page.permalink }}">
+                            <strong>{{ page.title }}</strong>
+                            {% if page.description %}
+                                <span>{{ page.description }}</span>
+                            {% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

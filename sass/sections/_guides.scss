@@ -1,0 +1,445 @@
+// ===========================================
+// GUIDES SECTION STYLES
+// ===========================================
+
+.guides-layout {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+.guides-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+}
+
+.guides-content {
+    flex: 1;
+    min-width: 0;
+    padding: $spacing-8;
+
+    @media (min-width: $breakpoint-lg) {
+        padding: $spacing-10 $spacing-12;
+    }
+}
+
+.guides-article {
+    max-width: $container-prose;
+}
+
+// Guides landing page
+.guides-landing {
+    padding: $spacing-8;
+
+    @media (min-width: $breakpoint-lg) {
+        padding: $spacing-12;
+    }
+
+    &__header {
+        max-width: 800px;
+        margin-bottom: $spacing-12;
+
+        h1 {
+            margin-bottom: $spacing-4;
+        }
+
+        p {
+            font-size: $font-size-lg;
+            color: $color-gray-600;
+        }
+    }
+
+    &__sections {
+        display: grid;
+        gap: $spacing-6;
+        grid-template-columns: 1fr;
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+// Section card on landing
+.guides-section-card {
+    display: block;
+    padding: $spacing-6;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-xl;
+    text-decoration: none;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        border-color: $color-primary;
+        box-shadow: $shadow-md;
+        text-decoration: none;
+    }
+
+    &__icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-primary-lighter;
+        border-radius: $radius-lg;
+        margin-bottom: $spacing-4;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            color: $color-primary;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        margin-bottom: $spacing-2;
+    }
+
+    &__description {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        line-height: $line-height-relaxed;
+        margin-bottom: $spacing-3;
+    }
+
+    &__count {
+        font-size: $font-size-xs;
+        color: $color-gray-500;
+    }
+}
+
+// Breadcrumbs
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-2;
+    margin-bottom: $spacing-6;
+    font-size: $font-size-sm;
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        color: $color-gray-500;
+
+        a {
+            color: $color-gray-500;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+
+        &:last-child {
+            color: $color-gray-900;
+            font-weight: $font-weight-medium;
+        }
+    }
+
+    &__separator {
+        color: $color-gray-400;
+    }
+}
+
+// Guide page header
+.guide-header {
+    margin-bottom: $spacing-8;
+
+    &__title {
+        font-size: $font-size-3xl;
+        margin-bottom: $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-4xl;
+        }
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: $spacing-4;
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+    }
+
+    &__reading-time {
+        display: flex;
+        align-items: center;
+        gap: $spacing-1;
+    }
+}
+
+// Guide content styles
+.guide-content {
+    // Add extra styling for guides
+
+    // Images with captions
+    figure {
+        margin: $spacing-6 0;
+
+        img {
+            border-radius: $radius-lg;
+            border: 1px solid $color-gray-200;
+        }
+
+        figcaption {
+            margin-top: $spacing-2;
+            font-size: $font-size-sm;
+            color: $color-gray-500;
+            text-align: center;
+        }
+    }
+
+    // Step lists
+    .steps {
+        counter-reset: step;
+        list-style: none;
+        padding-left: 0;
+
+        > li {
+            position: relative;
+            padding-left: $spacing-10;
+            margin-bottom: $spacing-6;
+
+            &::before {
+                content: counter(step);
+                counter-increment: step;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 28px;
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $color-primary;
+                color: $color-white;
+                font-size: $font-size-sm;
+                font-weight: $font-weight-bold;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    // Tabbed content
+    .tabs {
+        margin: $spacing-6 0;
+        border: 1px solid $color-gray-200;
+        border-radius: $radius-lg;
+        overflow: hidden;
+    }
+
+    .tab-list {
+        display: flex;
+        background-color: $color-gray-50;
+        border-bottom: 1px solid $color-gray-200;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        button {
+            padding: $spacing-3 $spacing-4;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-medium;
+            color: $color-gray-600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+
+            &:hover {
+                color: $color-gray-900;
+            }
+
+            &[aria-selected="true"] {
+                color: $color-primary;
+                background-color: $color-white;
+                border-bottom-color: $color-primary;
+            }
+        }
+    }
+
+    .tab-panel {
+        padding: $spacing-4;
+
+        &[hidden] {
+            display: none;
+        }
+
+        > *:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Guide footer
+.guide-footer {
+    margin-top: $spacing-12;
+    padding-top: $spacing-8;
+    border-top: 1px solid $color-gray-200;
+}
+
+.guide-nav {
+    display: grid;
+    gap: $spacing-4;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+        padding: $spacing-4;
+        background-color: $color-gray-50;
+        border-radius: $radius-lg;
+        text-decoration: none;
+        transition: all $transition-fast $ease-in-out;
+
+        &:hover {
+            background-color: $color-gray-100;
+            text-decoration: none;
+        }
+
+        &--prev {
+            flex-direction: row;
+        }
+
+        &--next {
+            flex-direction: row-reverse;
+            text-align: right;
+
+            @media (min-width: $breakpoint-md) {
+                grid-column: 2;
+            }
+        }
+
+        svg {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: $color-gray-400;
+        }
+    }
+
+    &__text {
+        min-width: 0;
+    }
+
+    &__label {
+        display: block;
+        font-size: $font-size-xs;
+        color: $color-gray-500;
+        margin-bottom: $spacing-0-5;
+    }
+
+    &__title {
+        font-weight: $font-weight-medium;
+        color: $color-gray-900;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+// Edit link
+.guide-edit {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    margin-top: $spacing-6;
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+
+    &:hover {
+        color: $color-primary;
+    }
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+// Details/collapsible styling
+.details {
+    margin: $spacing-4 0;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-lg;
+
+    &__summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-3 $spacing-4;
+        cursor: pointer;
+        user-select: none;
+        list-style: none;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &:hover {
+            background-color: $color-gray-50;
+        }
+    }
+
+    &__title {
+        font-weight: $font-weight-medium;
+    }
+
+    &__icon {
+        color: $color-gray-400;
+        transition: transform $transition-fast $ease-in-out;
+    }
+
+    &[open] &__icon {
+        transform: rotate(180deg);
+    }
+
+    &__content {
+        padding: 0 $spacing-4 $spacing-4;
+
+        > *:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Mermaid diagrams
+.mermaid-container {
+    margin: $spacing-6 0;
+    text-align: center;
+
+    .mermaid {
+        display: inline-block;
+        max-width: 100%;
+    }
+}
+
+.mermaid-caption {
+    margin-top: $spacing-2;
+    font-size: $font-size-sm;
+    color: $color-gray-500;
+    font-style: italic;
+}

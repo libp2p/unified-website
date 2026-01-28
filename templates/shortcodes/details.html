@@ -1,0 +1,27 @@
+{#
+Collapsible Details Shortcode
+
+Usage:
+{% details(title="Click to expand") %}
+Hidden content that appears when expanded.
+{% end %}
+
+{% details(title="Open by default", open=true) %}
+This section is open by default.
+{% end %}
+#}
+
+{% set summary_title = title | default(value="Details") %}
+{% set is_open = open | default(value=false) %}
+
+<details class="details" {% if is_open %}open{% endif %}>
+    <summary class="details__summary">
+        <span class="details__title">{{ summary_title }}</span>
+        <svg class="details__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    </summary>
+    <div class="details__content">
+        {{ body | safe }}
+    </div>
+</details>

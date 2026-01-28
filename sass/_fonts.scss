@@ -1,0 +1,134 @@
+// ===========================================
+// FONT FACE DECLARATIONS
+// ===========================================
+
+// Inter - Primary sans-serif (Google Fonts CDN)
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Montserrat - Display headings (Google Fonts CDN)
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+// JetBrains Mono - Code blocks (Google Fonts CDN)
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+// ===========================================
+// Legacy Fonts (local files for compatibility)
+// ===========================================
+
+// Nexa Bold
+@font-face {
+    font-family: 'NexaBold';
+    src: url('/fonts/NexaBold.eot');
+    src: url('/fonts/NexaBold.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/NexaBold.woff') format('woff'),
+         url('/fonts/NexaBold.svg#nexabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+// Nexa Light
+@font-face {
+    font-family: 'NexaLight';
+    src: url('/fonts/NexaLight.eot');
+    src: url('/fonts/NexaLight.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/NexaLight.woff') format('woff'),
+         url('/fonts/NexaLight.svg#nexalight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+// Roboto variants
+@font-face {
+    font-family: 'Roboto-Regular';
+    src: url('/fonts/Roboto-Regular.eot');
+    src: url('/fonts/Roboto-Regular.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Roboto-Regular.woff') format('woff'),
+         url('/fonts/Roboto-Regular.svg#roboto-regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('/fonts/Roboto-Light.eot');
+    src: url('/fonts/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Roboto-Light.woff') format('woff'),
+         url('/fonts/Roboto-Light.svg#roboto-light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Medium';
+    src: url('/fonts/Roboto-Medium.eot');
+    src: url('/fonts/Roboto-Medium.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Roboto-Medium.woff') format('woff'),
+         url('/fonts/Roboto-Medium.svg#roboto-medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('/fonts/Roboto-Bold.eot');
+    src: url('/fonts/Roboto-Bold.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Roboto-Bold.woff') format('woff'),
+         url('/fonts/Roboto-Bold.svg#roboto-bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto-Black';
+    src: url('/fonts/Roboto-Black.eot');
+    src: url('/fonts/Roboto-Black.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/Roboto-Black.woff') format('woff'),
+         url('/fonts/Roboto-Black.svg#roboto-black') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+// ===========================================
+// libp2p Icon Font
+// ===========================================
+
+@font-face {
+    font-family: 'libp2p';
+    src: url('/fonts/libp2p.eot?wzzpia');
+    src: url('/fonts/libp2p.eot?wzzpia#iefix') format('embedded-opentype'),
+         url('/fonts/libp2p.ttf?wzzpia') format('truetype'),
+         url('/fonts/libp2p.woff?wzzpia') format('woff'),
+         url('/fonts/libp2p.svg?wzzpia#libp2p') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+// Icon font classes
+[class^="icon-"],
+[class*=" icon-"] {
+    font-family: 'libp2p' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cat::before {
+    content: "\e901";
+}
+
+.icon-hexagon::before {
+    content: "\e900";
+}

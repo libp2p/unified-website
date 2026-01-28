@@ -1,0 +1,353 @@
+// ===========================================
+// HOME PAGE STYLES
+// ===========================================
+
+.home {
+    // Override default body styles if needed
+}
+
+.home-main {
+    // Main content area
+}
+
+// Hero Section
+.hero {
+    background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
+    color: $color-white;
+    padding: $spacing-16 0;
+    overflow: hidden;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-24 0;
+    }
+
+    &__container {
+        max-width: $container-xl;
+        margin: 0 auto;
+        padding: 0 $spacing-4;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-12;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 $spacing-6;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            flex-direction: row;
+            align-items: center;
+            padding: 0 $spacing-8;
+        }
+    }
+
+    &__content {
+        flex: 1;
+
+        @media (min-width: $breakpoint-lg) {
+            max-width: 600px;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-tight;
+        margin-bottom: $spacing-4;
+        color: $color-white;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-5xl;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            font-size: $font-size-6xl;
+        }
+    }
+
+    &__subtitle {
+        font-size: $font-size-lg;
+        line-height: $line-height-relaxed;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: $spacing-8;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-xl;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-4;
+    }
+
+    &__visual {
+        flex: 1;
+        min-height: 300px;
+
+        @media (min-width: $breakpoint-lg) {
+            min-height: 400px;
+        }
+    }
+
+    &__animation {
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        border-radius: $radius-2xl;
+    }
+}
+
+// Features Section
+.features {
+    padding: $spacing-16 0;
+    background-color: $color-white;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-24 0;
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: $spacing-4;
+    }
+
+    &__subtitle {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto $spacing-12;
+        color: $color-gray-600;
+        font-size: $font-size-lg;
+    }
+
+    &__grid {
+        display: grid;
+        gap: $spacing-6;
+        grid-template-columns: 1fr;
+
+        @media (min-width: $breakpoint-sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+// Implementations Section
+.implementations {
+    padding: $spacing-16 0;
+    background-color: $color-gray-50;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-24 0;
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: $spacing-4;
+    }
+
+    &__subtitle {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto $spacing-12;
+        color: $color-gray-600;
+        font-size: $font-size-lg;
+    }
+
+    &__grid {
+        display: grid;
+        gap: $spacing-6;
+        grid-template-columns: 1fr;
+        max-width: 900px;
+        margin: 0 auto $spacing-8;
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    &__more {
+        text-align: center;
+    }
+}
+
+// Implementation Card
+.impl-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-8;
+    background-color: $color-white;
+    border-radius: $radius-xl;
+    border: 1px solid $color-gray-200;
+    text-decoration: none;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+        border-color: $color-primary;
+        text-decoration: none;
+    }
+
+    &__logo {
+        width: 80px;
+        height: 80px;
+        margin-bottom: $spacing-4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    &__name {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        margin-bottom: $spacing-2;
+    }
+
+    &__desc {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        text-align: center;
+        margin: 0;
+    }
+}
+
+// Events Section
+.events {
+    padding: $spacing-16 0;
+    background-color: $color-white;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-24 0;
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: $spacing-4;
+    }
+
+    &__subtitle {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto $spacing-8;
+        color: $color-gray-600;
+    }
+
+    &__calendar {
+        max-width: 800px;
+        margin: 0 auto $spacing-8;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: center;
+        gap: $spacing-4;
+    }
+}
+
+// CTA Section
+.cta {
+    padding: $spacing-16 0;
+    background: linear-gradient(135deg, $color-primary 0%, $color-accent 100%);
+    color: $color-white;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-24 0;
+    }
+
+    &__content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    &__title {
+        font-size: $font-size-3xl;
+        color: $color-white;
+        margin-bottom: $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-4xl;
+        }
+    }
+
+    &__text {
+        font-size: $font-size-lg;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: $spacing-8;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: $spacing-4;
+    }
+}
+
+// Error page styles
+.error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.error-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-container {
+    text-align: center;
+    padding: $spacing-8;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: $font-weight-black;
+    color: $color-gray-200;
+    line-height: 1;
+    margin-bottom: $spacing-4;
+}
+
+.error-title {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-4;
+}
+
+.error-message {
+    color: $color-gray-600;
+    margin-bottom: $spacing-8;
+}
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+    gap: $spacing-4;
+    margin-bottom: $spacing-8;
+}
+
+.error-links {
+    color: $color-gray-500;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: $spacing-4;
+        flex-wrap: wrap;
+    }
+}

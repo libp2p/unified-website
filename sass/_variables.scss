@@ -1,0 +1,247 @@
+// ===========================================
+// UNIFIED DESIGN SYSTEM - libp2p
+// ===========================================
+// Single source of truth for all design tokens
+// Used across all sections: Home, Blog, Releases, Guides, Status, Get Involved
+
+// ===========================================
+// TYPOGRAPHY
+// ===========================================
+
+// Font families
+$font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-family-display: 'Montserrat', $font-family-sans;
+$font-family-mono: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+
+// Legacy font families (for compatibility with existing site)
+$font-roboto: 'Roboto-Regular', $font-family-sans;
+$font-roboto-bold: 'Roboto-Bold', $font-family-sans;
+$font-roboto-light: 'Roboto-Light', $font-family-sans;
+$font-roboto-medium: 'Roboto-Medium', $font-family-sans;
+$font-nexa-bold: 'NexaBold', $font-family-display;
+$font-nexa-light: 'NexaLight', $font-family-display;
+
+// Font sizes (rem scale based on 16px root)
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-lg: 1.125rem;     // 18px
+$font-size-xl: 1.25rem;      // 20px
+$font-size-2xl: 1.5rem;      // 24px
+$font-size-3xl: 1.875rem;    // 30px
+$font-size-4xl: 2.25rem;     // 36px
+$font-size-5xl: 3rem;        // 48px
+$font-size-6xl: 3.75rem;     // 60px
+
+// Line heights
+$line-height-tight: 1.25;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// Font weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+
+// ===========================================
+// COLOR PALETTE
+// ===========================================
+
+// Primary brand colors (libp2p identity)
+$color-primary: #24a8e6;           // libp2p blue
+$color-primary-dark: #1a8bc4;
+$color-primary-light: #5ec5f0;
+$color-primary-lighter: #b3e4f7;
+
+$color-secondary: #ff743e;         // libp2p orange
+$color-secondary-dark: #e5622e;
+$color-secondary-light: #ff9d6e;
+
+$color-accent: #953A8C;            // libp2p purple
+$color-accent-dark: #7a2f73;
+$color-accent-light: #b04da6;
+
+// Extended palette
+$color-blue-deep: #002256;         // dark backgrounds
+$color-teal: #34797D;              // accent
+$color-pink: #d32e9d;              // highlight
+$color-pink-light: #ee5499;
+$color-yellow: #f9c234;            // attention
+
+// Neutrals
+$color-white: #ffffff;
+$color-black: #16161F;
+$color-gray-50: #f9fafb;
+$color-gray-100: #f3f4f6;
+$color-gray-200: #e5e7eb;
+$color-gray-300: #d1d5db;
+$color-gray-400: #9ca3af;
+$color-gray-500: #6b7280;
+$color-gray-600: #4b5563;
+$color-gray-700: #374151;
+$color-gray-800: #1f2937;
+$color-gray-900: #111827;
+
+// Legacy color names (for compatibility)
+$c-font: #949cac;
+$c-dark-grey: #48505d;
+$c-grey: #9099A9;
+
+// Semantic colors
+$color-success: #10b981;
+$color-success-light: #d1fae5;
+$color-warning: #f59e0b;
+$color-warning-light: #fef3c7;
+$color-error: #ef4444;
+$color-error-light: #fee2e2;
+$color-info: $color-primary;
+$color-info-light: $color-primary-lighter;
+
+// Status grid colors (for interop status page)
+$status-pass: #10b981;
+$status-fail: #ef4444;
+$status-partial: #f59e0b;
+$status-na: #9ca3af;
+$status-wip: #8b5cf6;
+$status-unknown: #d1d5db;
+
+// Alert colors
+$alert-note-bg: #e0f2fe;
+$alert-note-border: #0284c7;
+$alert-tip-bg: #dcfce7;
+$alert-tip-border: #16a34a;
+$alert-warning-bg: #fef3c7;
+$alert-warning-border: #d97706;
+$alert-danger-bg: #fee2e2;
+$alert-danger-border: #dc2626;
+
+// Code block colors
+$code-bg: #1e293b;
+$code-text: #e2e8f0;
+$code-comment: #64748b;
+$code-keyword: #f472b6;
+$code-string: #86efac;
+$code-number: #fcd34d;
+$code-function: #60a5fa;
+
+// ===========================================
+// SPACING
+// ===========================================
+
+$spacing-0: 0;
+$spacing-px: 1px;
+$spacing-0-5: 0.125rem;   // 2px
+$spacing-1: 0.25rem;      // 4px
+$spacing-1-5: 0.375rem;   // 6px
+$spacing-2: 0.5rem;       // 8px
+$spacing-2-5: 0.625rem;   // 10px
+$spacing-3: 0.75rem;      // 12px
+$spacing-3-5: 0.875rem;   // 14px
+$spacing-4: 1rem;         // 16px
+$spacing-5: 1.25rem;      // 20px
+$spacing-6: 1.5rem;       // 24px
+$spacing-7: 1.75rem;      // 28px
+$spacing-8: 2rem;         // 32px
+$spacing-9: 2.25rem;      // 36px
+$spacing-10: 2.5rem;      // 40px
+$spacing-11: 2.75rem;     // 44px
+$spacing-12: 3rem;        // 48px
+$spacing-14: 3.5rem;      // 56px
+$spacing-16: 4rem;        // 64px
+$spacing-20: 5rem;        // 80px
+$spacing-24: 6rem;        // 96px
+$spacing-28: 7rem;        // 112px
+$spacing-32: 8rem;        // 128px
+
+// ===========================================
+// LAYOUT & BREAKPOINTS
+// ===========================================
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Container max-widths
+$container-prose: 65ch;       // Optimal reading width
+$container-sm: 640px;
+$container-md: 768px;
+$container-lg: 1024px;
+$container-xl: 1280px;
+$container-2xl: 1440px;
+
+// Legacy container (website-new compatibility)
+$container-legacy: 940px;
+
+// Sidebar widths
+$sidebar-width: 280px;
+$sidebar-width-collapsed: 64px;
+$toc-width: 240px;
+
+// ===========================================
+// BORDERS
+// ===========================================
+
+$border-width-thin: 1px;
+$border-width-base: 2px;
+$border-width-thick: 4px;
+
+$radius-none: 0;
+$radius-sm: 0.125rem;     // 2px
+$radius-base: 0.25rem;    // 4px
+$radius-md: 0.375rem;     // 6px
+$radius-lg: 0.5rem;       // 8px
+$radius-xl: 0.75rem;      // 12px
+$radius-2xl: 1rem;        // 16px
+$radius-3xl: 1.5rem;      // 24px
+$radius-full: 9999px;
+
+// ===========================================
+// SHADOWS
+// ===========================================
+
+$shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+$shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+$shadow-none: 0 0 #0000;
+
+// ===========================================
+// TRANSITIONS
+// ===========================================
+
+$transition-fast: 150ms;
+$transition-base: 200ms;
+$transition-slow: 300ms;
+$transition-slower: 500ms;
+
+$ease-linear: linear;
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+// ===========================================
+// Z-INDEX SCALE
+// ===========================================
+
+$z-below: -1;
+$z-base: 0;
+$z-above: 1;
+$z-dropdown: 10;
+$z-sticky: 20;
+$z-fixed: 30;
+$z-modal-backdrop: 40;
+$z-modal: 50;
+$z-tooltip: 60;
+$z-toast: 70;

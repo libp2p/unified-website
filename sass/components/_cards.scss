@@ -1,0 +1,270 @@
+// ===========================================
+// CARDS
+// ===========================================
+
+.card {
+    background-color: $color-white;
+    border-radius: $radius-xl;
+    overflow: hidden;
+    transition: all $transition-base $ease-in-out;
+
+    &--bordered {
+        border: 1px solid $color-gray-200;
+    }
+
+    &--shadow {
+        box-shadow: $shadow-md;
+    }
+
+    &--hover {
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background-color: $color-gray-100;
+    }
+
+    &__body {
+        padding: $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            padding: $spacing-6;
+        }
+    }
+
+    &__header {
+        padding: $spacing-4 $spacing-4 0;
+
+        @media (min-width: $breakpoint-md) {
+            padding: $spacing-6 $spacing-6 0;
+        }
+    }
+
+    &__footer {
+        padding: 0 $spacing-4 $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 $spacing-6 $spacing-6;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        margin-bottom: $spacing-2;
+        color: $color-gray-900;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+    }
+
+    &__subtitle {
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+        margin-bottom: $spacing-3;
+    }
+
+    &__text {
+        color: $color-gray-600;
+        line-height: $line-height-relaxed;
+    }
+
+    &__meta {
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-2;
+        margin-top: $spacing-3;
+    }
+}
+
+// Card link (whole card is clickable)
+.card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+        text-decoration: none;
+
+        .card {
+            transform: translateY(-2px);
+            box-shadow: $shadow-lg;
+        }
+
+        .card__title {
+            color: $color-primary;
+        }
+    }
+}
+
+// Card grid
+.card-grid {
+    display: grid;
+    gap: $spacing-6;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &--2-col {
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    &--4-col {
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
+
+// Horizontal card
+.card--horizontal {
+    @media (min-width: $breakpoint-md) {
+        display: flex;
+        flex-direction: row;
+
+        .card__image {
+            width: 40%;
+            aspect-ratio: auto;
+            min-height: 200px;
+        }
+
+        .card__body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
+
+// Feature card (for homepage)
+.feature-card {
+    text-align: center;
+    padding: $spacing-6;
+
+    &__icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto $spacing-4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-primary-lighter;
+        border-radius: $radius-xl;
+        color: $color-primary;
+
+        svg {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        margin-bottom: $spacing-2;
+    }
+
+    &__text {
+        color: $color-gray-600;
+        font-size: $font-size-sm;
+    }
+}
+
+// Tag/Badge
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: $spacing-1 $spacing-2;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    border-radius: $radius-full;
+    background-color: $color-gray-100;
+    color: $color-gray-700;
+    text-decoration: none;
+    transition: all $transition-fast $ease-in-out;
+
+    &:hover {
+        background-color: $color-gray-200;
+        text-decoration: none;
+    }
+
+    &--primary {
+        background-color: $color-primary-lighter;
+        color: $color-primary-dark;
+
+        &:hover {
+            background-color: $color-primary-light;
+        }
+    }
+
+    &--secondary {
+        background-color: $color-secondary-light;
+        color: $color-secondary-dark;
+    }
+
+    &--accent {
+        background-color: rgba($color-accent, 0.15);
+        color: $color-accent;
+    }
+}
+
+// Badge (numeric indicator)
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 $spacing-1-5;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    border-radius: $radius-full;
+    background-color: $color-primary;
+    color: $color-white;
+
+    &--secondary {
+        background-color: $color-gray-500;
+    }
+
+    &--success {
+        background-color: $color-success;
+    }
+
+    &--warning {
+        background-color: $color-warning;
+        color: $color-gray-900;
+    }
+
+    &--danger {
+        background-color: $color-error;
+    }
+}

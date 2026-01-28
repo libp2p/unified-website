@@ -1,0 +1,34 @@
+{#
+Generic Video Embed Shortcode
+
+Usage:
+{{ video(src="/videos/demo.mp4") }}
+
+{{ video(src="/videos/demo.mp4", poster="/img/video-poster.jpg", controls=true, autoplay=false) }}
+#}
+
+{% set video_src = src %}
+{% set video_poster = poster | default(value="") %}
+{% set video_controls = controls | default(value=true) %}
+{% set video_autoplay = autoplay | default(value=false) %}
+{% set video_loop = loop | default(value=false) %}
+{% set video_muted = muted | default(value=false) %}
+{% set video_caption = caption | default(value="") %}
+
+<figure class="video-container video-container--native">
+    <video
+        {% if video_poster %}poster="{{ video_poster }}"{% endif %}
+        {% if video_controls %}controls{% endif %}
+        {% if video_autoplay %}autoplay{% endif %}
+        {% if video_loop %}loop{% endif %}
+        {% if video_muted %}muted{% endif %}
+        playsinline
+        preload="metadata"
+    >
+        <source src="{{ video_src }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    {% if video_caption %}
+    <figcaption class="video-caption">{{ video_caption }}</figcaption>
+    {% endif %}
+</figure>

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+{% block main_class %}blog-section{% endblock %}
+
+{% block content %}
+<div class="container">
+    {# Header #}
+    <header class="blog-header">
+        <h1 class="blog-header__title">Blog</h1>
+        <p class="blog-header__description">
+            News, updates, and technical deep-dives from the libp2p community.
+        </p>
+    </header>
+
+    {# Tag filters #}
+    {% set all_tags = [] %}
+    {% for page in section.pages %}
+        {% if page.taxonomies.tags %}
+            {% for tag in page.taxonomies.tags %}
+                {% if tag not in all_tags %}
+                    {% set_global all_tags = all_tags | concat(with=tag) %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    {% if all_tags | length > 0 %}
+    <div class="blog-filters">
+        <a href="{{ section.permalink }}" class="blog-filters__tag blog-filters__tag--active">All</a>
+        {% for tag in all_tags | sort %}
+            <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="blog-filters__tag">
+                {{ tag }}
+            </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {# Blog posts grid #}
+    <div class="blog-grid">
+        {% for page in paginator.pages %}
+            <article class="blog-card {% if loop.first and paginator.current_index == 1 %}blog-card--featured{% endif %}">
+                <a href="{{ page.permalink }}" class="blog-card__link">
+                    {% if page.extra.header_image %}
+                    <div class="blog-card__image">
+                        <img src="{{ page.extra.header_image }}" alt="{{ page.title }}" loading="lazy">
+                    </div>
+                    {% endif %}
+                    <div class="blog-card__body">
+                        <div class="blog-card__meta">
+                            <span class="blog-card__date">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                {{ page.date | date(format="%B %d, %Y") }}
+                            </span>
+                            {% if page.extra.author %}
+                            <span class="blog-card__author">{{ page.extra.author }}</span>
+                            {% endif %}
+                        </div>
+                        <h2 class="blog-card__title">{{ page.title }}</h2>
+                        {% if page.description %}
+                        <p class="blog-card__excerpt">{{ page.description }}</p>
+                        {% elif page.summary %}
+                        <p class="blog-card__excerpt">{{ page.summary | striptags | truncate(length=160) }}</p>
+                        {% endif %}
+                        {% if page.taxonomies.tags %}
+                        <div class="blog-card__tags">
+                            {% for tag in page.taxonomies.tags | slice(end=3) %}
+                            <span class="blog-card__tag">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </a>
+            </article>
+        {% endfor %}
+    </div>
+
+    {# Pagination #}
+    {% if paginator.number_pagers > 1 %}
+    <nav class="blog-pagination" aria-label="Blog pagination">
+        {% if paginator.previous %}
+        <a href="{{ paginator.previous }}" class="blog-pagination__link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            Previous
+        </a>
+        {% else %}
+        <span class="blog-pagination__link blog-pagination__link--disabled">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            Previous
+        </span>
+        {% endif %}
+
+        <span class="blog-pagination__info">
+            Page {{ paginator.current_index }} of {{ paginator.number_pagers }}
+        </span>
+
+        {% if paginator.next %}
+        <a href="{{ paginator.next }}" class="blog-pagination__link">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </a>
+        {% else %}
+        <span class="blog-pagination__link blog-pagination__link--disabled">
+            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </span>
+        {% endif %}
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

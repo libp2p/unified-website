@@ -1,0 +1,24 @@
+{# Table of Contents Component #}
+{# Used for inline TOC within content #}
+
+{% if page.toc | length > 0 %}
+<nav class="toc-inline" aria-label="Table of contents">
+    <p class="toc-inline__title">Contents</p>
+    <ul class="toc-inline__list">
+        {% for h2 in page.toc %}
+        <li>
+            <a href="#{{ h2.id }}">{{ h2.title }}</a>
+            {% if h2.children | length > 0 %}
+            <ul>
+                {% for h3 in h2.children %}
+                <li>
+                    <a href="#{{ h3.id }}">{{ h3.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}

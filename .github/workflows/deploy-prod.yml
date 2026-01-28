@@ -1,0 +1,94 @@
+name: Deploy to Production (main)
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache Zola binary
+        id: cache-zola
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/zola
+          key: zola-binary-v0.22.1-${{ runner.os }}
+
+      - name: Install Zola (if not cached)
+        if: steps.cache-zola.outputs.cache-hit != 'true'
+        run: |
+          wget -q https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz
+          tar xf zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz
+          chmod +x zola
+          sudo mv zola /usr/local/bin/zola
+
+      - name: Build Zola site
+        run: zola build
+
+      - name: Set up Node.js for ipfs-car
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache ipfs-car (global node_modules)
+        id: cache-ipfs-car
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm/_npx
+          key: ipfs-car-npx-${{ runner.os }}-node20
+
+      - name: Install ipfs-car (if not cached)
+        if: steps.cache-ipfs-car.outputs.cache-hit != 'true'
+        run: npm install -g ipfs-car
+
+      - name: Create CAR archive of public folder
+        run: ipfs-car pack ./public --output libp2p.car
+
+      - name: Configure AWS credentials for Filebase
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FILEBASE_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FILEBASE_SECRET_KEY }}
+          AWS_DEFAULT_REGION: us-east-1   # Filebase ignores region, but required
+        run: |
+          echo "AWS credentials exported as env vars"
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region $AWS_DEFAULT_REGION
+          aws configure list
+
+      - name: Upload CAR to production bucket (with import=car)
+        id: upload
+        env:
+          AWS_EC2_METADATA_DISABLED: true
+        run: |
+          aws --endpoint https://s3.filebase.com \
+            s3 cp libp2p.car \
+            s3://${{ secrets.FILEBASE_BUCKET_PROD }}/ \
+            --metadata 'import=car'
+          aws --endpoint https://s3.filebase.com \
+            s3api head-object \
+            --bucket ${{ secrets.FILEBASE_BUCKET_PROD }} \
+            --key libp2p.car > head-object.log 2>&1
+
+          # Extract CID from debug log (x-amz-meta-cid header)
+          CID=$(jq -r .Metadata.cid head-object.log | tr -d '\r')
+          if [ -z "$CID" ]; then
+            echo "Failed to extract CID from upload response"
+            cat head-object.log
+            exit 1
+          fi
+          echo "cid=$CID" >> $GITHUB_OUTPUT
+
+      - name: Announce production deployment
+        run: |
+          echo "::notice title=Production Deployed::"
+          echo "Root CID: ${{ steps.upload.outputs.cid }}"
+          echo "View site: https://libp2p.myfilebase.com/ipfs/${{ steps.upload.outputs.cid }}/"
+          # Optional: add IPNS update, GitHub deployment, Slack notification, etc. here

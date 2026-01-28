@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}{{ term.name | title }}{% endblock %}
+
+{% block body_class %}taxonomy{% endblock %}
+{% block main_class %}taxonomy-main{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="taxonomy-header">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <span class="breadcrumbs__item">
+                <a href="{{ get_url(path='/blog/') }}">Blog</a>
+            </span>
+            <span class="breadcrumbs__separator">/</span>
+            <span class="breadcrumbs__item">
+                <a href="{{ get_url(path='/tags/') }}">{{ taxonomy.name | title }}</a>
+            </span>
+            <span class="breadcrumbs__separator">/</span>
+            <span class="breadcrumbs__item">{{ term.name }}</span>
+        </nav>
+        <h1>{{ term.name | title }}</h1>
+        <p>{{ term.pages | length }} post{% if term.pages | length != 1 %}s{% endif %} tagged with "{{ term.name }}".</p>
+    </header>
+
+    <div class="blog-grid">
+        {% for page in term.pages %}
+            <article class="blog-card">
+                {% if page.extra.header_image %}
+                <a href="{{ page.permalink }}" class="blog-card__image">
+                    <img src="{{ page.extra.header_image }}" alt="{{ page.title }}" loading="lazy">
+                </a>
+                {% endif %}
+                <div class="blog-card__content">
+                    <a href="{{ page.permalink }}" class="blog-card__title-link">
+                        <h2 class="blog-card__title">{{ page.title }}</h2>
+                    </a>
+                    {% if page.description %}
+                    <p class="blog-card__description">{{ page.description }}</p>
+                    {% endif %}
+                    <div class="blog-card__meta">
+                        {% if page.extra.author %}
+                        <span class="blog-card__author">{{ page.extra.author }}</span>
+                        {% endif %}
+                        <time class="blog-card__date" datetime="{{ page.date }}">
+                            {{ page.date | date(format="%B %d, %Y") }}
+                        </time>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

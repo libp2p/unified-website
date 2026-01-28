@@ -1,0 +1,32 @@
+{#
+js-peer Chat App Embed Shortcode
+
+Usage:
+{{ js_peer_embed() }}
+
+{{ js_peer_embed(height=700) }}
+
+Note: Requires HTTPS and a modern browser with WebRTC support.
+#}
+
+{% set embed_height = height | default(value=650) %}
+
+<div class="js-peer-container">
+    <div class="js-peer-notice">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <span>This interactive demo requires HTTPS and a modern browser with WebRTC support.</span>
+    </div>
+    <iframe
+        src="/js-peer/index.html"
+        width="100%"
+        height="{{ embed_height }}"
+        allow="camera; microphone"
+        class="js-peer-iframe"
+        loading="lazy"
+        title="libp2p js-peer chat demo"
+    ></iframe>
+</div>

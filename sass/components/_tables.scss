@@ -1,0 +1,233 @@
+// ===========================================
+// TABLES
+// ===========================================
+
+// Base table styles
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: $spacing-4 0;
+    font-size: $font-size-sm;
+}
+
+th, td {
+    padding: $spacing-3 $spacing-4;
+    text-align: left;
+    border-bottom: 1px solid $color-gray-200;
+}
+
+th {
+    font-weight: $font-weight-semibold;
+    color: $color-gray-700;
+    background-color: $color-gray-50;
+    white-space: nowrap;
+}
+
+tbody tr {
+    transition: background-color $transition-fast $ease-in-out;
+
+    &:hover {
+        background-color: $color-gray-50;
+    }
+}
+
+// Responsive table wrapper
+.table-wrapper {
+    overflow-x: auto;
+    margin: $spacing-4 0;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-lg;
+
+    table {
+        margin: 0;
+    }
+
+    th:first-child,
+    td:first-child {
+        padding-left: $spacing-4;
+    }
+
+    th:last-child,
+    td:last-child {
+        padding-right: $spacing-4;
+    }
+
+    // Scrollbar styling
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $color-gray-100;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $color-gray-300;
+        border-radius: 4px;
+
+        &:hover {
+            background: $color-gray-400;
+        }
+    }
+}
+
+// Striped table
+.table--striped {
+    tbody tr:nth-child(even) {
+        background-color: $color-gray-50;
+    }
+
+    tbody tr:hover {
+        background-color: $color-gray-100;
+    }
+}
+
+// Bordered table
+.table--bordered {
+    th, td {
+        border: 1px solid $color-gray-200;
+    }
+}
+
+// Compact table
+.table--compact {
+    th, td {
+        padding: $spacing-2 $spacing-3;
+    }
+}
+
+// Fixed header table
+.table--fixed-header {
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: $z-above;
+    }
+
+    th {
+        background-color: $color-white;
+        box-shadow: 0 1px 0 $color-gray-200;
+    }
+}
+
+// Implementation status table (for guides/status)
+.impl-table {
+    th, td {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    th:first-child,
+    td:first-child {
+        text-align: left;
+    }
+
+    // Status indicators
+    .impl-yes,
+    .impl-supported {
+        color: $status-pass;
+    }
+
+    .impl-no,
+    .impl-unsupported {
+        color: $status-fail;
+    }
+
+    .impl-partial,
+    .impl-wip {
+        color: $status-partial;
+    }
+
+    .impl-na {
+        color: $status-na;
+    }
+
+    // Status icons
+    .status-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-size: $font-size-sm;
+
+        &--pass {
+            background-color: rgba($status-pass, 0.15);
+            color: $status-pass;
+        }
+
+        &--fail {
+            background-color: rgba($status-fail, 0.15);
+            color: $status-fail;
+        }
+
+        &--partial {
+            background-color: rgba($status-partial, 0.15);
+            color: $status-partial;
+        }
+
+        &--wip {
+            background-color: rgba($status-wip, 0.15);
+            color: $status-wip;
+        }
+
+        &--na {
+            background-color: rgba($status-na, 0.15);
+            color: $status-na;
+        }
+    }
+}
+
+// Comparison table
+.comparison-table {
+    th {
+        background-color: $color-primary;
+        color: $color-white;
+    }
+
+    td:first-child {
+        font-weight: $font-weight-medium;
+        background-color: $color-gray-50;
+    }
+}
+
+// Key-value table (definition list style)
+.kv-table {
+    td:first-child {
+        font-weight: $font-weight-medium;
+        white-space: nowrap;
+        width: 1%;
+        color: $color-gray-700;
+    }
+
+    td:last-child {
+        color: $color-gray-600;
+    }
+}
+
+// Spec table (for listing specifications)
+.spec-table {
+    .spec-name {
+        font-weight: $font-weight-medium;
+        color: $color-gray-900;
+
+        a {
+            color: inherit;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+    }
+
+    .spec-status {
+        white-space: nowrap;
+    }
+
+    .spec-version {
+        font-family: $font-family-mono;
+        font-size: $font-size-xs;
+        color: $color-gray-500;
+    }
+}

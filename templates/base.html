@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default(value='en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {# Page title #}
+    <title>{% block title %}{% if page.title is defined %}{{ page.title }}{% elif section is defined and section.title is defined %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %} | {{ config.extra.name }}</title>
+
+    {# Meta description #}
+    {% if page is defined and page.description %}
+        <meta name="description" content="{{ page.description }}">
+    {% elif section is defined and section.description %}
+        <meta name="description" content="{{ section.description }}">
+    {% else %}
+        <meta name="description" content="{{ config.description }}">
+    {% endif %}
+
+    {# Canonical URL #}
+    {% if page is defined and page.permalink %}
+        <link rel="canonical" href="{{ page.permalink }}">
+    {% elif section is defined and section.permalink %}
+        <link rel="canonical" href="{{ section.permalink }}">
+    {% endif %}
+
+    {# Open Graph tags #}
+    <meta property="og:site_name" content="{{ config.extra.name }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{% if page is defined and page.title %}{{ page.title }}{% elif section is defined and section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %}">
+    {% if page is defined and page.description %}
+        <meta property="og:description" content="{{ page.description }}">
+    {% elif section is defined and section.description %}
+        <meta property="og:description" content="{{ section.description }}">
+    {% else %}
+        <meta property="og:description" content="{{ config.description }}">
+    {% endif %}
+    {% if page is defined and page.permalink %}
+        <meta property="og:url" content="{{ page.permalink }}">
+    {% elif section is defined and section.permalink %}
+        <meta property="og:url" content="{{ section.permalink }}">
+    {% endif %}
+    {% block og_image %}
+        <meta property="og:image" content="{{ get_url(path='/img/og-image.png') }}">
+    {% endblock %}
+
+    {# Twitter Card tags #}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@libp2p">
+    <meta name="twitter:title" content="{% if page is defined and page.title %}{{ page.title }}{% elif section is defined and section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}">
+    {% if page is defined and page.description %}
+        <meta name="twitter:description" content="{{ page.description }}">
+    {% elif section is defined and section.description %}
+        <meta name="twitter:description" content="{{ section.description }}">
+    {% else %}
+        <meta name="twitter:description" content="{{ config.description }}">
+    {% endif %}
+
+    {# Favicon #}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path='/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path='/img/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='/img/apple-touch-icon.png') }}">
+
+    {# RSS Feed #}
+    {% if config.generate_feeds %}
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ get_url(path='rss.xml') }}">
+    {% endif %}
+
+    {# Main stylesheet #}
+    <link rel="stylesheet" href="{{ get_url(path='/main.css') }}">
+
+    {# Additional head content from child templates #}
+    {% block head %}{% endblock %}
+
+    {# Analytics (Plausible) #}
+    {% if config.extra.plausible_domain %}
+        <script defer data-domain="{{ config.extra.plausible_domain }}" src="https://plausible.io/js/script.js"></script>
+    {% endif %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    {# Skip to main content link for accessibility #}
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    {# Top navigation bar #}
+    {% include "components/topbar.html" %}
+
+    {# Main content #}
+    <main id="main-content" class="{% block main_class %}{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+
+    {# Footer #}
+    {% include "components/footer.html" %}
+
+    {# Common JavaScript #}
+    <script src="{{ get_url(path='/js/common.js') }}"></script>
+
+    {# Additional scripts from child templates #}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

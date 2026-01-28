@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block title %}Interoperability Status{% endblock %}
+
+{% block body_class %}status{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block content %}
+<div class="status-page">
+    <div class="status-layout">
+        {# Main content #}
+        <div class="status-content">
+            {# Header #}
+            <header class="status-header">
+                <h1 class="status-header__title">Interoperability Status</h1>
+                <p class="status-header__description">
+                    Real-time interoperability test results across libp2p implementations.
+                    These tests verify that different implementations can communicate with each other.
+                </p>
+                <div class="status-header__updated">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    Last updated: <time id="last-updated">Loading...</time>
+                </div>
+            </header>
+
+            {# Legend #}
+            <div class="status-legend">
+                <div class="status-legend__item">
+                    <span class="status-legend__color status-legend__color--pass"></span>
+                    <span>Pass</span>
+                </div>
+                <div class="status-legend__item">
+                    <span class="status-legend__color status-legend__color--fail"></span>
+                    <span>Fail</span>
+                </div>
+                <div class="status-legend__item">
+                    <span class="status-legend__color status-legend__color--partial"></span>
+                    <span>Partial</span>
+                </div>
+                <div class="status-legend__item">
+                    <span class="status-legend__color status-legend__color--wip"></span>
+                    <span>In Progress</span>
+                </div>
+                <div class="status-legend__item">
+                    <span class="status-legend__color status-legend__color--na"></span>
+                    <span>N/A</span>
+                </div>
+            </div>
+
+            {# Transport Interop Section #}
+            <section class="status-section" id="transport">
+                <header class="status-section__header">
+                    <h2 class="status-section__title">Transport Interoperability</h2>
+                    <p class="status-section__description">
+                        Tests verifying that different transport implementations (TCP, QUIC, WebSocket, etc.) can communicate.
+                    </p>
+                </header>
+
+                <div class="status-grid-wrapper">
+                    <table class="status-grid__table" id="transport-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>go-libp2p</th>
+                                <th>rust-libp2p</th>
+                                <th>js-libp2p</th>
+                                <th>nim-libp2p</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>TCP</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                            <tr>
+                                <th>QUIC</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--wip">⚙</span></td>
+                                <td><span class="status-cell status-cell--na">—</span></td>
+                            </tr>
+                            <tr>
+                                <th>WebSocket</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                            <tr>
+                                <th>WebTransport</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--na">—</span></td>
+                            </tr>
+                            <tr>
+                                <th>WebRTC</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--na">—</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {# Secure Channel Section #}
+            <section class="status-section" id="security">
+                <header class="status-section__header">
+                    <h2 class="status-section__title">Secure Channel Interoperability</h2>
+                    <p class="status-section__description">
+                        Tests verifying that different security protocols (Noise, TLS) work across implementations.
+                    </p>
+                </header>
+
+                <div class="status-grid-wrapper">
+                    <table class="status-grid__table" id="security-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>go-libp2p</th>
+                                <th>rust-libp2p</th>
+                                <th>js-libp2p</th>
+                                <th>nim-libp2p</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Noise</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                            <tr>
+                                <th>TLS 1.3</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--na">—</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {# Muxer Section #}
+            <section class="status-section" id="muxer">
+                <header class="status-section__header">
+                    <h2 class="status-section__title">Stream Multiplexer Interoperability</h2>
+                    <p class="status-section__description">
+                        Tests verifying that stream multiplexers (yamux, mplex) work across implementations.
+                    </p>
+                </header>
+
+                <div class="status-grid-wrapper">
+                    <table class="status-grid__table" id="muxer-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>go-libp2p</th>
+                                <th>rust-libp2p</th>
+                                <th>js-libp2p</th>
+                                <th>nim-libp2p</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>yamux</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                            <tr>
+                                <th>mplex</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {# Hole Punching Section #}
+            <section class="status-section" id="hole-punching">
+                <header class="status-section__header">
+                    <h2 class="status-section__title">Hole Punching</h2>
+                    <p class="status-section__description">
+                        Tests verifying NAT traversal capabilities across implementations.
+                    </p>
+                </header>
+
+                <div class="status-grid-wrapper">
+                    <table class="status-grid__table" id="hole-punch-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>go-libp2p</th>
+                                <th>rust-libp2p</th>
+                                <th>js-libp2p</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>TCP</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--na">—</span></td>
+                            </tr>
+                            <tr>
+                                <th>QUIC</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--na">—</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {# GossipSub Section #}
+            <section class="status-section" id="gossipsub">
+                <header class="status-section__header">
+                    <h2 class="status-section__title">GossipSub</h2>
+                    <p class="status-section__description">
+                        Tests verifying pub/sub messaging interoperability.
+                    </p>
+                </header>
+
+                <div class="status-grid-wrapper">
+                    <table class="status-grid__table" id="gossipsub-grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>go-libp2p</th>
+                                <th>rust-libp2p</th>
+                                <th>js-libp2p</th>
+                                <th>nim-libp2p</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>v1.0</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                            <tr>
+                                <th>v1.1</th>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                                <td><span class="status-cell status-cell--pass">✓</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            {# Test Plan Link #}
+            <section class="status-section">
+                <p>
+                    These results are generated automatically by the
+                    <a href="https://github.com/libp2p/test-plans" target="_blank" rel="noopener noreferrer">libp2p test-plans</a>
+                    repository. View detailed results and contribute to the test suite there.
+                </p>
+            </section>
+        </div>
+
+        {# Table of Contents #}
+        <aside class="status-toc">
+            <p class="status-toc__title">Sections</p>
+            <ul class="status-toc__list">
+                <li><a href="#transport" class="status-toc__link">Transport</a></li>
+                <li><a href="#security" class="status-toc__link">Secure Channel</a></li>
+                <li><a href="#muxer" class="status-toc__link">Stream Muxer</a></li>
+                <li><a href="#hole-punching" class="status-toc__link">Hole Punching</a></li>
+                <li><a href="#gossipsub" class="status-toc__link">GossipSub</a></li>
+            </ul>
+        </aside>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Update last updated time
+document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+});
+
+// TOC active state
+document.addEventListener('DOMContentLoaded', function() {
+    const tocLinks = document.querySelectorAll('.status-toc__link');
+    const sections = document.querySelectorAll('.status-section[id]');
+
+    function highlightTOC() {
+        const scrollPosition = window.scrollY + 150;
+
+        let current = null;
+        sections.forEach(section => {
+            if (section.offsetTop <= scrollPosition) {
+                current = section.id;
+            }
+        });
+
+        tocLinks.forEach(link => {
+            link.classList.remove('status-toc__link--active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('status-toc__link--active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightTOC);
+    highlightTOC();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,270 @@
+// ===========================================
+// FOOTER
+// ===========================================
+
+.footer {
+    background-color: $color-gray-900;
+    color: $color-gray-400;
+    padding: $spacing-12 0 $spacing-6;
+
+    &__container {
+        max-width: $container-xl;
+        margin: 0 auto;
+        padding: 0 $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 $spacing-6;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            padding: 0 $spacing-8;
+        }
+    }
+
+    &__grid {
+        display: grid;
+        gap: $spacing-8;
+        margin-bottom: $spacing-8;
+
+        @media (min-width: $breakpoint-sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: 2fr repeat(3, 1fr);
+        }
+    }
+
+    &__brand {
+        @media (min-width: $breakpoint-lg) {
+            padding-right: $spacing-8;
+        }
+    }
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        margin-bottom: $spacing-4;
+
+        img {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1);
+        }
+
+        span {
+            font-size: $font-size-xl;
+            font-weight: $font-weight-bold;
+            color: $color-white;
+        }
+    }
+
+    &__tagline {
+        font-size: $font-size-sm;
+        line-height: $line-height-relaxed;
+        margin-bottom: $spacing-4;
+    }
+
+    &__social {
+        display: flex;
+        gap: $spacing-3;
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: $radius-md;
+            color: $color-gray-400;
+            transition: all $transition-fast $ease-in-out;
+
+            &:hover {
+                background-color: $color-primary;
+                color: $color-white;
+            }
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+
+    &__column {
+        &-title {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-semibold;
+            color: $color-white;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: $spacing-4;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: $spacing-2;
+        }
+
+        a {
+            font-size: $font-size-sm;
+            color: $color-gray-400;
+            text-decoration: none;
+            transition: color $transition-fast $ease-in-out;
+
+            &:hover {
+                color: $color-white;
+            }
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-4;
+        padding-top: $spacing-6;
+        border-top: 1px solid $color-gray-800;
+
+        @media (min-width: $breakpoint-md) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    &__copyright {
+        font-size: $font-size-sm;
+
+        a {
+            color: $color-gray-400;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-white;
+            }
+        }
+    }
+
+    &__links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-4;
+
+        a {
+            font-size: $font-size-sm;
+            color: $color-gray-400;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-white;
+            }
+        }
+    }
+
+    // Protocol Labs attribution
+    &__protocol-labs {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        font-size: $font-size-sm;
+
+        img {
+            height: 20px;
+            width: auto;
+            opacity: 0.6;
+            transition: opacity $transition-fast $ease-in-out;
+        }
+
+        &:hover img {
+            opacity: 1;
+        }
+    }
+}
+
+// Minimal footer variant
+.footer--minimal {
+    padding: $spacing-6 0;
+
+    .footer__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}
+
+// Newsletter signup (optional in footer)
+.footer-newsletter {
+    background-color: $color-gray-800;
+    padding: $spacing-6;
+    border-radius: $radius-lg;
+    margin-bottom: $spacing-8;
+
+    @media (min-width: $breakpoint-md) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacing-6;
+    }
+
+    &__text {
+        margin-bottom: $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            margin-bottom: 0;
+        }
+
+        h3 {
+            font-size: $font-size-lg;
+            color: $color-white;
+            margin-bottom: $spacing-1;
+        }
+
+        p {
+            font-size: $font-size-sm;
+            color: $color-gray-400;
+            margin: 0;
+        }
+    }
+
+    &__form {
+        display: flex;
+        gap: $spacing-2;
+
+        input {
+            flex: 1;
+            min-width: 200px;
+            padding: $spacing-2-5 $spacing-4;
+            background-color: $color-gray-700;
+            border: 1px solid $color-gray-600;
+            border-radius: $radius-md;
+            color: $color-white;
+            font-size: $font-size-sm;
+
+            &::placeholder {
+                color: $color-gray-500;
+            }
+
+            &:focus {
+                outline: none;
+                border-color: $color-primary;
+            }
+        }
+
+        button {
+            white-space: nowrap;
+        }
+    }
+}

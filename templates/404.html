@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block body_class %}error-page{% endblock %}
+{% block main_class %}error-main{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-content">
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-message">
+            The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div class="error-actions">
+            <a href="{{ get_url(path='/') }}" class="btn btn-primary">
+                Go Home
+            </a>
+            <a href="{{ get_url(path='/guides/') }}" class="btn btn-outline">
+                Browse Guides
+            </a>
+        </div>
+        <div class="error-links">
+            <p>You might be looking for:</p>
+            <ul>
+                <li><a href="{{ get_url(path='/blog/') }}">Blog</a></li>
+                <li><a href="{{ get_url(path='/guides/') }}">Guides</a></li>
+                <li><a href="{{ get_url(path='/releases/') }}">Releases</a></li>
+                <li><a href="{{ get_url(path='/status/') }}">Status</a></li>
+                <li><a href="{{ config.extra.specs_url }}" target="_blank" rel="noopener noreferrer">Specifications</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

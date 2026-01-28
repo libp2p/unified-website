@@ -1,0 +1,18 @@
+{#
+Obfuscated Email Link Shortcode
+
+Usage:
+{{ email(address="hello@example.com") }}
+
+{{ email(address="hello@example.com", text="Contact Us") }}
+#}
+
+{% set email_address = address %}
+{% set link_text = text | default(value=email_address) %}
+
+{# Basic obfuscation - reverse the email and use CSS to display correctly #}
+{% set reversed = email_address | reverse %}
+
+<a href="mailto:{{ email_address }}" class="email-link" data-email="{{ reversed }}">
+    {{ link_text }}
+</a>

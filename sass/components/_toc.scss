@@ -1,0 +1,173 @@
+// ===========================================
+// TABLE OF CONTENTS (right-side navigation)
+// ===========================================
+
+.toc {
+    width: $toc-width;
+    position: sticky;
+    top: calc(65px + #{$spacing-6}); // Topbar + padding
+    max-height: calc(100vh - 65px - #{$spacing-12});
+    overflow-y: auto;
+    padding-left: $spacing-6;
+    font-size: $font-size-sm;
+
+    // Scrollbar styling
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $color-gray-300;
+        border-radius: 2px;
+    }
+
+    &__title {
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: $spacing-3;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-left: 1px solid $color-gray-200;
+    }
+
+    &__item {
+        margin: 0;
+    }
+
+    &__link {
+        display: block;
+        padding: $spacing-1-5 $spacing-4;
+        margin-left: -1px;
+        color: $color-gray-500;
+        text-decoration: none;
+        border-left: 2px solid transparent;
+        transition: all $transition-fast $ease-in-out;
+        line-height: $line-height-snug;
+
+        &:hover {
+            color: $color-gray-900;
+            text-decoration: none;
+        }
+
+        &--active {
+            color: $color-primary;
+            border-left-color: $color-primary;
+            font-weight: $font-weight-medium;
+        }
+
+        // Heading level indentation
+        &--h3 {
+            padding-left: $spacing-6;
+            font-size: $font-size-xs;
+        }
+
+        &--h4 {
+            padding-left: $spacing-8;
+            font-size: $font-size-xs;
+        }
+    }
+
+    // Mobile: hide by default
+    @media (max-width: $breakpoint-xl - 1px) {
+        display: none;
+    }
+}
+
+// TOC for page content (when used inline)
+.toc-inline {
+    background-color: $color-gray-50;
+    border-radius: $radius-lg;
+    padding: $spacing-4;
+    margin: $spacing-6 0;
+
+    &__title {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-700;
+        margin-bottom: $spacing-3;
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+            margin: $spacing-1 0;
+        }
+
+        a {
+            display: flex;
+            align-items: baseline;
+            gap: $spacing-2;
+            color: $color-gray-600;
+            text-decoration: none;
+            font-size: $font-size-sm;
+
+            &:hover {
+                color: $color-primary;
+            }
+
+            &::before {
+                content: "•";
+                color: $color-gray-400;
+            }
+        }
+
+        // Nested list
+        ul {
+            list-style: none;
+            padding-left: $spacing-4;
+            margin: $spacing-1 0;
+
+            a::before {
+                content: "◦";
+            }
+        }
+    }
+}
+
+// Layout with TOC
+.with-toc {
+    display: flex;
+    gap: $spacing-8;
+
+    .content-area {
+        flex: 1;
+        min-width: 0;
+        max-width: $container-prose;
+    }
+
+    .toc {
+        flex-shrink: 0;
+    }
+
+    @media (max-width: $breakpoint-xl - 1px) {
+        display: block;
+
+        .content-area {
+            max-width: 100%;
+        }
+    }
+}
+
+// Progress indicator (optional enhancement)
+.toc-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    background-color: $color-primary;
+    transition: height $transition-fast linear;
+}

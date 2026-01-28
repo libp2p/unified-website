@@ -1,0 +1,28 @@
+{#
+Mermaid Diagram Shortcode
+
+Usage:
+{% mermaid() %}
+graph TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Do Something]
+    B -->|No| D[Do Something Else]
+{% end %}
+
+{% mermaid(caption="My Diagram") %}
+sequenceDiagram
+    Alice->>Bob: Hello
+    Bob-->>Alice: Hi back
+{% end %}
+#}
+
+{% set diagram_caption = caption | default(value="") %}
+
+<figure class="mermaid-container">
+    <pre class="mermaid">
+{{ body | trim }}
+    </pre>
+    {% if diagram_caption %}
+    <figcaption class="mermaid-caption">{{ diagram_caption }}</figcaption>
+    {% endif %}
+</figure>

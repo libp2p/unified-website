@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }}{% endblock %}
+
+{% block body_class %}guides{% endblock %}
+{% block main_class %}guides-layout{% endblock %}
+
+{% block content %}
+{# Sidebar #}
+{% include "components/sidebar.html" %}
+
+<div class="guides-main">
+    <div class="guides-content">
+        {% if section.path == "guides/_index.md" or section.relative_path == "_index.md" %}
+        {# Landing page for guides #}
+        <div class="guides-landing">
+            <header class="guides-landing__header">
+                <h1>{{ section.title }}</h1>
+                {% if section.description %}
+                <p>{{ section.description }}</p>
+                {% else %}
+                <p>Learn how to build peer-to-peer applications with libp2p. These guides cover concepts, tutorials, and practical examples.</p>
+                {% endif %}
+            </header>
+
+            <div class="guides-landing__sections">
+                {% for subsection_path in section.subsections %}
+                    {% set subsection = get_section(path=subsection_path) %}
+                    <a href="{{ subsection.permalink }}" class="guides-section-card">
+                        <div class="guides-section-card__icon">
+                            {% if "concepts" in subsection.path %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            {% elif "getting-started" in subsection.path %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                            {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            {% endif %}
+                        </div>
+                        <h2 class="guides-section-card__title">{{ subsection.title }}</h2>
+                        {% if subsection.description %}
+                        <p class="guides-section-card__description">{{ subsection.description }}</p>
+                        {% endif %}
+                        <span class="guides-section-card__count">
+                            {{ subsection.pages | length }} {% if subsection.pages | length == 1 %}guide{% else %}guides{% endif %}
+                        </span>
+                    </a>
+                {% endfor %}
+
+                {# Also show standalone pages #}
+                {% for page in section.pages %}
+                    <a href="{{ page.permalink }}" class="guides-section-card">
+                        <div class="guides-section-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <h2 class="guides-section-card__title">{{ page.title }}</h2>
+                        {% if page.description %}
+                        <p class="guides-section-card__description">{{ page.description }}</p>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        {# Subsection page #}
+        <article class="guides-article">
+            {# Breadcrumbs #}
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <span class="breadcrumbs__item">
+                    <a href="{{ get_url(path='/guides/') }}">Guides</a>
+                </span>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__item">{{ section.title }}</span>
+            </nav>
+
+            <header class="guide-header">
+                <h1 class="guide-header__title">{{ section.title }}</h1>
+                {% if section.description %}
+                <p>{{ section.description }}</p>
+                {% endif %}
+            </header>
+
+            {% if section.content %}
+            <div class="guide-content prose">
+                {{ section.content | safe }}
+            </div>
+            {% endif %}
+
+            <!--
+            {# List pages in this section #}
+            {% if section.pages | length > 0 %}
+            <div class="section-pages">
+                <h2>In this section</h2>
+                <ul class="page-list">
+                    {% for page in section.pages %}
+                        <li>
+                            <a href="{{ page.permalink }}">
+                                <strong>{{ page.title }}</strong>
+                                {% if page.description %}
+                                    <span>{{ page.description }}</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            -->
+
+            {# List subsections #}
+            {% if section.subsections | length > 0 %}
+            <div class="section-subsections">
+                <h2>Subsections</h2>
+                <ul class="subsection-list">
+                    {% for subsection_path in section.subsections %}
+                        {% set subsection = get_section(path=subsection_path) %}
+                        <li>
+                            <a href="{{ subsection.permalink }}">
+                                <strong>{{ subsection.title }}</strong>
+                                {% if subsection.description %}
+                                    <span>{{ subsection.description }}</span>
+                                {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </article>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,226 @@
+// ===========================================
+// BUTTONS
+// ===========================================
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2;
+    padding: $spacing-2-5 $spacing-5;
+    font-family: $font-family-sans;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-normal;
+    text-decoration: none;
+    border: 2px solid transparent;
+    border-radius: $radius-lg;
+    cursor: pointer;
+    transition: all $transition-fast $ease-in-out;
+    white-space: nowrap;
+
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+        outline-offset: 2px;
+    }
+
+    &:disabled,
+    &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // Sizes
+    &--sm {
+        padding: $spacing-1-5 $spacing-3;
+        font-size: $font-size-xs;
+    }
+
+    &--lg {
+        padding: $spacing-3-5 $spacing-6;
+        font-size: $font-size-base;
+    }
+
+    &--xl {
+        padding: $spacing-4 $spacing-8;
+        font-size: $font-size-lg;
+    }
+}
+
+// Primary button
+.btn-primary {
+    background-color: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+
+    &:hover {
+        background-color: $color-primary-dark;
+        border-color: $color-primary-dark;
+        text-decoration: none;
+    }
+
+    &:active {
+        background-color: darken($color-primary-dark, 5%);
+    }
+}
+
+// Secondary button
+.btn-secondary {
+    background-color: $color-secondary;
+    color: $color-white;
+    border-color: $color-secondary;
+
+    &:hover {
+        background-color: $color-secondary-dark;
+        border-color: $color-secondary-dark;
+        text-decoration: none;
+    }
+}
+
+// Outline button
+.btn-outline {
+    background-color: transparent;
+    color: $color-primary;
+    border-color: $color-primary;
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        text-decoration: none;
+    }
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    color: $color-white;
+    border-color: $color-white;
+
+    &:hover {
+        background-color: $color-white;
+        color: $color-primary;
+        text-decoration: none;
+    }
+}
+
+// Ghost button (text only)
+.btn-ghost {
+    background-color: transparent;
+    color: $color-gray-700;
+    border-color: transparent;
+
+    &:hover {
+        background-color: $color-gray-100;
+        text-decoration: none;
+    }
+}
+
+// Link button (looks like a link)
+.btn-link {
+    background-color: transparent;
+    color: $color-primary;
+    border-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
+
+    &:hover {
+        color: $color-primary-dark;
+        text-decoration: underline;
+    }
+}
+
+// Icon button
+.btn-icon {
+    padding: $spacing-2;
+    min-width: 40px;
+    min-height: 40px;
+
+    &--sm {
+        padding: $spacing-1-5;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    &--lg {
+        padding: $spacing-3;
+        min-width: 48px;
+        min-height: 48px;
+    }
+}
+
+// Social buttons
+.btn-social {
+    min-width: 44px;
+    padding: $spacing-2-5;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.btn-github {
+    background-color: #24292e;
+    color: $color-white;
+    border-color: #24292e;
+
+    &:hover {
+        background-color: #1b1f23;
+        border-color: #1b1f23;
+    }
+}
+
+.btn-twitter {
+    background-color: #1da1f2;
+    color: $color-white;
+    border-color: #1da1f2;
+
+    &:hover {
+        background-color: #0c85d0;
+        border-color: #0c85d0;
+    }
+}
+
+.btn-discord {
+    background-color: #5865f2;
+    color: $color-white;
+    border-color: #5865f2;
+
+    &:hover {
+        background-color: #4752c4;
+        border-color: #4752c4;
+    }
+}
+
+.btn-matrix {
+    background-color: #0dbd8b;
+    color: $color-white;
+    border-color: #0dbd8b;
+
+    &:hover {
+        background-color: #0a9a72;
+        border-color: #0a9a72;
+    }
+}
+
+// Button group
+.btn-group {
+    display: inline-flex;
+    gap: 0;
+
+    .btn {
+        border-radius: 0;
+
+        &:first-child {
+            border-radius: $radius-lg 0 0 $radius-lg;
+        }
+
+        &:last-child {
+            border-radius: 0 $radius-lg $radius-lg 0;
+        }
+
+        &:not(:last-child) {
+            border-right-width: 1px;
+        }
+    }
+}

@@ -1,0 +1,95 @@
+{# Footer Component #}
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__grid">
+            {# Brand column #}
+            <div class="footer__brand">
+                <div class="footer__logo">
+                    <img src="{{ get_url(path='/img/logo_small.png') }}" alt="libp2p">
+                    <span>libp2p</span>
+                </div>
+                <p class="footer__tagline">
+                    A modular network stack. Run your network applications free from runtime and address services, independently of their location.
+                </p>
+                <div class="footer__social">
+                    <a href="{{ config.extra.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="{{ config.extra.twitter }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="{{ config.extra.bluesky }}" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 600 530" fill="currentColor">
+                            <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+                        </svg>
+                    </a>
+                    <a href="{{ config.extra.discord_community }}" target="_blank" rel="noopener noreferrer" aria-label="Discord">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+                        </svg>
+                    </a>
+                    <a href="{{ config.extra.matrix_community }}" target="_blank" rel="noopener noreferrer" aria-label="Matrix">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M.632.55v22.9H2.28V24H0V0h2.28v.55zm7.043 7.26v1.157h.033c.309-.443.683-.784 1.117-1.024.433-.245.936-.365 1.5-.365.54 0 1.033.107 1.481.314.448.208.785.582 1.02 1.108.254-.374.6-.706 1.034-.992.434-.287.95-.43 1.546-.43.453 0 .872.056 1.26.167.388.11.716.286.993.53.276.245.489.559.646.951.152.392.23.863.23 1.417v5.728h-2.349V11.52c0-.286-.01-.559-.032-.812a1.755 1.755 0 00-.18-.66 1.106 1.106 0 00-.438-.448c-.194-.11-.457-.166-.785-.166-.332 0-.6.064-.803.189a1.38 1.38 0 00-.48.499 1.946 1.946 0 00-.231.696 5.56 5.56 0 00-.06.785v4.768h-2.35v-4.8c0-.254-.004-.503-.018-.752a2.074 2.074 0 00-.143-.688 1.052 1.052 0 00-.415-.503c-.194-.125-.476-.19-.854-.19-.111 0-.259.024-.439.074a1.532 1.532 0 00-.505.254c-.158.118-.292.3-.405.544-.113.244-.169.57-.169.985v5.072H4.78V7.79zm15.693 15.64V.55H21.72V0H24v24h-2.28v-.55z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            {# Resources column #}
+            <div class="footer__column">
+                <h4 class="footer__column-title">Resources</h4>
+                <ul>
+                    <li><a href="{{ get_url(path='/guides/') }}">Guides</a></li>
+                    <li><a href="{{ config.extra.specs_url }}" target="_blank" rel="noopener noreferrer">Specifications</a></li>
+                    <li><a href="{{ get_url(path='/blog/') }}">Blog</a></li>
+                    <li><a href="{{ get_url(path='/releases/') }}">Releases</a></li>
+                    <li><a href="{{ get_url(path='/status/') }}">Status</a></li>
+                </ul>
+            </div>
+
+            {# Implementations column #}
+            <div class="footer__column">
+                <h4 class="footer__column-title">Implementations</h4>
+                <ul>
+                    <li><a href="{{ config.extra.go_libp2p }}" target="_blank" rel="noopener noreferrer">go-libp2p</a></li>
+                    <li><a href="{{ config.extra.rust_libp2p }}" target="_blank" rel="noopener noreferrer">rust-libp2p</a></li>
+                    <li><a href="{{ config.extra.js_libp2p }}" target="_blank" rel="noopener noreferrer">js-libp2p</a></li>
+                    <li><a href="{{ config.extra.implementations }}" target="_blank" rel="noopener noreferrer">All Implementations</a></li>
+                </ul>
+            </div>
+
+            {# Community column #}
+            <div class="footer__column">
+                <h4 class="footer__column-title">Community</h4>
+                <ul>
+                    <li><a href="{{ get_url(path='/get-involved/') }}">Get Involved</a></li>
+                    <li><a href="{{ config.extra.discuss }}" target="_blank" rel="noopener noreferrer">Discussion Forum</a></li>
+                    <li><a href="{{ config.extra.discord_community }}" target="_blank" rel="noopener noreferrer">Discord</a></li>
+                    <li><a href="{{ config.extra.luma_calendar }}" target="_blank" rel="noopener noreferrer">Events Calendar</a></li>
+                </ul>
+            </div>
+        </div>
+
+        {# Bottom bar #}
+        <div class="footer__bottom">
+            <div class="footer__copyright">
+                <p>&copy; {{ now() | date(format="%Y") }} Protocol Labs. Licensed under
+                    <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC-BY 3.0</a> and
+                    <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT</a>.
+                </p>
+            </div>
+            <div class="footer__links">
+                <a href="{{ config.extra.site_repo }}" target="_blank" rel="noopener noreferrer">Edit this site</a>
+                <a href="mailto:{{ config.extra.security_email }}">Security</a>
+                <a href="https://protocol.ai" target="_blank" rel="noopener noreferrer" class="footer__protocol-labs">
+                    An open source project by Protocol Labs
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

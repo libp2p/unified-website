@@ -1,0 +1,24 @@
+{#
+YouTube Video Embed Shortcode
+
+Usage:
+{{ youtube(id="dQw4w9WgXcQ") }}
+
+{{ youtube(id="dQw4w9WgXcQ", title="Video Title", start=120) }}
+#}
+
+{% set video_id = id %}
+{% set video_title = title | default(value="YouTube video") %}
+{% set start_time = start | default(value=0) %}
+{% set autoplay = autoplay | default(value=false) %}
+
+<div class="video-container video-container--youtube">
+    <iframe
+        src="https://www.youtube-nocookie.com/embed/{{ video_id }}{% if start_time > 0 %}?start={{ start_time }}{% endif %}{% if autoplay %}&autoplay=1{% endif %}"
+        title="{{ video_title }}"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+    ></iframe>
+</div>

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}{{ taxonomy.name | title }}{% endblock %}
+
+{% block body_class %}taxonomy{% endblock %}
+{% block main_class %}taxonomy-main{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="taxonomy-header">
+        <h1>{{ taxonomy.name | title }}</h1>
+        <p>Browse all {{ terms | length }} {{ taxonomy.name }}.</p>
+    </header>
+
+    <div class="taxonomy-grid">
+        {% for term in terms %}
+            <a href="{{ term.permalink }}" class="taxonomy-card">
+                <span class="taxonomy-card__name">{{ term.name }}</span>
+                <span class="taxonomy-card__count">{{ term.pages | length }}</span>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

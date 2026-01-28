@@ -1,0 +1,332 @@
+{# Sidebar Navigation for Guides Section #}
+{% set guides_section = get_section(path="guides/_index.md") %}
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar__header">
+        <h2>Guides</h2>
+    </div>
+
+    <nav aria-label="Guides navigation">
+        {% for subsection_path in guides_section.subsections %}
+            {% set subsection = get_section(path=subsection_path) %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    {{ subsection.title }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {# Subsection index #}
+                    <li class="sidebar__item">
+                        <a href="{{ subsection.permalink }}"
+                           class="sidebar__link {% if current_path == subsection.path %}sidebar__link--active{% endif %}">
+                            Overview
+                        </a>
+                    </li>
+
+                    {# Pages in subsection #}
+                    {% for page in subsection.pages  %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+
+                    {# Nested subsections #}
+                    {% for nested_path in subsection.subsections %}
+                        {% set nested = get_section(path=nested_path) %}
+                        <li class="sidebar__item">
+                            <a href="{{ nested.permalink }}"
+                               class="sidebar__link {% if current_path == nested.path %}sidebar__link--active{% endif %}">
+                                {{ nested.title }}
+                            </a>
+                            {% if nested.pages | length > 0 %}
+                            <ul class="sidebar__nested">
+                                {% for page in nested.pages  %}
+                                <li class="sidebar__item">
+                                    <a href="{{ page.permalink }}"
+                                       class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                                        {{ page.title }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+
+        {# Top-level pages in guides, grouped by category #}
+        {% if guides_section.pages | length > 0 %}
+            {# Group pages by category #}
+            {% set get_started_pages = [] %}
+            {% set fundamentals_pages = [] %}
+            {% set transports_pages = [] %}
+            {% set secure_channels_pages = [] %}
+            {% set multiplexing_pages = [] %}
+            {% set nat_traversal_pages = [] %}
+            {% set pubsub_pages = [] %}
+            {% set discovery_routing_pages = [] %}
+            {% set connectivity_pages = [] %}
+            {% set other_pages = [] %}
+
+            {% for page in guides_section.pages %}
+                {% if page.extra.category and page.extra.category == "get started" %}
+                    {% set_global get_started_pages = get_started_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "fundamentals" %}
+                    {% set_global fundamentals_pages = fundamentals_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "transports" %}
+                    {% set_global transports_pages = transports_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "secure channels" %}
+                    {% set_global secure_channels_pages = secure_channels_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "multiplexing" %}
+                    {% set_global multiplexing_pages = multiplexing_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "nat traversal" %}
+                    {% set_global nat_traversal_pages = nat_traversal_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "publish/subscribe" %}
+                    {% set_global pubsub_pages = pubsub_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "peer discovery/routing" %}
+                    {% set_global discovery_routing_pages = discovery_routing_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "connectivity" %}
+                    {% set_global connectivity_pages = connectivity_pages | concat(with=page) %}
+                {% else %}
+                    {% set_global other_pages = other_pages | concat(with=page) %}
+                {% endif %}
+            {% endfor %}
+
+            {# Get Started section #}
+            {% if get_started_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Get Started
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in get_started_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Fundamentals section #}
+            {% if fundamentals_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Fundamentals
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in fundamentals_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Transports section #}
+            {% if transports_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Transports
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in transports_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Secure Channels section #}
+            {% if secure_channels_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Secure Channels
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in secure_channels_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Multiplexing section #}
+            {% if multiplexing_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Multiplexing
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in multiplexing_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# NAT Traversal section #}
+            {% if nat_traversal_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    NAT Traversal
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in nat_traversal_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Publish/Subscribe section #}
+            {% if pubsub_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Publish/Subscribe
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in pubsub_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Peer Discovery/Routing section #}
+            {% if discovery_routing_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Peer Discovery/Routing
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in discovery_routing_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Connectivity section #}
+            {% if connectivity_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Connectivity
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in connectivity_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Other uncategorized pages #}
+            {% if other_pages | length > 0 %}
+            <div class="sidebar__section">
+                <span class="sidebar__section-title">
+                    Other
+                </span>
+                <ul class="sidebar__list">
+                    {% for page in other_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ page.permalink }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        {% endif %}
+    </nav>
+</aside>
+
+{# Sidebar overlay for mobile #}
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+{# Mobile toggle button #}
+<button type="button" class="sidebar-toggle" aria-label="Toggle sidebar" data-sidebar-toggle>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+</button>

@@ -1,0 +1,446 @@
+// ===========================================
+// GET INVOLVED SECTION STYLES
+// ===========================================
+
+.get-involved-page {
+    padding: $spacing-8;
+    max-width: $container-lg;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-lg) {
+        padding: $spacing-12;
+    }
+}
+
+// Page header
+.get-involved-header {
+    text-align: center;
+    margin-bottom: $spacing-12;
+
+    &__title {
+        margin-bottom: $spacing-4;
+    }
+
+    &__description {
+        max-width: 600px;
+        margin: 0 auto;
+        color: $color-gray-600;
+        font-size: $font-size-lg;
+    }
+}
+
+// Quick links / TOC
+.get-involved-toc {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $spacing-3;
+    margin-bottom: $spacing-12;
+    padding: $spacing-4;
+    background-color: $color-gray-50;
+    border-radius: $radius-lg;
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-2;
+        padding: $spacing-2 $spacing-4;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-gray-600;
+        background-color: $color-white;
+        border: 1px solid $color-gray-200;
+        border-radius: $radius-md;
+        text-decoration: none;
+        transition: all $transition-fast $ease-in-out;
+
+        &:hover {
+            border-color: $color-primary;
+            color: $color-primary;
+            text-decoration: none;
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+// Section styles
+.get-involved-section {
+    margin-bottom: $spacing-16;
+    scroll-margin-top: calc(65px + #{$spacing-8});
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+        margin-bottom: $spacing-6;
+    }
+
+    &__icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-primary-lighter;
+        border-radius: $radius-lg;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            color: $color-primary;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-2xl;
+        margin: 0;
+    }
+
+    &__description {
+        color: $color-gray-600;
+        margin-bottom: $spacing-6;
+        max-width: 800px;
+    }
+}
+
+// Channel cards grid
+.channel-grid {
+    display: grid;
+    gap: $spacing-4;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $breakpoint-sm) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+// Channel card
+.channel-card {
+    display: flex;
+    flex-direction: column;
+    padding: $spacing-5;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-xl;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        border-color: $color-primary;
+        box-shadow: $shadow-md;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+        margin-bottom: $spacing-3;
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $radius-md;
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        // Platform colors
+        &--discord {
+            background-color: #5865f2;
+            color: $color-white;
+        }
+
+        &--slack {
+            background-color: #4a154b;
+            color: $color-white;
+        }
+
+        &--matrix {
+            background-color: #0dbd8b;
+            color: $color-white;
+        }
+
+        &--telegram {
+            background-color: #0088cc;
+            color: $color-white;
+        }
+
+        &--github {
+            background-color: #24292e;
+            color: $color-white;
+        }
+
+        &--discourse {
+            background-color: #0088cc;
+            color: $color-white;
+        }
+    }
+
+    &__name {
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+    }
+
+    &__type {
+        font-size: $font-size-xs;
+        color: $color-gray-500;
+    }
+
+    &__description {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        margin-bottom: $spacing-4;
+        flex: 1;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-1;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+// Meetings section
+.meetings-grid {
+    display: grid;
+    gap: $spacing-4;
+    margin-bottom: $spacing-6;
+
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.meeting-card {
+    padding: $spacing-5;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-xl;
+
+    &__title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        margin-bottom: $spacing-2;
+    }
+
+    &__schedule {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+        margin-bottom: $spacing-3;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__description {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        margin-bottom: $spacing-4;
+    }
+
+    &__link {
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-1;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Calendar embed
+.calendar-embed {
+    margin: $spacing-6 0;
+    border-radius: $radius-lg;
+    overflow: hidden;
+
+    iframe {
+        display: block;
+        width: 100%;
+        border: none;
+    }
+}
+
+// Events grid
+.events-grid {
+    display: grid;
+    gap: $spacing-4;
+
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.event-card {
+    overflow: hidden;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-xl;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        box-shadow: $shadow-md;
+    }
+
+    &__image {
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background-color: $color-gray-100;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__body {
+        padding: $spacing-4;
+    }
+
+    &__date {
+        display: inline-flex;
+        align-items: center;
+        gap: $spacing-1;
+        font-size: $font-size-xs;
+        color: $color-primary;
+        font-weight: $font-weight-medium;
+        margin-bottom: $spacing-2;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-semibold;
+        margin-bottom: $spacing-2;
+
+        a {
+            color: $color-gray-900;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+    }
+
+    &__location {
+        display: flex;
+        align-items: center;
+        gap: $spacing-1;
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+}
+
+// Contributing section
+.contribute-options {
+    display: grid;
+    gap: $spacing-4;
+
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.contribute-card {
+    display: flex;
+    gap: $spacing-4;
+    padding: $spacing-5;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-xl;
+    text-decoration: none;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        border-color: $color-primary;
+        box-shadow: $shadow-md;
+        text-decoration: none;
+    }
+
+    &__icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-gray-100;
+        border-radius: $radius-lg;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            color: $color-gray-600;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__title {
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        margin-bottom: $spacing-1;
+    }
+
+    &__description {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+    }
+}

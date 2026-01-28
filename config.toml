@@ -1,0 +1,158 @@
+# Unified libp2p Website Configuration
+# Consolidates: website-new, blog, docs, connectivity-site
+
+base_url = "https://libp2p.io"
+title = "libp2p - A modular network stack"
+description = "Run your network applications free from runtime and address services, independently of their location."
+author = "The libp2p Foundation"
+
+# Compile Sass files in the sass directory
+compile_sass = true
+
+# Build search index for JavaScript search
+build_search_index = true
+
+# Generate RSS feed
+generate_feeds = true
+feed_filenames = ["rss.xml"]
+
+# Default language
+default_language = "en"
+
+# Syntax highlighting
+[markdown]
+[markdown.highlighting]
+enabled = true
+theme = "monokai"
+
+# Taxonomies for blog
+[[taxonomies]]
+name = "tags"
+feed = true
+
+[[taxonomies]]
+name = "authors"
+
+# Link checking
+[link_checker]
+skip_prefixes = [
+    "https://github.com/libp2p/",
+    "https://docs.libp2p.io/",
+]
+skip_anchor_prefixes = []
+
+# Search configuration
+[search]
+include_title = true
+include_description = true
+include_path = true
+include_content = true
+index_format = "elasticlunr_json"
+
+# Extra configuration variables
+[extra]
+# Site metadata
+name = "libp2p"
+domain = "libp2p.io"
+logo = "/img/logo_small.png"
+
+# Repository links
+github = "https://github.com/libp2p/libp2p"
+site_repo = "https://github.com/libp2p/unified-website"
+specs_repo = "https://github.com/libp2p/specs"
+specs_url = "https://github.com/libp2p/specs"
+
+# Implementation repositories
+implementations = "https://github.com/libp2p/libp2p?tab=readme-ov-file#implementations"
+go_libp2p = "https://github.com/libp2p/go-libp2p"
+rust_libp2p = "https://github.com/libp2p/rust-libp2p"
+js_libp2p = "https://github.com/libp2p/js-libp2p"
+py_libp2p = "https://github.com/libp2p/py-libp2p"
+nim_libp2p = "https://github.com/vacp2p/nim-libp2p"
+zig_libp2p = "https://github.com/zen-eth/zig-libp2p"
+
+# Discussion forums
+discuss = "https://discuss.libp2p.io"
+specs_discussions = "https://github.com/libp2p/specs/discussions"
+github_discussions = "https://github.com/libp2p/libp2p?tab=readme-ov-file#discussion"
+
+# Chat rooms - Slack
+slack_community = "https://filecoinproject.slack.com/archives/C06HV0D00E5"
+slack_implementers = "https://filecoinproject.slack.com/archives/C03K82MU486"
+
+# Chat rooms - Discord
+discord_community = "https://discord.gg/ehaey3C733"
+discord_implementers = "https://discord.gg/Ae4TbahHaT"
+
+# Chat rooms - Telegram
+telegram_community = "https://t.me/+gQhmYY_RIBc5NzYx"
+telegram_implementers = "https://t.me/+gQhmYY_RIBc5NzYx"
+
+# Chat rooms - Matrix
+matrix_community = "https://matrix.to/#/#libp2p-community:matrix.org"
+matrix_implementers = "https://matrix.to/#/#libp2p-implementers:ipfs.io"
+
+# Social media
+twitter = "https://twitter.com/libp2p"
+bluesky = "https://bsky.app/profile/libp2p.bsky.social"
+
+# Events calendar
+luma_calendar = "https://lu.ma/libp2p"
+luma_embed = "https://lu.ma/embed/calendar/cal-7CPAnJtz4A4aj2X/events?compact=true&lt=light"
+
+# Contact
+security_email = "security@libp2p.io"
+
+# Analytics (Plausible)
+plausible_domain = "libp2p.io"
+
+# Navigation items (used by topbar template)
+[[extra.nav]]
+name = "Home"
+url = "/"
+
+[[extra.nav]]
+name = "Blog"
+url = "/blog/"
+
+[[extra.nav]]
+name = "Releases"
+url = "/releases/"
+
+[[extra.nav]]
+name = "Guides"
+url = "/guides/"
+
+[[extra.nav]]
+name = "Status"
+url = "/status/"
+
+[[extra.nav]]
+name = "Get Involved"
+url = "/get-involved/"
+
+[[extra.nav]]
+name = "Specs"
+url = "https://github.com/libp2p/specs"
+external = true
+
+# Footer links
+[[extra.footer_links]]
+name = "GitHub"
+url = "https://github.com/libp2p"
+
+[[extra.footer_links]]
+name = "Specs"
+url = "https://github.com/libp2p/specs"
+
+[[extra.footer_links]]
+name = "Discuss"
+url = "https://discuss.libp2p.io"
+
+[[extra.footer_links]]
+name = "Twitter"
+url = "https://twitter.com/libp2p"
+
+[[extra.footer_links]]
+name = "Bluesky"
+url = "https://bsky.app/profile/libp2p.bsky.social"

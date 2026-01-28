@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>libp2p Browser Chat</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f9fafb;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .placeholder {
+      text-align: center;
+      max-width: 500px;
+    }
+    .placeholder h2 {
+      color: #24a8e6;
+      margin-bottom: 1rem;
+    }
+    .placeholder p {
+      color: #6b7280;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .placeholder code {
+      background: #e5e7eb;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="placeholder">
+    <h2>libp2p Browser Chat Demo</h2>
+    <p>
+      This is a placeholder for the js-peer chat application.
+      The actual application needs to be built from the
+      <a href="https://github.com/libp2p/universal-connectivity" target="_blank">universal-connectivity</a>
+      repository.
+    </p>
+    <p>
+      Build instructions:<br>
+      <code>cd js-peer && npm ci && npm run build</code>
+    </p>
+    <p>
+      Then copy the output to this directory.
+    </p>
+  </div>
+</body>
+</html>

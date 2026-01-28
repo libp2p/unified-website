@@ -1,0 +1,75 @@
+{#
+Implementation Support Matrix Shortcode
+
+Usage with data parameter:
+{% support_matrix(data="go-libp2p:supported,rust-libp2p:supported,js-libp2p:wip") %}
+Optional note text here
+{% end %}
+
+Or with body content:
+{% support_matrix() %}
+go-libp2p: supported
+rust-libp2p: supported
+js-libp2p: wip
+{% end %}
+
+Status values: supported, not-supported, wip, partial, na
+#}
+
+{% set lines = [] %}
+{% if data is defined and data %}
+    {% set lines = data | split(pat=",") %}
+{% elif body %}
+    {% set lines = body | trim | split(pat="\n") %}
+{% endif %}
+
+<div class="support-matrix">
+    <div class="support-matrix__grid">
+        {% for line in lines %}
+            {% set line_trimmed = line | trim %}
+            {% if line_trimmed and ":" in line_trimmed %}
+                {% set parts = line_trimmed | split(pat=":") %}
+                {% if parts | length >= 2 %}
+                    {% set impl_name = parts[0] | trim %}
+                    {% set status = parts[1] | trim | lower %}
+
+                    {% set status_class = "unknown" %}
+                    {% set status_icon = "?" %}
+                    {% set status_label = "Unknown" %}
+
+                    {% if status == "supported" or status == "yes" or status == "true" %}
+                        {% set status_class = "pass" %}
+                        {% set status_icon = "&#10003;" %}
+                        {% set status_label = "Supported" %}
+                    {% elif status == "not-supported" or status == "no" or status == "false" %}
+                        {% set status_class = "fail" %}
+                        {% set status_icon = "&#10005;" %}
+                        {% set status_label = "Not Supported" %}
+                    {% elif status == "wip" or status == "in-progress" %}
+                        {% set status_class = "wip" %}
+                        {% set status_icon = "&#9881;" %}
+                        {% set status_label = "In Progress" %}
+                    {% elif status == "partial" %}
+                        {% set status_class = "partial" %}
+                        {% set status_icon = "&#9711;" %}
+                        {% set status_label = "Partial" %}
+                    {% elif status == "na" or status == "n/a" %}
+                        {% set status_class = "na" %}
+                        {% set status_icon = "&#8212;" %}
+                        {% set status_label = "N/A" %}
+                    {% endif %}
+
+                    <div class="support-matrix__item">
+                        <span class="support-matrix__impl">{{ impl_name }}</span>
+                        <span class="support-matrix__status support-matrix__status--{{ status_class }}" title="{{ status_label }}">
+                            {{ status_icon | safe }}
+                        </span>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% if body and not ":" in body %}
+    <p class="support-matrix__note">{{ body | trim }}</p>
+    {% endif %}
+</div>

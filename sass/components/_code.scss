@@ -1,0 +1,244 @@
+// ===========================================
+// CODE BLOCKS & SYNTAX HIGHLIGHTING
+// ===========================================
+
+// Inline code
+code:not(pre code) {
+    background-color: $color-gray-100;
+    padding: 0.2em 0.4em;
+    border-radius: $radius-base;
+    font-size: 0.875em;
+    color: $color-accent;
+    font-family: $font-family-mono;
+}
+
+// Code blocks
+pre {
+    position: relative;
+    background-color: $code-bg;
+    border-radius: $radius-lg;
+    padding: $spacing-4;
+    overflow-x: auto;
+    font-size: $font-size-sm;
+    line-height: $line-height-relaxed;
+    margin: $spacing-4 0;
+
+    code {
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        color: $code-text;
+        font-size: inherit;
+    }
+
+    // Scrollbar styling
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    }
+}
+
+// Code block with header (language label)
+.code-block {
+    position: relative;
+    margin: $spacing-4 0;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-2 $spacing-4;
+        background-color: darken($code-bg, 5%);
+        border-radius: $radius-lg $radius-lg 0 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    &__language {
+        font-size: $font-size-xs;
+        font-weight: $font-weight-medium;
+        color: $color-gray-400;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    &__copy {
+        display: flex;
+        align-items: center;
+        gap: $spacing-1;
+        padding: $spacing-1 $spacing-2;
+        font-size: $font-size-xs;
+        color: $color-gray-400;
+        background: transparent;
+        border: 1px solid $color-gray-600;
+        border-radius: $radius-base;
+        cursor: pointer;
+        transition: all $transition-fast $ease-in-out;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: $color-white;
+        }
+
+        &--copied {
+            color: $color-success;
+            border-color: $color-success;
+        }
+    }
+
+    pre {
+        margin: 0;
+        border-radius: 0 0 $radius-lg $radius-lg;
+    }
+}
+
+// Line numbers
+.code-block--line-numbers {
+    pre {
+        padding-left: 0;
+    }
+
+    code {
+        display: block;
+        counter-reset: line;
+    }
+
+    .line {
+        display: block;
+        padding-left: $spacing-12;
+        position: relative;
+
+        &::before {
+            content: counter(line);
+            counter-increment: line;
+            position: absolute;
+            left: 0;
+            width: $spacing-10;
+            padding-right: $spacing-2;
+            text-align: right;
+            color: $color-gray-600;
+            font-size: $font-size-xs;
+            user-select: none;
+        }
+    }
+}
+
+// Line highlighting
+.line--highlight {
+    background-color: rgba($color-primary, 0.15);
+    margin: 0 (-$spacing-4);
+    padding: 0 $spacing-4;
+    border-left: 3px solid $color-primary;
+}
+
+// Diff highlighting
+.line--added {
+    background-color: rgba($color-success, 0.15);
+
+    &::before {
+        content: "+";
+        color: $color-success;
+    }
+}
+
+.line--removed {
+    background-color: rgba($color-error, 0.15);
+
+    &::before {
+        content: "-";
+        color: $color-error;
+    }
+}
+
+// Terminal/Shell styling
+.terminal {
+    background-color: #1a1b26;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    margin: $spacing-4 0;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: $spacing-2;
+        padding: $spacing-2 $spacing-4;
+        background-color: #2a2b36;
+    }
+
+    &__dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+
+        &--red { background-color: #ff5f56; }
+        &--yellow { background-color: #ffbd2e; }
+        &--green { background-color: #27c93f; }
+    }
+
+    &__title {
+        margin-left: $spacing-4;
+        font-size: $font-size-xs;
+        color: $color-gray-400;
+    }
+
+    pre {
+        margin: 0;
+        border-radius: 0;
+        background: transparent;
+    }
+
+    .prompt {
+        color: $color-success;
+        user-select: none;
+    }
+
+    .output {
+        color: $color-gray-400;
+    }
+}
+
+// Keyboard keys
+kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    padding: $spacing-0-5 $spacing-1-5;
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    background-color: $color-gray-100;
+    border: 1px solid $color-gray-300;
+    border-radius: $radius-base;
+    box-shadow: 0 1px 0 $color-gray-400;
+}
+
+// Filename display above code block
+.filename {
+    display: inline-block;
+    padding: $spacing-1 $spacing-3;
+    font-family: $font-family-mono;
+    font-size: $font-size-xs;
+    background-color: $color-gray-800;
+    color: $color-gray-300;
+    border-radius: $radius-base $radius-base 0 0;
+    margin-bottom: -$radius-base;
+    position: relative;
+    z-index: 1;
+
+    + pre {
+        margin-top: 0;
+    }
+}
