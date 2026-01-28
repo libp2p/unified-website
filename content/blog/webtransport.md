@@ -15,7 +15,7 @@ This is the first entry in a series of posts on how libp2p achieves browser conn
 
 ## Overview
 
-Seamless browser connectivity is a crucial goal of the [libp2p project](https://libp2p.io). Over many years, libp2p has made many strides to realize that vision. Today, we are proud to announce a significant milestone that puts us much closer to that aim:
+Seamless browser connectivity is a crucial goal of the [libp2p project](/). Over many years, libp2p has made many strides to realize that vision. Today, we are proud to announce a significant milestone that puts us much closer to that aim:
 
 **libp2p now supports the new, bleeding-edge WebTransport protocol!**
 
@@ -141,6 +141,6 @@ Yes, please! WebTransport already works between browsers and servers in applicat
 - [Connectivity site section on the protocol](/guides/browser-connectivity#webtransport)
 - [Specification on WebTransport](https://github.com/libp2p/specs/tree/master/webtransport)
 
-If you would like to contribute, please [connect with the libp2p maintainers](https://libp2p.io/#community).
+If you would like to contribute, please [connect with the libp2p maintainers](/get-involved/).
 
 Thank you for reading!

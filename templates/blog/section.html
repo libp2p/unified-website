@@ -30,9 +30,9 @@
 
     {% if all_tags | length > 0 %}
     <div class="blog-filters">
-        <a href="{{ section.permalink }}" class="blog-filters__tag blog-filters__tag--active">All</a>
+        <a href="{{ macros::rel_link(permalink=section.permalink) }}" class="blog-filters__tag blog-filters__tag--active">All</a>
         {% for tag in all_tags | sort %}
-            <a href="{{ get_taxonomy_url(kind='tags', name=tag) }}" class="blog-filters__tag">
+            <a href="{{ macros::rel_link(permalink=get_taxonomy_url(kind='tags', name=tag)) }}" class="blog-filters__tag">
                 {{ tag }}
             </a>
         {% endfor %}
@@ -43,7 +43,7 @@
     <div class="blog-grid">
         {% for page in paginator.pages %}
             <article class="blog-card {% if loop.first and paginator.current_index == 1 %}blog-card--featured{% endif %}">
-                <a href="{{ page.permalink }}" class="blog-card__link">
+                <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="blog-card__link">
                     {% if page.extra.header_image %}
                     <div class="blog-card__image">
                         <img src="{{ page.extra.header_image }}" alt="{{ page.title }}" loading="lazy">

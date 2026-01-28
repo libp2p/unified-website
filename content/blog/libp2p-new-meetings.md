@@ -25,7 +25,7 @@ Check out the [libp2p community calendar](https://lu.ma/libp2p) and add it to yo
 
 The libp2p Community operates on a "2 + you" rule for meetings. If you and two other people would like to start a meeting, let me know and I will help you organize it, list it on the libp2p calendar, announce it on our social media feeds and all of our chat channels.
 
-Find me (@dhuseby) on any of our [chat rooms](https://libp2p.io) and let me know so I can help get it organized.
+Find me (@dhuseby) on any of our [chat rooms](/get-involved/) and let me know so I can help get it organized.
 
 ## Current Meetings
 

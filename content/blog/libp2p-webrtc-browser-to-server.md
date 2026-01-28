@@ -15,7 +15,7 @@ This is the second entry in the Universal Browser Connectivity series on how lib
 
 ## Overview
 
-The [libp2p project](https://libp2p.io) supports many transport protocols across a variety of implementations. These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser).
+The [libp2p project](/) supports many transport protocols across a variety of implementations. These transport protocols enable applications using libp2p to run as server nodes (on a personal laptop or in a datacenter) or as browser nodes (inside a Web browser).
 
 Historically, libp2p has bridged these runtime environments with different node connectivity options in varying degrees:
 - server node to server node via TCP and QUIC
@@ -151,6 +151,6 @@ WebRTC offers the capability for browsers to connect to browsers. The [WebRTC br
 - [WebRTC Connectivity](/guides/browser-connectivity#webrtc)
 - [WebRTC Spec](https://github.com/libp2p/specs/tree/master/webrtc)
 
-If you would like to contribute, please [connect with the libp2p maintainers](https://libp2p.io/#community).
+If you would like to contribute, please [connect with the libp2p maintainers](/get-involved/).
 
 Thank you for reading!

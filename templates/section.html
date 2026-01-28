@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block title %}{{ section.title }}{% endblock %}
 
@@ -29,7 +30,7 @@
                 {% for subsection_path in section.subsections %}
                     {% set subsection = get_section(path=subsection_path) %}
                     <li>
-                        <a href="{{ subsection.permalink }}">
+                        <a href="{{ macros::rel_link(permalink=subsection.permalink) }}">
                             <strong>{{ subsection.title }}</strong>
                             {% if subsection.description %}
                                 <span>{{ subsection.description }}</span>
@@ -48,7 +49,7 @@
             <ul class="page-list">
                 {% for page in section.pages %}
                     <li>
-                        <a href="{{ page.permalink }}">
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}">
                             <strong>{{ page.title }}</strong>
                             {% if page.description %}
                                 <span>{{ page.description }}</span>
