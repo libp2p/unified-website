@@ -32,9 +32,6 @@ jobs:
       - name: Build Zola site
         run: zola build
 
-      - name: Fix absolute URLs for subdirectory deployment
-        run: ./fix-redirects.sh public
-
       - name: Set up Node.js for ipfs-car
         uses: actions/setup-node@v4
         with:
