@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros.html" as macros %}
 
 {% block title %}{{ config.title }}{% endblock %}
 {% block og_title %}{{ config.title }}{% endblock %}
@@ -18,7 +19,7 @@
                 Run your network applications free from runtime and address services, independently of their location.
             </p>
             <div class="hero__actions">
-                <a href="{{ get_url(path='/guides/') }}" class="btn btn-primary btn--lg">
+                <a href="{{ macros::rel() }}guides/" class="btn btn-primary btn--lg">
                     Get Started
                 </a>
                 <a href="{{ config.extra.github }}" class="btn btn-outline btn--lg" target="_blank" rel="noopener noreferrer">
@@ -138,42 +139,42 @@
         <div class="implementations__grid">
             <a href="{{ config.extra.go_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ get_url(path='/img/lang-go.svg') }}" alt="Go">
+                    <img src="{{ macros::rel() }}img/lang-go.svg" alt="Go">
                 </div>
                 <h3 class="impl-card__name">go-libp2p</h3>
                 <p class="impl-card__desc">The implementation in Golang</p>
             </a>
             <a href="{{ config.extra.rust_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ get_url(path='/img/lang-rust.svg') }}" alt="Rust">
+                    <img src="{{ macros::rel() }}img/lang-rust.svg" alt="Rust">
                 </div>
                 <h3 class="impl-card__name">rust-libp2p</h3>
                 <p class="impl-card__desc">High-performance Rust implementation</p>
             </a>
             <a href="{{ config.extra.js_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ get_url(path='/img/lang-js.svg') }}" alt="JavaScript">
+                    <img src="{{ macros::rel() }}img/lang-js.svg" alt="JavaScript">
                 </div>
                 <h3 class="impl-card__name">js-libp2p</h3>
                 <p class="impl-card__desc">For browsers and Node.js</p>
             </a>
             <a href="{{ config.extra.py_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ get_url(path='/img/lang-py.svg') }}" alt="Python">
+                    <img src="{{ macros::rel() }}img/lang-py.svg" alt="Python">
                 </div>
                 <h3 class="impl-card__name">py-libp2p</h3>
                 <p class="impl-card__desc">The AI-friendly Python implementation</p>
             </a>
             <a href="{{ config.extra.nim_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ get_url(path='/img/lang-nim.svg') }}" alt="Nim">
+                    <img src="{{ macros::rel() }}img/lang-nim.svg" alt="Nim">
                 </div>
                 <h3 class="impl-card__name">nim-libp2p</h3>
                 <p class="impl-card__desc">The Nim reference implementation</p>
             </a>
             <a href="{{ config.extra.zig_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ get_url(path='/img/lang-zig.svg') }}" alt="Zig">
+                    <img src="{{ macros::rel() }}img/lang-zig.svg" alt="Zig">
                 </div>
                 <h3 class="impl-card__name">zig-libp2p</h3>
                 <p class="impl-card__desc">The efficient Zig implementation</p>
@@ -211,7 +212,7 @@
             <a href="{{ config.extra.luma_calendar }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 View Full Calendar
             </a>
-            <a href="{{ get_url(path='/get-involved/') }}" class="btn btn-outline">
+            <a href="{{ macros::rel() }}get-involved/" class="btn btn-outline">
                 Get Involved
             </a>
         </div>
@@ -227,7 +228,7 @@
                 Check out our guides and tutorials to get started with libp2p.
             </p>
             <div class="cta__actions">
-                <a href="{{ get_url(path='/guides/getting-started/') }}" class="btn btn-primary btn--lg">
+                <a href="{{ macros::rel() }}guides/getting-started/" class="btn btn-primary btn--lg">
                     Read the Guides
                 </a>
                 <a href="{{ config.extra.specs_url }}" class="btn btn-outline-white btn--lg" target="_blank" rel="noopener noreferrer">
@@ -240,5 +241,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ get_url(path='/js/home.js') }}" defer></script>
+<script src="{{ macros::rel() }}js/home.js" defer></script>
 {% endblock %}

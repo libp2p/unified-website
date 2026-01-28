@@ -1,11 +1,15 @@
 {#
 js-peer Chat App Embed Shortcode
 
-Usage:
+Usage from root pages:
 {{ js_peer_embed() }}
+
+Usage from nested pages (e.g., /guides/getting-started/):
+{{ js_peer_embed(base="../../") }}
 
 {{ js_peer_embed(height=700) }}
 
+The base parameter should contain the relative path prefix to reach the site root.
 Note: Requires HTTPS and a modern browser with WebRTC support.
 #}
 
@@ -21,7 +25,7 @@ Note: Requires HTTPS and a modern browser with WebRTC support.
         <span>This interactive demo requires HTTPS and a modern browser with WebRTC support.</span>
     </div>
     <iframe
-        src="/js-peer/index.html"
+        src="{{ base | default(value='') }}js-peer/index.html"
         width="100%"
         height="{{ embed_height }}"
         allow="camera; microphone"

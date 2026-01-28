@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html lang="{{ lang | default(value='en') }}">
 <head>
@@ -41,7 +42,7 @@
         <meta property="og:url" content="{{ section.permalink }}">
     {% endif %}
     {% block og_image %}
-        <meta property="og:image" content="{{ get_url(path='/img/og-image.png') }}">
+        <meta property="og:image" content="{{ macros::abs_url(path='/img/og-image.png') }}">
     {% endblock %}
 
     {# Twitter Card tags #}
@@ -57,17 +58,17 @@
     {% endif %}
 
     {# Favicon #}
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ get_url(path='/img/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ get_url(path='/img/favicon-16x16.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='/img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ macros::rel() }}img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ macros::rel() }}img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ macros::rel() }}img/apple-touch-icon.png">
 
     {# RSS Feed #}
     {% if config.generate_feeds %}
-        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ get_url(path='rss.xml') }}">
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ macros::rel() }}rss.xml">
     {% endif %}
 
     {# Main stylesheet #}
-    <link rel="stylesheet" href="{{ get_url(path='/main.css') }}">
+    <link rel="stylesheet" href="{{ macros::rel() }}main.css">
 
     {# Additional head content from child templates #}
     {% block head %}{% endblock %}
@@ -93,7 +94,7 @@
     {% include "components/footer.html" %}
 
     {# Common JavaScript #}
-    <script src="{{ get_url(path='/js/common.js') }}"></script>
+    <script src="{{ macros::rel() }}js/common.js"></script>
 
     {# Additional scripts from child templates #}
     {% block scripts %}{% endblock %}

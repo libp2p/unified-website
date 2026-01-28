@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 {# Footer Component #}
 <footer class="footer">
     <div class="footer__container">
@@ -5,7 +6,7 @@
             {# Brand column #}
             <div class="footer__brand">
                 <div class="footer__logo">
-                    <img src="{{ get_url(path='/img/logo_small.png') }}" alt="libp2p">
+                    <img src="{{ macros::rel() }}img/logo_small.png" alt="libp2p">
                     <span>libp2p</span>
                 </div>
                 <p class="footer__tagline">
@@ -44,11 +45,11 @@
             <div class="footer__column">
                 <h4 class="footer__column-title">Resources</h4>
                 <ul>
-                    <li><a href="{{ get_url(path='/guides/') }}">Guides</a></li>
+                    <li><a href="{{ macros::rel() }}guides/">Guides</a></li>
                     <li><a href="{{ config.extra.specs_url }}" target="_blank" rel="noopener noreferrer">Specifications</a></li>
-                    <li><a href="{{ get_url(path='/blog/') }}">Blog</a></li>
-                    <li><a href="{{ get_url(path='/releases/') }}">Releases</a></li>
-                    <li><a href="{{ get_url(path='/status/') }}">Status</a></li>
+                    <li><a href="{{ macros::rel() }}blog/">Blog</a></li>
+                    <li><a href="{{ macros::rel() }}releases/">Releases</a></li>
+                    <li><a href="{{ macros::rel() }}status/">Status</a></li>
                 </ul>
             </div>
 
@@ -67,7 +68,7 @@
             <div class="footer__column">
                 <h4 class="footer__column-title">Community</h4>
                 <ul>
-                    <li><a href="{{ get_url(path='/get-involved/') }}">Get Involved</a></li>
+                    <li><a href="{{ macros::rel() }}get-involved/">Get Involved</a></li>
                     <li><a href="{{ config.extra.discuss }}" target="_blank" rel="noopener noreferrer">Discussion Forum</a></li>
                     <li><a href="{{ config.extra.discord_community }}" target="_blank" rel="noopener noreferrer">Discord</a></li>
                     <li><a href="{{ config.extra.luma_calendar }}" target="_blank" rel="noopener noreferrer">Events Calendar</a></li>
