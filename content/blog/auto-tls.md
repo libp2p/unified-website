@@ -50,7 +50,7 @@ Historically, the Web relied solely on unencrypted HTTP as the default transport
 
 ![Chrome warning](/img/blog/autotls/computer-says-no.png)
 
-In libp2p, [all connections are encrypted](https://docs.libp2p.io/concepts/secure-comm/overview/#overview) by default, using either Noise or TLS.
+In libp2p, [all connections are encrypted](/guides/secure-channels-overview/) by default, using either Noise or TLS.
 
 For as long as libp2p has existed, browser-node connectivity has been a challenge. Browsers do not consider libp2p's encryption layer for WebSocket connections as part of "[Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)", leaving us with browser-negotiated TLS encryption as the only viable option.
 
@@ -66,7 +66,7 @@ By comparison, [WebTransport requires 3 round trips](/guides/browser-connectivit
 
 With AutoTLS, the end result is:
 
-1. Your libp2p node, identified by a [PeerID](https://docs.libp2p.io/concepts/fundamentals/peers/#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
+1. Your libp2p node, identified by a [PeerID](/guides/peers/#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
 2. The authoritative DNS server of `libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
 
 > **Note:** `<PeerID>` is [base36 encoded](https://cid.ipfs.tech/#k51qzi5uqu5dh72mdzh50ohq411bo2tzdcdirjw0597vujl9w4hmkn4r8550r0) to keep the DNS label length under 63 characters ([RFC 1034](https://tools.ietf.org/html/rfc1034#page-7)).

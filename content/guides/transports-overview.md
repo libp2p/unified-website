@@ -37,5 +37,5 @@ protocols in libp2p.
 ## Transports and libp2p
 
 To better visualize the types of libp2p connections, check out the
-[connectivity site](https://connectivity.libp2p.io/) which outlines the different
+[connectivity guide](/guides/browser-connectivity/) which outlines the different
 types of connectivity in libp2p.

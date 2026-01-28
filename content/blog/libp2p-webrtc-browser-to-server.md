@@ -147,7 +147,7 @@ WebRTC offers the capability for browsers to connect to browsers. The [WebRTC br
 
 ## Resources and how you can help contribute
 
-- [WebRTC Docs](https://docs.libp2p.io/concepts/transports/webrtc/)
+- [WebRTC Docs](/guides/webrtc-browser-connectivity/)
 - [WebRTC Connectivity](/guides/browser-connectivity#webrtc)
 - [WebRTC Spec](https://github.com/libp2p/specs/tree/master/webrtc)
 
