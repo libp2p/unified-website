@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}Search{% endblock %}
+
+{% block body_class %}search{% endblock %}
+{% block main_class %}search-page{% endblock %}
+
+{% block content %}
+<header class="search-page__header">
+    <h1 class="search-page__title">Search</h1>
+    <form class="search-page__form" id="search-form" action="{{ macros::rel() }}search/" method="get">
+        <div class="search-page__input-wrapper">
+            <span class="search-page__input-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </span>
+            <input
+                type="text"
+                class="search-page__input"
+                id="search-input"
+                name="q"
+                placeholder="Search documentation..."
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            >
+        </div>
+        <button type="submit" class="search-page__submit">Search</button>
+    </form>
+</header>
+
+<section class="search-page__results" id="search-results">
+    <div class="search-page__loading" id="search-loading" style="display: none;">
+        <div class="search-page__loading-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+        </div>
+        <p>Loading search index...</p>
+    </div>
+    <div class="search-page__empty" id="search-empty" style="display: none;">
+        <div class="search-page__empty-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </div>
+        <p id="search-empty-text">No results found</p>
+    </div>
+    <p class="search-page__count" id="search-count" style="display: none;"></p>
+    <div class="search-page__list" id="search-list">
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ macros::rel() }}elasticlunr.min.js"></script>
+<script src="{{ macros::rel() }}js/search.js"></script>
+{% endblock %}

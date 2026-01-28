@@ -31,7 +31,7 @@ jobs:
           sudo mv zola /usr/local/bin/zola
 
       - name: Build Zola site
-        run: zola build
+        run: zola build --base-url="https://${{ secrets.LIBP2P_DOMAIN }}/"
 
       - name: Set up Node.js for ipfs-car
         uses: actions/setup-node@v4
@@ -91,5 +91,5 @@ jobs:
         run: |
           echo "::notice title=Production Deployed::"
           echo "Root CID: ${{ steps.upload.outputs.cid }}"
-          echo "View site: https://libp2p.myfilebase.com/ipfs/${{ steps.upload.outputs.cid }}/"
+          echo "View site: https://libp2p.myfilebase.com/"
           # Optional: add IPNS update, GitHub deployment, Slack notification, etc. here

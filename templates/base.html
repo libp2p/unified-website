@@ -58,9 +58,9 @@
     {% endif %}
 
     {# Favicon #}
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ macros::rel() }}img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ macros::rel() }}img/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ macros::rel() }}img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ macros::abs_url(path='/img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ macros::abs_url(path='/img/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ macros::abs_url(path='/img/apple-touch-icon.png') }}">
 
     {# RSS Feed #}
     {% if config.generate_feeds %}
@@ -73,9 +73,9 @@
     {# Additional head content from child templates #}
     {% block head %}{% endblock %}
 
-    {# Analytics (Plausible) #}
-    {% if config.extra.plausible_domain %}
-        <script defer data-domain="{{ config.extra.plausible_domain }}" src="https://plausible.io/js/script.js"></script>
+    {# Analytics (Umami) #}
+    {% if config.extra.umami_website_id %}
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="{{ config.extra.umami_website_id }}"></script>
     {% endif %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -84,6 +84,11 @@
 
     {# Top navigation bar #}
     {% include "components/topbar.html" %}
+
+    {# Search modal #}
+    {% if config.build_search_index %}
+        {% include "components/search-modal.html" %}
+    {% endif %}
 
     {# Main content #}
     <main id="main-content" class="{% block main_class %}{% endblock %}">
