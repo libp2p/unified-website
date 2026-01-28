@@ -17,7 +17,7 @@
                 {# Breadcrumbs #}
                 <nav class="breadcrumbs" aria-label="Breadcrumb">
                     <span class="breadcrumbs__item">
-                        <a href="{{ macros::rel() }}guides/">Guides</a>
+                        <a href="{{ config.base_url }}/guides/">Guides</a>
                     </span>
                     {% if page.ancestors | length > 1 %}
                         {% for ancestor_path in page.ancestors %}
@@ -25,7 +25,7 @@
                                 {% set ancestor = get_section(path=ancestor_path) %}
                                 <span class="breadcrumbs__separator">/</span>
                                 <span class="breadcrumbs__item">
-                                    <a href="{{ macros::rel_link(permalink=ancestor.permalink) }}">{{ ancestor.title }}</a>
+                                    <a href="{{ ancestor.permalink }}">{{ ancestor.title }}</a>
                                 </span>
                             {% endif %}
                         {% endfor %}
@@ -63,7 +63,7 @@
                     {# Previous/Next navigation #}
                     <nav class="guide-nav">
                         {% if page.earlier %}
-                        <a href="{{ macros::rel_link(permalink=page.earlier.permalink) }}" class="guide-nav__link guide-nav__link--prev">
+                        <a href="{{ page.earlier.permalink }}" class="guide-nav__link guide-nav__link--prev">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
@@ -74,7 +74,7 @@
                         </a>
                         {% endif %}
                         {% if page.later %}
-                        <a href="{{ macros::rel_link(permalink=page.later.permalink) }}" class="guide-nav__link guide-nav__link--next">
+                        <a href="{{ page.later.permalink }}" class="guide-nav__link guide-nav__link--next">
                             <div class="guide-nav__text">
                                 <span class="guide-nav__label">Next</span>
                                 <span class="guide-nav__title">{{ page.later.title }}</span>
