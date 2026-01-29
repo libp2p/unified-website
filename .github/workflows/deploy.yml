@@ -87,9 +87,15 @@ jobs:
           fi
           echo "cid=$CID" >> $GITHUB_OUTPUT
 
+      - name: Publish IPNS record
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
+            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=libp2p.myfilebase.site&ttl=1m"
+
       - name: Announce production deployment
         run: |
           echo "::notice title=Production Deployed::"
           echo "Root CID: ${{ steps.upload.outputs.cid }}"
-          echo "View site: https://libp2p.myfilebase.com/"
+          echo "View site: https://libp2p.myfilebase.site/"
           # Optional: add IPNS update, GitHub deployment, Slack notification, etc. here

@@ -230,8 +230,4 @@ As WebRTC is built to facilitate video conferencing between browsers, browsers a
 
 ## Try It: Browser Chat Demo
 
-Experience browser connectivity in action! The demo below uses js-libp2p with WebRTC to enable peer-to-peer chat directly in your browser.
-
-{% js_peer_embed() %}
-This demo requires HTTPS and a modern browser with WebRTC support.
-{% end %}
+Coming soon, browser based libp2p chat application called Universal Connectivity.

@@ -75,6 +75,7 @@
             {% set discovery_routing_pages = [] %}
             {% set connectivity_pages = [] %}
             {% set other_pages = [] %}
+            {% set testing_pages = [] %}
 
             {% for page in guides_section.pages %}
                 {% if page.extra.category and page.extra.category == "get started" %}
@@ -95,6 +96,8 @@
                     {% set_global discovery_routing_pages = discovery_routing_pages | concat(with=page) %}
                 {% elif page.extra.category and page.extra.category == "connectivity" %}
                     {% set_global connectivity_pages = connectivity_pages | concat(with=page) %}
+                {% elif page.extra.category and page.extra.category == "testing" %}
+                    {% set_global testing_pages = testing_pages | concat(with=page) %}
                 {% else %}
                     {% set_global other_pages = other_pages | concat(with=page) %}
                 {% endif %}
@@ -287,6 +290,28 @@
                 </button>
                 <ul class="sidebar__list">
                     {% for page in connectivity_pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Testing section #}
+            {% if testing_pages | length > 0 %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    Testing
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {% for page in testing_pages %}
                     <li class="sidebar__item">
                         <a href="{{ macros::rel_link(permalink=page.permalink) }}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
