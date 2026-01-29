@@ -451,6 +451,70 @@
         });
     }
 
+    // GitHub stars display
+    function initGitHubStars() {
+        var starsElement = document.getElementById('github-stars');
+        if (!starsElement) return;
+
+        var CACHE_KEY = 'libp2p-github-stars';
+        var CACHE_DURATION = 3600000; // 1 hour in milliseconds
+        var STARS_URL = 'https://raw.githubusercontent.com/libp2p/test-plans/refs/heads/master/results/github-stars.yaml';
+
+        // Check cache first
+        try {
+            var cached = localStorage.getItem(CACHE_KEY);
+            if (cached) {
+                var data = JSON.parse(cached);
+                if (data.timestamp && (Date.now() - data.timestamp) < CACHE_DURATION) {
+                    displayStars(data.stars);
+                    return;
+                }
+            }
+        } catch (e) {
+            // Ignore cache errors
+        }
+
+        // Fetch fresh data
+        fetch(STARS_URL)
+            .then(function(response) {
+                if (!response.ok) throw new Error('Failed to fetch');
+                return response.text();
+            })
+            .then(function(yaml) {
+                // Simple YAML parsing for "stars: <number>"
+                var match = yaml.match(/^stars:\s*(\d+)/m);
+                if (match) {
+                    var stars = parseInt(match[1], 10);
+                    displayStars(stars);
+                    // Cache the result
+                    try {
+                        localStorage.setItem(CACHE_KEY, JSON.stringify({
+                            stars: stars,
+                            timestamp: Date.now()
+                        }));
+                    } catch (e) {
+                        // Ignore cache errors
+                    }
+                }
+            })
+            .catch(function(err) {
+                // Silently fail - stars are optional
+                console.debug('Could not fetch GitHub stars:', err);
+            });
+
+        function displayStars(count) {
+            // Format number with K suffix for thousands
+            var formatted;
+            if (count >= 1000) {
+                formatted = (count / 1000).toFixed(1).replace(/\.0$/, '') + 'k';
+            } else {
+                formatted = count.toString();
+            }
+            starsElement.textContent = formatted;
+            starsElement.classList.add('topbar__stars--loaded');
+        }
+    }
+
     // External link handling
     function initExternalLinks() {
         document.querySelectorAll('a[href^="http"]').forEach(function(link) {
@@ -472,6 +536,7 @@
         initCopyCode();
         initSearch();
         initExternalLinks();
+        initGitHubStars();
     }
 
     if (document.readyState === 'loading') {
