@@ -41,8 +41,14 @@
 {% endblock %}
 
 {% block content %}
-{# Header image (full width) #}
-{% if page.extra.header_image %}
+{# Header image or video (full width) #}
+{% if page.extra.header_video %}
+<div class="blog-post-hero">
+    <video autoplay loop muted playsinline class="blog-post-hero__video">
+        <source src="{{ macros::rel_link(permalink=page.extra.header_video) }}" type="video/mp4">
+    </video>
+</div>
+{% elif page.extra.header_image %}
 <div class="blog-post-hero">
     <img src="{{ macros::rel_link(permalink=page.extra.header_image) }}" alt="{{ page.title }}" class="blog-post-hero__image">
 </div>

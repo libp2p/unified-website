@@ -9,6 +9,7 @@ tags = ["testing", "libp2p", "interoperability", "performance"]
 
 [extra]
 author = "libp2p Team"
+header_video = "/img/test-plans-animation.mp4"
 +++
 
 The libp2p ecosystem spans multiple programming languages, transports, and protocols. Testing interoperability across this diverse landscape has always been challenging. Today, we're announcing a complete rewrite of the [test-plans repository](https://github.com/libp2p/test-plans) that fundamentally improves how we test libp2p implementations.
@@ -22,6 +23,8 @@ The original test framework was built with TypeScript, Docker Compose, and vario
 - **Limited reproducibility**: Recreating test failures was difficult without extensive setup
 - **Rigid test selection**: Running specific subsets of tests required manual configuration
 - **Slow iteration cycles**: The build and test pipeline was optimized for CI, not local development
+
+More importantly, 2026 marks a pivotal year for libp2p research efforts focused on scaling and optimization. As we push the boundaries of what's possible with peer-to-peer networking, we need a test framework that can keep pace. Researchers investigating new transport protocols, scaling strategies, and exploring AI-driven dynamic protocols require fast feedback loops, reproducible experiments, and the ability to quickly iterate on implementations across multiple languages. The old framework simply couldn't support the velocity and rigor that this research demands.
 
 We set out to address these issues with a clear set of goals.
 

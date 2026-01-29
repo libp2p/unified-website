@@ -44,7 +44,13 @@
         {% for page in paginator.pages %}
             <article class="blog-card {% if loop.first and paginator.current_index == 1 %}blog-card--featured{% endif %}">
                 <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="blog-card__link">
-                    {% if page.extra.header_image %}
+                    {% if page.extra.header_video %}
+                    <div class="blog-card__image">
+                        <video autoplay loop muted playsinline>
+                            <source src="{{ macros::rel_link(permalink=page.extra.header_video) }}" type="video/mp4">
+                        </video>
+                    </div>
+                    {% elif page.extra.header_image %}
                     <div class="blog-card__image">
                         <img src="{{ macros::rel_link(permalink=page.extra.header_image) }}" alt="{{ page.title }}" loading="lazy">
                     </div>
