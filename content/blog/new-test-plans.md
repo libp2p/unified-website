@@ -8,7 +8,7 @@ slug = "new-test-plans"
 tags = ["testing", "libp2p", "interoperability", "performance"]
 
 [extra]
-author = "libp2p Team"
+author = "Dave Grantham"
 header_video = "/img/test-plans-animation.mp4"
 +++
 
