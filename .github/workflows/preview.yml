@@ -38,6 +38,11 @@ jobs:
           echo "prefix=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
           echo "short_sha=${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
 
+      - name: Generate version file
+        run: |
+          mkdir -p ./static/data
+          TZ=UTC git show -s --date=iso-local --format='%h %cd' HEAD > ./static/data/version
+
       - name: Build Zola site
         run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/preview/${{ steps.vars.outputs.prefix }}/"
 

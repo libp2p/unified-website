@@ -1,0 +1,92 @@
+name: Generate Daily Activity Summary
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 2am UTC daily
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Enable debug mode (saves artifacts)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  OLLAMA_URL: "http://doc:11434/api/generate"
+  OLLAMA_MODEL: "llama3.1:8b"
+  DAYS_BACK: 7
+
+jobs:
+  generate-summary:
+    runs-on: self-hosted
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check GitHub API rate limit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          REMAINING=$(gh api rate_limit --jq '.resources.graphql.remaining')
+          echo "GraphQL API calls remaining: $REMAINING"
+          if [ "$REMAINING" -lt 500 ]; then
+            echo "::warning::Rate limit too low ($REMAINING), skipping run"
+            echo "SKIP_RUN=true" >> $GITHUB_ENV
+          fi
+
+      - name: Fetch activity data from repositories
+        if: env.SKIP_RUN != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          chmod +x .github/scripts/fetch-activity.sh
+          .github/scripts/fetch-activity.sh
+
+      - name: Format data for LLM prompt
+        if: env.SKIP_RUN != 'true'
+        run: |
+          chmod +x .github/scripts/format-prompt.sh
+          .github/scripts/format-prompt.sh
+
+      - name: Generate summary with Ollama
+        if: env.SKIP_RUN != 'true'
+        run: |
+          chmod +x .github/scripts/generate-summary.sh
+          .github/scripts/generate-summary.sh
+
+      - name: Validate and save output
+        if: env.SKIP_RUN != 'true'
+        run: |
+          chmod +x .github/scripts/validate-output.sh
+          .github/scripts/validate-output.sh
+
+      - name: Upload debug artifacts
+        if: always() && (inputs.debug == true || failure())
+        uses: actions/upload-artifact@v4
+        with:
+          name: activity-summary-debug
+          path: |
+            raw-activity.json
+            formatted-prompt.txt
+            ollama-response.json
+            llm-output.html
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Commit and push if changed
+        if: env.SKIP_RUN != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/data/latest-updates
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update daily activity summary [skip ci]"
+            git push
+          fi

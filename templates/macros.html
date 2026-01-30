@@ -35,3 +35,19 @@
 {%- endfor -%}
 {{ prefix }}{{ path }}
 {%- endmacro %}
+
+{# Format a number with k suffix for thousands #}
+{# Usage: {{ macros::format_stars(count=21100) }} => "21.1k" #}
+{% macro format_stars(count) %}
+{%- if count >= 1000 -%}
+{%- set thousands = count / 1000 -%}
+{%- set rounded = thousands | round(precision=1) -%}
+{%- if rounded == rounded | round(precision=0) -%}
+{{ rounded | round(precision=0) }}k
+{%- else -%}
+{{ rounded }}k
+{%- endif -%}
+{%- else -%}
+{{ count }}
+{%- endif -%}
+{%- endmacro %}

@@ -168,6 +168,11 @@
         }
     }
 
+    &__version {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+    }
+
     // Protocol Labs attribution
     &__protocol-labs {
         display: flex;

@@ -1,0 +1,34 @@
+<div class="update-item">
+    <div class="update-item__title">Merged PRs and New Features</div>
+    <div class="update-item__description">
+        Several significant PRs were merged across repositories, including the addition of new features for js-libp2p Echo Protocol Interoperability Tests in libp2p/test-plans. 
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">[1]</a> and
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/799">[2]</a>
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Important Bug Fixes</div>
+    <div class="update-item__description">
+        Multiple bug fixes were merged across repositories, including the fix for unbound variables in libp2p/test-plans. 
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/795">[1]</a> and
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/794">[2]</a>
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Cross-Implementation Coordination</div>
+    <div class="update-item__description">
+        There was active discussion around the new transport interop runner in libp2p/test-plans, with multiple comments and issues raised. 
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">[1]</a> and
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">[2]</a>
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Breaking Changes or Deprecations</div>
+    <div class="update-item__description">
+        The removal of redundant EventLoopGroup handling was merged in swift-libp2p/swift-libp2p, which may be a breaking change for some users. 
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">[1]</a>
+    </div>
+</div>
