@@ -30,6 +30,11 @@ jobs:
           chmod +x zola
           sudo mv zola /usr/local/bin/zola
 
+      - name: Generate version file
+        run: |
+          mkdir -p ./static/data
+          TZ=UTC git show -s --date=iso-local --format='%h %cd' HEAD > ./static/data/version
+
       - name: Build Zola site
         run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/"
 
@@ -96,6 +101,7 @@ jobs:
       - name: Announce production deployment
         run: |
           echo "::notice title=Production Deployed::"
+          echo "Version: $(cat ./static/data/version)"
           echo "Root CID: ${{ steps.upload.outputs.cid }}"
           echo "View site: https://libp2p.myfilebase.site/"
           # Optional: add IPNS update, GitHub deployment, Slack notification, etc. here

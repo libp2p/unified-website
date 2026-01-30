@@ -1,4 +1,5 @@
 {% import "macros.html" as macros %}
+{% set version_raw = load_data(path="static/data/version", required=false) %}
 {# Footer Component #}
 <footer class="footer">
     <div class="footer__container">
@@ -84,6 +85,9 @@
                     <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer">MIT</a>.
                 </p>
             </div>
+            {% if version_raw %}
+            <span class="footer__version">{{ version_raw | trim }}</span>
+            {% endif %}
             <div class="footer__links">
                 <a href="{{ config.extra.site_repo }}" target="_blank" rel="noopener noreferrer">Edit this site</a>
                 <a href="mailto:{{ config.extra.security_email }}">Security</a>

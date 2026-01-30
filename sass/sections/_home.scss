@@ -35,7 +35,8 @@
 
         @media (min-width: $breakpoint-lg) {
             flex-direction: row;
-            align-items: center;
+            align-items: stretch;
+            gap: $spacing-12;
             padding: 0 $spacing-8;
         }
     }
@@ -81,20 +82,98 @@
         gap: $spacing-4;
     }
 
-    &__visual {
-        flex: 1;
-        min-height: 300px;
+    &__updates {
+        width: 100%;
 
         @media (min-width: $breakpoint-lg) {
-            min-height: 400px;
+            flex: 1;
+            margin-left: auto;
+        }
+    }
+}
+
+// Updates Card (in hero)
+.updates-card {
+    background-color: $color-white;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-lg;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        padding: $spacing-4 $spacing-5;
+        margin: 0;
+        line-height: $line-height-snug;
+        border-bottom: 1px solid $color-gray-200;
+    }
+
+    &__content {
+        flex: 1;
+        padding: 0 $spacing-5 $spacing-5;
+        overflow-y: auto;
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 150px;
+        color: $color-gray-400;
+        font-size: $font-size-sm;
+    }
+}
+
+// Update items (dynamically loaded content)
+.update-item {
+    padding: $spacing-3 0;
+    border-bottom: 1px solid $color-gray-100;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &__date {
+        font-size: $font-size-xs;
+        color: $color-gray-400;
+        margin-bottom: $spacing-1;
+    }
+
+    &__title {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-gray-900;
+        margin-bottom: $spacing-1;
+        line-height: $line-height-snug;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: $color-primary;
+            }
         }
     }
 
-    &__animation {
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-        border-radius: $radius-2xl;
+    &__description {
+        font-size: $font-size-xs;
+        color: $color-gray-600;
+        line-height: $line-height-relaxed;
+    }
+
+    &__tag {
+        display: inline-block;
+        padding: $spacing-0-5 $spacing-2;
+        font-size: $font-size-xs;
+        color: $color-primary;
+        background-color: $color-primary-lighter;
+        border-radius: $radius-full;
+        margin-top: $spacing-2;
     }
 }
 
