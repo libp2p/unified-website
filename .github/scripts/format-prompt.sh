@@ -154,6 +154,14 @@ Output ONLY valid HTML in this exact format (no markdown, no code blocks, no exp
     </div>
 </div>
 
+CONTENT GUIDELINES (MANDATORY):
+- Keep summaries factual, neutral, and professional
+- DO NOT include negative, disparaging, or critical commentary about libp2p, its implementations, contributors, or the project direction
+- Focus on what was accomplished, not problems or shortcomings
+- Use constructive language (e.g., "improved" rather than "fixed broken")
+- DO NOT include profanity, vulgar language, or inappropriate content
+- ALL links MUST be to github.com URLs from the repositories listed in the activity data
+
 CRITICAL REQUIREMENTS:
 - Output 3-5 update-item divs
 - Use the exact class names: "update-item", "update-item__title", "update-item__description"
@@ -202,6 +210,8 @@ Output ONLY valid HTML in this exact format:
         The rust-libp2p implementation now supports WebTransport connections. This was implemented in <a href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a>.
     </div>
 </div>
+
+CONTENT: Keep summaries factual, neutral, professional. No negative commentary about libp2p. All links must be to github.com URLs from the activity data.
 
 CRITICAL: Output 3-5 divs. Use exact class names. EVERY description MUST include at least one <a href="...">link</a> using real GitHub URLs from the data above. No markdown or code blocks.
 EOF

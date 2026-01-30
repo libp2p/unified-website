@@ -14,8 +14,6 @@ permissions:
   contents: write
 
 env:
-  OLLAMA_URL: "http://doc:11434/api/generate"
-  OLLAMA_MODEL: "llama3.1:8b"
   DAYS_BACK: 7
 
 jobs:
@@ -56,6 +54,9 @@ jobs:
 
       - name: Generate summary with Ollama
         if: env.SKIP_RUN != 'true'
+        env:
+          OLLAMA_URL: ${{ secrets.OLLAMA_URL }}
+          OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL }}
         run: |
           chmod +x .github/scripts/generate-summary.sh
           .github/scripts/generate-summary.sh

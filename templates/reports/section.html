@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }}{% endblock %}
+
+{% block body_class %}report{% endblock %}
+{% block main_class %}{% endblock %}
+
+{% block content %}
+<div class="report-page">
+    <div class="report-layout">
+        {# Main content #}
+        <div class="report-content prose">
+            {# Header #}
+            <header class="report-header">
+                <h1 class="report-header__title">{{ section.title }}</h1>
+                {% if section.description %}
+                <p class="report-header__description">{{ section.description }}</p>
+                {% endif %}
+            </header>
+
+            {# Markdown content renders here #}
+            {{ section.content | safe }}
+        </div>
+
+        {# Table of Contents #}
+        {% if section.toc %}
+        <aside class="report-toc">
+            <p class="report-toc__title">Sections</p>
+            <ul class="report-toc__list">
+                {% for h in section.toc %}
+                <li>
+                    <a href="#{{ h.id }}" class="report-toc__link">{{ h.title }}</a>
+                    {% if h.children %}
+                    <ul class="report-toc__sublist">
+                        {% for child in h.children %}
+                        <li>
+                            <a href="#{{ child.id }}" class="report-toc__link report-toc__link--sub">{{ child.title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// TOC active state
+document.addEventListener('DOMContentLoaded', function() {
+    const tocLinks = document.querySelectorAll('.report-toc__link');
+    const headings = document.querySelectorAll('.report-content h2[id], .report-content h3[id]');
+
+    if (tocLinks.length === 0 || headings.length === 0) return;
+
+    function highlightTOC() {
+        const scrollPosition = window.scrollY + 150;
+
+        let current = null;
+        headings.forEach(heading => {
+            if (heading.offsetTop <= scrollPosition) {
+                current = heading.id;
+            }
+        });
+
+        tocLinks.forEach(link => {
+            link.classList.remove('report-toc__link--active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('report-toc__link--active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightTOC);
+    highlightTOC();
+});
+</script>
+{% endblock %}

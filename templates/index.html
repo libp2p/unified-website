@@ -28,6 +28,9 @@
                     </svg>
                     View on GitHub
                 </a>
+                <a href="{{ macros::rel() }}reports/" class="btn btn-pink btn--lg">
+                    Read our 2025 Annual Report
+                </a>
             </div>
         </div>
         {# Latest Updates Card - loaded at build time #}
@@ -46,6 +49,17 @@
         </div>
     </div>
 </section>
+
+{# Logo Wall Section - JavaScript-driven individual card animation #}
+{% if config.extra.logos %}
+<section class="logo-wall"
+         data-logos='{{ config.extra.logos | json_encode() | safe }}'
+         data-speed="50"
+         data-base-path="{{ macros::rel() }}">
+    <div class="logo-wall__row" data-row="0"></div>
+    <div class="logo-wall__row" data-row="1"></div>
+</section>
+{% endif %}
 
 {# Features Section #}
 <section class="features">
@@ -241,4 +255,8 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ macros::rel() }}js/logo-wall.js"></script>
 {% endblock %}

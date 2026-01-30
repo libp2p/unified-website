@@ -131,9 +131,24 @@ name = "Get Involved"
 url = "/get-involved/"
 
 [[extra.nav]]
+name = "2025 Report"
+url = "/reports/"
+
+[[extra.nav]]
 name = "Specs"
 url = "https://github.com/libp2p/specs"
 external = true
+
+# Logo wall - Add logos here (images go in static/img/logos/)
+[[extra.logos]]
+name = "ethereum-logo.svg"
+alt = "Ethereum"
+url = "https://ethereum.org"
+
+[[extra.logos]]
+name = "filecoin-logo.svg"
+alt = "Filecoin"
+url = "https://filecoin.io"
 
 # Footer links
 [[extra.footer_links]]
