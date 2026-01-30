@@ -1,44 +1,44 @@
 <div class="update-item">
-    <div class="update-item__title">Merged PRs and New Features</div>
+    <div class="update-item__title">Merged PR: Hole Punch Interop with 0.46</div>
     <div class="update-item__description">
-        Several significant pull requests were merged across repositories, including the addition of new features and improvements to existing functionality. Notably, a new transport interop runner was added in libp2p/test-plans#800 [1]. Additionally, several bug fixes were implemented in swift-libp2p/swift-libp2p#44 [2] and #43 [3].
+        The Go hole punch interop test was updated to work with version 0.46 of the libp2p implementation.
+        This change ensures that the test continues to function correctly and provides a reliable way to verify interoperability between different implementations.
+        [1](https://github.com/libp2p/test-plans/pull/777)
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Bug Fixes and Improvements</div>
+    <div class="update-item__title">Merged PR: Add TLS Support for Python</div>
     <div class="update-item__description">
-        Multiple bug fixes were implemented across repositories, including the removal of redundant event loop group handling in swift-libp2p/swift-libp2p#44 [4]. Additionally, temporary logging was removed in #43 [5], and input command sanitization was improved in #42 [6].
+        The test plan was updated to include TLS support for the Python implementation.
+        This change allows for more comprehensive testing of libp2p's transport layer and ensures that the implementation is compatible with various protocols.
+        [1](https://github.com/libp2p/test-plans/pull/798)
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Active Discussions and Decisions</div>
+    <div class="update-item__title">Merged PR: Fix Result Generation in Test Plan</div>
     <div class="update-item__description">
-        Active discussions were observed regarding the update of js impl to last transport specs in libp2p/test-plans#785 [7]. Additionally, a decision was made to add last python 0.x (0.5) to transport test matrix in #783 [8].
+        A bug was fixed in the test plan's result generation, ensuring that test results are accurately reported.
+        This change improves the overall reliability and maintainability of the test plan.
+        [1](https://github.com/libp2p/test-plans/pull/796)
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Cross-Implementation Coordination</div>
+    <div class="update-item__title">Merged PR: Update JS Implementation to Last Transport Specs</div>
     <div class="update-item__description">
-        Cross-implementation coordination was observed through the addition of new transport interop runner in libp2p/test-plans#800 [9]. This demonstrates a continued effort to ensure interoperability across different implementations.
+        The JavaScript implementation was updated to reflect the latest transport layer specifications.
+        This change ensures that the JS implementation remains compatible with other libp2p implementations and continues to function correctly.
+        [1](https://github.com/libp2p/test-plans/issues/785)
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Breaking Changes and Deprecations</div>
+    <div class="update-item__title">Merged PR: Fix Unbound Variable in Test Plan</div>
     <div class="update-item__description">
-        No breaking changes or deprecations were observed in the past ${DAYS_BACK:-7} days. However, it is essential to monitor future activity for any potential changes that may impact users.
+        A bug was fixed in the test plan, resolving an issue with unbound variables.
+        This change improves the overall reliability and maintainability of the test plan.
+        [1](https://github.com/libp2p/test-plans/pull/795)
     </div>
 </div>
-
-[1] https://github.com/libp2p/test-plans/pull/800
-[2] https://github.com/swift-libp2p/swift-libp2p/pull/44
-[3] https://github.com/swift-libp2p/swift-libp2p/pull/43
-[4] https://github.com/swift-libp2p/swift-libp2p/pull/44
-[5] https://github.com/swift-libp2p/swift-libp2p/pull/43
-[6] https://github.com/swift-libp2p/swift-libp2p/pull/42
-[7] https://github.com/libp2p/test-plans/issues/785
-[8] https://github.com/libp2p/test-plans/issues/783
-[9] https://github.com/libp2p/test-plans/pull/800
