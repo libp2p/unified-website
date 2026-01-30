@@ -464,40 +464,6 @@
         });
     }
 
-    // Latest Updates dynamic loading
-    function initLatestUpdates() {
-        var contentElement = document.getElementById('latest-updates-content');
-        if (!contentElement) return;
-
-        // Skip if content already loaded
-        if (contentElement.querySelector('.update-item')) return;
-
-        function getBaseUrl() {
-            var link = document.querySelector('link[rel="stylesheet"][href*="main.css"]');
-            if (link) {
-                return link.href.replace('main.css', '');
-            }
-            return '/';
-        }
-
-        fetch(getBaseUrl() + 'data/latest-updates')
-            .then(function(response) {
-                if (!response.ok) throw new Error('Failed to fetch');
-                return response.text();
-            })
-            .then(function(html) {
-                if (html && html.trim()) {
-                    contentElement.innerHTML = html;
-                } else {
-                    contentElement.innerHTML = '<div class="updates-card__loading">No updates available</div>';
-                }
-            })
-            .catch(function(err) {
-                console.debug('Could not fetch latest updates:', err);
-                contentElement.innerHTML = '<div class="updates-card__loading">Unable to load updates</div>';
-            });
-    }
-
     // Initialize on DOM ready
     function init() {
         initMobileNav();
@@ -506,7 +472,6 @@
         initCopyCode();
         initSearch();
         initExternalLinks();
-        initLatestUpdates();
     }
 
     if (document.readyState === 'loading') {

@@ -87,6 +87,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update daily activity summary [skip ci]"
+            git commit -m "chore: update daily activity summary"
             git push
           fi

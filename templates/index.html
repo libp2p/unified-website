@@ -30,12 +30,17 @@
                 </a>
             </div>
         </div>
-        {# Latest Updates Card #}
+        {# Latest Updates Card - loaded at build time #}
+        {% set latest_updates_html = load_data(path="static/data/latest-updates", required=false) %}
         <div class="hero__updates">
             <div class="updates-card">
                 <h3 class="updates-card__title">Latest Updates</h3>
-                <div class="updates-card__content" id="latest-updates-content">
-                    <div class="updates-card__loading">Loading updates...</div>
+                <div class="updates-card__content">
+                    {% if latest_updates_html %}
+                        {{ latest_updates_html | safe }}
+                    {% else %}
+                        <div class="updates-card__loading">No updates available</div>
+                    {% endif %}
                 </div>
             </div>
         </div>
