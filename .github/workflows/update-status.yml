@@ -1,0 +1,175 @@
+name: Update Interoperability Status
+
+on:
+  schedule:
+    - cron: '0 4 * * *'  # 4 AM UTC daily (2 hours after test-plans runs at 2 AM)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-status:
+    runs-on: ubuntu-latest
+    outputs:
+      changes_committed: ${{ steps.commit.outputs.changes_committed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create status data directory
+        run: mkdir -p static/data/status
+
+      - name: Fetch interop results from test-plans
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          echo "Fetching combined interop results from libp2p/test-plans..."
+
+          # Fetch the combined YAML file
+          if gh api repos/libp2p/test-plans/contents/results/daily-full-interop.yml \
+              --jq '.content' 2>/dev/null | base64 -d > static/data/status/interop-results.yml; then
+            echo "✓ Downloaded interop-results.yml"
+          else
+            echo "✗ Failed to download interop-results.yml (may not exist yet)"
+            # Create a minimal placeholder file so the site still builds
+            cat > static/data/status/interop-results.yml << 'EOF'
+# Placeholder - results not yet available
+generatedAt: null
+workflowRun: null
+transport: null
+holePunch: null
+perf: null
+boxPlots:
+  upload: null
+  download: null
+  latency: null
+EOF
+          fi
+
+          # Fetch box plot images
+          for plot in upload download latency; do
+            if gh api repos/libp2p/test-plans/contents/results/boxplot-${plot}.png \
+                --jq '.content' 2>/dev/null | base64 -d > static/data/status/boxplot-${plot}.png; then
+              echo "✓ Downloaded boxplot-${plot}.png"
+            else
+              echo "→ boxplot-${plot}.png not found (may not exist yet)"
+              rm -f static/data/status/boxplot-${plot}.png
+            fi
+          done
+
+      - name: Validate YAML
+        run: |
+          if command -v python3 &> /dev/null; then
+            python3 -c "import yaml; yaml.safe_load(open('static/data/status/interop-results.yml'))" && \
+              echo "✓ YAML validation passed" || \
+              echo "✗ YAML validation failed"
+          else
+            echo "→ Python not available, skipping YAML validation"
+          fi
+
+      - name: Commit and push if changed
+        id: commit
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Stage all status data files
+          git add static/data/status/
+
+          # Check if there are changes
+          if git diff --cached --quiet; then
+            echo "→ No changes to commit"
+            echo "changes_committed=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Get timestamp from results file if available
+          GENERATED_AT=$(grep -oP 'generatedAt: "\K[^"]+' static/data/status/interop-results.yml 2>/dev/null || echo "unknown")
+
+          git commit -m "chore: update interop status data [skip ci]" \
+                     -m "Results from: $GENERATED_AT" \
+                     -m "Source: https://github.com/libp2p/test-plans/tree/master/results"
+
+          git push origin main
+          echo "✓ Changes committed and pushed"
+          echo "changes_committed=true" >> $GITHUB_OUTPUT
+
+  deploy:
+    needs: update-status
+    if: needs.update-status.outputs.changes_committed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main  # Get the updated commit
+
+      - name: Cache Zola binary
+        id: cache-zola
+        uses: actions/cache@v4
+        with:
+          path: /usr/local/bin/zola
+          key: zola-binary-v0.22.1-${{ runner.os }}
+
+      - name: Install Zola (if not cached)
+        if: steps.cache-zola.outputs.cache-hit != 'true'
+        run: |
+          wget -q https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz
+          tar xf zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz
+          chmod +x zola
+          sudo mv zola /usr/local/bin/zola
+
+      - name: Generate version file
+        run: |
+          mkdir -p ./static/data
+          TZ=UTC git show -s --date=iso-local --format='%h %cd' HEAD > ./static/data/version
+
+      - name: Build Zola site
+        run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/"
+
+      - name: Set up Node.js for ipfs-car
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Cache ipfs-car (global node_modules)
+        id: cache-ipfs-car
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm/_npx
+          key: ipfs-car-npx-${{ runner.os }}-node20
+
+      - name: Install ipfs-car (if not cached)
+        if: steps.cache-ipfs-car.outputs.cache-hit != 'true'
+        run: npm install -g ipfs-car
+
+      - name: Create CAR archive of public folder
+        run: ipfs-car pack ./public --output site.car
+
+      - name: Configure AWS credentials for Filebase
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.FILEBASE_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.FILEBASE_SECRET_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
+        run: |
+          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+          aws configure set default.region $AWS_DEFAULT_REGION
+
+      - name: Upload CAR to Filebase
+        env:
+          AWS_EC2_METADATA_DISABLED: true
+        run: |
+          aws --endpoint https://s3.filebase.com \
+            s3 cp site.car \
+            s3://${{ vars.FILEBASE_BUCKET_PROD }}/ \
+            --metadata 'import=car'
+
+          echo "✓ Site deployed to Filebase"

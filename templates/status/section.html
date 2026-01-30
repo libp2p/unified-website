@@ -6,6 +6,9 @@
 {% block main_class %}{% endblock %}
 
 {% block content %}
+{# Load interop results data at build time #}
+{% set data = load_data(path="static/data/status/interop-results.yml", format="yaml", required=false) %}
+
 <div class="status-page">
     <div class="status-layout">
         {# Main content #}
@@ -22,7 +25,14 @@
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
+                    {% if data and data.generatedAt %}
+                    Last updated: <time datetime="{{ data.generatedAt }}">{{ data.generatedAt | date(format="%B %d, %Y at %H:%M UTC") }}</time>
+                    {% if data.workflowRun %}
+                    <a href="{{ data.workflowRun }}" target="_blank" rel="noopener noreferrer" class="status-header__workflow-link">(view run)</a>
+                    {% endif %}
+                    {% else %}
                     Last updated: <time id="last-updated">Loading...</time>
+                    {% endif %}
                 </div>
             </header>
 
@@ -41,10 +51,6 @@
                     <span>Partial</span>
                 </div>
                 <div class="status-legend__item">
-                    <span class="status-legend__color status-legend__color--wip"></span>
-                    <span>In Progress</span>
-                </div>
-                <div class="status-legend__item">
                     <span class="status-legend__color status-legend__color--na"></span>
                     <span>N/A</span>
                 </div>
@@ -59,136 +65,160 @@
                     </p>
                 </header>
 
-                <div class="status-grid-wrapper">
-                    <table class="status-grid__table" id="transport-grid">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>go-libp2p</th>
-                                <th>rust-libp2p</th>
-                                <th>js-libp2p</th>
-                                <th>nim-libp2p</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>TCP</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                            <tr>
-                                <th>QUIC</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--wip">⚙</span></td>
-                                <td><span class="status-cell status-cell--na">—</span></td>
-                            </tr>
-                            <tr>
-                                <th>WebSocket</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                            <tr>
-                                <th>WebTransport</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--na">—</span></td>
-                            </tr>
-                            <tr>
-                                <th>WebRTC</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--na">—</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {% if data and data.transport and data.transport.tests %}
+                {# Show summary #}
+                <div class="test-run-info">
+                    <div class="test-run-info__item">
+                        <strong>Total:</strong>
+                        <span>{{ data.transport.summary.total }}</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <strong>Passed:</strong>
+                        <span class="status-text--pass">{{ data.transport.summary.passed }}</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <strong>Failed:</strong>
+                        <span class="status-text--fail">{{ data.transport.summary.failed }}</span>
+                    </div>
                 </div>
+
+                {# Extract unique implementations, transports, etc. #}
+                {% set_global transport_dialers = [] %}
+                {% set_global transport_listeners = [] %}
+                {% set_global transport_transports = [] %}
+                {% for test in data.transport.tests %}
+                    {% if test.dialer not in transport_dialers %}
+                        {% set_global transport_dialers = transport_dialers | concat(with=test.dialer) %}
+                    {% endif %}
+                    {% if test.listener not in transport_listeners %}
+                        {% set_global transport_listeners = transport_listeners | concat(with=test.listener) %}
+                    {% endif %}
+                    {% if test.transport not in transport_transports %}
+                        {% set_global transport_transports = transport_transports | concat(with=test.transport) %}
+                    {% endif %}
+                {% endfor %}
+
+                {# Generate a grid for each transport type #}
+                {% for transport_name in transport_transports | sort %}
+                <div class="status-section__subsection">
+                    <h3 class="status-section__subtitle">{{ transport_name | upper }}</h3>
+                    <div class="status-grid-wrapper">
+                        <table class="status-grid__table">
+                            <thead>
+                                <tr>
+                                    <th>Dialer \ Listener</th>
+                                    {% for listener in transport_listeners | sort %}
+                                    <th class="impl-header">
+                                        <span class="impl-header__name">{{ listener | split(pat="-") | first }}</span>
+                                        <span class="impl-header__version">{{ listener | split(pat="-") | slice(start=1) | join(sep="-") }}</span>
+                                    </th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dialer in transport_dialers | sort %}
+                                <tr>
+                                    <th class="impl-header">
+                                        <span class="impl-header__name">{{ dialer | split(pat="-") | first }}</span>
+                                        <span class="impl-header__version">{{ dialer | split(pat="-") | slice(start=1) | join(sep="-") }}</span>
+                                    </th>
+                                    {% for listener in transport_listeners | sort %}
+                                        {# Look up results for all secure/muxer combinations #}
+                                        {% set_global cell_statuses = [] %}
+                                        {% for test in data.transport.tests %}
+                                            {% if test.dialer == dialer and test.listener == listener and test.transport == transport_name %}
+                                                {% set_global cell_statuses = cell_statuses | concat(with=test.status) %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if cell_statuses | length == 0 %}
+                                        <td><span class="status-cell status-cell--na">-</span></td>
+                                        {% elif "fail" in cell_statuses %}
+                                        <td><span class="status-cell status-cell--fail" title="Some tests failed">X</span></td>
+                                        {% elif cell_statuses | length > 0 and "pass" in cell_statuses %}
+                                        <td><span class="status-cell status-cell--pass">✓</span></td>
+                                        {% else %}
+                                        <td><span class="status-cell status-cell--na">-</span></td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <div class="status-section__notice">
+                    <p>Transport interoperability results are not yet available.</p>
+                    <p>Results are generated daily by the <a href="https://github.com/libp2p/test-plans" target="_blank" rel="noopener noreferrer">libp2p test-plans</a> repository.</p>
+                </div>
+                {% endif %}
             </section>
 
-            {# Secure Channel Section #}
-            <section class="status-section" id="security">
+            {# Performance Section #}
+            <section class="status-section" id="performance">
                 <header class="status-section__header">
-                    <h2 class="status-section__title">Secure Channel Interoperability</h2>
+                    <h2 class="status-section__title">Performance Benchmarks</h2>
                     <p class="status-section__description">
-                        Tests verifying that different security protocols (Noise, TLS) work across implementations.
+                        Performance measurements across different libp2p implementations, measuring upload/download throughput and latency.
                     </p>
                 </header>
 
-                <div class="status-grid-wrapper">
-                    <table class="status-grid__table" id="security-grid">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>go-libp2p</th>
-                                <th>rust-libp2p</th>
-                                <th>js-libp2p</th>
-                                <th>nim-libp2p</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>Noise</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                            <tr>
-                                <th>TLS 1.3</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--na">—</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {% if data and data.perf and data.perf.testResults %}
+                {# Show summary #}
+                <div class="test-run-info">
+                    <div class="test-run-info__item">
+                        <strong>Main Tests:</strong>
+                        <span>{{ data.perf.summary.mainTotal }}</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <strong>Passed:</strong>
+                        <span class="status-text--pass">{{ data.perf.summary.mainPassed }}</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <strong>Failed:</strong>
+                        <span class="status-text--fail">{{ data.perf.summary.mainFailed }}</span>
+                    </div>
+                    {% if data.perf.summary.baselineTotal > 0 %}
+                    <div class="test-run-info__item">
+                        <strong>Baselines:</strong>
+                        <span>{{ data.perf.summary.baselinePassed }}/{{ data.perf.summary.baselineTotal }}</span>
+                    </div>
+                    {% endif %}
                 </div>
-            </section>
 
-            {# Muxer Section #}
-            <section class="status-section" id="muxer">
-                <header class="status-section__header">
-                    <h2 class="status-section__title">Stream Multiplexer Interoperability</h2>
-                    <p class="status-section__description">
-                        Tests verifying that stream multiplexers (yamux, mplex) work across implementations.
-                    </p>
-                </header>
-
-                <div class="status-grid-wrapper">
-                    <table class="status-grid__table" id="muxer-grid">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>go-libp2p</th>
-                                <th>rust-libp2p</th>
-                                <th>js-libp2p</th>
-                                <th>nim-libp2p</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>yamux</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                            <tr>
-                                <th>mplex</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {# Box plot images #}
+                {% if data.boxPlots %}
+                <div class="perf-boxplots">
+                    {% if data.boxPlots.upload %}
+                    <div class="perf-boxplots__item">
+                        <h4>Upload Throughput</h4>
+                        <img src="/data/status/boxplot-upload.png" alt="Upload Throughput Box Plot" class="perf-boxplots__image" loading="lazy">
+                    </div>
+                    {% endif %}
+                    {% if data.boxPlots.download %}
+                    <div class="perf-boxplots__item">
+                        <h4>Download Throughput</h4>
+                        <img src="/data/status/boxplot-download.png" alt="Download Throughput Box Plot" class="perf-boxplots__image" loading="lazy">
+                    </div>
+                    {% endif %}
+                    {% if data.boxPlots.latency %}
+                    <div class="perf-boxplots__item">
+                        <h4>Latency</h4>
+                        <img src="/data/status/boxplot-latency.png" alt="Latency Box Plot" class="perf-boxplots__image" loading="lazy">
+                    </div>
+                    {% endif %}
                 </div>
+                {% endif %}
+
+                {% else %}
+                <div class="status-section__notice">
+                    <p>Performance benchmark results are not yet available.</p>
+                    <p>Results are generated daily by the <a href="https://github.com/libp2p/test-plans" target="_blank" rel="noopener noreferrer">libp2p test-plans</a> repository.</p>
+                </div>
+                {% endif %}
             </section>
 
             {# Hole Punching Section #}
@@ -196,76 +226,119 @@
                 <header class="status-section__header">
                     <h2 class="status-section__title">Hole Punching</h2>
                     <p class="status-section__description">
-                        Tests verifying NAT traversal capabilities across implementations.
+                        Tests verifying NAT traversal capabilities across implementations using relay nodes.
                     </p>
                 </header>
 
-                <div class="status-grid-wrapper">
-                    <table class="status-grid__table" id="hole-punch-grid">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>go-libp2p</th>
-                                <th>rust-libp2p</th>
-                                <th>js-libp2p</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>TCP</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--na">—</span></td>
-                            </tr>
-                            <tr>
-                                <th>QUIC</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--na">—</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {% if data and data.holePunch and data.holePunch.tests %}
+                {# Show summary #}
+                <div class="test-run-info">
+                    <div class="test-run-info__item">
+                        <strong>Total:</strong>
+                        <span>{{ data.holePunch.summary.total }}</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <strong>Passed:</strong>
+                        <span class="status-text--pass">{{ data.holePunch.summary.passed }}</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <strong>Failed:</strong>
+                        <span class="status-text--fail">{{ data.holePunch.summary.failed }}</span>
+                    </div>
                 </div>
-            </section>
 
-            {# GossipSub Section #}
-            <section class="status-section" id="gossipsub">
-                <header class="status-section__header">
-                    <h2 class="status-section__title">GossipSub</h2>
-                    <p class="status-section__description">
-                        Tests verifying pub/sub messaging interoperability.
-                    </p>
-                </header>
+                {# Extract unique relays #}
+                {% set_global hp_relays = [] %}
+                {% set_global hp_dialers = [] %}
+                {% set_global hp_listeners = [] %}
+                {% set_global hp_transports = [] %}
+                {% for test in data.holePunch.tests %}
+                    {% if test.relay not in hp_relays %}
+                        {% set_global hp_relays = hp_relays | concat(with=test.relay) %}
+                    {% endif %}
+                    {% if test.dialer not in hp_dialers %}
+                        {% set_global hp_dialers = hp_dialers | concat(with=test.dialer) %}
+                    {% endif %}
+                    {% if test.listener not in hp_listeners %}
+                        {% set_global hp_listeners = hp_listeners | concat(with=test.listener) %}
+                    {% endif %}
+                    {% if test.transport not in hp_transports %}
+                        {% set_global hp_transports = hp_transports | concat(with=test.transport) %}
+                    {% endif %}
+                {% endfor %}
 
-                <div class="status-grid-wrapper">
-                    <table class="status-grid__table" id="gossipsub-grid">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>go-libp2p</th>
-                                <th>rust-libp2p</th>
-                                <th>js-libp2p</th>
-                                <th>nim-libp2p</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>v1.0</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                            <tr>
-                                <th>v1.1</th>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                                <td><span class="status-cell status-cell--pass">✓</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                {# Generate a table for each relay type #}
+                {% for relay in hp_relays | sort %}
+                <div class="status-section__subsection">
+                    <h3 class="status-section__subtitle">Relay: {{ relay }}</h3>
+                    <div class="status-grid-wrapper">
+                        <table class="status-grid__table">
+                            <thead>
+                                <tr>
+                                    <th>Dialer \ Listener</th>
+                                    {% for listener in hp_listeners | sort %}
+                                    <th class="impl-header">
+                                        <span class="impl-header__name">{{ listener | split(pat="-") | first }}</span>
+                                        <span class="impl-header__version">{{ listener | split(pat="-") | slice(start=1) | join(sep="-") }}</span>
+                                    </th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dialer in hp_dialers | sort %}
+                                <tr>
+                                    <th class="impl-header">
+                                        <span class="impl-header__name">{{ dialer | split(pat="-") | first }}</span>
+                                        <span class="impl-header__version">{{ dialer | split(pat="-") | slice(start=1) | join(sep="-") }}</span>
+                                    </th>
+                                    {% for listener in hp_listeners | sort %}
+                                        {# Collect all transport results for this dialer/listener/relay combination #}
+                                        {% set_global cell_results = [] %}
+                                        {% for test in data.holePunch.tests %}
+                                            {% if test.dialer == dialer and test.listener == listener and test.relay == relay %}
+                                                {% set result_item = test.transport ~ ":" ~ test.status %}
+                                                {% set_global cell_results = cell_results | concat(with=result_item) %}
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% if cell_results | length == 0 %}
+                                        <td><span class="status-cell status-cell--na">-</span></td>
+                                        {% else %}
+                                            {# Show transport abbreviations with status #}
+                                            {% set_global has_pass = false %}
+                                            {% set_global has_fail = false %}
+                                            {% for result in cell_results %}
+                                                {% if "pass" in result %}
+                                                    {% set_global has_pass = true %}
+                                                {% endif %}
+                                                {% if "fail" in result %}
+                                                    {% set_global has_fail = true %}
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if has_fail %}
+                                            <td><span class="status-cell status-cell--fail" title="{{ cell_results | join(sep=', ') }}">X</span></td>
+                                            {% elif has_pass %}
+                                            <td><span class="status-cell status-cell--pass" title="{{ cell_results | join(sep=', ') }}">✓</span></td>
+                                            {% else %}
+                                            <td><span class="status-cell status-cell--na">-</span></td>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+                {% endfor %}
+
+                {% else %}
+                <div class="status-section__notice">
+                    <p>Hole punching test results are not yet available.</p>
+                    <p>Results are generated daily by the <a href="https://github.com/libp2p/test-plans" target="_blank" rel="noopener noreferrer">libp2p test-plans</a> repository.</p>
+                </div>
+                {% endif %}
             </section>
 
             {# Test Plan Link #}
@@ -283,10 +356,8 @@
             <p class="status-toc__title">Sections</p>
             <ul class="status-toc__list">
                 <li><a href="#transport" class="status-toc__link">Transport</a></li>
-                <li><a href="#security" class="status-toc__link">Secure Channel</a></li>
-                <li><a href="#muxer" class="status-toc__link">Stream Muxer</a></li>
+                <li><a href="#performance" class="status-toc__link">Performance</a></li>
                 <li><a href="#hole-punching" class="status-toc__link">Hole Punching</a></li>
-                <li><a href="#gossipsub" class="status-toc__link">GossipSub</a></li>
             </ul>
         </aside>
     </div>
@@ -295,14 +366,19 @@
 
 {% block scripts %}
 <script>
-// Update last updated time
-document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-});
+// Update last updated time if not from data
+(function() {
+    const lastUpdated = document.getElementById('last-updated');
+    if (lastUpdated && lastUpdated.textContent === 'Loading...') {
+        lastUpdated.textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+})();
 
 // TOC active state
 document.addEventListener('DOMContentLoaded', function() {
