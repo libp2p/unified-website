@@ -22,6 +22,8 @@ jobs:
   generate-summary:
     runs-on: self-hosted
     timeout-minutes: 30
+    outputs:
+      changes_committed: ${{ steps.commit.outputs.changes_committed }}
 
     steps:
       - name: Checkout repository
@@ -78,6 +80,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Commit and push if changed
+        id: commit
         if: env.SKIP_RUN != 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -86,7 +89,15 @@ jobs:
 
           if git diff --staged --quiet; then
             echo "No changes to commit"
+            echo "changes_committed=false" >> $GITHUB_OUTPUT
           else
-            git commit -m "chore: update daily activity summary"
+            git commit -m "chore: update daily activity summary [skip ci]"
             git push
+            echo "changes_committed=true" >> $GITHUB_OUTPUT
           fi
+
+  deploy:
+    needs: generate-summary
+    if: needs.generate-summary.outputs.changes_committed == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
