@@ -1,34 +1,31 @@
 <div class="update-item">
-    <div class="update-item__title">Merged PRs and New Features</div>
+    <div class="update-item__title">Merged PR for Echo Protocol Interoperability Tests</div>
     <div class="update-item__description">
-        Several significant PRs were merged across repositories, including the addition of new features for js-libp2p Echo Protocol Interoperability Tests in libp2p/test-plans. 
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">[1]</a> and
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/799">[2]</a>
+        The js-libp2p Echo Protocol Interoperability Tests were merged into the libp2p/test-plans repository. This feature aims to improve interoperability between different implementations of the Echo protocol, ensuring seamless communication across various platforms.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">[1]</a>
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Important Bug Fixes</div>
+    <div class="update-item__title">Bug Fix: Ignore Failing Rust Hole-Punch Tests</div>
     <div class="update-item__description">
-        Multiple bug fixes were merged across repositories, including the fix for unbound variables in libp2p/test-plans. 
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/795">[1]</a> and
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/794">[2]</a>
+        A bug fix was merged into the libp2p/test-plans repository, which ignores failing rust hole-punch tests. This change ensures that the test suite is not affected by temporary issues in the implementation.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/794">[1]</a>
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Cross-Implementation Coordination</div>
+    <div class="update-item__title">Merged PR for Go Hole-Punch Interop with 0.46</div>
     <div class="update-item__description">
-        There was active discussion around the new transport interop runner in libp2p/test-plans, with multiple comments and issues raised. 
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">[1]</a> and
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">[2]</a>
+        A new transport interop runner was merged into the libp2p/test-plans repository, which includes a test case for Go hole-punch interoperability with version 0.46.
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">[1]</a>
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Breaking Changes or Deprecations</div>
+    <div class="update-item__title">Merged PR for Swift-LibP2P Event Loop Group Handling Fix</div>
     <div class="update-item__description">
-        The removal of redundant EventLoopGroup handling was merged in swift-libp2p/swift-libp2p, which may be a breaking change for some users. 
+        A bug fix was merged into the swift-libp2p/swift-libp2p repository, which removes redundant event loop group handling.
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">[1]</a>
     </div>
 </div>
