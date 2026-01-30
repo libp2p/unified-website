@@ -1,44 +1,34 @@
 <div class="update-item">
-    <div class="update-item__title">Merged PR: Hole Punch Interop with 0.46</div>
+    <div class="update-item__title">Merged PR for Echo Protocol Interoperability Tests</div>
     <div class="update-item__description">
-        The Go hole punch interop test was updated to work with version 0.46 of the libp2p implementation.
-        This change ensures that the test continues to function correctly and provides a reliable way to verify interoperability between different implementations.
-        [1](https://github.com/libp2p/test-plans/pull/777)
+        A new feature was added to test the interoperability of the Echo protocol between js-libp2p and other implementations. The tests are designed to ensure seamless communication between different protocols and libraries. This is an important step towards improving the overall connectivity and compatibility of libp2p networks.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Merged PR: Add TLS Support for Python</div>
+    <div class="update-item__title">Bug Fix for Go Hole Punch Interop with 0 46</div>
     <div class="update-item__description">
-        The test plan was updated to include TLS support for the Python implementation.
-        This change allows for more comprehensive testing of libp2p's transport layer and ensures that the implementation is compatible with various protocols.
-        [1](https://github.com/libp2p/test-plans/pull/798)
+        A bug was fixed in the Go implementation of libp2p, specifically in the hole punch interop with version 0.46. This fix ensures that the Go implementation can correctly communicate with other versions of libp2p.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Merged PR: Fix Result Generation in Test Plan</div>
+    <div class="update-item__title">Swift-libp2p Fixes for Redundant EventLoopGroup Handling and Temporary Logging</div>
     <div class="update-item__description">
-        A bug was fixed in the test plan's result generation, ensuring that test results are accurately reported.
-        This change improves the overall reliability and maintainability of the test plan.
-        [1](https://github.com/libp2p/test-plans/pull/796)
+        Two bugs were fixed in the Swift implementation of libp2p: redundant event loop group handling and temporary logging. These fixes improve the overall stability and performance of the Swift implementation.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Merged PR: Update JS Implementation to Last Transport Specs</div>
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
     <div class="update-item__description">
-        The JavaScript implementation was updated to reflect the latest transport layer specifications.
-        This change ensures that the JS implementation remains compatible with other libp2p implementations and continues to function correctly.
-        [1](https://github.com/libp2p/test-plans/issues/785)
+        The new transport interop runner changed the test spec, which affects how tests are run and interpreted. This change may require updates to existing tests or implementations.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Merged PR: Fix Unbound Variable in Test Plan</div>
+    <div class="update-item__title">Windows Checkout Fails Due to Invalid Filename docs/bash?!.md</div>
     <div class="update-item__description">
-        A bug was fixed in the test plan, resolving an issue with unbound variables.
-        This change improves the overall reliability and maintainability of the test plan.
-        [1](https://github.com/libp2p/test-plans/pull/795)
+        A bug was fixed in the test plans repository, specifically with regards to Windows compatibility. The issue arose from an invalid filename in the documentation.
     </div>
 </div>
