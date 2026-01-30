@@ -143,23 +143,23 @@ Based on the activity data above, create a summary of 3-5 notable topics from th
 For each topic, provide:
 1. A concise title (5-10 words)
 2. A brief description (2-3 sentences) explaining what happened and why it matters
-3. Include inline reference links to the relevant GitHub URLs
+3. REQUIRED: Include 1-2 inline reference links to the relevant GitHub URLs from the activity data
 
 Output ONLY valid HTML in this exact format (no markdown, no code blocks, no explanations):
 
 <div class="update-item">
-    <div class="update-item__title">Topic Title Here</div>
+    <div class="update-item__title">Example: New Transport Layer Support Added</div>
     <div class="update-item__description">
-        Description of the topic with inline links like
-        <a href="https://github.com/...">[1]</a> and
-        <a href="https://github.com/...">[2]</a>.
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
     </div>
 </div>
 
-Important:
+CRITICAL REQUIREMENTS:
 - Output 3-5 update-item divs
 - Use the exact class names: "update-item", "update-item__title", "update-item__description"
-- Include real GitHub URLs from the activity data
+- EVERY description MUST contain at least one <a href="https://github.com/...">link text</a>
+- Use real GitHub URLs from the activity data above (PR URLs, issue URLs, discussion URLs)
+- Link text should be descriptive like "PR #123" or "this issue" not just "[1]"
 - Do not include any text before or after the HTML divs
 - Do not wrap output in code blocks or markdown
 INSTRUCTIONS
@@ -197,13 +197,13 @@ Based on the activity data above, create a summary of 3-5 notable topics from th
 Output ONLY valid HTML in this exact format:
 
 <div class="update-item">
-    <div class="update-item__title">Topic Title Here</div>
+    <div class="update-item__title">Example: New Transport Layer Support Added</div>
     <div class="update-item__description">
-        Description with inline links like <a href="https://github.com/...">[1]</a>.
+        The rust-libp2p implementation now supports WebTransport connections. This was implemented in <a href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a>.
     </div>
 </div>
 
-Output 3-5 divs. Use exact class names. Include real GitHub URLs. No markdown or code blocks.
+CRITICAL: Output 3-5 divs. Use exact class names. EVERY description MUST include at least one <a href="...">link</a> using real GitHub URLs from the data above. No markdown or code blocks.
 EOF
 )
 fi
