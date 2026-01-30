@@ -1,34 +1,27 @@
 <div class="update-item">
-    <div class="update-item__title">Merged PR for Echo Protocol Interoperability Tests</div>
+    <div class="update-item__title">New Transport Layer Support Added</div>
     <div class="update-item__description">
-        A new feature was added to test the interoperability of the Echo protocol between js-libp2p and other implementations. The tests are designed to ensure seamless communication between different protocols and libraries. This is an important step towards improving the overall connectivity and compatibility of libp2p networks.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Bug Fix for Go Hole Punch Interop with 0 46</div>
-    <div class="update-item__description">
-        A bug was fixed in the Go implementation of libp2p, specifically in the hole punch interop with version 0.46. This fix ensures that the Go implementation can correctly communicate with other versions of libp2p.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Swift-libp2p Fixes for Redundant EventLoopGroup Handling and Temporary Logging</div>
-    <div class="update-item__description">
-        Two bugs were fixed in the Swift implementation of libp2p: redundant event loop group handling and temporary logging. These fixes improve the overall stability and performance of the Swift implementation.
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
     </div>
 </div>
 
 <div class="update-item">
     <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
     <div class="update-item__description">
-        The new transport interop runner changed the test spec, which affects how tests are run and interpreted. This change may require updates to existing tests or implementations.
+        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Windows Checkout Fails Due to Invalid Filename docs/bash?!.md</div>
+    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
     <div class="update-item__description">
-        A bug was fixed in the test plans repository, specifically with regards to Windows compatibility. The issue arose from an invalid filename in the documentation.
+        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
+    <div class="update-item__description">
+        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
     </div>
 </div>
