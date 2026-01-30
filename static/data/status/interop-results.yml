@@ -1,0 +1,11 @@
+# Placeholder interop results for local development
+# This file will be updated by the update-status workflow
+generatedAt: null
+workflowRun: null
+transport: null
+holePunch: null
+perf: null
+boxPlots:
+  upload: null
+  download: null
+  latency: null

@@ -346,3 +346,183 @@
     border-radius: 0 0 $radius-lg $radius-lg;
     background-color: $color-white;
 }
+
+// Status section subsections (for transport types, relay groups)
+.status-section__subsection {
+    margin-bottom: $spacing-8;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.status-section__subtitle {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $color-gray-700;
+    margin-bottom: $spacing-3;
+    padding-bottom: $spacing-2;
+    border-bottom: 1px solid $color-gray-200;
+}
+
+// Notice for unavailable data
+.status-section__notice {
+    padding: $spacing-6;
+    background-color: $color-gray-50;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-lg;
+    text-align: center;
+
+    p {
+        margin: 0;
+        color: $color-gray-600;
+
+        &:not(:last-child) {
+            margin-bottom: $spacing-2;
+        }
+    }
+
+    a {
+        color: $color-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Performance box plots
+.perf-boxplots {
+    display: grid;
+    gap: $spacing-6;
+    margin: $spacing-6 0;
+
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    &__item {
+        background-color: $color-white;
+        border: 1px solid $color-gray-200;
+        border-radius: $radius-lg;
+        padding: $spacing-4;
+
+        h4 {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-semibold;
+            color: $color-gray-700;
+            margin-bottom: $spacing-3;
+            text-align: center;
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: $radius-md;
+    }
+}
+
+// Status text colors for inline use
+.status-text--pass {
+    color: $status-pass;
+    font-weight: $font-weight-medium;
+}
+
+.status-text--fail {
+    color: $status-fail;
+    font-weight: $font-weight-medium;
+}
+
+.status-text--partial {
+    color: $status-partial;
+    font-weight: $font-weight-medium;
+}
+
+// Workflow link in header
+.status-header__workflow-link {
+    color: $color-gray-400;
+    font-size: $font-size-sm;
+    text-decoration: none;
+    margin-left: $spacing-2;
+
+    &:hover {
+        color: $color-primary;
+        text-decoration: underline;
+    }
+}
+
+// Status grid table enhancements
+.status-grid__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-sm;
+    background-color: $color-white;
+
+    th, td {
+        padding: $spacing-2 $spacing-3;
+        text-align: center;
+        border: 1px solid $color-gray-200;
+    }
+
+    thead th {
+        background-color: $color-gray-50;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-700;
+        white-space: nowrap;
+    }
+
+    tbody th {
+        background-color: $color-gray-50;
+        font-weight: $font-weight-medium;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    tbody tr:hover {
+        background-color: rgba($color-primary, 0.05);
+    }
+}
+
+// Status cell styles
+.status-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: $radius-md;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-sm;
+
+    &--pass {
+        background-color: rgba($status-pass, 0.15);
+        color: $status-pass;
+    }
+
+    &--fail {
+        background-color: rgba($status-fail, 0.15);
+        color: $status-fail;
+    }
+
+    &--partial {
+        background-color: rgba($status-partial, 0.15);
+        color: $status-partial;
+    }
+
+    &--wip {
+        background-color: rgba($status-wip, 0.15);
+        color: $status-wip;
+    }
+
+    &--na {
+        background-color: $color-gray-100;
+        color: $color-gray-400;
+    }
+}
