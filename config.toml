@@ -131,7 +131,7 @@ name = "Get Involved"
 url = "/get-involved/"
 
 [[extra.nav]]
-name = "2025 Report"
+name = "Reports"
 url = "/reports/"
 
 [[extra.nav]]
@@ -149,6 +149,41 @@ url = "https://ethereum.org"
 name = "filecoin-logo.svg"
 alt = "Filecoin"
 url = "https://filecoin.io"
+
+[[extra.logos]]
+name = "optimism-logo.svg"
+alt = "Optimism"
+url = "https://optimism.io"
+
+[[extra.logos]]
+name = "polygon-logo.svg"
+alt = "Polygon"
+url = "https://polygon.technology"
+
+[[extra.logos]]
+name = "chainlink-logo.svg"
+alt = "Chainlink"
+url = "https://chain.link"
+
+[[extra.logos]]
+name = "uniswap-logo.svg"
+alt = "Uniswap"
+url = "https://uniswap.org"
+
+[[extra.logos]]
+name = "ipfs-logo.svg"
+alt = "IPFS"
+url = "https://ipfs.tech"
+
+[[extra.logos]]
+name = "celestia-logo.svg"
+alt = "Celestia"
+url = "https://celestia.org"
+
+[[extra.logos]]
+name = "polkadot-logo.svg"
+alt = "Polkadot"
+url = "https://polkadot.com"
 
 # Footer links
 [[extra.footer_links]]

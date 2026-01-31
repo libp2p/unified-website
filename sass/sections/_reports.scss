@@ -2,13 +2,121 @@
 // REPORTS SECTION STYLES
 // ===========================================
 
-.report-page {
+// Reports layout (mirrors guides)
+.reports-layout {
+    display: flex;
+    min-height: calc(100vh - 65px);
+}
+
+.reports-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+}
+
+.reports-content {
+    flex: 1;
+    min-width: 0;
     padding: $spacing-8;
-    max-width: $container-xl;
+
+    @media (min-width: $breakpoint-lg) {
+        padding: $spacing-10 $spacing-12;
+    }
+}
+
+.reports-article {
+    max-width: $container-prose;
+}
+
+// Reports landing page
+.reports-landing {
+    padding: $spacing-8;
+    max-width: 1200px;
     margin: 0 auto;
 
     @media (min-width: $breakpoint-lg) {
         padding: $spacing-12;
+    }
+
+    &__header {
+        max-width: 800px;
+        margin-bottom: $spacing-12;
+
+        h1 {
+            margin-bottom: $spacing-4;
+        }
+
+        p {
+            font-size: $font-size-lg;
+            color: $color-gray-600;
+        }
+    }
+
+    &__sections {
+        display: grid;
+        gap: $spacing-6;
+        grid-template-columns: 1fr;
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}
+
+// Section card on landing page
+.reports-section-card {
+    display: block;
+    padding: $spacing-6;
+    background-color: $color-white;
+    border: 1px solid $color-gray-200;
+    border-radius: $radius-xl;
+    text-decoration: none;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        border-color: $color-primary;
+        box-shadow: $shadow-md;
+        text-decoration: none;
+    }
+
+    &__icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-primary-lighter;
+        border-radius: $radius-lg;
+        margin-bottom: $spacing-4;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            color: $color-primary;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        margin-bottom: $spacing-2;
+    }
+
+    &__description {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        line-height: $line-height-relaxed;
+        margin-bottom: $spacing-3;
+    }
+
+    &__count {
+        font-size: $font-size-xs;
+        color: $color-gray-500;
     }
 }
 
@@ -17,32 +125,40 @@
     margin-bottom: $spacing-8;
 
     &__title {
+        font-size: $font-size-3xl;
         margin-bottom: $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-4xl;
+        }
     }
 
     &__description {
         max-width: 800px;
         color: $color-gray-600;
         font-size: $font-size-lg;
-        margin-bottom: $spacing-6;
+        margin-bottom: $spacing-4;
+    }
+
+    &__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: $spacing-4;
+        font-size: $font-size-sm;
+        color: $color-gray-500;
+    }
+
+    &__author,
+    &__reading-time {
+        display: flex;
+        align-items: center;
+        gap: $spacing-1;
     }
 }
 
-// Report layout
-.report-layout {
-    display: flex;
-    gap: $spacing-8;
-
-    @media (max-width: $breakpoint-lg - 1px) {
-        flex-direction: column;
-    }
-}
-
+// Report content styles (prose)
 .report-content {
-    flex: 1;
-    min-width: 0;
-
-    // Prose styling for markdown content
     &.prose {
         h2 {
             font-size: $font-size-2xl;
@@ -163,68 +279,125 @@
     }
 }
 
-.report-toc {
-    width: 240px;
-    flex-shrink: 0;
-    position: sticky;
-    top: calc(65px + #{$spacing-8});
-    max-height: calc(100vh - 65px - #{$spacing-16});
-    overflow-y: auto;
+// Report footer
+.report-footer {
+    margin-top: $spacing-12;
+    padding-top: $spacing-8;
+    border-top: 1px solid $color-gray-200;
+}
 
-    @media (max-width: $breakpoint-lg - 1px) {
-        width: 100%;
-        position: static;
-        max-height: none;
-        padding: $spacing-4;
-        background-color: $color-gray-50;
-        border-radius: $radius-lg;
-        margin-bottom: $spacing-8;
-    }
+.report-nav {
+    display: grid;
+    gap: $spacing-4;
+    grid-template-columns: 1fr;
 
-    &__title {
-        font-size: $font-size-xs;
-        font-weight: $font-weight-semibold;
-        color: $color-gray-500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: $spacing-3;
-    }
-
-    &__list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    &__sublist {
-        list-style: none;
-        padding: 0;
-        margin: $spacing-1 0 0 $spacing-3;
+    @media (min-width: $breakpoint-md) {
+        grid-template-columns: 1fr 1fr;
     }
 
     &__link {
-        display: block;
-        padding: $spacing-2 0;
-        font-size: $font-size-sm;
-        color: $color-gray-600;
+        display: flex;
+        align-items: center;
+        gap: $spacing-3;
+        padding: $spacing-4;
+        background-color: $color-gray-50;
+        border-radius: $radius-lg;
         text-decoration: none;
-        border-left: 2px solid transparent;
-        padding-left: $spacing-3;
-        margin-left: -2px;
+        transition: all $transition-fast $ease-in-out;
 
         &:hover {
+            background-color: $color-gray-100;
+            text-decoration: none;
+        }
+
+        &--prev {
+            flex-direction: row;
+        }
+
+        &--next {
+            flex-direction: row-reverse;
+            text-align: right;
+
+            @media (min-width: $breakpoint-md) {
+                grid-column: 2;
+            }
+        }
+
+        svg {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: $color-gray-400;
+        }
+    }
+
+    &__text {
+        min-width: 0;
+    }
+
+    &__label {
+        display: block;
+        font-size: $font-size-xs;
+        color: $color-gray-500;
+        margin-bottom: $spacing-0-5;
+    }
+
+    &__title {
+        font-weight: $font-weight-medium;
+        color: $color-gray-900;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+// Empty state
+.reports-empty {
+    color: $color-gray-500;
+    font-style: italic;
+    padding: $spacing-4 0;
+}
+
+// Section pages list
+.section-pages {
+    margin-top: $spacing-8;
+
+    h2 {
+        font-size: $font-size-lg;
+        margin-bottom: $spacing-4;
+    }
+}
+
+.page-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: $spacing-3;
+    }
+
+    a {
+        display: block;
+        padding: $spacing-4;
+        background-color: $color-gray-50;
+        border-radius: $radius-lg;
+        text-decoration: none;
+        transition: background-color $transition-fast $ease-in-out;
+
+        &:hover {
+            background-color: $color-gray-100;
+        }
+
+        strong {
+            display: block;
             color: $color-gray-900;
+            margin-bottom: $spacing-1;
         }
 
-        &--active {
-            color: $color-primary;
-            border-left-color: $color-primary;
-            font-weight: $font-weight-medium;
-        }
-
-        &--sub {
-            font-size: $font-size-xs;
-            padding: $spacing-1 0;
+        span {
+            font-size: $font-size-sm;
+            color: $color-gray-600;
         }
     }
 }

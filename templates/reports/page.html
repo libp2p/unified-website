@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block body_class %}reports{% endblock %}
+{% block main_class %}reports-layout{% endblock %}
+
+{% block content %}
+{# Sidebar #}
+{% include "components/reports-sidebar.html" %}
+
+<div class="reports-main">
+    <div class="reports-content">
+        <div class="with-toc">
+            <article class="reports-article content-area">
+                {# Breadcrumbs #}
+                <nav class="breadcrumbs" aria-label="Breadcrumb">
+                    <span class="breadcrumbs__item">
+                        <a href="{{ config.base_url }}/reports/">Reports</a>
+                    </span>
+                    {% if page.ancestors | length > 1 %}
+                        {% for ancestor_path in page.ancestors %}
+                            {% if ancestor_path != "reports/_index.md" and ancestor_path != "_index.md" %}
+                                {% set ancestor = get_section(path=ancestor_path) %}
+                                <span class="breadcrumbs__separator">/</span>
+                                <span class="breadcrumbs__item">
+                                    <a href="{{ macros::rel_link(permalink=ancestor.permalink) }}">{{ ancestor.title }}</a>
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <span class="breadcrumbs__separator">/</span>
+                    <span class="breadcrumbs__item">{{ page.title }}</span>
+                </nav>
+
+                {# Page header #}
+                <header class="report-header">
+                    <h1 class="report-header__title">{{ page.title }}</h1>
+                    {% if page.description %}
+                    <p class="report-header__description">{{ page.description }}</p>
+                    {% endif %}
+                    <div class="report-header__meta">
+                        {% if page.extra.author %}
+                        <span class="report-header__author">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            {{ page.extra.author }}
+                        </span>
+                        {% endif %}
+                        {% if page.reading_time %}
+                        <span class="report-header__reading-time">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {{ page.reading_time }} min read
+                        </span>
+                        {% endif %}
+                    </div>
+                </header>
+
+                {# Page content #}
+                <div class="report-content prose">
+                    {{ page.content | safe }}
+                </div>
+
+                {# Page footer #}
+                <footer class="report-footer">
+                    {# Previous/Next navigation #}
+                    <nav class="report-nav">
+                        {% if page.earlier %}
+                        <a href="{{ macros::rel_link(permalink=page.earlier.permalink) }}" class="report-nav__link report-nav__link--prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                            <div class="report-nav__text">
+                                <span class="report-nav__label">Previous</span>
+                                <span class="report-nav__title">{{ page.earlier.title }}</span>
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% if page.later %}
+                        <a href="{{ macros::rel_link(permalink=page.later.permalink) }}" class="report-nav__link report-nav__link--next">
+                            <div class="report-nav__text">
+                                <span class="report-nav__label">Next</span>
+                                <span class="report-nav__title">{{ page.later.title }}</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </a>
+                        {% endif %}
+                    </nav>
+                </footer>
+            </article>
+
+            {# Table of Contents #}
+            {% if page.toc | length > 0 %}
+            <aside class="toc" aria-label="Table of contents">
+                <p class="toc__title">On this page</p>
+                <ul class="toc__list">
+                    {% for h2 in page.toc %}
+                    <li class="toc__item">
+                        <a href="#{{ h2.id }}" class="toc__link">{{ h2.title }}</a>
+                        {% if h2.children | length > 0 %}
+                        <ul class="toc__list">
+                            {% for h3 in h2.children %}
+                            <li class="toc__item">
+                                <a href="#{{ h3.id }}" class="toc__link toc__link--h3">{{ h3.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </aside>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{# TOC highlighting script #}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tocLinks = document.querySelectorAll('.toc__link');
+    const headings = [];
+
+    tocLinks.forEach(link => {
+        const id = link.getAttribute('href').slice(1);
+        const heading = document.getElementById(id);
+        if (heading) {
+            headings.push({ id, element: heading, link });
+        }
+    });
+
+    function highlightTOC() {
+        const scrollPosition = window.scrollY + 100;
+
+        let current = headings[0];
+        for (const heading of headings) {
+            if (heading.element.offsetTop <= scrollPosition) {
+                current = heading;
+            }
+        }
+
+        tocLinks.forEach(link => link.classList.remove('toc__link--active'));
+        if (current) {
+            current.link.classList.add('toc__link--active');
+        }
+    }
+
+    window.addEventListener('scroll', highlightTOC);
+    highlightTOC();
+});
+</script>
+{% endblock %}

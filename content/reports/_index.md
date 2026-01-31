@@ -1,11 +1,7 @@
 +++
-title = "2025 Annual Report"
-description = "libp2p's 2025 Annual Report - Our journey, achievements, and vision for the future."
+title = "Reports"
+description = "Annual reports, roadmaps, and research initiatives from the libp2p project."
+sort_by = "weight"
 template = "reports/section.html"
+page_template = "reports/page.html"
 +++
-
-This is the annual report for 2025.
-
-## Introduction
-
-Test information
