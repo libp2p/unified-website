@@ -98,7 +98,7 @@ class LogoWall {
         this.element = element;
         this.logos = JSON.parse(element.dataset.logos || '[]');
         this.speed = parseFloat(element.dataset.speed || '50');
-        this.basePath = element.dataset.basePath || '/';
+        this.basePath = element.dataset.basePath ?? '';
         this.rows = [];
         this.running = false;
         this.lastTime = 0;
