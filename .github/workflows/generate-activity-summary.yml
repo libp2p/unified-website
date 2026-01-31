@@ -2,7 +2,7 @@ name: Generate Daily Activity Summary
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 2am UTC daily
+    - cron: '0 4 * * *'  # 4am UTC daily
   workflow_dispatch:
     inputs:
       debug:
@@ -14,8 +14,6 @@ permissions:
   contents: write
 
 env:
-  OLLAMA_URL: "http://doc:11434/api/generate"
-  OLLAMA_MODEL: "llama3.1:8b"
   DAYS_BACK: 7
 
 jobs:
@@ -56,6 +54,9 @@ jobs:
 
       - name: Generate summary with Ollama
         if: env.SKIP_RUN != 'true'
+        env:
+          OLLAMA_URL: ${{ secrets.OLLAMA_URL }}
+          OLLAMA_MODEL: ${{ secrets.OLLAMA_MODEL }}
         run: |
           chmod +x .github/scripts/generate-summary.sh
           .github/scripts/generate-summary.sh
@@ -95,9 +96,3 @@ jobs:
             git push
             echo "changes_committed=true" >> $GITHUB_OUTPUT
           fi
-
-  deploy:
-    needs: generate-summary
-    if: needs.generate-summary.outputs.changes_committed == 'true'
-    uses: ./.github/workflows/deploy.yml
-    secrets: inherit

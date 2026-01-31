@@ -2,29 +2,13 @@
 # fetch-activity.sh - Fetch GitHub activity from libp2p ecosystem repositories
 set -euo pipefail
 
+# Source shared configuration
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+
 # Calculate date range
 SINCE_DATE=$(date -d "${DAYS_BACK:-7} days ago" -u +"%Y-%m-%dT00:00:00Z")
 echo "Fetching activity since: $SINCE_DATE"
-
-# Repository list (same as update-github-stars.yml)
-REPOS=(
-  "libp2p/libp2p"
-  "libp2p/go-libp2p"
-  "libp2p/rust-libp2p"
-  "libp2p/js-libp2p"
-  "libp2p/py-libp2p"
-  "libp2p/jvm-libp2p"
-  "vacp2p/nim-libp2p"
-  "zen-eth/zig-libp2p"
-  "NethermindEth/dotnet-libp2p"
-  "Pier-Two/c-libp2p"
-  "paritytech/litep2p"
-  "libp2p/specs"
-  "libp2p/test-plans"
-  "libp2p/universal-connectivity"
-  "libp2p/workshop"
-  "swift-libp2p/swift-libp2p"
-)
 
 # Generate unique alias from repo name (replace special chars)
 make_alias() {

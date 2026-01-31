@@ -154,6 +154,95 @@ Output ONLY valid HTML in this exact format (no markdown, no code blocks, no exp
     </div>
 </div>
 
+CONTENT GUIDELINES (MANDATORY):
+- Keep summaries factual, neutral, and professional
+- DO NOT include negative, disparaging, or critical commentary about libp2p, its implementations, contributors, or the project direction
+- Focus on what was accomplished, not problems or shortcomings
+- Use constructive language (e.g., "improved" rather than "fixed broken")
+- DO NOT include profanity, vulgar language, or inappropriate content
+- ALL links MUST be to github.com URLs from the repositories listed in the activity data
+
+GOOD EXAMPLES (emulate these):
+These examples demonstrate the correct tone and format - high-level summaries with supporting links:
+
+<div class="update-item">
+    <div class="update-item__title">New Transport Layer Support Added</div>
+    <div class="update-item__description">
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
+    <div class="update-item__description">
+        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
+    <div class="update-item__description">
+        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
+    </div>
+</div>
+
+Why good examples are good:
+- High-level summaries that explain WHAT happened and WHY it matters
+- Titles describe the change itself, not the PR/merge action
+- Links support the summary with specific references
+- Professional, neutral tone
+
+BAD EXAMPLES (avoid these patterns):
+These examples show what NOT to do - they start with "Merged PR:" which may be false, are too specific about implementation details, and link text is vague:
+
+<div class="update-item">
+    <div class="update-item__title">Merged PR: Fixing Transport Interop Runner</div>
+    <div class="update-item__description">
+        The transport interop runner was updated to match the new test spec, resolving issues with test execution. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Merged PR: Adding TLS Support for Python</div>
+    <div class="update-item__description">
+        The test plans now include TLS support for the python implementation, improving interoperability. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/783">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Merged PR: Fixing Redundant EventLoopGroup Handling</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Merged PR: Removing Temporary Logging</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Merged PR: Fixing Input Command Sanitization</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+    </div>
+</div>
+
+Why bad examples are bad:
+- Titles start with "Merged PR:" which may be false if the PR is still open
+- Too focused on low-level implementation details
+- Vague link text like "this issue" instead of specific references
+- Formulaic pattern that does not read naturally
+
 CRITICAL REQUIREMENTS:
 - Output 3-5 update-item divs
 - Use the exact class names: "update-item", "update-item__title", "update-item__description"
@@ -202,6 +291,14 @@ Output ONLY valid HTML in this exact format:
         The rust-libp2p implementation now supports WebTransport connections. This was implemented in <a href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a>.
     </div>
 </div>
+
+CONTENT: Keep summaries factual, neutral, professional. No negative commentary about libp2p. All links must be to github.com URLs from the activity data.
+
+GOOD TITLES: "New Transport Layer Support Added", "Fix: Remove Redundant EventLoopGroup Handling"
+BAD TITLES: "Merged PR: Fixing Transport Interop Runner" (do not start with "Merged PR:")
+
+GOOD LINK TEXT: "PR #1234", "specs#567", "test-plans#789"
+BAD LINK TEXT: "this issue", "this PR" (too vague)
 
 CRITICAL: Output 3-5 divs. Use exact class names. EVERY description MUST include at least one <a href="...">link</a> using real GitHub URLs from the data above. No markdown or code blocks.
 EOF

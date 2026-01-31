@@ -204,6 +204,26 @@
     }
 }
 
+// Pink CTA button
+.btn-pink {
+    background-color: $color-pink;
+    color: $color-white;
+    border-color: $color-pink;
+    box-shadow: $shadow-lg;
+
+    &:hover {
+        background-color: darken($color-pink, 8%);
+        border-color: darken($color-pink, 8%);
+        box-shadow: $shadow-xl;
+        color: $color-white;
+        text-decoration: none;
+    }
+
+    &:active {
+        background-color: darken($color-pink, 12%);
+    }
+}
+
 // Button group
 .btn-group {
     display: inline-flex;

@@ -2,6 +2,9 @@
 # generate-summary.sh - Send prompt to Ollama and get LLM response
 set -euo pipefail
 
+: "${OLLAMA_URL:?Error: OLLAMA_URL is required but not set}"
+: "${OLLAMA_MODEL:?Error: OLLAMA_URL is required but not set}"
+
 # Check if generation should be skipped
 if [ "${SKIP_GENERATION:-false}" = "true" ]; then
   echo "Skipping LLM generation (no activity)"
@@ -9,14 +12,10 @@ if [ "${SKIP_GENERATION:-false}" = "true" ]; then
 fi
 
 # Configuration
-OLLAMA_URL="${OLLAMA_URL:-http://doc:11434/api/generate}"
-OLLAMA_MODEL="${OLLAMA_MODEL:-llama3.1:8b}"
 MAX_RETRIES=3
 TIMEOUT=600  # 10 minutes
 
 echo "Generating summary with Ollama..."
-echo "  URL: $OLLAMA_URL"
-echo "  Model: $OLLAMA_MODEL"
 
 # Read the prompt
 if [ ! -f formatted-prompt.txt ]; then
