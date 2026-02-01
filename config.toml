@@ -185,6 +185,76 @@ name = "polkadot-logo.svg"
 alt = "Polkadot"
 url = "https://polkadot.com"
 
+[[extra.logos]]
+name = "chainsafe-logo.svg"
+alt = "Chainsafe"
+url = "https://chainsafe.io"
+
+[[extra.logos]]
+name = "arda-logo.svg"
+alt = "Arda"
+url = "https://arda.co"
+
+[[extra.logos]]
+name = "pier-two-logo.svg"
+alt = "Pier Two"
+url = "https://piertwo.com"
+
+[[extra.logos]]
+name = "nethermind-logo.svg"
+alt = "Nethermind"
+url = "https://nethermind.io"
+
+[[extra.logos]]
+name = "peergos-logo.svg"
+alt = "Peergos"
+url = "https://peergos.org"
+
+[[extra.logos]]
+name = "sigma-prime-logo.svg"
+alt = "Sigma Prime"
+url = "https://sigmaprime.io"
+
+[[extra.logos]]
+name = "multiversex-logo.svg"
+alt = "MultiverseX"
+url = "https://multiversex.com"
+
+[[extra.logos]]
+name = "aleph-zero-logo.svg"
+alt = "Aleph Zero"
+url = "https://alephzero.org"
+
+[[extra.logos]]
+name = "world-logo.svg"
+alt = "World"
+url = "https://world.org"
+
+[[extra.logos]]
+name = "quiet-logo.svg"
+alt = "Quiet"
+url = "https://tryquiet.org"
+
+[[extra.logos]]
+name = "moonbeam-logo.svg"
+alt = "Moonbeam"
+url = "https://moonbeam.network"
+
+[[extra.logos]]
+name = "oasis-logo.svg"
+alt = "Oasis"
+url = "https://oasis.net"
+
+[[extra.logos]]
+name = "celo-logo.svg"
+alt = "Celo"
+url = "https://celo.org"
+
+[[extra.logos]]
+name = "mina-logo.svg"
+alt = "Mina"
+url = "https://minaprotocol.com"
+
 # Footer links
 [[extra.footer_links]]
 name = "GitHub"

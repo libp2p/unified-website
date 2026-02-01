@@ -14,11 +14,11 @@
 .hero {
     background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
     color: $color-white;
-    padding: $spacing-16 0;
+    padding: $spacing-16 0 $spacing-24 0;  // top: 64px, bottom: 96px
     overflow: hidden;
 
     @media (min-width: $breakpoint-md) {
-        padding: $spacing-24 0;
+        padding: $spacing-24 0 $spacing-24 0;  // top: 96px, bottom: 96px
     }
 
     &__container {
@@ -90,6 +90,7 @@
             margin-left: auto;
         }
     }
+
 }
 
 // Updates Card (in hero)
@@ -245,11 +246,11 @@
 
 // Features Section
 .features {
-    padding: $spacing-16 0;
+    padding: $spacing-8 0 $spacing-16 0;
     background-color: $color-white;
 
     @media (min-width: $breakpoint-md) {
-        padding: $spacing-24 0;
+        padding: $spacing-8 0 $spacing-24 0;  // 32px top (changed from 48px)
     }
 
     &__title {

@@ -14,7 +14,7 @@ class LogoWallRow {
         this.rowIndex = rowIndex;
         this.basePath = basePath;
         this.cards = [];              // Active card objects
-        this.logoIndex = rowIndex * 3; // Start each row at different logo for variety
+        this.logoIndex = rowIndex * 11; // Row 0 starts at 0, Row 1 starts at 11 (logo 12)
         this.cardWidth = 176;         // 160px + 16px gap
         this.lastTime = 0;
 
