@@ -141,14 +141,29 @@ external = true
 
 # Logo wall - Add logos here (images go in static/img/logos/)
 [[extra.logos]]
-name = "ethereum-logo.svg"
-alt = "Ethereum"
-url = "https://ethereum.org"
+name = "powered-by-libp2p-logo.svg"
+alt = "libp2p"
+url = "https://libp2p.io"
 
 [[extra.logos]]
 name = "filecoin-logo.svg"
 alt = "Filecoin"
 url = "https://filecoin.io"
+
+[[extra.logos]]
+name = "ethereum-logo.svg"
+alt = "Ethereum"
+url = "https://ethereum.org"
+
+[[extra.logos]]
+name = "ipfs-logo.svg"
+alt = "IPFS"
+url = "https://ipfs.tech"
+
+[[extra.logos]]
+name = "celestia-logo.svg"
+alt = "Celestia"
+url = "https://celestia.org"
 
 [[extra.logos]]
 name = "optimism-logo.svg"
@@ -169,16 +184,6 @@ url = "https://chain.link"
 name = "uniswap-logo.svg"
 alt = "Uniswap"
 url = "https://uniswap.org"
-
-[[extra.logos]]
-name = "ipfs-logo.svg"
-alt = "IPFS"
-url = "https://ipfs.tech"
-
-[[extra.logos]]
-name = "celestia-logo.svg"
-alt = "Celestia"
-url = "https://celestia.org"
 
 [[extra.logos]]
 name = "polkadot-logo.svg"
