@@ -2,6 +2,10 @@
 # validate-output.sh - Validate LLM output and save to static/data/latest-updates
 set -euo pipefail
 
+# Source shared configuration for REPOS and prohibited patterns
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/config.sh"
+
 OUTPUT_FILE="static/data/latest-updates"
 
 # Check if we should skip
@@ -53,6 +57,66 @@ if [ -z "$EXTRACTED" ]; then
   EXTRACTED="$RAW_OUTPUT"
 fi
 
+# Check that all links point to approved repositories
+validate_links() {
+  local content="$1"
+  local errors=0
+
+  # Extract all href URLs pointing to github.com
+  local urls
+  urls=$(echo "$content" | grep -oP 'href="https://github\.com/[^"]+' | sed 's/href="//' || true)
+
+  if [ -n "$urls" ]; then
+    while IFS= read -r url; do
+      # Check if URL starts with any allowed repo
+      local is_allowed=false
+      for repo in "${REPOS[@]}"; do
+        if [[ "$url" == "https://github.com/${repo}"* ]]; then
+          is_allowed=true
+          break
+        fi
+      done
+
+      if [ "$is_allowed" = false ]; then
+        echo "::error::Disallowed link found: $url"
+        errors=$((errors + 1))
+      fi
+    done <<< "$urls"
+  fi
+
+  return $errors
+}
+
+# Check for prohibited words or content
+check_prohibited_content() {
+  local content="$1"
+  local content_lower
+  content_lower=$(echo "$content" | tr '[:upper:]' '[:lower:]')
+  local errors=0
+
+  for pattern in "${PROHIBITED_PATTERNS[@]}"; do
+    if echo "$content_lower" | grep -qiE "$pattern"; then
+      echo "::error::Prohibited content detected (pattern: $pattern)"
+      errors=$((errors + 1))
+    fi
+  done
+
+  return $errors
+}
+
+# Warn on negative sentiment (non-blocking)
+check_negative_sentiment() {
+  local content="$1"
+  local content_lower
+  content_lower=$(echo "$content" | tr '[:upper:]' '[:lower:]')
+
+  for pattern in "${NEGATIVE_SENTIMENT_PATTERNS[@]}"; do
+    if echo "$content_lower" | grep -qiE "$pattern"; then
+      echo "::warning::Potential negative sentiment detected (pattern: $pattern)"
+    fi
+  done
+}
+
 # Validation checks
 ERRORS=0
 
@@ -95,6 +159,26 @@ fi
 if ! echo "$EXTRACTED" | grep -q 'github.com'; then
   echo "::warning::No GitHub links found in output"
 fi
+
+# Check 7: All links point to approved repositories
+echo "Checking link destinations..."
+if ! validate_links "$EXTRACTED"; then
+  LINK_ERRORS=$?
+  echo "::error::Found $LINK_ERRORS links to non-approved repositories"
+  ERRORS=$((ERRORS + LINK_ERRORS))
+fi
+
+# Check 8: No prohibited content
+echo "Checking for prohibited content..."
+if ! check_prohibited_content "$EXTRACTED"; then
+  CONTENT_ERRORS=$?
+  echo "::error::Found $CONTENT_ERRORS prohibited content matches"
+  ERRORS=$((ERRORS + CONTENT_ERRORS))
+fi
+
+# Check 9: Negative sentiment (warning only, non-blocking)
+echo "Checking for negative sentiment..."
+check_negative_sentiment "$EXTRACTED"
 
 # If validation failed, keep existing file
 if [ "$ERRORS" -gt 0 ]; then

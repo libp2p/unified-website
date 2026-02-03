@@ -1,6 +1,6 @@
 +++
 title = "Refactoring the libp2p Test Framework: A Fresh Start"
-description = "Announcing the complete rewrite of the libp2p test-plans framework from TypeScript to bash, delivering cross-platform support, powerful filtering, reproducibility, and comprehensive test coverage."
+description = "Announcing the complete rewrite of the libp2p test-plans framework from TypeScript to Bash, delivering cross-platform support, powerful filtering, reproducibility, testing on arbitrary network topologies with almost zero depedency maintenance overhead."
 date = 2026-01-28
 slug = "new-test-plans"
 
@@ -9,7 +9,7 @@ tags = ["testing", "libp2p", "interoperability", "performance"]
 
 [extra]
 author = "Dave Grantham"
-header_video = "/img/test-plans-animation.mp4"
+header_video = "/img/blog/test-plans-animation.mp4"
 +++
 
 The libp2p ecosystem spans multiple programming languages, transports, and protocols. Testing interoperability across this diverse landscape has always been challenging. Today, we're announcing a complete rewrite of the [test-plans repository](https://github.com/libp2p/test-plans) that fundamentally improves how we test libp2p implementations.
@@ -18,9 +18,9 @@ The libp2p ecosystem spans multiple programming languages, transports, and proto
 
 The original test framework was built with TypeScript, Docker Compose, and various npm dependencies. While functional, it presented several challenges:
 
-- **Complex dependency chains**: Node.js, npm, and Python dependencies created friction for contributors
+- **Complex dependency chains**: Node.js, npm, and Python dependencies created friction for contributors and a perpetual dependency maintenance headache
 - **Platform inconsistencies**: Tests behaved differently across Linux, macOS, and Windows
-- **Limited reproducibility**: Recreating test failures was difficult without extensive setup
+- **Limited reproducibility**: Recreating test failures was difficult without considerable effort
 - **Rigid test selection**: Running specific subsets of tests required manual configuration
 - **Slow iteration cycles**: The build and test pipeline was optimized for CI, not local development
 
@@ -45,9 +45,9 @@ We reduced dependencies to the essentials:
 
 No Node.js. No npm. No Python. No pip. Just standard tools available on any development machine.
 
-### 3. Rapid Testing in CI/CD and Local Environments
+### 3. Reproducible Testing in CI/CD and Local Environments
 
-The framework is optimized for both CI pipelines and local development. You can run the same commands locally that CI runs, with identical results. Quick feedback loops enable faster iteration.
+The framework is optimized for both CI pipelines and local development. You can run the same commands locally that CI runs, with identical results. Quick feedback loops enable faster iteration. The snapshot capability supports capturing the entire test setup—including inputs, docker images, and environment variables—into a downloadable artifact that can be unpacked locally and re-run with a single command, fully reproducing the exact same test pass that was executed on the CI/CD infrastructure. This local reproducibility greatly increases the velocity of developers debugging tests and fixing compatibility issues. It also helps with optimization work by recreating the same conditions locally that led to the measured results in the CI/CD environment.
 
 ### 4. Follow CI/CD and Programming Conventions
 

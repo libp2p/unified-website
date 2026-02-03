@@ -25,10 +25,10 @@
                         <circle cx="12" cy="12" r="10"></circle>
                         <polyline points="12 6 12 12 16 14"></polyline>
                     </svg>
-                    {% if data and data.generatedAt %}
-                    Last updated: <time datetime="{{ data.generatedAt }}">{{ data.generatedAt | date(format="%B %d, %Y at %H:%M UTC") }}</time>
-                    {% if data.workflowRun %}
-                    <a href="{{ data.workflowRun }}" target="_blank" rel="noopener noreferrer" class="status-header__workflow-link">(view run)</a>
+                    {% if data and data["generated-at"] %}
+                    Last updated: <time datetime="{{ data["generated-at"] }}">{{ data["generated-at"] | date(format="%B %d, %Y at %H:%M UTC") }}</time>
+                    {% if data["workflow-run"] %}
+                    <a href="{{ data["workflow-run"] }}" target="_blank" rel="noopener noreferrer" class="status-header__workflow-link">(view run)</a>
                     {% endif %}
                     {% else %}
                     Last updated: <time id="last-updated">Loading...</time>
@@ -65,7 +65,7 @@
                     </p>
                 </header>
 
-                {% if data and data.transport and data.transport.tests %}
+                {% if data and data.transport and data.transport.results %}
                 {# Show summary #}
                 <div class="test-run-info">
                     <div class="test-run-info__item">
@@ -86,7 +86,7 @@
                 {% set_global transport_dialers = [] %}
                 {% set_global transport_listeners = [] %}
                 {% set_global transport_transports = [] %}
-                {% for test in data.transport.tests %}
+                {% for test in data.transport.results %}
                     {% if test.dialer not in transport_dialers %}
                         {% set_global transport_dialers = transport_dialers | concat(with=test.dialer) %}
                     {% endif %}
@@ -125,7 +125,7 @@
                                     {% for listener in transport_listeners | sort %}
                                         {# Look up results for all secure/muxer combinations #}
                                         {% set_global cell_statuses = [] %}
-                                        {% for test in data.transport.tests %}
+                                        {% for test in data.transport.results %}
                                             {% if test.dialer == dialer and test.listener == listener and test.transport == transport_name %}
                                                 {% set_global cell_statuses = cell_statuses | concat(with=test.status) %}
                                             {% endif %}
@@ -166,45 +166,45 @@
                     </p>
                 </header>
 
-                {% if data and data.perf and data.perf.testResults %}
+                {% if data and data.perf and data.perf.results %}
                 {# Show summary #}
                 <div class="test-run-info">
                     <div class="test-run-info__item">
                         <strong>Main Tests:</strong>
-                        <span>{{ data.perf.summary.mainTotal }}</span>
+                        <span>{{ data.perf.summary["main-total"] }}</span>
                     </div>
                     <div class="test-run-info__item">
                         <strong>Passed:</strong>
-                        <span class="status-text--pass">{{ data.perf.summary.mainPassed }}</span>
+                        <span class="status-text--pass">{{ data.perf.summary["main-passed"] }}</span>
                     </div>
                     <div class="test-run-info__item">
                         <strong>Failed:</strong>
-                        <span class="status-text--fail">{{ data.perf.summary.mainFailed }}</span>
+                        <span class="status-text--fail">{{ data.perf.summary["main-failed"] }}</span>
                     </div>
-                    {% if data.perf.summary.baselineTotal > 0 %}
+                    {% if data.perf.summary["baseline-total"] > 0 %}
                     <div class="test-run-info__item">
                         <strong>Baselines:</strong>
-                        <span>{{ data.perf.summary.baselinePassed }}/{{ data.perf.summary.baselineTotal }}</span>
+                        <span>{{ data.perf.summary["baseline-passed"] }}/{{ data.perf.summary["baseline-total"] }}</span>
                     </div>
                     {% endif %}
                 </div>
 
                 {# Box plot images #}
-                {% if data.boxPlots %}
+                {% if data["box-plots"] %}
                 <div class="perf-boxplots">
-                    {% if data.boxPlots.upload %}
+                    {% if data["box-plots"].upload %}
                     <div class="perf-boxplots__item">
                         <h4>Upload Throughput</h4>
                         <img src="/data/status/boxplot-upload.png" alt="Upload Throughput Box Plot" class="perf-boxplots__image" loading="lazy">
                     </div>
                     {% endif %}
-                    {% if data.boxPlots.download %}
+                    {% if data["box-plots"].download %}
                     <div class="perf-boxplots__item">
                         <h4>Download Throughput</h4>
                         <img src="/data/status/boxplot-download.png" alt="Download Throughput Box Plot" class="perf-boxplots__image" loading="lazy">
                     </div>
                     {% endif %}
-                    {% if data.boxPlots.latency %}
+                    {% if data["box-plots"].latency %}
                     <div class="perf-boxplots__item">
                         <h4>Latency</h4>
                         <img src="/data/status/boxplot-latency.png" alt="Latency Box Plot" class="perf-boxplots__image" loading="lazy">
@@ -230,20 +230,20 @@
                     </p>
                 </header>
 
-                {% if data and data.holePunch and data.holePunch.tests %}
+                {% if data and data["hole-punch"] and data["hole-punch"].results %}
                 {# Show summary #}
                 <div class="test-run-info">
                     <div class="test-run-info__item">
                         <strong>Total:</strong>
-                        <span>{{ data.holePunch.summary.total }}</span>
+                        <span>{{ data["hole-punch"].summary.total }}</span>
                     </div>
                     <div class="test-run-info__item">
                         <strong>Passed:</strong>
-                        <span class="status-text--pass">{{ data.holePunch.summary.passed }}</span>
+                        <span class="status-text--pass">{{ data["hole-punch"].summary.passed }}</span>
                     </div>
                     <div class="test-run-info__item">
                         <strong>Failed:</strong>
-                        <span class="status-text--fail">{{ data.holePunch.summary.failed }}</span>
+                        <span class="status-text--fail">{{ data["hole-punch"].summary.failed }}</span>
                     </div>
                 </div>
 
@@ -252,7 +252,7 @@
                 {% set_global hp_dialers = [] %}
                 {% set_global hp_listeners = [] %}
                 {% set_global hp_transports = [] %}
-                {% for test in data.holePunch.tests %}
+                {% for test in data["hole-punch"].results %}
                     {% if test.relay not in hp_relays %}
                         {% set_global hp_relays = hp_relays | concat(with=test.relay) %}
                     {% endif %}
@@ -294,7 +294,7 @@
                                     {% for listener in hp_listeners | sort %}
                                         {# Collect all transport results for this dialer/listener/relay combination #}
                                         {% set_global cell_results = [] %}
-                                        {% for test in data.holePunch.tests %}
+                                        {% for test in data["hole-punch"].results %}
                                             {% if test.dialer == dialer and test.listener == listener and test.relay == relay %}
                                                 {% set result_item = test.transport ~ ":" ~ test.status %}
                                                 {% set_global cell_results = cell_results | concat(with=result_item) %}

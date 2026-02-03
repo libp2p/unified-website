@@ -80,7 +80,7 @@ slack_community = "https://filecoinproject.slack.com/archives/C06HV0D00E5"
 slack_implementers = "https://filecoinproject.slack.com/archives/C03K82MU486"
 
 # Chat rooms - Discord
-discord_community = "https://discord.gg/ehaey3C733"
+discord_community = "https://discord.gg/MRRgEFMAVN"
 discord_implementers = "https://discord.gg/Ae4TbahHaT"
 
 # Chat rooms - Telegram
@@ -131,9 +131,134 @@ name = "Get Involved"
 url = "/get-involved/"
 
 [[extra.nav]]
+name = "Reports"
+url = "/reports/"
+
+[[extra.nav]]
 name = "Specs"
 url = "https://github.com/libp2p/specs"
 external = true
+
+# Logo wall - Add logos here (images go in static/img/logos/)
+[[extra.logos]]
+name = "powered-by-libp2p-logo.svg"
+alt = "libp2p"
+url = "https://libp2p.io"
+
+[[extra.logos]]
+name = "filecoin-logo.svg"
+alt = "Filecoin"
+url = "https://filecoin.io"
+
+[[extra.logos]]
+name = "ethereum-logo.svg"
+alt = "Ethereum"
+url = "https://ethereum.org"
+
+[[extra.logos]]
+name = "ipfs-logo.svg"
+alt = "IPFS"
+url = "https://ipfs.tech"
+
+[[extra.logos]]
+name = "celestia-logo.svg"
+alt = "Celestia"
+url = "https://celestia.org"
+
+[[extra.logos]]
+name = "optimism-logo.svg"
+alt = "Optimism"
+url = "https://optimism.io"
+
+[[extra.logos]]
+name = "polygon-logo.svg"
+alt = "Polygon"
+url = "https://polygon.technology"
+
+[[extra.logos]]
+name = "chainlink-logo.svg"
+alt = "Chainlink"
+url = "https://chain.link"
+
+[[extra.logos]]
+name = "uniswap-logo.svg"
+alt = "Uniswap"
+url = "https://uniswap.org"
+
+[[extra.logos]]
+name = "polkadot-logo.svg"
+alt = "Polkadot"
+url = "https://polkadot.com"
+
+[[extra.logos]]
+name = "chainsafe-logo.svg"
+alt = "Chainsafe"
+url = "https://chainsafe.io"
+
+[[extra.logos]]
+name = "arda-logo.svg"
+alt = "Arda"
+url = "https://arda.co"
+
+[[extra.logos]]
+name = "pier-two-logo.svg"
+alt = "Pier Two"
+url = "https://piertwo.com"
+
+[[extra.logos]]
+name = "nethermind-logo.svg"
+alt = "Nethermind"
+url = "https://nethermind.io"
+
+[[extra.logos]]
+name = "peergos-logo.svg"
+alt = "Peergos"
+url = "https://peergos.org"
+
+[[extra.logos]]
+name = "sigma-prime-logo.svg"
+alt = "Sigma Prime"
+url = "https://sigmaprime.io"
+
+[[extra.logos]]
+name = "multiversex-logo.svg"
+alt = "MultiversX"
+url = "https://multiversx.com"
+
+[[extra.logos]]
+name = "aleph-zero-logo.svg"
+alt = "Aleph Zero"
+url = "https://alephzero.org"
+
+[[extra.logos]]
+name = "world-logo.svg"
+alt = "World"
+url = "https://world.org"
+
+[[extra.logos]]
+name = "quiet-logo.svg"
+alt = "Quiet"
+url = "https://tryquiet.org"
+
+[[extra.logos]]
+name = "moonbeam-logo.svg"
+alt = "Moonbeam"
+url = "https://moonbeam.network"
+
+[[extra.logos]]
+name = "oasis-logo.svg"
+alt = "Oasis"
+url = "https://oasis.net"
+
+[[extra.logos]]
+name = "celo-logo.svg"
+alt = "Celo"
+url = "https://celo.org"
+
+[[extra.logos]]
+name = "mina-logo.svg"
+alt = "Mina"
+url = "https://minaprotocol.com"
 
 # Footer links
 [[extra.footer_links]]

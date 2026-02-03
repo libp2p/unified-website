@@ -14,11 +14,11 @@
 .hero {
     background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
     color: $color-white;
-    padding: $spacing-16 0;
+    padding: $spacing-16 0 $spacing-24 0;  // top: 64px, bottom: 96px
     overflow: hidden;
 
     @media (min-width: $breakpoint-md) {
-        padding: $spacing-24 0;
+        padding: $spacing-24 0 $spacing-24 0;  // top: 96px, bottom: 96px
     }
 
     &__container {
@@ -90,6 +90,7 @@
             margin-left: auto;
         }
     }
+
 }
 
 // Updates Card (in hero)
@@ -177,13 +178,79 @@
     }
 }
 
+// Logo Wall Section - JavaScript-driven individual card animation
+.logo-wall {
+    overflow: hidden;
+    padding: $spacing-8 0;
+    background: $color-gray-50;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+
+    &__row {
+        position: relative;
+        height: 160px;  // Fixed height for cards
+    }
+
+    &__card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $spacing-4 $spacing-6;
+        background: $color-white;
+        border-radius: $radius-lg;
+        border: 1px solid $color-gray-200;
+        box-shadow: $shadow-sm;
+        width: 160px;
+        height: 160px;
+        will-change: transform;  // Performance hint for animations
+        text-decoration: none;
+
+        &:hover {
+            box-shadow: $shadow-md;
+        }
+
+        img {
+            max-height: 96px;
+            max-width: 140px;
+            object-fit: contain;
+        }
+    }
+}
+
+// Responsive adjustments for logo wall
+@media (max-width: $breakpoint-md) {
+    .logo-wall {
+        padding: $spacing-6 0;
+        gap: $spacing-3;
+    }
+
+    .logo-wall__row {
+        height: 120px;
+    }
+
+    .logo-wall__card {
+        width: 120px;
+        height: 120px;
+        padding: $spacing-3 $spacing-4;
+
+        img {
+            max-height: 72px;
+            max-width: 100px;
+        }
+    }
+}
+
 // Features Section
 .features {
-    padding: $spacing-16 0;
+    padding: $spacing-8 0 $spacing-16 0;
     background-color: $color-white;
 
     @media (min-width: $breakpoint-md) {
-        padding: $spacing-24 0;
+        padding: $spacing-8 0 $spacing-24 0;  // 32px top (changed from 48px)
     }
 
     &__title {
