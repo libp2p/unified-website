@@ -43,9 +43,24 @@
 
     &__content {
         flex: 1;
+        position: relative;
 
         @media (min-width: $breakpoint-lg) {
             max-width: 600px;
+        }
+    }
+
+    &__arrow {
+        display: none;
+        position: absolute;
+        right: 0;
+        width: 200px;
+        height: auto;
+        pointer-events: none;
+
+        @media (min-width: $breakpoint-lg) {
+            display: block;
+            bottom: -$spacing-16;
         }
     }
 

@@ -32,6 +32,10 @@
                     Read our 2025 Annual Report
                 </a>
             </div>
+            <img src="{{ macros::rel() }}img/powered-by-arrow.svg"
+                 alt=""
+                 class="hero__arrow"
+                 aria-hidden="true">
         </div>
         {# Latest Updates Card - loaded at build time #}
         {% set latest_updates_html = load_data(path="static/data/latest-updates", required=false) %}
