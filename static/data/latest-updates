@@ -1,34 +1,27 @@
 <div class="update-item">
-    <div class="update-item__title">New Transport Layer Support Added</div>
+    <div class="update-item__title">Merged PR: Fix Redundant EventLoopGroup Handling</div>
     <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">this issue</a>.
+        The swift-libp2p implementation now has redundant EventLoopGroup handling removed, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Add TLS Support for Python</div>
+    <div class="update-item__title">New Transport Layer Support Added to rust-libp2p</div>
     <div class="update-item__description">
-        A fix was added to enable TLS support in the python implementation. This change is available in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a> and addresses a long-standing issue.
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #788</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">this issue</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">New Transport Interop Runner Changes Test Spec</div>
+    <div class="update-item__title">Merged PR: Add js-libp2p Echo Protocol Interoperability Tests</div>
     <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This change is discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a> and has implications for interoperability testing.
+        The libp2p/test-plans repository now includes interoperability tests for the js-libp2p implementation. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">PR #800</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
+    <div class="update-item__title">Merged PR: Fix Temporary Logging in swift-libp2p</div>
     <div class="update-item__description">
-        A fix was applied to remove redundant event loop group handling in the swift-libp2p implementation. This change is available in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and improves performance.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Features Added for Echo Protocol Interoperability Tests</div>
-    <div class="update-item__description">
-        New features were added to support echo protocol interoperability tests in the js-libp2p implementation. This change is available in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">PR #800</a> and enables better testing of inter-implementation compatibility.
+        The swift-libp2p implementation now has temporary logging removed, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a>.
     </div>
 </div>
