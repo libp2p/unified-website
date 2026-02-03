@@ -51,14 +51,15 @@
     }
 
     &__arrow {
+        display: none;
         position: absolute;
         right: 0;
-        bottom: -$spacing-8;
         width: 200px;
         height: auto;
         pointer-events: none;
 
         @media (min-width: $breakpoint-lg) {
+            display: block;
             bottom: -$spacing-16;
         }
     }
