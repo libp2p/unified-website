@@ -79,6 +79,26 @@ These contributions improved transport efficiency, observability, browser and me
 Beyond libp2p itself, critical improvements to quic-go and webtransport-go, used by thousands of projects outside Web3 received critical performance, security, and standards-alignment improvements, benefiting the wider internet as much as decentralized systems.
 
 ---
+<div class="blog-logo-grid">
+    <div class="blog-logo-grid__card">
+        <img src="../../img/logos/powered-by-libp2p-logo.svg" alt="libp2p">
+    </div>
+    <div class="blog-logo-grid__card">
+        <img src="../../img/logos/filecoin-logo.svg" alt="Filecoin">
+    </div>
+    <div class="blog-logo-grid__card">
+        <img src="../../img/logos/ethereum-logo.svg" alt="Ethereum">
+    </div>
+    <div class="blog-logo-grid__card">
+        <img src="../../img/logos/ipfs-logo.svg" alt="IPFS">
+    </div>
+    <div class="blog-logo-grid__card">
+        <img src="../../img/logos/celestia-logo.svg" alt="Celestia">
+    </div>
+    <div class="blog-logo-grid__card">
+        <img src="../../img/logos/optimism-logo.svg" alt="Optimism">
+    </div>
+</div>
 
 ## **Funding & Partnerships**
 
