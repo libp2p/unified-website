@@ -221,7 +221,7 @@ alt = "Sigma Prime"
 url = "https://sigmaprime.io"
 
 [[extra.logos]]
-name = "multiversex-logo.svg"
+name = "multiversx-logo.svg"
 alt = "MultiversX"
 url = "https://multiversx.com"
 
@@ -259,6 +259,36 @@ url = "https://celo.org"
 name = "mina-logo.svg"
 alt = "Mina"
 url = "https://minaprotocol.com"
+
+[[extra.logos]]
+name = "astar-logo.svg"
+alt = "Astar"
+url = "https://astar.network"
+
+[[extra.logos]]
+name = "maidsafe-logo.svg"
+alt = "Maidsafe"
+url = "https://maidsafe.net"
+
+[[extra.logos]]
+name = "hopr-logo.svg"
+alt = "Hopr"
+url = "https://hoprnet.org"
+
+[[extra.logos]]
+name = "berty-logo.svg"
+alt = "Berty"
+url = "https://berty.tech/messenger"
+
+[[extra.logos]]
+name = "mantle-logo.svg"
+alt = "Mantle"
+url = "https://mantle.xyz"
+
+[[extra.logos]]
+name = "algorand-logo.svg"
+alt = "Algorand"
+url = "https://algorandtechnologies.com"
 
 # Footer links
 [[extra.footer_links]]
