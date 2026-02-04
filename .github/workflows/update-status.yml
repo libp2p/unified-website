@@ -37,18 +37,18 @@ jobs:
           else
             echo "✗ Failed to download interop-results.yml (may not exist yet)"
             # Create a minimal placeholder file so the site still builds
-            cat > static/data/status/interop-results.yml << 'EOF'
-# Placeholder - results not yet available
-generated-at: null
-workflow-run: null
-transport: null
-hole-punch: null
-perf: null
-box-plots:
-  upload: null
-  download: null
-  latency: null
-EOF
+            {
+              echo '# Placeholder - results not yet available'
+              echo 'generated-at: null'
+              echo 'workflow-run: null'
+              echo 'transport: null'
+              echo 'hole-punch: null'
+              echo 'perf: null'
+              echo 'box-plots:'
+              echo '  upload: null'
+              echo '  download: null'
+              echo '  latency: null'
+            } > static/data/status/interop-results.yml
           fi
 
           # Fetch box plot images
