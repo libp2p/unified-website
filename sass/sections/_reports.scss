@@ -183,6 +183,19 @@
             margin-bottom: $spacing-2;
         }
 
+        // Ensure heading anchor links look like plain headings
+        h2, h3, h4 {
+            > a[href^="#"] {
+                color: inherit;
+                text-decoration: none;
+
+                &:hover {
+                    color: inherit;
+                    text-decoration: none;
+                }
+            }
+        }
+
         p {
             margin-bottom: $spacing-4;
             line-height: $line-height-relaxed;
