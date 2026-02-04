@@ -15,7 +15,9 @@
         <div class="status-content">
             {# Header #}
             <header class="status-header">
-                <h1 class="status-header__title">Interoperability Status</h1>
+                <h1 class="status-header__title" id="interoperability-status">
+                    <a href="#interoperability-status">Interoperability Status</a>
+                </h1>
                 <p class="status-header__description">
                     Real-time interoperability test results across libp2p implementations.
                     These tests verify that different implementations can communicate with each other.
@@ -39,7 +41,9 @@
             {# Transport Interop Section #}
             <section class="status-section" id="transport">
                 <header class="status-section__header">
-                    <h2 class="status-section__title">Transport Interoperability</h2>
+                    <h2 class="status-section__title" id="transport-interoperability">
+                        <a href="#transport-interoperability">Transport Interoperability</a>
+                    </h2>
                     <p class="status-section__description">
                         Tests verifying that different transport implementations (TCP, QUIC, WebSocket, etc.) can communicate.
                     </p>
@@ -106,7 +110,10 @@
                 {% for combo in combinations | sort %}
                 <div class="status-section__subsection">
                     <div class="status-grid-wrapper">
-                        <h3 class="status-grid-wrapper__title">{{ combo }}</h3>
+                        {% set combo_id = combo | slugify %}
+                        <h3 class="status-grid-wrapper__title" id="{{ combo_id }}">
+                            <a href="#{{ combo_id }}">{{ combo }}</a>
+                        </h3>
                         <table class="status-grid__table status-grid__table--compact">
                             <thead>
                                 <tr>
@@ -167,7 +174,9 @@
             {# Performance Section #}
             <section class="status-section" id="performance">
                 <header class="status-section__header">
-                    <h2 class="status-section__title">Performance Benchmarks</h2>
+                    <h2 class="status-section__title" id="performance-benchmarks">
+                        <a href="#performance-benchmarks">Performance Benchmarks</a>
+                    </h2>
                     <p class="status-section__description">
                         Performance measurements across different libp2p implementations, measuring upload and download throughput against baseline tests: iperf, https, and quic-go. These tests run on a single host using Docker containers and a Docker network. The performance numbers are relative to each other and the baselines. This gives us a measurement of the overhead of each implementation and transport.
                     </p>
@@ -188,7 +197,9 @@
             {# Hole Punching Section #}
             <section class="status-section" id="hole-punching">
                 <header class="status-section__header">
-                    <h2 class="status-section__title">Hole Punching</h2>
+                    <h2 class="status-section__title" id="hole-punching-heading">
+                        <a href="#hole-punching-heading">Hole Punching</a>
+                    </h2>
                     <p class="status-section__description">
                         Tests verifying NAT traversal capabilities across implementations using relay nodes.
                     </p>
@@ -251,7 +262,10 @@
                 {% for relay in hp_relays | sort %}
                 <div class="status-section__subsection">
                     <div class="status-grid-wrapper">
-                        <h3 class="status-grid-wrapper__title">Relay: {{ relay }}</h3>
+                        {% set relay_id = "relay-" ~ relay | slugify %}
+                        <h3 class="status-grid-wrapper__title" id="{{ relay_id }}">
+                            <a href="#{{ relay_id }}">Relay: {{ relay }}</a>
+                        </h3>
                         <table class="status-grid__table">
                             <thead>
                                 <tr>

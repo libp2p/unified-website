@@ -18,6 +18,16 @@
 
     &__title {
         margin-bottom: $spacing-4;
+
+        > a[href^="#"] {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
     }
 
     &__description {
@@ -126,6 +136,16 @@
     &__title {
         font-size: $font-size-2xl;
         margin-bottom: $spacing-2;
+
+        > a[href^="#"] {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
     }
 
     &__description {
@@ -236,6 +256,16 @@
         padding: $spacing-3 $spacing-4;
         background-color: $color-gray-50;
         border-bottom: 1px solid $color-gray-200;
+
+        > a[href^="#"] {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: inherit;
+                text-decoration: none;
+            }
+        }
     }
 }
 
