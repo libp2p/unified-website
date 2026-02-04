@@ -36,26 +36,6 @@
                 </div>
             </header>
 
-            {# Legend #}
-            <div class="status-legend">
-                <div class="status-legend__item">
-                    <span class="status-legend__color status-legend__color--pass"></span>
-                    <span>Pass</span>
-                </div>
-                <div class="status-legend__item">
-                    <span class="status-legend__color status-legend__color--fail"></span>
-                    <span>Fail</span>
-                </div>
-                <div class="status-legend__item">
-                    <span class="status-legend__color status-legend__color--partial"></span>
-                    <span>Partial</span>
-                </div>
-                <div class="status-legend__item">
-                    <span class="status-legend__color status-legend__color--na"></span>
-                    <span>N/A</span>
-                </div>
-            </div>
-
             {# Transport Interop Section #}
             <section class="status-section" id="transport">
                 <header class="status-section__header">
@@ -68,78 +48,105 @@
                 {% if data and data.transport and data.transport.results %}
                 {# Show summary #}
                 <div class="test-run-info">
-                    <div class="test-run-info__item">
-                        <strong>Total:</strong>
-                        <span>{{ data.transport.summary.total }}</span>
+                    <div class="test-run-info__stats">
+                        <div class="test-run-info__item">
+                            <strong>Total:</strong>
+                            <span>{{ data.transport.summary.total }}</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <strong>Passed:</strong>
+                            <span class="status-text--pass">{{ data.transport.summary.passed }}</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <strong>Failed:</strong>
+                            <span class="status-text--fail">{{ data.transport.summary.failed }}</span>
+                        </div>
                     </div>
-                    <div class="test-run-info__item">
-                        <strong>Passed:</strong>
-                        <span class="status-text--pass">{{ data.transport.summary.passed }}</span>
-                    </div>
-                    <div class="test-run-info__item">
-                        <strong>Failed:</strong>
-                        <span class="status-text--fail">{{ data.transport.summary.failed }}</span>
+                    <div class="test-run-info__legend">
+                        <div class="test-run-info__item">
+                            <span class="status-emoji" title="Pass">&#x1F7E2;</span>
+                            <span>Pass</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <span class="status-emoji" title="Fail">&#x1F534;</span>
+                            <span>Fail</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <span class="status-emoji status-emoji--na">-</span>
+                            <span>N/A</span>
+                        </div>
                     </div>
                 </div>
 
-                {# Extract unique implementations, transports, etc. #}
+                {# Extract unique combinations (transport + secure-channel + muxer), dialers, and listeners #}
+                {% set_global combinations = [] %}
                 {% set_global transport_dialers = [] %}
                 {% set_global transport_listeners = [] %}
-                {% set_global transport_transports = [] %}
+
                 {% for test in data.transport.results %}
+                    {# Build combination key: "transport - secure-channel - muxer" or just "transport" for standalone #}
+                    {% if test["secure-channel"] and test.muxer %}
+                        {% set combo_key = test.transport ~ " - " ~ test["secure-channel"] ~ " - " ~ test.muxer %}
+                    {% else %}
+                        {% set combo_key = test.transport %}
+                    {% endif %}
+
+                    {% if combo_key not in combinations %}
+                        {% set_global combinations = combinations | concat(with=combo_key) %}
+                    {% endif %}
                     {% if test.dialer not in transport_dialers %}
                         {% set_global transport_dialers = transport_dialers | concat(with=test.dialer) %}
                     {% endif %}
                     {% if test.listener not in transport_listeners %}
                         {% set_global transport_listeners = transport_listeners | concat(with=test.listener) %}
                     {% endif %}
-                    {% if test.transport not in transport_transports %}
-                        {% set_global transport_transports = transport_transports | concat(with=test.transport) %}
-                    {% endif %}
                 {% endfor %}
 
-                {# Generate a grid for each transport type #}
-                {% for transport_name in transport_transports | sort %}
+                {# Generate a table for each unique combination #}
+                {% for combo in combinations | sort %}
                 <div class="status-section__subsection">
-                    <h3 class="status-section__subtitle">{{ transport_name | upper }}</h3>
                     <div class="status-grid-wrapper">
-                        <table class="status-grid__table">
+                        <h3 class="status-grid-wrapper__title">{{ combo }}</h3>
+                        <table class="status-grid__table status-grid__table--compact">
                             <thead>
                                 <tr>
-                                    <th>Dialer \ Listener</th>
-                                    {% for listener in transport_listeners | sort %}
-                                    <th class="impl-header">
-                                        <span class="impl-header__name">{{ listener | split(pat="-") | first }}</span>
-                                        <span class="impl-header__version">{{ listener | split(pat="-") | slice(start=1) | join(sep="-") }}</span>
+                                    <th class="corner-cell">
+                                        <div class="corner-cell__container">
+                                            <span class="corner-cell__dialer">Dialer</span>
+                                            <span class="corner-cell__listener">Listener</span>
+                                        </div>
                                     </th>
+                                    {% for listener in transport_listeners | sort %}
+                                    <th class="rotate"><div><span>{{ listener }}</span></div></th>
                                     {% endfor %}
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for dialer in transport_dialers | sort %}
                                 <tr>
-                                    <th class="impl-header">
-                                        <span class="impl-header__name">{{ dialer | split(pat="-") | first }}</span>
-                                        <span class="impl-header__version">{{ dialer | split(pat="-") | slice(start=1) | join(sep="-") }}</span>
-                                    </th>
+                                    <th class="row-header">{{ dialer }}</th>
                                     {% for listener in transport_listeners | sort %}
-                                        {# Look up results for all secure/muxer combinations #}
-                                        {% set_global cell_statuses = [] %}
+                                        {# Find the test result for this dialer/listener/combo #}
+                                        {% set_global cell_status = "na" %}
                                         {% for test in data.transport.results %}
-                                            {% if test.dialer == dialer and test.listener == listener and test.transport == transport_name %}
-                                                {% set_global cell_statuses = cell_statuses | concat(with=test.status) %}
+                                            {% if test["secure-channel"] and test.muxer %}
+                                                {% set test_combo = test.transport ~ " - " ~ test["secure-channel"] ~ " - " ~ test.muxer %}
+                                            {% else %}
+                                                {% set test_combo = test.transport %}
+                                            {% endif %}
+                                            {% if test.dialer == dialer and test.listener == listener and test_combo == combo %}
+                                                {% set_global cell_status = test.status %}
                                             {% endif %}
                                         {% endfor %}
-
-                                        {% if cell_statuses | length == 0 %}
-                                        <td><span class="status-cell status-cell--na">-</span></td>
-                                        {% elif "fail" in cell_statuses %}
-                                        <td><span class="status-cell status-cell--fail" title="Some tests failed">X</span></td>
-                                        {% elif cell_statuses | length > 0 and "pass" in cell_statuses %}
-                                        <td><span class="status-cell status-cell--pass">✓</span></td>
-                                        {% else %}
-                                        <td><span class="status-cell status-cell--na">-</span></td>
-                                        {% endif %}
+                                        <td class="status-cell-td">
+                                            {% if cell_status == "pass" %}
+                                            <span class="status-emoji" title="Pass">&#x1F7E2;</span>
+                                            {% elif cell_status == "fail" %}
+                                            <span class="status-emoji" title="Fail">&#x1F534;</span>
+                                            {% else %}
+                                            <span class="status-emoji status-emoji--na" title="N/A">-</span>
+                                            {% endif %}
+                                        </td>
                                     {% endfor %}
                                 </tr>
                                 {% endfor %}
@@ -162,56 +169,13 @@
                 <header class="status-section__header">
                     <h2 class="status-section__title">Performance Benchmarks</h2>
                     <p class="status-section__description">
-                        Performance measurements across different libp2p implementations, measuring upload/download throughput and latency.
+                        Performance measurements across different libp2p implementations, measuring upload and download throughput against baseline tests: iperf, https, and quic-go.
                     </p>
                 </header>
 
                 {% if data and data.perf and data.perf.results %}
-                {# Show summary #}
-                <div class="test-run-info">
-                    <div class="test-run-info__item">
-                        <strong>Main Tests:</strong>
-                        <span>{{ data.perf.summary["main-total"] }}</span>
-                    </div>
-                    <div class="test-run-info__item">
-                        <strong>Passed:</strong>
-                        <span class="status-text--pass">{{ data.perf.summary["main-passed"] }}</span>
-                    </div>
-                    <div class="test-run-info__item">
-                        <strong>Failed:</strong>
-                        <span class="status-text--fail">{{ data.perf.summary["main-failed"] }}</span>
-                    </div>
-                    {% if data.perf.summary["baseline-total"] > 0 %}
-                    <div class="test-run-info__item">
-                        <strong>Baselines:</strong>
-                        <span>{{ data.perf.summary["baseline-passed"] }}/{{ data.perf.summary["baseline-total"] }}</span>
-                    </div>
-                    {% endif %}
-                </div>
-
-                {# Box plot images #}
-                {% if data["box-plots"] %}
-                <div class="perf-boxplots">
-                    {% if data["box-plots"].upload %}
-                    <div class="perf-boxplots__item">
-                        <h4>Upload Throughput</h4>
-                        <img src="/data/status/boxplot-upload.png" alt="Upload Throughput Box Plot" class="perf-boxplots__image" loading="lazy">
-                    </div>
-                    {% endif %}
-                    {% if data["box-plots"].download %}
-                    <div class="perf-boxplots__item">
-                        <h4>Download Throughput</h4>
-                        <img src="/data/status/boxplot-download.png" alt="Download Throughput Box Plot" class="perf-boxplots__image" loading="lazy">
-                    </div>
-                    {% endif %}
-                    {% if data["box-plots"].latency %}
-                    <div class="perf-boxplots__item">
-                        <h4>Latency</h4>
-                        <img src="/data/status/boxplot-latency.png" alt="Latency Box Plot" class="perf-boxplots__image" loading="lazy">
-                    </div>
-                    {% endif %}
-                </div>
-                {% endif %}
+                {# Container for Plotly box plots grouped by dialer-listener #}
+                <div id="perf-boxplots-container"></div>
 
                 {% else %}
                 <div class="status-section__notice">
@@ -233,17 +197,33 @@
                 {% if data and data["hole-punch"] and data["hole-punch"].results %}
                 {# Show summary #}
                 <div class="test-run-info">
-                    <div class="test-run-info__item">
-                        <strong>Total:</strong>
-                        <span>{{ data["hole-punch"].summary.total }}</span>
+                    <div class="test-run-info__stats">
+                        <div class="test-run-info__item">
+                            <strong>Total:</strong>
+                            <span>{{ data["hole-punch"].summary.total }}</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <strong>Passed:</strong>
+                            <span class="status-text--pass">{{ data["hole-punch"].summary.passed }}</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <strong>Failed:</strong>
+                            <span class="status-text--fail">{{ data["hole-punch"].summary.failed }}</span>
+                        </div>
                     </div>
-                    <div class="test-run-info__item">
-                        <strong>Passed:</strong>
-                        <span class="status-text--pass">{{ data["hole-punch"].summary.passed }}</span>
-                    </div>
-                    <div class="test-run-info__item">
-                        <strong>Failed:</strong>
-                        <span class="status-text--fail">{{ data["hole-punch"].summary.failed }}</span>
+                    <div class="test-run-info__legend">
+                        <div class="test-run-info__item">
+                            <span class="status-emoji" title="Pass">&#x1F7E2;</span>
+                            <span>Pass</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <span class="status-emoji" title="Fail">&#x1F534;</span>
+                            <span>Fail</span>
+                        </div>
+                        <div class="test-run-info__item">
+                            <span class="status-emoji status-emoji--na">-</span>
+                            <span>N/A</span>
+                        </div>
                     </div>
                 </div>
 
@@ -270,8 +250,8 @@
                 {# Generate a table for each relay type #}
                 {% for relay in hp_relays | sort %}
                 <div class="status-section__subsection">
-                    <h3 class="status-section__subtitle">Relay: {{ relay }}</h3>
                     <div class="status-grid-wrapper">
+                        <h3 class="status-grid-wrapper__title">Relay: {{ relay }}</h3>
                         <table class="status-grid__table">
                             <thead>
                                 <tr>
@@ -407,4 +387,254 @@ document.addEventListener('DOMContentLoaded', function() {
     highlightTOC();
 });
 </script>
+
+{% if data and data.perf and data.perf.results %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script>
+(function() {
+    'use strict';
+
+    var perfData = {
+        baselines: {{ data.perf.baselines | json_encode() | safe }},
+        results: {{ data.perf.results | json_encode() | safe }}
+    };
+
+    // Transport colors matching site palette
+    var transportColors = {
+        'tcp': '#24a8e6',      // libp2p blue
+        'ws': '#ff743e',       // libp2p orange
+        'quic-v1': '#953A8C',  // purple
+        'webrtc-direct': '#34797D'  // teal
+    };
+
+    // Baseline colors
+    var baselineColors = {
+        'iperf': '#10b981',    // green
+        'https': '#f59e0b',    // amber
+        'quic-go': '#8b5cf6'   // purple
+    };
+
+    // Group results by dialer-listener combination
+    function groupByDialerListener(results) {
+        var groups = {};
+        results.forEach(function(r) {
+            var key = r.dialer + ' × ' + r.listener;
+            if (!groups[key]) {
+                groups[key] = [];
+            }
+            groups[key].push(r);
+        });
+        return groups;
+    }
+
+    // Get color for a transport
+    function getColorForTransport(transport) {
+        return transportColors[transport] || '#6b7280';
+    }
+
+    // Create a label for a test (transport - secure - muxer)
+    function getTestLabel(result) {
+        if (result['secure-channel'] && result.muxer) {
+            return result.transport + ' - ' + result['secure-channel'] + ' - ' + result.muxer;
+        }
+        return result.transport;
+    }
+
+    // Create box traces for Plotly with pre-computed stats
+    function createBoxTraces(results, metric) {
+        return results.map(function(r) {
+            var data = r[metric];
+            if (!data) return null;
+            var label = getTestLabel(r);
+            return {
+                type: 'box',
+                name: label,
+                x: [label],
+                lowerfence: [data.min],
+                q1: [data.q1],
+                median: [data.median],
+                q3: [data.q3],
+                upperfence: [data.max],
+                marker: { color: getColorForTransport(r.transport) },
+                boxpoints: false,
+                hoverinfo: 'name+y',
+                hovertemplate: '<b>%{fullData.name}</b><br>' +
+                    'Max: %{upperfence}<br>' +
+                    'Q3: %{q3}<br>' +
+                    'Median: %{median}<br>' +
+                    'Q1: %{q1}<br>' +
+                    'Min: %{lowerfence}<extra></extra>'
+            };
+        }).filter(function(t) { return t !== null; });
+    }
+
+    // Create horizontal baseline shapes
+    function createBaselineShapes(baselines, metric) {
+        var metricKey = metric === 'upload' ? 'upload-throughput' : 'download-throughput';
+        return baselines.map(function(b) {
+            var value = b[metricKey];
+            if (!value) return null;
+            var color = baselineColors[b.dialer] || '#9ca3af';
+            return {
+                type: 'line',
+                xref: 'paper',
+                yref: 'y',
+                x0: 0,
+                x1: 1,
+                y0: value,
+                y1: value,
+                line: {
+                    color: color,
+                    width: 2,
+                    dash: 'dash'
+                }
+            };
+        }).filter(function(s) { return s !== null; });
+    }
+
+    // Create baseline annotations (labels on the right)
+    function createBaselineAnnotations(baselines, metric) {
+        var metricKey = metric === 'upload' ? 'upload-throughput' : 'download-throughput';
+        return baselines.map(function(b) {
+            var value = b[metricKey];
+            if (!value) return null;
+            var color = baselineColors[b.dialer] || '#9ca3af';
+            return {
+                xref: 'paper',
+                yref: 'y',
+                x: 1.02,
+                y: value,
+                xanchor: 'left',
+                yanchor: 'middle',
+                text: b.dialer + ' (' + value.toFixed(2) + ')',
+                showarrow: false,
+                font: {
+                    size: 10,
+                    color: color
+                }
+            };
+        }).filter(function(a) { return a !== null; });
+    }
+
+    // Create vertical connector lines from boxes to x-axis labels
+    function createConnectorLines(traces) {
+        return traces.map(function(trace) {
+            return {
+                type: 'line',
+                xref: 'x',
+                yref: 'paper',
+                x0: trace.name,
+                x1: trace.name,
+                y0: 0,
+                y1: 1,
+                line: {
+                    color: '#eee',
+                    width: 1
+                },
+                layer: 'below'
+            };
+        });
+    }
+
+    // Render a Plotly chart
+    function renderPlot(elementId, traces, baselines, metric, yAxisTitle) {
+        var baselineShapes = createBaselineShapes(baselines, metric);
+        var connectorLines = createConnectorLines(traces);
+        var shapes = connectorLines.concat(baselineShapes);
+        var annotations = createBaselineAnnotations(baselines, metric);
+
+        var layout = {
+            showlegend: false,
+            margin: { l: 50, r: 80, t: 20, b: 140 },
+            yaxis: {
+                title: yAxisTitle,
+                zeroline: false
+            },
+            xaxis: {
+                tickangle: -45,
+                automargin: true
+            },
+            shapes: shapes,
+            annotations: annotations,
+            hovermode: 'closest'
+        };
+
+        var config = {
+            responsive: true,
+            displayModeBar: false
+        };
+
+        Plotly.newPlot(elementId, traces, layout, config);
+    }
+
+    // Create the DOM structure for a group
+    function createGroupSection(groupName, results, container) {
+        var section = document.createElement('div');
+        section.className = 'status-section__subsection';
+
+        var groupDiv = document.createElement('div');
+        groupDiv.className = 'perf-boxplots-group';
+
+        var title = document.createElement('h3');
+        title.className = 'perf-boxplots-group__title';
+        title.textContent = groupName;
+        groupDiv.appendChild(title);
+
+        var boxplotsDiv = document.createElement('div');
+        boxplotsDiv.className = 'perf-boxplots';
+
+        // Generate unique IDs for plot containers
+        var groupId = groupName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+
+        // Upload plot
+        var uploadItem = document.createElement('div');
+        uploadItem.className = 'perf-boxplots__item';
+        var uploadTitle = document.createElement('h4');
+        uploadTitle.textContent = 'Upload Throughput';
+        uploadItem.appendChild(uploadTitle);
+        var uploadPlotDiv = document.createElement('div');
+        uploadPlotDiv.id = 'plot-upload-' + groupId;
+        uploadItem.appendChild(uploadPlotDiv);
+        boxplotsDiv.appendChild(uploadItem);
+
+        // Download plot
+        var downloadItem = document.createElement('div');
+        downloadItem.className = 'perf-boxplots__item';
+        var downloadTitle = document.createElement('h4');
+        downloadTitle.textContent = 'Download Throughput';
+        downloadItem.appendChild(downloadTitle);
+        var downloadPlotDiv = document.createElement('div');
+        downloadPlotDiv.id = 'plot-download-' + groupId;
+        downloadItem.appendChild(downloadPlotDiv);
+        boxplotsDiv.appendChild(downloadItem);
+
+        groupDiv.appendChild(boxplotsDiv);
+        section.appendChild(groupDiv);
+        container.appendChild(section);
+
+        // Render the plots
+        var uploadTraces = createBoxTraces(results, 'upload');
+        var downloadTraces = createBoxTraces(results, 'download');
+
+        renderPlot(uploadPlotDiv.id, uploadTraces, perfData.baselines, 'upload', 'Throughput (Gbps)');
+        renderPlot(downloadPlotDiv.id, downloadTraces, perfData.baselines, 'download', 'Throughput (Gbps)');
+    }
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('perf-boxplots-container');
+        if (!container || !perfData.results || perfData.results.length === 0) {
+            return;
+        }
+
+        var groups = groupByDialerListener(perfData.results);
+        var groupNames = Object.keys(groups).sort();
+
+        groupNames.forEach(function(groupName) {
+            createGroupSection(groupName, groups[groupName], container);
+        });
+    });
+})();
+</script>
+{% endif %}
 {% endblock %}

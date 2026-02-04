@@ -39,12 +39,12 @@ jobs:
             # Create a minimal placeholder file so the site still builds
             cat > static/data/status/interop-results.yml << 'EOF'
 # Placeholder - results not yet available
-generatedAt: null
-workflowRun: null
+generated-at: null
+workflow-run: null
 transport: null
-holePunch: null
+hole-punch: null
 perf: null
-boxPlots:
+box-plots:
   upload: null
   download: null
   latency: null
