@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}{{ section.title }} - {{ config.title }}{% endblock %}
+{% block og_title %}{{ section.title }} - {{ config.title }}{% endblock %}
+
+{% block body_class %}projects{% endblock %}
+{% block main_class %}projects-main{% endblock %}
+
+{% block content %}
+{# Hero Section #}
+<section class="projects-hero">
+    <div class="projects-hero__container">
+        <h1 class="projects-hero__title">{{ section.title }}</h1>
+        <p class="projects-hero__subtitle">{{ section.description }}</p>
+    </div>
+</section>
+
+{# Production-Ready Implementations Section #}
+<section class="projects-section projects-section--gray">
+    <div class="container">
+        <h2 class="projects-section__title">Production-Ready Implementations</h2>
+        <p class="projects-section__subtitle">
+            Choose the implementation that fits your stack. All implementations follow the same specifications for cross-language compatibility.
+        </p>
+        <div class="projects-section__grid">
+            <a href="{{ config.extra.go_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-go.svg" alt="Go">
+                </div>
+                <h3 class="impl-card__name">go-libp2p</h3>
+                <p class="impl-card__desc">The implementation in Golang</p>
+            </a>
+            <a href="{{ config.extra.rust_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-rust.svg" alt="Rust">
+                </div>
+                <h3 class="impl-card__name">rust-libp2p</h3>
+                <p class="impl-card__desc">High-performance Rust implementation</p>
+            </a>
+            <a href="{{ config.extra.js_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-js.svg" alt="JavaScript">
+                </div>
+                <h3 class="impl-card__name">js-libp2p</h3>
+                <p class="impl-card__desc">For browsers and Node.js</p>
+            </a>
+            <a href="{{ config.extra.nim_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-nim.svg" alt="Nim">
+                </div>
+                <h3 class="impl-card__name">nim-libp2p</h3>
+                <p class="impl-card__desc">The Nim reference implementation</p>
+            </a>
+            <a href="{{ config.extra.py_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-py.svg" alt="Python">
+                </div>
+                <h3 class="impl-card__name">py-libp2p</h3>
+                <p class="impl-card__desc">The AI-friendly Python implementation</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# Additional Implementations Section #}
+<section class="projects-section projects-section--white">
+    <div class="container">
+        <h2 class="projects-section__title">Additional Implementations</h2>
+        <p class="projects-section__subtitle">
+            Community-driven implementations extending libp2p to more languages and platforms.
+        </p>
+        <div class="projects-section__grid">
+            <a href="{{ config.extra.cpp_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/cpp-lang.svg" alt="C++">
+                </div>
+                <h3 class="impl-card__name">cpp-libp2p</h3>
+                <p class="impl-card__desc">C++ implementation</p>
+            </a>
+            <a href="{{ config.extra.swift_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/swift-lang.svg" alt="Swift">
+                </div>
+                <h3 class="impl-card__name">swift-libp2p</h3>
+                <p class="impl-card__desc">Swift implementation for Apple platforms</p>
+            </a>
+            <a href="{{ config.extra.jvm_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/jvm-lang.svg" alt="JVM">
+                </div>
+                <h3 class="impl-card__name">jvm-libp2p</h3>
+                <p class="impl-card__desc">Java/Kotlin implementation</p>
+            </a>
+            <a href="{{ config.extra.zig_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-zig.svg" alt="Zig">
+                </div>
+                <h3 class="impl-card__name">zig-libp2p</h3>
+                <p class="impl-card__desc">Zig implementation</p>
+            </a>
+            <a href="{{ config.extra.dotnet_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/dotnet-lang.svg" alt=".NET">
+                </div>
+                <h3 class="impl-card__name">dotnet-libp2p</h3>
+                <p class="impl-card__desc">.NET implementation by Nethermind</p>
+            </a>
+            <a href="{{ config.extra.c_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/c-lang.svg" alt="C">
+                </div>
+                <h3 class="impl-card__name">c-libp2p</h3>
+                <p class="impl-card__desc">C implementation by Pier Two</p>
+            </a>
+            <a href="{{ config.extra.litep2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
+                <div class="impl-card__logo">
+                    <img src="{{ macros::rel() }}img/lang-rust.svg" alt="Rust">
+                </div>
+                <h3 class="impl-card__name">litep2p</h3>
+                <p class="impl-card__desc">Alternative Rust implementation by Parity</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+{# Related Projects Section #}
+<section class="projects-section projects-section--gray">
+    <div class="container">
+        <h2 class="projects-section__title">Related Projects</h2>
+        <p class="projects-section__subtitle">
+            Tools and resources to help you build and test with libp2p.
+        </p>
+        <div class="projects-section__grid projects-section__grid--three">
+            <a href="https://github.com/libp2p/test-plans" class="project-card" target="_blank" rel="noopener noreferrer">
+                <div class="project-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 11l3 3L22 4"></path>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                </div>
+                <h3 class="project-card__name">Interop Testing</h3>
+                <p class="project-card__desc">Cross-implementation testing infrastructure to ensure compatibility between libp2p implementations.</p>
+            </a>
+            <a href="https://github.com/libp2p/workshop" class="project-card" target="_blank" rel="noopener noreferrer">
+                <div class="project-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h3 class="project-card__name">Educational Workshops</h3>
+                <p class="project-card__desc">Hands-on tutorials and workshops to learn libp2p concepts and implementation.</p>
+            </a>
+            <a href="https://github.com/libp2p/universal-connectivity" class="project-card" target="_blank" rel="noopener noreferrer">
+                <div class="project-card__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </div>
+                <h3 class="project-card__name">Universal Connectivity</h3>
+                <p class="project-card__desc">Demonstrations of browser-to-browser and cross-platform connectivity with libp2p.</p>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -21,6 +21,8 @@ default_language = "en"
 
 # Syntax highlighting
 [markdown]
+insert_anchor_links = "heading"
+
 [markdown.highlighting]
 enabled = true
 theme = "monokai"
@@ -69,6 +71,12 @@ js_libp2p = "https://github.com/libp2p/js-libp2p"
 py_libp2p = "https://github.com/libp2p/py-libp2p"
 nim_libp2p = "https://github.com/vacp2p/nim-libp2p"
 zig_libp2p = "https://github.com/zen-eth/zig-libp2p"
+cpp_libp2p = "https://github.com/libp2p/cpp-libp2p"
+swift_libp2p = "https://github.com/swift-libp2p/swift-libp2p"
+jvm_libp2p = "https://github.com/libp2p/jvm-libp2p"
+dotnet_libp2p = "https://github.com/NethermindEth/dotnet-libp2p"
+c_libp2p = "https://github.com/Pier-Two/c-libp2p"
+litep2p = "https://github.com/paritytech/litep2p"
 
 # Discussion forums
 discuss = "https://discuss.libp2p.io"
@@ -119,8 +127,12 @@ name = "Releases"
 url = "/releases/"
 
 [[extra.nav]]
-name = "Guides"
+name = "Docs"
 url = "/guides/"
+
+[[extra.nav]]
+name = "Projects"
+url = "/projects/"
 
 [[extra.nav]]
 name = "Status"

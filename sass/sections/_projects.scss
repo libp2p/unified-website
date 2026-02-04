@@ -1,0 +1,187 @@
+// ===========================================
+// PROJECTS PAGE STYLES
+// ===========================================
+
+.projects {
+    // Page wrapper
+}
+
+.projects-main {
+    // Main content area
+}
+
+// Projects Hero Section
+.projects-hero {
+    background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
+    color: $color-white;
+    padding: $spacing-16 0;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-20 0;
+    }
+
+    &__container {
+        max-width: $container-xl;
+        margin: 0 auto;
+        padding: 0 $spacing-4;
+        text-align: center;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 $spacing-6;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            padding: 0 $spacing-8;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-tight;
+        margin-bottom: $spacing-4;
+        color: $color-white;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-5xl;
+        }
+    }
+
+    &__subtitle {
+        font-size: $font-size-lg;
+        line-height: $line-height-relaxed;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-xl;
+        }
+    }
+}
+
+// Projects Section (reuses .implementations styling from home)
+.projects-section {
+    padding: $spacing-16 0;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-24 0;
+    }
+
+    &--gray {
+        background-color: $color-gray-50;
+    }
+
+    &--white {
+        background-color: $color-white;
+    }
+
+    &__title {
+        text-align: center;
+        margin-bottom: $spacing-4;
+    }
+
+    &__subtitle {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto $spacing-12;
+        color: $color-gray-600;
+        font-size: $font-size-lg;
+    }
+
+    &__grid {
+        display: grid;
+        gap: $spacing-6;
+        grid-template-columns: 1fr;
+        max-width: 1100px;
+        margin: 0 auto;
+
+        @media (min-width: $breakpoint-sm) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (min-width: $breakpoint-md) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    &__grid--three {
+        @media (min-width: $breakpoint-lg) {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 900px;
+        }
+    }
+}
+
+// Project Card (for related projects)
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: $spacing-6;
+    background-color: $color-white;
+    border-radius: $radius-xl;
+    border: 1px solid $color-gray-200;
+    text-decoration: none;
+    transition: all $transition-base $ease-in-out;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: $shadow-lg;
+        border-color: $color-primary;
+        text-decoration: none;
+
+        .project-card__icon {
+            color: $color-primary;
+        }
+    }
+
+    &__icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: $spacing-4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-gray-500;
+        transition: color $transition-base $ease-in-out;
+
+        svg {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    &__name {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-semibold;
+        color: $color-gray-900;
+        margin-bottom: $spacing-2;
+    }
+
+    &__desc {
+        font-size: $font-size-sm;
+        color: $color-gray-600;
+        margin: 0;
+        line-height: $line-height-relaxed;
+    }
+}
+
+// Implementation card placeholder for missing icons
+.impl-card--placeholder {
+    .impl-card__logo {
+        background-color: $color-gray-100;
+        border-radius: $radius-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-2xl;
+        font-weight: $font-weight-bold;
+        color: $color-gray-400;
+    }
+}
