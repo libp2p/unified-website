@@ -20,6 +20,7 @@
     <div class="reports-landing__sections">
         {% for subsection_path in section.subsections %}
             {% set subsection = get_section(path=subsection_path) %}
+            {% if subsection.pages | length > 0 %}
             <a href="{{ macros::rel_link(permalink=subsection.permalink) }}" class="reports-section-card">
                 <div class="reports-section-card__icon">
                     {% if "annual-reports" in subsection.path %}
@@ -57,6 +58,7 @@
                     {{ subsection.pages | length }} {% if subsection.pages | length == 1 %}report{% else %}reports{% endif %}
                 </span>
             </a>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
