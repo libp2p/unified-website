@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}{{ section.title }} - {{ config.title }}{% endblock %}
+{% block og_title %}{{ section.title }} - {{ config.title }}{% endblock %}
+
+{% block body_class %}media{% endblock %}
+{% block main_class %}media-main{% endblock %}
+
+{% block content %}
+{# Hero Section #}
+<section class="media-hero">
+    <div class="media-hero__container">
+        <h1 class="media-hero__title">{{ section.title }}</h1>
+        <p class="media-hero__subtitle">{{ section.description }}</p>
+    </div>
+</section>
+
+{# Content Section #}
+<section class="media-content">
+    <div class="container">
+        <div class="prose">
+            {{ section.content | safe }}
+        </div>
+    </div>
+</section>
+{% endblock %}
