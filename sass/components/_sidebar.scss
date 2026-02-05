@@ -52,6 +52,7 @@
         align-items: center;
         justify-content: space-between;
         padding: $spacing-2 $spacing-4;
+        padding-left: $spacing-6;
         font-size: $font-size-xs;
         font-weight: $font-weight-semibold;
         color: $color-gray-500;
@@ -116,6 +117,17 @@
             &:hover {
                 color: $color-primary-dark;
                 background-color: $color-primary-lighter;
+            }
+        }
+
+        &--empty {
+            color: $color-gray-400;
+            font-style: italic;
+            cursor: default;
+
+            &:hover {
+                color: $color-gray-400;
+                background-color: transparent;
             }
         }
     }

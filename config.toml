@@ -19,6 +19,9 @@ feed_filenames = ["rss.xml"]
 # Default language
 default_language = "en"
 
+# Generate a sitemap
+generate_sitemap = true
+
 # Syntax highlighting
 [markdown]
 insert_anchor_links = "heading"

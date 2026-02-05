@@ -1,34 +1,27 @@
 // ===========================================
 // REPORTS SECTION STYLES
 // ===========================================
+// Reports section uses identical layout to Guides section
+// Alias all layout classes to guides styles
 
-// Reports layout (mirrors guides)
 .reports-layout {
-    display: flex;
-    min-height: calc(100vh - 65px);
+    @extend .guides-layout;
 }
 
 .reports-main {
-    flex: 1;
-    min-width: 0;
-    display: flex;
+    @extend .guides-main;
 }
 
 .reports-content {
-    flex: 1;
-    min-width: 0;
-    padding: $spacing-8;
-
-    @media (min-width: $breakpoint-lg) {
-        padding: $spacing-10 $spacing-12;
-    }
+    @extend .guides-content;
 }
 
 .reports-article {
-    max-width: $container-prose;
+    @extend .guides-article;
 }
 
-// Reports landing page
+// Reports landing page - no longer needed as it's now a simple description page
+// Keeping for backward compatibility in case subsections use it
 .reports-landing {
     padding: $spacing-8;
     max-width: 1200px;
@@ -59,10 +52,6 @@
 
         @media (min-width: $breakpoint-md) {
             grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media (min-width: $breakpoint-lg) {
-            grid-template-columns: repeat(3, 1fr);
         }
     }
 }
@@ -120,17 +109,12 @@
     }
 }
 
-// Report header
+// Report header - alias to guide header
 .report-header {
-    margin-bottom: $spacing-8;
+    @extend .guide-header;
 
     &__title {
-        font-size: $font-size-3xl;
-        margin-bottom: $spacing-4;
-
-        @media (min-width: $breakpoint-md) {
-            font-size: $font-size-4xl;
-        }
+        @extend .guide-header__title;
     }
 
     &__description {
@@ -141,226 +125,49 @@
     }
 
     &__meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: $spacing-4;
-        font-size: $font-size-sm;
-        color: $color-gray-500;
+        @extend .guide-header__meta;
     }
 
-    &__author,
     &__reading-time {
-        display: flex;
-        align-items: center;
-        gap: $spacing-1;
+        @extend .guide-header__reading-time;
     }
 }
 
-// Report content styles (prose)
+// Report content - alias to guide content
 .report-content {
-    &.prose {
-        h2 {
-            font-size: $font-size-2xl;
-            font-weight: $font-weight-semibold;
-            margin-top: $spacing-12;
-            margin-bottom: $spacing-4;
-            padding-bottom: $spacing-2;
-            border-bottom: 1px solid $color-gray-200;
-        }
-
-        h3 {
-            font-size: $font-size-xl;
-            font-weight: $font-weight-semibold;
-            margin-top: $spacing-8;
-            margin-bottom: $spacing-3;
-        }
-
-        h4 {
-            font-size: $font-size-lg;
-            font-weight: $font-weight-semibold;
-            margin-top: $spacing-6;
-            margin-bottom: $spacing-2;
-        }
-
-        // Ensure heading anchor links look like plain headings
-        h2, h3, h4 {
-            > a[href^="#"] {
-                color: inherit;
-                text-decoration: none;
-
-                &:hover {
-                    color: inherit;
-                    text-decoration: none;
-                }
-            }
-        }
-
-        p {
-            margin-bottom: $spacing-4;
-            line-height: $line-height-relaxed;
-        }
-
-        ul, ol {
-            margin-bottom: $spacing-4;
-            padding-left: $spacing-6;
-
-            li {
-                margin-bottom: $spacing-2;
-                line-height: $line-height-relaxed;
-            }
-        }
-
-        blockquote {
-            margin: $spacing-6 0;
-            padding: $spacing-4 $spacing-6;
-            border-left: 4px solid $color-primary;
-            background-color: $color-gray-50;
-            font-style: italic;
-            color: $color-gray-700;
-
-            p:last-child {
-                margin-bottom: 0;
-            }
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: $radius-lg;
-            margin: $spacing-6 0;
-        }
-
-        table {
-            width: 100%;
-            margin: $spacing-6 0;
-            border-collapse: collapse;
-            font-size: $font-size-sm;
-
-            th, td {
-                padding: $spacing-3;
-                border: 1px solid $color-gray-200;
-                text-align: left;
-            }
-
-            th {
-                background-color: $color-gray-50;
-                font-weight: $font-weight-semibold;
-            }
-
-            tbody tr:hover {
-                background-color: $color-gray-50;
-            }
-        }
-
-        a {
-            color: $color-primary;
-            text-decoration: none;
-
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-        code {
-            font-family: $font-family-mono;
-            font-size: 0.9em;
-            background-color: $color-gray-100;
-            padding: $spacing-0-5 $spacing-1;
-            border-radius: $radius-sm;
-        }
-
-        pre {
-            margin: $spacing-6 0;
-            padding: $spacing-4;
-            background-color: $code-bg;
-            border-radius: $radius-lg;
-            overflow-x: auto;
-
-            code {
-                background-color: transparent;
-                padding: 0;
-                color: $code-text;
-            }
-        }
-
-        hr {
-            margin: $spacing-8 0;
-            border: none;
-            border-top: 1px solid $color-gray-200;
-        }
-    }
+    @extend .guide-content;
 }
 
-// Report footer
+// Report footer - alias to guide footer
 .report-footer {
-    margin-top: $spacing-12;
-    padding-top: $spacing-8;
-    border-top: 1px solid $color-gray-200;
+    @extend .guide-footer;
 }
 
 .report-nav {
-    display: grid;
-    gap: $spacing-4;
-    grid-template-columns: 1fr;
-
-    @media (min-width: $breakpoint-md) {
-        grid-template-columns: 1fr 1fr;
-    }
+    @extend .guide-nav;
 
     &__link {
-        display: flex;
-        align-items: center;
-        gap: $spacing-3;
-        padding: $spacing-4;
-        background-color: $color-gray-50;
-        border-radius: $radius-lg;
-        text-decoration: none;
-        transition: all $transition-fast $ease-in-out;
-
-        &:hover {
-            background-color: $color-gray-100;
-            text-decoration: none;
-        }
+        @extend .guide-nav__link;
 
         &--prev {
-            flex-direction: row;
+            @extend .guide-nav__link--prev;
         }
 
         &--next {
-            flex-direction: row-reverse;
-            text-align: right;
-
-            @media (min-width: $breakpoint-md) {
-                grid-column: 2;
-            }
-        }
-
-        svg {
-            flex-shrink: 0;
-            width: 20px;
-            height: 20px;
-            color: $color-gray-400;
+            @extend .guide-nav__link--next;
         }
     }
 
     &__text {
-        min-width: 0;
+        @extend .guide-nav__text;
     }
 
     &__label {
-        display: block;
-        font-size: $font-size-xs;
-        color: $color-gray-500;
-        margin-bottom: $spacing-0-5;
+        @extend .guide-nav__label;
     }
 
     &__title {
-        font-weight: $font-weight-medium;
-        color: $color-gray-900;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        @extend .guide-nav__title;
     }
 }
 

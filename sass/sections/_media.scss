@@ -1,0 +1,158 @@
+// ===========================================
+// MEDIA PAGE STYLES
+// ===========================================
+
+.media {
+    // Page wrapper
+}
+
+.media-main {
+    // Main content area
+}
+
+// Media Hero Section
+.media-hero {
+    background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
+    color: $color-white;
+    padding: $spacing-16 0;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-20 0;
+    }
+
+    &__container {
+        max-width: $container-xl;
+        margin: 0 auto;
+        padding: 0 $spacing-4;
+        text-align: center;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 $spacing-6;
+        }
+
+        @media (min-width: $breakpoint-lg) {
+            padding: 0 $spacing-8;
+        }
+    }
+
+    &__title {
+        font-size: $font-size-4xl;
+        font-weight: $font-weight-bold;
+        line-height: $line-height-tight;
+        margin-bottom: $spacing-4;
+        color: $color-white;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-5xl;
+        }
+    }
+
+    &__subtitle {
+        font-size: $font-size-lg;
+        line-height: $line-height-relaxed;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto;
+
+        @media (min-width: $breakpoint-md) {
+            font-size: $font-size-xl;
+        }
+    }
+}
+
+// Media Content Section
+.media-content {
+    padding: $spacing-16 0;
+    background-color: $color-white;
+
+    @media (min-width: $breakpoint-md) {
+        padding: $spacing-20 0;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 $spacing-4;
+
+        @media (min-width: $breakpoint-md) {
+            padding: 0 $spacing-6;
+        }
+    }
+
+    .prose {
+        // Section headings (h2)
+        h2 {
+            font-size: $font-size-3xl;
+            font-weight: $font-weight-bold;
+            color: $color-gray-900;
+            margin-top: $spacing-16;
+            margin-bottom: $spacing-8;
+            padding-bottom: $spacing-4;
+            border-bottom: 2px solid $color-gray-200;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            @media (min-width: $breakpoint-md) {
+                font-size: $font-size-4xl;
+                margin-top: $spacing-20;
+                margin-bottom: $spacing-10;
+            }
+        }
+
+        // Video titles (h3)
+        h3 {
+            font-size: $font-size-xl;
+            font-weight: $font-weight-semibold;
+            color: $color-gray-900;
+            margin-top: $spacing-10;
+            margin-bottom: $spacing-2;
+
+            @media (min-width: $breakpoint-md) {
+                font-size: $font-size-2xl;
+                margin-top: $spacing-12;
+            }
+        }
+
+        // Speaker/metadata text
+        em {
+            display: block;
+            color: $color-gray-600;
+            font-style: italic;
+            margin-bottom: $spacing-4;
+            font-size: $font-size-base;
+        }
+
+        // Video containers
+        .video-container,
+        .video-container--youtube {
+            position: relative;
+            padding-bottom: 56.25%; // 16:9 aspect ratio
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin-bottom: $spacing-8;
+            border-radius: $radius-lg;
+            box-shadow: $shadow-md;
+
+            @media (min-width: $breakpoint-md) {
+                margin-bottom: $spacing-10;
+            }
+
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border: 0;
+            }
+        }
+
+        // Custom video container (archive.org)
+        .video-container {
+            background-color: $color-gray-900;
+        }
+    }
+}

@@ -100,6 +100,15 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
             "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=libp2p.myfilebase.site&ttl=1m"
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
+            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=docs-libp2p.myfilebase.site&ttl=1m"
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
+            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=connectivity-libp2p.myfilebase.site&ttl=1m"
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
+            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=blog-libp2p.myfilebase.site&ttl=1m"
 
       - name: Announce production deployment
         run: |
