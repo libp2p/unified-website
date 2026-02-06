@@ -1,6 +1,6 @@
 +++
-title = "Announcing the libp2p 2025 Annual Report"
-description = "Announcing the release of the libp2p 2025 Annual Report"
+title = "libp2p Annual Report 2025"
+description = "libp2p Annual Report 2025"
 date = 2026-02-02
 slug = "2025-report"
 
@@ -127,3 +127,10 @@ As libp2p enters 2026, it stands at the center of a global shift toward open, re
 The future of networking is decentralized.
 
 Libp2p is building it.
+
+## **Feedback**
+
+We welcome your feedback.
+
+libp2p is shaped by the builders, researchers, and operators who rely on it. If you have insights on this report, areas we should explore further, or perspectives that can help strengthen the network, please share them with us in the discussion thread:
+https://discuss.libp2p.io/t/libp2p-annual-report-2025/3693
