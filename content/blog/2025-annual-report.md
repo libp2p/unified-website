@@ -132,5 +132,5 @@ Libp2p is building it.
 
 We welcome your feedback.
 
-libp2p is shaped by the builders, researchers, and operators who rely on it. If you have insights on this report, areas we should explore further, or perspectives that can help strengthen the network, please share them with us in the discussion thread:
+libp2p is shaped by the builders, researchers, and operators who rely on it. If you have insights on this report, areas we should explore further, or perspectives that can help strengthen the project, please share them with us in the discussion thread:
 https://discuss.libp2p.io/t/libp2p-annual-report-2025/3693
