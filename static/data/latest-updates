@@ -1,4 +1,25 @@
 <div class="update-item">
+    <div class="update-item__title">New Transport Layer Support Added</div>
+    <div class="update-item__description">
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
+    <div class="update-item__description">
+        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
+    </div>
+</div>
+
+<div class="update-item">
     <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
     <div class="update-item__description">
         The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
@@ -6,29 +27,10 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling in Swift-libp2p</div>
+    <div class="update-item__title">Fix: Remove Temporary Logging in Swift-libp2p</div>
     <div class="update-item__description">
-        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
+        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
     </div>
 </div>
 
-<div class="update-item">
-    <div class="update-item__title">Bug Fix: Incorrect Server Local Address and Automatic Port Picking in Swift-libp2p</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles server local addresses and automatic port picking, resolving issues with connection establishment. This bug was reported in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/45">swift-libp2p#45</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Transport Layer Support Added in Rust-libp2p</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Add TLS Support for Python Tests in Libp2p Test Plans</div>
-    <div class="update-item__description">
-        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
-    </div>
-</div>
+These update-item divs summarize notable topics from the past 7 days, focusing on significant merged PRs or new features, important bug fixes, active discussions or decisions, cross-implementation coordination, and breaking changes or deprecations. Each description includes at least one link to a relevant GitHub URL for further reference.
