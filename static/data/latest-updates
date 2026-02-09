@@ -27,8 +27,8 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Improve Connection Establishment in Swift-LibP2P</div>
+    <div class="update-item__title">Fix: Remove Temporary Logging</div>
     <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a>.
     </div>
 </div>
