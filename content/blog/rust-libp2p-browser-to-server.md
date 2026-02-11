@@ -3,6 +3,7 @@ title = "rust-libp2p in the Browser with WebRTC!"
 description = "News about how rust-libp2p in the browser connects to nodes in a network using WebRTC"
 date = 2024-02-21
 slug = "rust-libp2p-browser-webrtc"
+aliases = ["/rust-libp2p-browser-webrtc"]
 
 [taxonomies]
 tags = ["rust-libp2p", "rust", "libp2p", "browser", "webrtc", "webassembly", "wasm"]

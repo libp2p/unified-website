@@ -3,6 +3,7 @@ title = "Metrics in go-libp2p"
 description = "How to monitor your go-libp2p deployments with Prometheus and Grafana"
 date = 2023-08-15
 slug = "2023-08-15-metrics-in-go-libp2p"
+aliases = ["/2023-08-15-metrics-in-go-libp2p"]
 
 [taxonomies]
 tags = ["metrics", "prometheus", "grafana"]

@@ -3,6 +3,7 @@ title = "Testing all the libp2ps"
 description = "Basic interoperability tests for every libp2p implementation on all transport dimensions."
 date = 2023-08-23
 slug = "multidim-interop"
+aliases = ["/multidim-interop"]
 
 [taxonomies]
 tags = ["libp2p"]

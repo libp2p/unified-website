@@ -3,6 +3,7 @@ title = "libp2p Day at ETHDenver 2024 Recap"
 description = "Recap of libp2p presentations at ETHDenver 2024"
 date = 2024-03-14
 slug = "2024-libp2p-Day-ETHDenver-recap"
+aliases = ["/2024-libp2p-Day-ETHDenver-recap"]
 
 [taxonomies]
 tags = ["libp2p"]

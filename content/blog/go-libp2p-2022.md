@@ -3,6 +3,7 @@ title = "go-libp2p in 2022"
 description = "A look at the progress made on go-libp2p in 2022"
 date = 2023-02-13
 slug = "go-libp2p-2022"
+aliases = ["/go-libp2p-2022"]
 
 [taxonomies]
 tags = ["libp2p", "update", "Go"]

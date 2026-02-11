@@ -3,6 +3,7 @@ title = "WebRTC (Browser-to-Server) in libp2p"
 description = "Learn about WebRTC browser-to-server connectivity in libp2p"
 date = 2023-02-06
 slug = "libp2p-webrtc-browser-to-server"
+aliases = ["/libp2p-webrtc-browser-to-server"]
 
 [taxonomies]
 tags = ["browser", "transport", "webrtc"]

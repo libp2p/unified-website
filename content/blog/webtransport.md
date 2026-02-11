@@ -3,6 +3,7 @@ title = "WebTransport in libp2p"
 description = "Learn about WebTransport support in libp2p for browser connectivity"
 date = 2022-12-19
 slug = "2022-12-19-libp2p-webtransport"
+aliases = ["/2022-12-19-libp2p-webtransport"]
 
 [taxonomies]
 tags = ["browser", "transport"]

@@ -3,6 +3,7 @@ title = "Adding a QUIC API for Go's standard library TLS package"
 description = "How we worked with the Go team to add QUIC support to crypto/tls"
 date = 2023-09-13
 slug = "2023-09-13-quic-crypto-tls"
+aliases = ["/2023-09-13-quic-crypto-tls"]
 
 [taxonomies]
 tags = ["quic", "go", "standard library", "crypto/tls"]

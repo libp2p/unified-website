@@ -3,6 +3,7 @@ title = "HTTP-P2P, HTTP with more Ps"
 description = "Introducing HTTP semantics in go-libp2p"
 date = 2023-09-20
 slug = "2023-09-20-http-p2p"
+aliases = ["/2023-09-20-http-p2p"]
 
 [taxonomies]
 tags = ["http", "go"]

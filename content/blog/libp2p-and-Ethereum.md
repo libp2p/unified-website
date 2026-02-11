@@ -3,6 +3,7 @@ title = "libp2p & Ethereum (the Merge)"
 description = "How libp2p became integrated into the Ethereum network through the Merge"
 date = 2023-01-06
 slug = "libp2p-and-ethereum"
+aliases = ["/libp2p-and-ethereum"]
 
 [taxonomies]
 tags = ["libp2p", "Ethereum", "Merge"]
