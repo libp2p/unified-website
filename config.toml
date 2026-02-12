@@ -116,6 +116,14 @@ security_email = "security@libp2p.io"
 # Analytics (Umami)
 umami_website_id = "b6b8bcd5-2e78-4301-af82-335e10e2baed"
 
+# Release Atom feeds for automated fetching
+[extra.release_feeds]
+go-libp2p = "https://github.com/libp2p/go-libp2p/releases.atom"
+rust-libp2p = "https://github.com/libp2p/rust-libp2p/releases.atom"
+js-libp2p = "https://github.com/libp2p/js-libp2p/releases.atom"
+nim-libp2p = "https://github.com/vacp2p/nim-libp2p/releases.atom"
+py-libp2p = "https://github.com/libp2p/py-libp2p/releases.atom"
+
 # Navigation items (used by topbar template)
 [[extra.nav]]
 name = "Home"
@@ -124,10 +132,6 @@ url = "/"
 [[extra.nav]]
 name = "Blog"
 url = "/blog/"
-
-[[extra.nav]]
-name = "Releases"
-url = "/releases/"
 
 [[extra.nav]]
 name = "Docs"
