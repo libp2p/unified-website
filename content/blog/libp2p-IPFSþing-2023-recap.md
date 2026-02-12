@@ -3,6 +3,7 @@ title = "libp2p at IPFS þing 2023 Recap"
 description = "Recap of libp2p presentations and workshops at IPFS þing 2023"
 date = 2023-05-11
 slug = "2023-libp2p-IPFS-Thing-recap"
+aliases = ["/2023-libp2p-IPFS-Thing-recap"]
 
 [taxonomies]
 tags = ["libp2p"]

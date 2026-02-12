@@ -14,11 +14,11 @@
 .hero {
     background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
     color: $color-white;
-    padding: $spacing-16 0 $spacing-24 0;  // top: 64px, bottom: 96px
+    padding: $spacing-8 0 $spacing-8 0;  // top: 32px, bottom: 32px
     overflow: hidden;
 
     @media (min-width: $breakpoint-md) {
-        padding: $spacing-24 0 $spacing-24 0;  // top: 96px, bottom: 96px
+        padding: $spacing-8 0 $spacing-8 0;  // top: 32px, bottom: 32px
     }
 
     &__container {
@@ -60,7 +60,7 @@
 
         @media (min-width: $breakpoint-lg) {
             display: block;
-            bottom: -$spacing-16;
+            bottom: -$spacing-8;
         }
     }
 
@@ -103,6 +103,7 @@
         @media (min-width: $breakpoint-lg) {
             flex: 1;
             margin-left: auto;
+            position: relative;
         }
     }
 
@@ -116,7 +117,16 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    max-height: 420px;
+
+    @media (min-width: $breakpoint-lg) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        max-height: none;
+    }
 
     &__title {
         font-size: $font-size-xl;

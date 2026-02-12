@@ -3,6 +3,7 @@ title = "libp2p Day 2022 Recap"
 description = "Recap of libp2p Day during IPFS Camp 2022 in Lisbon!"
 date = 2022-11-22
 slug = "2022-11-22-libp2p-day-2022-recap"
+aliases = ["/2022-11-22-libp2p-day-2022-recap"]
 
 [taxonomies]
 tags = ["libp2p"]

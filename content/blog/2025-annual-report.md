@@ -3,6 +3,7 @@ title = "libp2p Annual Report 2025"
 description = "libp2p Annual Report 2025"
 date = 2026-02-02
 slug = "2025-report"
+aliases = ["/2025-report"]
 
 [taxonomies]
 tags = ["libp2p", "reporting", "annual report"]

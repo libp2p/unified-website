@@ -3,6 +3,7 @@ title = "Introduction to libp2p Community Meetings"
 description = "An update on all of the libp2p community meetings happening now."
 date = 2024-04-29
 slug = "2024-04-29-libp2p-meetings"
+aliases = ["/2024-04-29-libp2p-meetings"]
 
 [taxonomies]
 tags = ["libp2p", "meetings"]

@@ -3,6 +3,7 @@ title = "rust-libp2p in 2022"
 description = "Recapitulating the year 2022 for the rust-libp2p project"
 date = 2023-01-12
 slug = "2023-01-12-rust-libp2p-in-2022"
+aliases = ["/2023-01-12-rust-libp2p-in-2022"]
 
 [taxonomies]
 tags = ["libp2p", "rust"]

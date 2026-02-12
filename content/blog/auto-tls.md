@@ -3,6 +3,7 @@ title = "Announcing AutoTLS: Bridging the Gap Between libp2p and the Web"
 description = "AutoTLS is a new service that automates the issuance of Let's Encrypt wildcard TLS certificates for libp2p nodes."
 date = 2025-02-13
 slug = "autotls"
+aliases = ["/autotls"]
 
 [taxonomies]
 tags = ["Interplanetary Shipyard", "browser", "WebSockets", "js-libp2p", "go-libp2p", "lets encrypt", "TLS", "AutoTLS", "libp2p.direct"]

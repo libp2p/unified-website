@@ -3,6 +3,7 @@ title = "Announcing libp2p-rPGF-1, the first libp2p project RetroPGF Round!"
 description = "The first retroactive public goods funding round for the libp2p ecosystem"
 date = 2024-04-08
 slug = "2024-04-08-libp2p-rpgf"
+aliases = ["/2024-04-08-libp2p-rpgf"]
 
 [taxonomies]
 tags = ["retroPGF", "public goods", "libp2p"]

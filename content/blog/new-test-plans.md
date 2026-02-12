@@ -3,6 +3,7 @@ title = "Refactoring the libp2p Test Framework: A Fresh Start"
 description = "Announcing the complete rewrite of the libp2p test-plans framework from TypeScript to Bash, delivering cross-platform support, powerful filtering, reproducibility, testing on arbitrary network topologies with almost zero depedency maintenance overhead."
 date = 2026-01-28
 slug = "new-test-plans"
+aliases = ["/new-test-plans"]
 
 [taxonomies]
 tags = ["testing", "libp2p", "interoperability", "performance"]
