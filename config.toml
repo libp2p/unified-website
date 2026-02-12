@@ -122,7 +122,14 @@ go-libp2p = "https://github.com/libp2p/go-libp2p/releases.atom"
 rust-libp2p = "https://github.com/libp2p/rust-libp2p/releases.atom"
 js-libp2p = "https://github.com/libp2p/js-libp2p/releases.atom"
 nim-libp2p = "https://github.com/vacp2p/nim-libp2p/releases.atom"
-py-libp2p = "https://github.com/libp2p/py-libp2p/releases.atom"
+py-libp2p = "https://github.com/libp2p/py-libp2p/tags.atom"
+cpp-libp2p = "https://github.com/libp2p/cpp-libp2p/tags.atom"
+swift-libp2p = "https://github.com/swift-libp2p/swift-libp2p/tags.atom"
+jvm-libp2p = "https://github.com/libp2p/jvm-libp2p/releases.atom"
+eth-p2p-z = "https://github.com/zen-eth/eth-p2p-z/releases.atom"
+dotnet-libp2p = "https://github.com/NethermindEth/dotnet-libp2p/releases.atom"
+c-libp2p = "https://github.com/Pier-Two/c-libp2p/releases.atom"
+litep2p = "https://github.com/paritytech/litep2p/releases.atom"
 
 # Navigation items (used by topbar template)
 [[extra.nav]]
