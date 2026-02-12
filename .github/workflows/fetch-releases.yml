@@ -1,0 +1,45 @@
+name: Fetch New Releases
+
+on:
+  schedule:
+    # Run daily at 5:00 AM UTC (after stars at 2 AM, activity at 4 AM, before deploy at 6 AM)
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (do not commit changes)'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install xmlstarlet
+        run: sudo apt-get update && sudo apt-get install -y xmlstarlet
+
+      - name: Fetch new releases
+        id: fetch
+        run: .github/scripts/fetch-releases.sh
+
+      - name: Commit and push if changed
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/releases/
+
+          if git diff --staged --quiet; then
+            echo "No new releases to commit"
+          else
+            NEW_COUNT=$(git diff --staged --name-only | wc -l)
+            git commit -m "chore: add ${NEW_COUNT} new release(s) [skip ci]"
+            git push
+          fi

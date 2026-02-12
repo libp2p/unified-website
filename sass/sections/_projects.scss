@@ -10,54 +10,57 @@
     // Main content area
 }
 
-// Projects Hero Section
-.projects-hero {
-    background: linear-gradient(135deg, $color-blue-deep 0%, $color-primary-dark 100%);
-    color: $color-white;
+// Projects Releases Section (replaces hero)
+.projects-releases {
     padding: $spacing-16 0;
+    background-color: $color-white;
 
-    @media (min-width: $breakpoint-md) {
-        padding: $spacing-20 0;
-    }
-
-    &__container {
-        max-width: $container-xl;
-        margin: 0 auto;
-        padding: 0 $spacing-4;
+    &__header {
         text-align: center;
-
-        @media (min-width: $breakpoint-md) {
-            padding: 0 $spacing-6;
-        }
-
-        @media (min-width: $breakpoint-lg) {
-            padding: 0 $spacing-8;
-        }
+        margin-bottom: $spacing-6;
     }
 
     &__title {
-        font-size: $font-size-4xl;
-        font-weight: $font-weight-bold;
-        line-height: $line-height-tight;
-        margin-bottom: $spacing-4;
-        color: $color-white;
-
-        @media (min-width: $breakpoint-md) {
-            font-size: $font-size-5xl;
-        }
+        margin-bottom: $spacing-2;
     }
 
     &__subtitle {
-        font-size: $font-size-lg;
-        line-height: $line-height-relaxed;
-        color: rgba(255, 255, 255, 0.9);
         max-width: 600px;
         margin: 0 auto;
+        color: $color-gray-600;
+        font-size: $font-size-lg;
+    }
+}
 
-        @media (min-width: $breakpoint-md) {
-            font-size: $font-size-xl;
+// Scrollable releases container
+.projects-releases-scroll {
+    min-height: 1024px;
+    max-height: 1024px;
+    overflow-y: auto;
+    position: relative;
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $color-gray-100;
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $color-gray-300;
+        border-radius: 3px;
+
+        &:hover {
+            background: $color-gray-400;
         }
     }
+
+    // Firefox scrollbar
+    scrollbar-width: thin;
+    scrollbar-color: $color-gray-300 $color-gray-100;
 }
 
 // Projects Section (reuses .implementations styling from home)
