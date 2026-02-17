@@ -6,13 +6,6 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
-    <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
-    </div>
-</div>
-
-<div class="update-item">
     <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
     <div class="update-item__description">
         The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
@@ -27,8 +20,15 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Improve PeerStore Application Visibility</div>
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
     <div class="update-item__description">
-        The swift-libp2p implementation improved peer store application visibility, enhancing usability. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/49">PR #49</a>.
+        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: PeerStore Application Visibility</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation now correctly handles peer store application visibility, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/49">PR #49</a>.
     </div>
 </div>
