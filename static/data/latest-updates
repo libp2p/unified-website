@@ -27,76 +27,36 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Remove Temporary Logging</div>
+    <div class="update-item__title">Fix: Update Transport Interop Runner for New Test Spec</div>
+    <div class="update-item__description">
+        The transport interop runner was updated to match the new test spec, resolving issues with test execution. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Update Swift-libp2p Event Loop Group Handling</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Update Python Test Plans for TLS Support</div>
+    <div class="update-item__description">
+        The libp2p test plans now include TLS support for the python implementation, improving interoperability. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/783">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Update Swift-libp2p Logging for Performance Improvement</div>
     <div class="update-item__description">
         The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Input Command Sanitization Improved</div>
+    <div class="update-item__title">Fix: Update Swift-libp2p Input Command Sanitization for Security Improvement</div>
     <div class="update-item__description">
         The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
     </div>
 </div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Add Transport Interop Runner for New Test Spec</div>
-    <div class="update-item__description">
-        The libp2p test plans now include a transport interop runner for the new test spec, enabling better testing. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/799">PR #799</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Event Loop Group Handling for Swift-Libp2p</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/45">PR #45</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve TLS Support for Python Tests</div>
-    <div class="update-item__description">
-        The libp2p test plans now include improved TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">PR #800</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/783">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Input Command Sanitization for Swift-Libp2p</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/46">PR #46</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Event Loop Group Handling for Rust-Libp2p</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1235">PR #1235</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/issues/567">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve TLS Support for Rust-Libp2p</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now includes improved TLS support, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1236">PR #1236</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/issues/567">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Input Command Sanitization for Rust-Libp2p</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1237">PR #1237</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/issues/567">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Event Loop Group Handling for Python-Libp2p</div>
-    <div class="update-item__description">
-        The python-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/python-libp2p/pull/1238">PR #1238</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/python-libp2p/issues/567">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve TLS Support for Python-Libp2p</div>
-    <div class="update-item__description">
-        The python-libp2p implementation now includes improved TLS support, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://
