@@ -1,11 +1,4 @@
 <div class="update-item">
-    <div class="update-item__title">Fix: Transport Interop Runner Changed Test Spec</div>
-    <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
-    </div>
-</div>
-
-<div class="update-item">
     <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
     <div class="update-item__description">
         The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
@@ -20,22 +13,103 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Fix Transport Layer Support for WebTransport Connections</div>
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec</div>
     <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Fix Transport Interop Runner for New Test Spec</div>
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
     <div class="update-item__description">
-        The transport interop runner was updated to match the new test spec, resolving issues with test execution. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Fix TLS Support for Python Tests</div>
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
     <div class="update-item__description">
-        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
     </div>
 </div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update-item__description">
+        The transport interop runner test spec changes were implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Fixing Transport Interop Runner Test Spec Changes</div>
+    <div class="update
