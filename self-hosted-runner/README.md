@@ -1,4 +1,7 @@
-# Ephemeral Self-Hosted GitHub Actions Runner
+# Self-Hosted GitHub Actions Runner for libp2p/unified-website
+
+Containerized, ephemeral Github Actions runner for the
+[libp2p/unified-website](https://github.com/libp2p/unified-website) repository.
 
 This directory contains everything needed to build and run an ephemeral
 self-hosted GitHub Actions runner in a Docker container. The runner registers
@@ -11,41 +14,43 @@ automatically after each job completes.
 
 | File                  | Purpose                                                |
 |-----------------------|--------------------------------------------------------|
-| `Dockerfile`          | Builds a Debian 13 image with the GitHub Actions runner, Zola, AWS CLI, GitHub CLI, Node.js, and other tools |
-| `entrypoint.sh`       | Obtains a short-lived registration token, configures the runner, and starts it in ephemeral mode |
-| `env`                 | Template for required environment variables             |
-| `docker-compose.yaml` | Defines the runner service                                |
+| `Dockerfile`          | Builds the runner image (Debian 13 slim + GitHub Actions runner + Zola + AWS CLI + GitHub CLI + Node.js + project tooling) |
+| `docker-compose.yaml` | Defines the runner service |
+| `entrypoint.sh`       | Obtains a registration token, configures the runner, and starts it in ephemeral mode |
+| `env`                 | Template for then `.env` file (copy and fill in before starting) |
 
 ## Prerequisites
 
-- A Linux host with Docker and Docker Compose installed
-- Network access to GitHub (api.github.com and github.com)
-- A GitHub Personal Access Token (see below)
+- **Linux host** (x86_64) with Docker Engine 20.10+ and the Docker Compose v2 plugin (`docker compopse`).
+- **Admin access** to the `libp2p/unified-website` repository (needed to create a Personal Access Token with the right scopes).
 
-## 1. Create a GitHub Personal Access Token
+## Setup
+
+### 1. Create a GitHub Personal Access Token
 
 The runner needs a Personal Access Token (PAT) to request short-lived
 registration tokens from the GitHub API at startup.
 
-### Using a Fine-Grained Token (recommended)
+#### Option A: Classic PAT
 
-1. Go to **Settings > Developer settings > Personal access tokens > Fine-grained tokens** on GitHub.
+1. Go to <https://github.com/settings/tokens>.
+2. Click **Generate new token (classic)**.
+3. Give it a descriptive name (e.g. `libp2p-runner`).
+4. Select the **`repo`** scope (full control of private repositories).
+5. Click **Generate token** and copy the value into `.env`.
+
+#### Option B: Fine-Grained PAT (recommended)
+
+1. Go to <https://github.com/settings/tokens?type=beta>.
 2. Click **Generate new token**.
-3. Set a descriptive name (e.g., `self-hosted-runner`).
-4. Under **Repository access**, select **Only select repositories** and choose the target repository (e.g., `libp2p/unified-website`).
-5. Under **Permissions > Repository permissions**, grant:
-   - **Administration** -- Read and write (required to register runners)
-6. Click **Generate token** and copy the value immediately.
+3. Set **Resource owner** to the org or user that owns the fork (e.g. `libp2p`).
+4. Under **Repository access**, select **Only select repositories** and choose
+   `libp2p/unified-testing`.
+5. Under **Repository permissions**, set **Administration** to
+   **Read and write**.
+6. Click **Generate token** and copy the value into `.env`.
 
-### Using a Classic Token
-
-1. Go to **Settings > Developer settings > Personal access tokens > Tokens (classic)**.
-2. Click **Generate new token**.
-3. Select the `repo` scope (full control of private repositories).
-4. For organization runners, also select `admin:org`.
-5. Click **Generate token** and copy the value.
-
-## 2. Configure Environment Variables
+### 2. Configure Environment Variables
 
 Copy the template `env` file to `.env`:
 
@@ -56,20 +61,19 @@ cp env .env
 Edit `.env` and fill in the values:
 
 ```dotenv
-RUNNER_NAME=<runner name>
-ACCESS_TOKEN=<access token>
+RUNNER_NAME=my-runner
+ACCESS_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-| Variable       | Description |
-|----------------|-------------|
-| `RUNNER_NAME`  | A human-readable prefix for the runner. It is appended with the service name in docker-compose (e.g., `myhost-unified-website`). |
-| `ACCESS_TOKEN` | The GitHub Personal Access Token created in step 1. |
+- **`RUNNER_NAME`** -- A human-readable name for the runner. (it appears in the
+GitHub UI). The compose file appends `-unified-website` automatically.
+- **`ACCESS_TOKEN`** -- The GitHub Personal Access Token created in step 1.
 
 The `.env` file is read automatically by Docker Compose and is used to
 interpolate `${RUNNER_NAME}` and `${ACCESS_TOKEN}` in `docker-compose.yaml`.
 Keep this file private -- do not commit it to version control.
 
-## 3. Update docker-compose.yaml
+### 3. Update docker-compose.yaml
 
 Before first use, edit `docker-compose.yaml` and replace the placeholder image
 reference with your actual GHCR username or organization:
@@ -81,7 +85,7 @@ image: ghcr.io/<username>/libp2p-gh-runner:latest
 If you need to point the runner at a different repository, update the
 `REPO_URL` environment variable in the service definition as well.
 
-## 4. Build the Docker Image
+### 4. Build the Docker Image
 
 Build the runner image from the Dockerfile:
 
@@ -89,17 +93,9 @@ Build the runner image from the Dockerfile:
 docker build -t ghcr.io/<username>/libp2p-gh-runner:latest .
 ```
 
-To use a specific runner version, pass it as a build argument:
+Replace `<username>` with your GitHub username or organization.
 
-```bash
-docker build \
-  --build-arg RUNNER_VERSION=2.330.0 \
-  -t ghcr.io/<username>/libp2p-gh-runner:latest .
-```
-
-Replace `<username>` with your GitHub username or organization name throughout.
-
-## 5. Push the Image to GHCR
+### 5. Push the Image to GHCR
 
 Authenticate with the GitHub Container Registry, then push:
 
@@ -116,7 +112,7 @@ token) or the **Packages -- Read and write** permission (fine-grained token).
 This can be the same token as `ACCESS_TOKEN` if you add the required scope, or
 a separate token.
 
-## 6. Start the Runner
+### 6. Start the Runner
 
 With the `.env` file in place and the image available, start the runner:
 
@@ -134,6 +130,21 @@ Docker Compose will:
 5. It picks up a single job, executes it, then exits.
 6. Because `restart: unless-stopped` is set, Docker automatically restarts the
    container, which registers a fresh ephemeral runner for the next job.
+
+### 7. Verify registration
+
+Open **Settings > Actions > Runners** in the repository:
+
+<https://github.com/libp2p/unified-testing/settings/actions/runners>
+
+Or use the GitHub CLI:
+
+```bash
+gh api repos/libp2p/unified-testing/actions/runners --jq '.runners[] | "\(.name) \(.status)"'
+```
+
+The runner should show as **Idle** (waiting for work) or **Active** (running a
+job).
 
 ### Useful Commands
 
@@ -176,3 +187,54 @@ and `RUNNER_NAME`. All services share the same `.env` for the access token.
 
 - The `.env` file contains secrets. Ensure it is listed in `.gitignore`.
 - The `ACCESS_TOKEN` PAT should have the minimum scopes necessary.
+
+## Maintenance
+
+### Updating the runner version
+
+The GitHub Actions runner version is pinned in the Dockerfile:
+
+```dockerfile
+ARG RUNNER_VERSION=2.330.0
+```
+
+To update, change the version number and rebuild:
+
+```bash
+docker build -t ghcr.io/<username>/libp2p-gh-runner:latest .
+docker compose up -d   # recreates the container with the new image
+```
+
+### Viewing logs
+
+```bash
+docker compose logs -f
+```
+
+### Stopping the runner
+
+```bash
+docker compose down
+```
+
+The runner will deregister from GitHub automatically when it finishes its current
+job (or immediately if idle, on the next restart cycle).
+
+## Troubleshooting
+
+### Registration token request fails
+
+```
+ERROR: Failed to get registration token from GitHub.
+```
+
+- Verify `ACCESS_TOKEN` in `.env` is valid and not expired.
+- Ensure the token has the correct scope (see step 2 above).
+- Check network connectivity: `curl -s https://api.github.com/zen`
+
+### Runner shows as Offline in GitHub UI
+
+- Check container status: `docker compose ps`
+- Check logs: `docker compose logs --tail 50`
+- The runner may have just finished a job and be in the restart cycle. Wait a
+  few seconds and refresh.
