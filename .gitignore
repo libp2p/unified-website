@@ -1,6 +1,7 @@
 *.car
 *.log
 public/*
+**/.env
 
 # Activity summary workflow artifacts
 raw-activity.json
