@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   update-status:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       changes_committed: ${{ steps.commit.outputs.changes_committed }}
     steps:
@@ -64,13 +64,9 @@ jobs:
 
       - name: Validate YAML
         run: |
-          if command -v python3 &> /dev/null; then
-            python3 -c "import yaml; yaml.safe_load(open('static/data/status/interop-results.yml'))" && \
-              echo "✓ YAML validation passed" || \
-              echo "✗ YAML validation failed"
-          else
-            echo "→ Python not available, skipping YAML validation"
-          fi
+          python3 -c "import yaml; yaml.safe_load(open('static/data/status/interop-results.yml'))" && \
+            echo "✓ YAML validation passed" || \
+            echo "✗ YAML validation failed"
 
       - name: Commit and push if changed
         id: commit

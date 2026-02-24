@@ -13,25 +13,10 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Cache Zola binary
-        id: cache-zola
-        uses: actions/cache@v4
-        with:
-          path: /usr/local/bin/zola
-          key: zola-binary-v0.22.1-${{ runner.os }}
-
-      - name: Install Zola (if not cached)
-        if: steps.cache-zola.outputs.cache-hit != 'true'
-        run: |
-          wget -q https://github.com/getzola/zola/releases/download/v0.22.1/zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz
-          tar xf zola-v0.22.1-x86_64-unknown-linux-gnu.tar.gz
-          chmod +x zola
-          sudo mv zola /usr/local/bin/zola
 
       - name: Generate version file
         run: |
@@ -41,20 +26,7 @@ jobs:
       - name: Build Zola site
         run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/"
 
-      - name: Set up Node.js for ipfs-car
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Cache ipfs-car (global node_modules)
-        id: cache-ipfs-car
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm/_npx
-          key: ipfs-car-npx-${{ runner.os }}-node20
-
-      - name: Install ipfs-car (if not cached)
-        if: steps.cache-ipfs-car.outputs.cache-hit != 'true'
+      - name: Install ipfs-car
         run: npm install -g ipfs-car
 
       - name: Create CAR archive of public folder
