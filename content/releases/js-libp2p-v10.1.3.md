@@ -2,7 +2,7 @@
 title = "Announcing the release of js-libp2p v10.1.3"
 description = "Release v10.1.3 of js-libp2p"
 date = 2026-01-16
-slug = "2026-01-16-js-libp2p"
+slug = "2026-01-16-js-libp2p-10.1.3"
 
 [taxonomies]
 tags = ["js-libp2p"]
