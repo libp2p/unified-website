@@ -173,8 +173,10 @@ for impl in "${!FEEDS[@]}"; do
             release_date=$(date -u +"%Y-%m-%d")
         fi
 
-        # Build slug
-        slug="${release_date}-${impl}"
+        # Build slug - include version to ensure uniqueness when multiple
+        # releases of the same implementation occur on the same date
+        clean_version=$(echo "$version" | sed 's/^v//' | grep -oE '^[0-9]+(\.[0-9]+)*') || clean_version="$safe_version"
+        slug="${release_date}-${impl}-${clean_version}"
 
         # Detect flags
         combined_text="$title $content"

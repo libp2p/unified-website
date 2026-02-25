@@ -1,0 +1,14 @@
+services:
+  runner-unified-website:
+    image: ghcr.io/<username>/libp2p-gh-runner:latest
+    restart: unless-stopped
+    container_name: ${RUNNER_NAME}-unified-website
+    environment:
+      RUNNER_ALLOW_RUNASROOT: true
+      EPHEMERAL: true
+      DISABLE_AUTO_UPDATE: true
+      REPO_URL: https://github.com/libp2p/unified-website
+      RUNNER_NAME: ${RUNNER_NAME}-unified-website
+      ACCESS_TOKEN: ${ACCESS_TOKEN}
+      RUNNER_SCOPE: 'repo'
+      LABELS: 'self-hosted,linux,x64,ephemeral'
