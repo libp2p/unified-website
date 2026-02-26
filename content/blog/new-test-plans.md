@@ -124,7 +124,7 @@ Testing local changes doesn't require forking repositories. The patching strateg
 3. Generate a patch file
 4. Reference it in `images.yaml`
 
-The framework downloads the upstream snapshot, applies your patch, and builds the image. See our [Local Testing Strategies](/guides/local-testing-strategies/) guide for details.
+The framework downloads the upstream snapshot, applies your patch, and builds the image. See our [Local Testing Strategies](/docs/local-testing-strategies/) guide for details.
 
 ### 10. Docker for Arbitrary Network Layouts
 
@@ -270,10 +270,10 @@ The framework reads `inputs.yaml` at startup and applies the same configuration.
 ## Resources
 
 - [unified-testing repository](https://github.com/libp2p/unified-testing)
-- [Local Testing Strategies](/guides/local-testing-strategies/) - Installation, filtering, and patching
-- [Write a Performance Test Application](/guides/write-a-perf-test-app/)
-- [Write a Transport Test Application](/guides/write-a-transport-test-app/)
-- [Write a Hole-Punch Test Application](/guides/write-a-hole-punch-test-app/)
+- [Local Testing Strategies](/docs/local-testing-strategies/) - Installation, filtering, and patching
+- [Write a Performance Test Application](/docs/write-a-perf-test-app/)
+- [Write a Transport Test Application](/docs/write-a-transport-test-app/)
+- [Write a Hole-Punch Test Application](/docs/write-a-hole-punch-test-app/)
 
 We believe this rewrite significantly improves the developer experience for testing libp2p implementations. The combination of cross-platform support, powerful filtering, reproducibility, and comprehensive documentation makes it easier than ever to ensure your libp2p implementation works correctly with the rest of the ecosystem.
 

@@ -1,14 +1,14 @@
-{# Sidebar Navigation for Guides Section #}
+{# Sidebar Navigation for Docs Section #}
 {% import "macros.html" as macros %}
-{% set guides_section = get_section(path="guides/_index.md") %}
+{% set docs_section = get_section(path="docs/_index.md") %}
 
 <aside class="sidebar" id="sidebar">
     <div class="sidebar__header">
-        <h2>Guides</h2>
+        <h2>Docs</h2>
     </div>
 
-    <nav aria-label="Guides navigation">
-        {% for subsection_path in guides_section.subsections %}
+    <nav aria-label="Docs navigation">
+        {% for subsection_path in docs_section.subsections %}
             {% set subsection = get_section(path=subsection_path) %}
             <div class="sidebar__section">
                 <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
@@ -62,8 +62,8 @@
             </div>
         {% endfor %}
 
-        {# Top-level categorized pages for Guides #}
-        {% if guides_section.pages | length > 0 %}
+        {# Top-level categorized pages for Docs #}
+        {% if docs_section.pages | length > 0 %}
             {# Group pages by category #}
             {% set get_started_pages = [] %}
             {% set fundamentals_pages = [] %}
@@ -77,7 +77,7 @@
             {% set other_pages = [] %}
             {% set testing_pages = [] %}
 
-            {% for page in guides_section.pages %}
+            {% for page in docs_section.pages %}
                 {% if page.extra.category and page.extra.category == "get started" %}
                     {% set_global get_started_pages = get_started_pages | concat(with=page) %}
                 {% elif page.extra.category and page.extra.category == "fundamentals" %}

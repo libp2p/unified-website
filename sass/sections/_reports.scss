@@ -5,19 +5,19 @@
 // Alias all layout classes to guides styles
 
 .reports-layout {
-    @extend .guides-layout;
+    @extend .docs-layout;
 }
 
 .reports-main {
-    @extend .guides-main;
+    @extend .docs-main;
 }
 
 .reports-content {
-    @extend .guides-content;
+    @extend .docs-content;
 }
 
 .reports-article {
-    @extend .guides-article;
+    @extend .docs-article;
 }
 
 // Reports landing page - no longer needed as it's now a simple description page
@@ -111,10 +111,10 @@
 
 // Report header - alias to guide header
 .report-header {
-    @extend .guide-header;
+    @extend .doc-header;
 
     &__title {
-        @extend .guide-header__title;
+        @extend .doc-header__title;
     }
 
     &__description {
@@ -125,49 +125,49 @@
     }
 
     &__meta {
-        @extend .guide-header__meta;
+        @extend .doc-header__meta;
     }
 
     &__reading-time {
-        @extend .guide-header__reading-time;
+        @extend .doc-header__reading-time;
     }
 }
 
 // Report content - alias to guide content
 .report-content {
-    @extend .guide-content;
+    @extend .doc-content;
 }
 
 // Report footer - alias to guide footer
 .report-footer {
-    @extend .guide-footer;
+    @extend .doc-footer;
 }
 
 .report-nav {
-    @extend .guide-nav;
+    @extend .doc-nav;
 
     &__link {
-        @extend .guide-nav__link;
+        @extend .doc-nav__link;
 
         &--prev {
-            @extend .guide-nav__link--prev;
+            @extend .doc-nav__link--prev;
         }
 
         &--next {
-            @extend .guide-nav__link--next;
+            @extend .doc-nav__link--next;
         }
     }
 
     &__text {
-        @extend .guide-nav__text;
+        @extend .doc-nav__text;
     }
 
     &__label {
-        @extend .guide-nav__label;
+        @extend .doc-nav__label;
     }
 
     &__title {
-        @extend .guide-nav__title;
+        @extend .doc-nav__title;
     }
 }
 

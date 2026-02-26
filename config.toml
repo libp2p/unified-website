@@ -142,7 +142,7 @@ url = "/blog/"
 
 [[extra.nav]]
 name = "Docs"
-url = "/guides/"
+url = "/docs/"
 
 [[extra.nav]]
 name = "Projects"

@@ -37,7 +37,7 @@
         });
     }
 
-    // Sidebar toggle (for guides)
+    // Sidebar toggle (for docs)
     function initSidebar() {
         var toggle = document.querySelector('[data-sidebar-toggle]');
         var sidebar = document.getElementById('sidebar');

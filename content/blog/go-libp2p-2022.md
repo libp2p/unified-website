@@ -24,7 +24,7 @@ Throughout the year, we released seven updates to go-libp2p ranging from [v0.18.
 
 One of the most exciting developments of the year was the release of the WebTransport protocol in [v0.23.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.23.0). WebTransport enables browser-to-server connectivity in go-libp2p when paired with a peer running js-libp2p-webtransport in the browser.
 
-To learn more about this exciting feature, check out our blog post on [WebTransport in libp2p](/blog/2022-12-19-libp2p-webtransport) and the [WebTransport documentation](/guides/webtransport/).
+To learn more about this exciting feature, check out our blog post on [WebTransport in libp2p](/blog/2022-12-19-libp2p-webtransport) and the [WebTransport documentation](/docs/webtransport/).
 
 #### WebRTC (Browser to Server)
 

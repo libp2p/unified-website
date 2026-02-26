@@ -5,19 +5,19 @@
 // Alias all layout classes to guides styles
 
 .status-layout {
-    @extend .guides-layout;
+    @extend .docs-layout;
 }
 
 .status-main {
-    @extend .guides-main;
+    @extend .docs-main;
 }
 
 .status-content {
-    @extend .guides-content;
+    @extend .docs-content;
 }
 
 .status-article {
-    @extend .guides-article;
+    @extend .docs-article;
 }
 
 // Status header
