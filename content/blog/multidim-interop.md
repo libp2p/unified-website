@@ -40,7 +40,7 @@ Right now, the system tests 6 different libp2p implementations and runs about 17
 
 ![Multidim Interop coverage matrix](/img/blog/multidim-interop-coverage.png)
 
-See the latest full run at the [GitHub Actions page](https://github.com/libp2p/test-plans/actions/workflows/transport-interop.yml?query=branch%3Amaster).
+See the latest full run at the [libp2p Status Page](https://libp2p.io/status).
 
 ## Impact realized so far
 
@@ -60,4 +60,4 @@ There's still room for improvement, especially in making tests faster. The bigge
 
 Beyond basic connectivity, we want to add tests for mDNS and test interoperability of libp2p protocols like Kademlia, GossipSub, and more.
 
-Are you working on a libp2p implementation? Check out the [test-plans README](https://github.com/libp2p/test-plans/blob/master/multidim-interop/README.md) for specifics on how to implement these tests.
+Are you working on a libp2p implementation? Check out the [unified-testing docs](https://github.com/libp2p/unified-testing/tree/master/docs) for specifics on how to implement these tests.

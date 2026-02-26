@@ -22,20 +22,18 @@ jobs:
       - name: Create status data directory
         run: mkdir -p static/data/status
 
-      - name: Fetch interop results from test-plans
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Fetch interop results from Filebase
         run: |
           set -euo pipefail
 
-          echo "Fetching combined interop results from libp2p/test-plans..."
+          FILEBASE_URL="https://results.s3.filebase.com/results.yaml"
+          echo "Fetching combined interop results from ${FILEBASE_URL}..."
 
           # Fetch the combined YAML file
-          if gh api repos/libp2p/test-plans/contents/results/daily-full-interop.yml \
-              --jq '.content' 2>/dev/null | base64 -d > static/data/status/interop-results.yml; then
+          if curl -fsSL "${FILEBASE_URL}" -o static/data/status/interop-results.yml; then
             echo "✓ Downloaded interop-results.yml"
           else
-            echo "✗ Failed to download interop-results.yml (may not exist yet)"
+            echo "✗ Failed to download interop-results.yml from Filebase"
             # Create a minimal placeholder file so the site still builds
             {
               echo '# Placeholder - results not yet available'
@@ -51,22 +49,14 @@ jobs:
             } > static/data/status/interop-results.yml
           fi
 
-          # Fetch box plot images
-          for plot in upload download latency; do
-            if gh api repos/libp2p/test-plans/contents/results/boxplot-${plot}.png \
-                --jq '.content' 2>/dev/null | base64 -d > static/data/status/boxplot-${plot}.png; then
-              echo "✓ Downloaded boxplot-${plot}.png"
-            else
-              echo "→ boxplot-${plot}.png not found (may not exist yet)"
-              rm -f static/data/status/boxplot-${plot}.png
-            fi
-          done
-
       - name: Validate YAML
         run: |
           python3 -c "import yaml; yaml.safe_load(open('static/data/status/interop-results.yml'))" && \
             echo "✓ YAML validation passed" || \
             echo "✗ YAML validation failed"
+
+      - name: Generate status content pages
+        run: ./generate-status-pages.sh
 
       - name: Commit and push if changed
         id: commit
@@ -76,8 +66,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Stage all status data files
-          git add static/data/status/
+          # Stage all status data and generated content files
+          git add static/data/status/ content/status/
 
           # Check if there are changes
           if git diff --cached --quiet; then
@@ -87,11 +77,11 @@ jobs:
           fi
 
           # Get timestamp from results file if available
-          GENERATED_AT=$(grep -oP 'generatedAt: "\K[^"]+' static/data/status/interop-results.yml 2>/dev/null || echo "unknown")
+          GENERATED_AT=$(grep -oP 'generated-at: "\K[^"]+' static/data/status/interop-results.yml 2>/dev/null || echo "unknown")
 
           git commit -m "chore: update interop status data [skip ci]" \
                      -m "Results from: $GENERATED_AT" \
-                     -m "Source: https://github.com/libp2p/test-plans/tree/master/results"
+                     -m "Source: https://results.s3.filebase.com/results.yaml"
 
           git push origin main
           echo "✓ Changes committed and pushed"

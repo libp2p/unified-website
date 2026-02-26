@@ -124,7 +124,7 @@ const node = await createLibp2p({
 
 ## Alternative transports
 
-WebRTC is just one option for connecting browsers to libp2p nodes. libp2p supports a variety of transports, and choosing the right one for your use case is an important consideration. The [libp2p connectivity guide](/guides/browser-connectivity) was designed to help developers consider the available options.
+WebRTC is just one option for connecting browsers to libp2p nodes. libp2p supports a variety of transports, and choosing the right one for your use case is an important consideration. The [libp2p connectivity guide](/docs/browser-connectivity) was designed to help developers consider the available options.
 
 ### WebSocket
 
@@ -148,8 +148,8 @@ WebRTC offers the capability for browsers to connect to browsers. The [WebRTC br
 
 ## Resources and how you can help contribute
 
-- [WebRTC Docs](/guides/webrtc-browser-connectivity/)
-- [WebRTC Connectivity](/guides/browser-connectivity#webrtc)
+- [WebRTC Docs](/docs/webrtc-browser-connectivity/)
+- [WebRTC Connectivity](/docs/browser-connectivity#webrtc)
 - [WebRTC Spec](https://github.com/libp2p/specs/tree/master/webrtc)
 
 If you would like to contribute, please [connect with the libp2p maintainers](/get-involved/).

@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}{{ page.title }} - Performance Status{% endblock %}
+
+{% block body_class %}status{% endblock %}
+{% block main_class %}status-layout{% endblock %}
+
+{% block content %}
+{% include "components/status-sidebar.html" %}
+
+{% set data = load_data(path="static/data/status/interop-results.yml", format="yaml", required=false) %}
+{% set target_dialer = page.extra.dialer %}
+
+<div class="status-main">
+    <div class="status-content">
+        <article class="status-article">
+            {# Breadcrumbs #}
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <span class="breadcrumbs__item">
+                    <a href="{{ config.base_url }}/status/">Status</a>
+                </span>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__item">
+                    <a href="{{ config.base_url }}/status/performance/">Performance</a>
+                </span>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__item">{{ page.title }}</span>
+            </nav>
+
+            <header class="status-header">
+                <h1 class="status-header__title">{{ page.title }}</h1>
+                <p class="status-header__description">
+                    Performance measurements measuring upload and download throughput against baseline tests: iperf, https, and quic-go.
+                </p>
+            </header>
+
+            {% if data and data.perf and data.perf.results %}
+
+            {# Filter results for this dialer #}
+            {%- set_global perf_filtered = [] -%}
+            {%- for r in data.perf.results -%}
+                {%- if r.dialer == target_dialer -%}
+                    {%- set_global perf_filtered = perf_filtered | concat(with=r) -%}
+                {%- endif -%}
+            {%- endfor -%}
+
+            {% if perf_filtered | length > 0 %}
+            {# Container for Plotly box plots #}
+            <div id="perf-boxplots-container"></div>
+            {% else %}
+            <div class="status-section__notice">
+                <p>No performance results available for {{ target_dialer }}.</p>
+            </div>
+            {% endif %}
+
+            {% else %}
+            <div class="status-section__notice">
+                <p>Performance benchmark results are not yet available.</p>
+                <p>Results are generated daily by the <a href="https://github.com/libp2p/unified-testing" target="_blank" rel="noopener noreferrer">libp2p unified-testing</a> repository.</p>
+            </div>
+            {% endif %}
+        </article>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if data and data.perf and data.perf.results %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script>
+(function() {
+    'use strict';
+
+    var targetDialer = {{ target_dialer | json_encode() | safe }};
+
+    var allResults = {{ data.perf.results | json_encode() | safe }};
+    var perfResults = allResults.filter(function(r) { return r.dialer === targetDialer; });
+    var perfBaselines = {{ data.perf.baselines | json_encode() | safe }};
+
+    var transportColors = {
+        'tcp': '#24a8e6',
+        'ws': '#ff743e',
+        'quic-v1': '#953A8C',
+        'webrtc-direct': '#34797D'
+    };
+
+    var baselineColors = {
+        'iperf': '#10b981',
+        'https': '#f59e0b',
+        'quic-go': '#8b5cf6'
+    };
+
+    function getColorForTransport(transport) {
+        return transportColors[transport] || '#6b7280';
+    }
+
+    function getTestLabel(result) {
+        if (result['secure-channel'] && result.muxer) {
+            return result.transport + ' - ' + result['secure-channel'] + ' - ' + result.muxer;
+        }
+        return result.transport;
+    }
+
+    function createBoxTraces(results, metric) {
+        return results.map(function(r) {
+            var data = r[metric];
+            if (!data) return null;
+            var label = getTestLabel(r);
+            return {
+                type: 'box',
+                name: label,
+                x: [label],
+                lowerfence: [data.min],
+                q1: [data.q1],
+                median: [data.median],
+                q3: [data.q3],
+                upperfence: [data.max],
+                marker: { color: getColorForTransport(r.transport) },
+                boxpoints: false,
+                hoverinfo: 'name+y',
+                hovertemplate: '<b>%{fullData.name}</b><br>' +
+                    'Max: %{upperfence}<br>' +
+                    'Q3: %{q3}<br>' +
+                    'Median: %{median}<br>' +
+                    'Q1: %{q1}<br>' +
+                    'Min: %{lowerfence}<extra></extra>'
+            };
+        }).filter(function(t) { return t !== null; });
+    }
+
+    function createBaselineShapes(baselines, metric) {
+        var metricKey = metric === 'upload' ? 'upload-throughput' : 'download-throughput';
+        return baselines.map(function(b) {
+            var value = b[metricKey];
+            if (!value) return null;
+            var color = baselineColors[b.dialer] || '#9ca3af';
+            return {
+                type: 'line',
+                xref: 'paper',
+                yref: 'y',
+                x0: 0,
+                x1: 1,
+                y0: value,
+                y1: value,
+                line: { color: color, width: 2, dash: 'dash' }
+            };
+        }).filter(function(s) { return s !== null; });
+    }
+
+    function createBaselineAnnotations(baselines, metric) {
+        var metricKey = metric === 'upload' ? 'upload-throughput' : 'download-throughput';
+        return baselines.map(function(b) {
+            var value = b[metricKey];
+            if (!value) return null;
+            var color = baselineColors[b.dialer] || '#9ca3af';
+            return {
+                xref: 'paper',
+                yref: 'y',
+                x: 1.02,
+                y: value,
+                xanchor: 'left',
+                yanchor: 'middle',
+                text: b.dialer + ' (' + value.toFixed(2) + ')',
+                showarrow: false,
+                font: { size: 10, color: color }
+            };
+        }).filter(function(a) { return a !== null; });
+    }
+
+    function createConnectorLines(traces) {
+        return traces.map(function(trace) {
+            return {
+                type: 'line',
+                xref: 'x',
+                yref: 'paper',
+                x0: trace.name,
+                x1: trace.name,
+                y0: 0,
+                y1: 1,
+                line: { color: '#eee', width: 1 },
+                layer: 'below'
+            };
+        });
+    }
+
+    function renderPlot(elementId, traces, baselines, metric, yAxisTitle) {
+        var baselineShapes = createBaselineShapes(baselines, metric);
+        var connectorLines = createConnectorLines(traces);
+        var shapes = connectorLines.concat(baselineShapes);
+        var annotations = createBaselineAnnotations(baselines, metric);
+
+        var layout = {
+            showlegend: false,
+            margin: { l: 50, r: 80, t: 20, b: 140 },
+            yaxis: { title: yAxisTitle, zeroline: false },
+            xaxis: { tickangle: -45, automargin: true },
+            shapes: shapes,
+            annotations: annotations,
+            hovermode: 'closest'
+        };
+
+        Plotly.newPlot(elementId, traces, layout, { responsive: true, displayModeBar: false });
+    }
+
+    function groupByDialerListener(results) {
+        var groups = {};
+        results.forEach(function(r) {
+            var key = r.dialer + ' \u00d7 ' + r.listener;
+            if (!groups[key]) groups[key] = [];
+            groups[key].push(r);
+        });
+        return groups;
+    }
+
+    function createGroupSection(groupName, results, container) {
+        var section = document.createElement('div');
+        section.className = 'status-section__subsection';
+
+        var groupDiv = document.createElement('div');
+        groupDiv.className = 'perf-boxplots-group';
+
+        var title = document.createElement('h3');
+        title.className = 'perf-boxplots-group__title';
+        title.textContent = groupName;
+        groupDiv.appendChild(title);
+
+        var boxplotsDiv = document.createElement('div');
+        boxplotsDiv.className = 'perf-boxplots';
+
+        var groupId = groupName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();
+
+        var uploadItem = document.createElement('div');
+        uploadItem.className = 'perf-boxplots__item';
+        var uploadTitle = document.createElement('h4');
+        uploadTitle.textContent = 'Upload Throughput';
+        uploadItem.appendChild(uploadTitle);
+        var uploadPlotDiv = document.createElement('div');
+        uploadPlotDiv.id = 'plot-upload-' + groupId;
+        uploadItem.appendChild(uploadPlotDiv);
+        boxplotsDiv.appendChild(uploadItem);
+
+        var downloadItem = document.createElement('div');
+        downloadItem.className = 'perf-boxplots__item';
+        var downloadTitle = document.createElement('h4');
+        downloadTitle.textContent = 'Download Throughput';
+        downloadItem.appendChild(downloadTitle);
+        var downloadPlotDiv = document.createElement('div');
+        downloadPlotDiv.id = 'plot-download-' + groupId;
+        downloadItem.appendChild(downloadPlotDiv);
+        boxplotsDiv.appendChild(downloadItem);
+
+        groupDiv.appendChild(boxplotsDiv);
+        section.appendChild(groupDiv);
+        container.appendChild(section);
+
+        var uploadTraces = createBoxTraces(results, 'upload');
+        var downloadTraces = createBoxTraces(results, 'download');
+
+        renderPlot(uploadPlotDiv.id, uploadTraces, perfBaselines, 'upload', 'Throughput (Gbps)');
+        renderPlot(downloadPlotDiv.id, downloadTraces, perfBaselines, 'download', 'Throughput (Gbps)');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var container = document.getElementById('perf-boxplots-container');
+        if (!container || perfResults.length === 0) return;
+
+        var groups = groupByDialerListener(perfResults);
+        Object.keys(groups).sort().forEach(function(groupName) {
+            createGroupSection(groupName, groups[groupName], container);
+        });
+    });
+})();
+</script>
+{% endif %}
+{% endblock %}

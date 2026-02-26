@@ -1,15 +1,23 @@
 // ===========================================
 // STATUS SECTION STYLES
 // ===========================================
+// Status section uses identical layout to Guides section
+// Alias all layout classes to guides styles
 
-.status-page {
-    padding: $spacing-8;
-    max-width: $container-xl;
-    margin: 0 auto;
+.status-layout {
+    @extend .docs-layout;
+}
 
-    @media (min-width: $breakpoint-lg) {
-        padding: $spacing-12;
-    }
+.status-main {
+    @extend .docs-main;
+}
+
+.status-content {
+    @extend .docs-content;
+}
+
+.status-article {
+    @extend .docs-article;
 }
 
 // Status header
@@ -51,75 +59,6 @@
     }
 }
 
-// Status layout
-.status-layout {
-    display: flex;
-    gap: $spacing-8;
-
-    @media (max-width: $breakpoint-lg - 1px) {
-        flex-direction: column;
-    }
-}
-
-.status-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.status-toc {
-    width: 240px;
-    flex-shrink: 0;
-    position: sticky;
-    top: calc(65px + #{$spacing-8});
-    max-height: calc(100vh - 65px - #{$spacing-16});
-    overflow-y: auto;
-
-    @media (max-width: $breakpoint-lg - 1px) {
-        width: 100%;
-        position: static;
-        max-height: none;
-        padding: $spacing-4;
-        background-color: $color-gray-50;
-        border-radius: $radius-lg;
-        margin-bottom: $spacing-8;
-    }
-
-    &__title {
-        font-size: $font-size-xs;
-        font-weight: $font-weight-semibold;
-        color: $color-gray-500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: $spacing-3;
-    }
-
-    &__list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    &__link {
-        display: block;
-        padding: $spacing-2 0;
-        font-size: $font-size-sm;
-        color: $color-gray-600;
-        text-decoration: none;
-        border-left: 2px solid transparent;
-        padding-left: $spacing-3;
-        margin-left: -2px;
-
-        &:hover {
-            color: $color-gray-900;
-        }
-
-        &--active {
-            color: $color-primary;
-            border-left-color: $color-primary;
-            font-weight: $font-weight-medium;
-        }
-    }
-}
 
 // Status section
 .status-section {
@@ -671,7 +610,7 @@ th.rotate {
     }
 }
 
-// Compact table variant with emoji status cells
+// Compact table variant with SVG status cells
 .status-grid__table--compact {
     td.status-cell-td {
         width: $cell-size;
@@ -681,6 +620,11 @@ th.rotate {
         text-align: center;
         vertical-align: middle;
         border: 1px solid $color-gray-200;
+
+        svg {
+            display: inline-block;
+            vertical-align: middle;
+        }
     }
 
     th.row-header {
@@ -702,13 +646,18 @@ th.rotate {
     }
 }
 
-// Emoji status indicators
-.status-emoji {
-    font-size: 16px;
+// SVG status indicators
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
     line-height: 1;
 
     &--na {
         color: $color-gray-400;
         font-weight: bold;
+        font-size: $font-size-sm;
     }
 }

@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% import "macros.html" as macros %}
+
+{% block title %}{{ page.title }} - Hole Punch Status{% endblock %}
+
+{% block body_class %}status{% endblock %}
+{% block main_class %}status-layout{% endblock %}
+
+{% block content %}
+{% include "components/status-sidebar.html" %}
+
+{% set data = load_data(path="static/data/status/interop-results.yml", format="yaml", required=false) %}
+{% set target_relay = page.extra.relay %}
+
+<div class="status-main">
+    <div class="status-content">
+        <article class="status-article">
+            {# Breadcrumbs #}
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <span class="breadcrumbs__item">
+                    <a href="{{ config.base_url }}/status/">Status</a>
+                </span>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__item">
+                    <a href="{{ config.base_url }}/status/hole-punch/">Hole Punch</a>
+                </span>
+                <span class="breadcrumbs__separator">/</span>
+                <span class="breadcrumbs__item">{{ page.title }}</span>
+            </nav>
+
+            <header class="status-header">
+                <h1 class="status-header__title">Relay: {{ page.title }}</h1>
+                <p class="status-header__description">
+                    NAT traversal test results using {{ page.title }} as the relay node.
+                </p>
+            </header>
+
+            {% if data and data["hole-punch"] and data["hole-punch"].results %}
+
+            {# Pre-filter results for this relay #}
+            {%- set_global hp_filtered = [] -%}
+            {%- set_global hp_dialers = [] -%}
+            {%- set_global hp_listeners = [] -%}
+
+            {%- for test in data["hole-punch"].results -%}
+                {%- if test.relay == target_relay -%}
+                    {%- set_global hp_filtered = hp_filtered | concat(with=test) -%}
+                    {%- if test.dialer not in hp_dialers -%}
+                        {%- set_global hp_dialers = hp_dialers | concat(with=test.dialer) -%}
+                    {%- endif -%}
+                    {%- if test.listener not in hp_listeners -%}
+                        {%- set_global hp_listeners = hp_listeners | concat(with=test.listener) -%}
+                    {%- endif -%}
+                {%- endif -%}
+            {%- endfor -%}
+
+            {% if hp_filtered | length > 0 %}
+            {# Summary stats #}
+            <div class="test-run-info">
+                <div class="test-run-info__legend">
+                    <div class="test-run-info__item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="#22c55e"/></svg>
+                        <span>Pass</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="#ef4444"/></svg>
+                        <span>Fail</span>
+                    </div>
+                    <div class="test-run-info__item">
+                        <span class="status-indicator status-indicator--na">-</span>
+                        <span>N/A</span>
+                    </div>
+                </div>
+            </div>
+
+            {# Dialer x Listener table #}
+            <div class="status-section__subsection">
+                <div class="status-grid-wrapper">
+                    <table class="status-grid__table status-grid__table--compact">
+                        <thead>
+                            <tr>
+                                <th class="corner-cell">
+                                    <div class="corner-cell__container">
+                                        <span class="corner-cell__dialer">Dialer</span>
+                                        <span class="corner-cell__listener">Listener</span>
+                                    </div>
+                                </th>
+                                {% for listener in hp_listeners | sort %}
+                                <th class="rotate"><div><span>{{ listener }}</span></div></th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for dialer in hp_dialers | sort %}
+                            <tr>
+                                <th class="row-header">{{ dialer }}</th>
+                                {% for listener in hp_listeners | sort %}
+                                    {%- set_global cell_results = [] -%}
+                                    {%- for test in hp_filtered -%}
+                                        {%- if test.dialer == dialer and test.listener == listener -%}
+                                            {%- set result_item = test.transport ~ ":" ~ test.status -%}
+                                            {%- set_global cell_results = cell_results | concat(with=result_item) -%}
+                                        {%- endif -%}
+                                    {%- endfor -%}
+
+                                    {% if cell_results | length == 0 %}
+                                    <td class="status-cell-td">
+                                        <span class="status-indicator status-indicator--na" title="N/A">-</span>
+                                    </td>
+                                    {% else %}
+                                        {%- set_global has_fail = false -%}
+                                        {%- set_global has_pass = false -%}
+                                        {%- for result in cell_results -%}
+                                            {%- if "pass" in result -%}
+                                                {%- set_global has_pass = true -%}
+                                            {%- endif -%}
+                                            {%- if "fail" in result -%}
+                                                {%- set_global has_fail = true -%}
+                                            {%- endif -%}
+                                        {%- endfor -%}
+
+                                        {% if has_fail %}
+                                        <td class="status-cell-td">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="#ef4444"/></svg>
+                                        </td>
+                                        {% elif has_pass %}
+                                        <td class="status-cell-td">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7" fill="#22c55e"/></svg>
+                                        </td>
+                                        {% else %}
+                                        <td class="status-cell-td">
+                                            <span class="status-indicator status-indicator--na" title="N/A">-</span>
+                                        </td>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {% else %}
+            <div class="status-section__notice">
+                <p>No hole punching results available for relay {{ target_relay }}.</p>
+            </div>
+            {% endif %}
+
+            {% else %}
+            <div class="status-section__notice">
+                <p>Hole punching test results are not yet available.</p>
+                <p>Results are generated daily by the <a href="https://github.com/libp2p/unified-testing" target="_blank" rel="noopener noreferrer">libp2p unified-testing</a> repository.</p>
+            </div>
+            {% endif %}
+        </article>
+    </div>
+</div>
+{% endblock %}

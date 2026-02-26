@@ -51,23 +51,23 @@ Historically, the Web relied solely on unencrypted HTTP as the default transport
 
 ![Chrome warning](/img/blog/autotls/computer-says-no.png)
 
-In libp2p, [all connections are encrypted](/guides/secure-channels-overview/) by default, using either Noise or TLS.
+In libp2p, [all connections are encrypted](/docs/secure-channels-overview/) by default, using either Noise or TLS.
 
 For as long as libp2p has existed, browser-node connectivity has been a challenge. Browsers do not consider libp2p's encryption layer for WebSocket connections as part of "[Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)", leaving us with browser-negotiated TLS encryption as the only viable option.
 
 Up until recently, configuring a libp2p node to be connectable from browsers required additional effort, as node operators had to own and manually configure a domain name and obtain a TLS certificate signed by a certificate authority (CA).
 
-Recent investments in [WebTransport](/guides/browser-connectivity#webtransport) and [WebRTC](/guides/browser-connectivity#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
+Recent investments in [WebTransport](/docs/browser-connectivity#webtransport) and [WebRTC](/docs/browser-connectivity#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
 
-Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 5 round trips to establish a connection](/guides/browser-connectivity#websocket), no support for backpressure on streams (except for [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
+Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 5 round trips to establish a connection](/docs/browser-connectivity#websocket), no support for backpressure on streams (except for [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
 
-By comparison, [WebTransport requires 3 round trips](/guides/browser-connectivity#webtransport), which is why we believe WebTransport is well positioned to be the recommended transport for browser-node connectivity, alas, only once WebTransport is stable and widely supported by browsers.
+By comparison, [WebTransport requires 3 round trips](/docs/browser-connectivity#webtransport), which is why we believe WebTransport is well positioned to be the recommended transport for browser-node connectivity, alas, only once WebTransport is stable and widely supported by browsers.
 
 ## How AutoTLS works
 
 With AutoTLS, the end result is:
 
-1. Your libp2p node, identified by a [PeerID](/guides/peers/#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
+1. Your libp2p node, identified by a [PeerID](/docs/peers/#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
 2. The authoritative DNS server of `libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
 
 > **Note:** `<PeerID>` is [base36 encoded](https://cid.ipfs.tech/#k51qzi5uqu5dh72mdzh50ohq411bo2tzdcdirjw0597vujl9w4hmkn4r8550r0) to keep the DNS label length under 63 characters ([RFC 1034](https://tools.ietf.org/html/rfc1034#page-7)).

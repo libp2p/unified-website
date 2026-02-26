@@ -34,7 +34,7 @@ The goals of libp2p Day were to:
 
 First-class support for WebTransport enables libp2p nodes running in the browser to connect directly with peers on a host machine. WebRTC browser-to-server has also made significant progress.
 
-Check out the [new libp2p connectivity guide](/guides/browser-connectivity).
+Check out the [new libp2p connectivity guide](/docs/browser-connectivity).
 
 #### libp2p Interoperability
 
