@@ -1,19 +1,19 @@
 +++
 title = "Refactoring the libp2p Test Framework: A Fresh Start"
-description = "Announcing the complete rewrite of the libp2p test-plans framework from TypeScript to Bash, delivering cross-platform support, powerful filtering, reproducibility, testing on arbitrary network topologies with almost zero depedency maintenance overhead."
+description = "Announcing the complete rewrite of the libp2p unified-testing framework from TypeScript to Bash, delivering cross-platform support, powerful filtering, reproducibility, testing on arbitrary network topologies with almost zero depedency maintenance overhead."
 date = 2026-01-28
-slug = "new-test-plans"
-aliases = ["/new-test-plans"]
+slug = "new-unified-testing"
+aliases = ["/new-unified-testing"]
 
 [taxonomies]
 tags = ["testing", "libp2p", "interoperability", "performance"]
 
 [extra]
 author = "Dave Grantham"
-header_video = "/img/blog/test-plans-animation.mp4"
+header_video = "/img/blog/unified-testing-animation.mp4"
 +++
 
-The libp2p ecosystem spans multiple programming languages, transports, and protocols. Testing interoperability across this diverse landscape has always been challenging. Today, we're announcing a complete rewrite of the [test-plans repository](https://github.com/libp2p/test-plans) that fundamentally improves how we test libp2p implementations.
+The libp2p ecosystem spans multiple programming languages, transports, and protocols. Testing interoperability across this diverse landscape has always been challenging. Today, we're announcing a complete rewrite of the [unified-testing repository](https://github.com/libp2p/unified-testing) that fundamentally improves how we test libp2p implementations.
 
 ## Why a Complete Rewrite?
 
@@ -269,7 +269,7 @@ The framework reads `inputs.yaml` at startup and applies the same configuration.
 
 ## Resources
 
-- [test-plans repository](https://github.com/libp2p/test-plans)
+- [unified-testing repository](https://github.com/libp2p/unified-testing)
 - [Local Testing Strategies](/guides/local-testing-strategies/) - Installation, filtering, and patching
 - [Write a Performance Test Application](/guides/write-a-perf-test-app/)
 - [Write a Transport Test Application](/guides/write-a-transport-test-app/)

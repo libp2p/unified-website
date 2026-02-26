@@ -8,7 +8,7 @@ toc = true
 category = "testing"
 +++
 
-Running libp2p tests locally enables rapid iteration and debugging. The test-plans framework provides powerful tools for reproducibility through snapshots, flexible test selection through filtering, and local development through patching.
+Running libp2p tests locally enables rapid iteration and debugging. The unified-testing framework provides powerful tools for reproducibility through snapshots, flexible test selection through filtering, and local development through patching.
 
 ## Prerequisites
 
@@ -40,9 +40,9 @@ sudo apt install docker-compose-plugin
 sudo usermod -aG docker $USER
 newgrp docker
 
-# Clone test-plans
-git clone https://github.com/libp2p/test-plans.git
-cd test-plans
+# Clone unified-testing
+git clone https://github.com/libp2p/unified-testing.git
+cd unified-testing
 ```
 
 ### macOS
@@ -57,9 +57,9 @@ open -a Docker
 # Verify bash version (must be 4.0+)
 /opt/homebrew/bin/bash --version
 
-# Clone test-plans
-git clone https://github.com/libp2p/test-plans.git
-cd test-plans
+# Clone unified-testing
+git clone https://github.com/libp2p/unified-testing.git
+cd unified-testing
 
 # Run with Homebrew bash (macOS ships with bash 3.x)
 /opt/homebrew/bin/bash perf/run.sh --check-deps
@@ -82,9 +82,9 @@ sudo wget https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd
 # Configure Docker (ensure Docker Desktop WSL integration is enabled)
 # Or install Docker in WSL directly
 
-# Clone test-plans
-git clone https://github.com/libp2p/test-plans.git
-cd test-plans
+# Clone unified-testing
+git clone https://github.com/libp2p/unified-testing.git
+cd unified-testing
 ```
 
 ## Verification
@@ -164,7 +164,7 @@ Expected output:
 
 ## Understanding the Filtering System
 
-The test-plans framework uses a powerful two-stage filtering model that lets you precisely control which tests run.
+The unified-testing framework uses a powerful two-stage filtering model that lets you precisely control which tests run.
 
 ### Filter Syntax: Pipe-Separated Substring Matching
 

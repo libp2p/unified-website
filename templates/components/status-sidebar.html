@@ -1,0 +1,53 @@
+{# Sidebar Navigation for Status Section #}
+{% import "macros.html" as macros %}
+{% set status_section = get_section(path="status/_index.md") %}
+
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar__header">
+        <h2>Status</h2>
+    </div>
+
+    <nav aria-label="Status navigation">
+        {% for subsection_path in status_section.subsections %}
+            {% set subsection = get_section(path=subsection_path) %}
+            <div class="sidebar__section">
+                <button class="sidebar__section-title" aria-expanded="true" data-section-toggle>
+                    {{ subsection.title }}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                </button>
+                <ul class="sidebar__list">
+                    {# Pages in subsection #}
+                    {% for page in subsection.pages %}
+                    <li class="sidebar__item">
+                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
+                           class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
+                            {{ page.title }}
+                        </a>
+                    </li>
+                    {% endfor %}
+
+                    {# Show empty state if no pages #}
+                    {% if subsection.pages | length == 0 %}
+                    <li class="sidebar__item">
+                        <span class="sidebar__link sidebar__link--empty">Coming soon</span>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endfor %}
+    </nav>
+</aside>
+
+{# Sidebar overlay for mobile #}
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+{# Mobile toggle button #}
+<button type="button" class="sidebar-toggle" aria-label="Toggle sidebar" data-sidebar-toggle>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+</button>

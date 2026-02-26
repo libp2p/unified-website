@@ -50,7 +50,7 @@ In [v0.19.0](https://github.com/libp2p/go-libp2p/releases/tag/v0.19.0), we enabl
 
 ### Interoperability Testing
 
-We began a concerted effort to improve interoperability between go-libp2p and libp2p implementations in other languages. The details can be seen in the shared [libp2p/test-plans Roadmap](https://github.com/libp2p/test-plans/blob/master/ROADMAP.md).
+We began a concerted effort to improve interoperability between go-libp2p and libp2p implementations in other languages. The details can be seen in the shared [unified-testing repo](https://github.com/libp2p/unified-testing).
 
 ### Monorepo Consolidation
 

@@ -1,2 +1,2 @@
-# This directory stores interoperability test results fetched from test-plans repo
+# This directory stores interoperability test results fetched from Filebase bucket https://results.s3.filebase.com/results.yaml
 # Updated daily by the update-status workflow
