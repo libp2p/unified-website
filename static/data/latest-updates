@@ -1,14 +1,14 @@
 <div class="update-item">
-    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
+    <div class="update-item__title">New Transport Layer Support Added</div>
     <div class="update-item__description">
-        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">New Transport Layer Support Added</div>
+    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
     <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
     </div>
 </div>
 
@@ -20,83 +20,15 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Cross-Implementation Coordination: Transport Interop Runner Changes</div>
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
     <div class="update-item__description">
         The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Bug Fix: Resolve Connection Establishment Issues in Swift-LibP2P</div>
+    <div class="update-item__title">Fix: Remove Temporary Logging</div>
     <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a>.
     </div>
 </div>
-
-<div class="update-item">
-    <div class="update-item__title">Breaking Change: Remove Temporary Logging in Swift-LibP2P</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Input Command Sanitization in Swift-LibP2P</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: WebTransport Support in Rust-LibP2P</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Cross-Implementation Coordination: Transport Interop Runner Changes</div>
-    <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Bug Fix: Resolve Connection Establishment Issues in Swift-LibP2P</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Breaking Change: Remove Temporary Logging in Swift-LibP2P</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Input Command Sanitization in Swift-LibP2P</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: WebTransport Support in Rust-LibP2P</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Cross-Implementation Coordination: Transport Interop Runner Changes</div>
-    <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Bug Fix: Resolve Connection Establishment Issues in Swift-LibP2P</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-lib
