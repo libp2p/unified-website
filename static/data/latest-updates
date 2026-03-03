@@ -34,74 +34,8 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Input Command Sanitization Improved</div>
+    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
     <div class="update-item__description">
-        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
     </div>
 </div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Kademlia Routing Table Improved</div>
-    <div class="update-item__description">
-        The libp2p implementation now correctly handles kademlia routing tables, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1235">PR #1235</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/568">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Connection Establishment Improved</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles connection establishment, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/45">PR #45</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Network Event Handling Improved</div>
-    <div class="update-item__description">
-        The libp2p implementation now correctly handles network events, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1236">PR #1236</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/569">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Connection Closure Improved</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles connection closure, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/46">PR #46</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Network Buffer Handling Improved</div>
-    <div class="update-item__description">
-        The libp2p implementation now correctly handles network buffers, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1237">PR #1237</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/570">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Connection Timeout Handling Improved</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles connection timeouts, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/47">PR #47</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Network Error Handling Improved</div>
-    <div class="update-item__description">
-        The libp2p implementation now correctly handles network errors, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1238">PR #1238</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/571">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Connection Reconnection Improved</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly handles connection reconnections, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/48">PR #48</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Network Flow Control Improved</div>
-    <div class="update-item__description">
-        The libp2p implementation now correctly handles network flow control, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1239">PR #1239</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/572">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix:
