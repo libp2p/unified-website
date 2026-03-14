@@ -1,6 +1,6 @@
 +++
 title = "ws - tls - mplex"
-weight = 14
+weight = 11
 [extra]
 combo = "ws - tls - mplex"
 type = "transport"

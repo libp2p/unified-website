@@ -1,6 +1,6 @@
 +++
 title = "wss - noise - mplex"
-weight = 11
+weight = 13
 [extra]
 combo = "wss - noise - mplex"
 type = "transport"
