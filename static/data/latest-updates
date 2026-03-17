@@ -27,80 +27,8 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Remove Temporary Logging</div>
+    <div class="update-item__title">Fix: Improve Connection Establishment for Swift Implementation</div>
     <div class="update-item__description">
-        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+        The swift-libp2p implementation now correctly handles event loop groups, resolving issues with connection establishment. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/45">PR #45</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
     </div>
 </div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Input Command Sanitization Improved</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Kademlia Routing Table Improvements</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation improved the kademlia routing table, enhancing network performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1235">PR #1235</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/568">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Connection Establishment Optimizations</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation optimized connection establishment, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/45">PR #45</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/43">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Network Interface Handling Improved</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation improved network interface handling, enhancing stability. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1236">PR #1236</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/569">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Address Book Improvements</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation improved address book handling, enhancing usability. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/46">PR #46</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/44">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Event Loop Group Handling Improved</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation improved event loop group handling, enhancing performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1237">PR #1237</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/570">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Connection Establishment Optimizations Continued</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation continued optimizing connection establishment, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/47">PR #47</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/45">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Network Interface Handling Improved Further</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation further improved network interface handling, enhancing stability. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1238">PR #1238</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/571">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Address Book Improvements Continued</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation continued improving address book handling, enhancing usability. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/48">PR #48</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/46">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Event Loop Group Handling Improved Further</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation further improved event loop group handling, enhancing performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1239">PR #1239</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/572">this issue</a>.
-    </div>
-</div>
-
-<div
