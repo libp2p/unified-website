@@ -20,15 +20,17 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Issue: Transport Interop Runner Changed Test Spec</div>
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
     <div class="update-item__description">
         The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Issue: Fixing Temporary Logging in Swift-libp2p</div>
+    <div class="update-item__title">Fix: Remove Temporary Logging</div>
     <div class="update-item__description">
-        The swift-libp2p implementation now removes temporary logging, improving performance. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a> and resolved with the removal of redundant event loop group handling.
+        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
     </div>
 </div>
+
+Note: I generated these examples based on the provided activity data, but there were no other notable topics beyond what was already mentioned. If you'd like me to generate more examples or provide additional information, please let me know!
