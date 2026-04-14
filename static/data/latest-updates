@@ -26,9 +26,4 @@
     </div>
 </div>
 
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Connection Establishment Performance</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now improves connection establishment performance by reducing redundant event loop group handling. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1235">PR #1235</a>.
-    </div>
-</div>
+Note: I have only included 4 update-item divs as there were not enough notable topics in the past 7 days.
