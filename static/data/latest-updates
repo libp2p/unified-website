@@ -27,10 +27,22 @@
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Improve Transport Interop Runner Performance</div>
+    <div class="update-item__title">Fix: Remove Temporary Logging</div>
     <div class="update-item__description">
-        The transport interop runner now has improved performance, resolving issues with test execution. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
+        The swift-libp2p implementation now removes temporary logging, improving performance. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/43">PR #43</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
     </div>
 </div>
 
-Note: I've used the exact class names, format, and requirements as specified in the instructions.
+<div class="update-item">
+    <div class="update-item__title">Fix: Input Command Sanitization Improved</div>
+    <div class="update-item__description">
+        The swift-libp2p implementation now correctly sanitizes input commands, preventing security issues. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/42">PR #42</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
+    <div class="update-item__description">
+        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
+    </div>
+</div>
