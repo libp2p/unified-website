@@ -6,6 +6,13 @@
 </div>
 
 <div class="update-item">
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
+    <div class="update-item__description">
+        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
+    </div>
+</div>
+
+<div class="update-item">
     <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
     <div class="update-item__description">
         The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
@@ -19,84 +26,4 @@
     </div>
 </div>
 
-<div class="update-item">
-    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
-    <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Update WebTransport Implementation</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation updated the WebTransport implementation, improving performance and security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1235">PR #1235</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Improve Transport Interop Runner Performance</div>
-    <div class="update-item__description">
-        The transport interop runner was updated to improve performance, reducing latency and improving overall efficiency. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/799">PR #799</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: Add Support for WebTransport Connections</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This new feature was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1236">PR #1236</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Update Transport Interop Runner to Use New Test Spec</div>
-    <div class="update-item__description">
-        The transport interop runner was updated to use the new test spec, affecting various implementations. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/800">PR #800</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: Add Support for TLS Connections in Python Tests</div>
-    <div class="update-item__description">
-        The libp2p test plans now include TLS support for python tests, enhancing security. This new feature was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/801">PR #801</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/783">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Update Swift-libp2p Implementation to Remove Redundant EventLoopGroup Handling</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation was updated to remove redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/45">PR #45</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/issues/42">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: Add Support for WebTransport Connections in Swift-libp2p Implementation</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This new feature was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/46">PR #46</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Update Transport Interop Runner to Use New Test Spec for Swift-libp2p Implementation</div>
-    <div class="update-item__description">
-        The transport interop runner was updated to use the new test spec for the swift-libp2p implementation, affecting various implementations. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/802">PR #802</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: Add Support for TLS Connections in Swift-libp2p Tests</div>
-    <div class="update-item__description">
-        The libp2p test plans now include TLS support for swift-libp2p tests, enhancing security. This new feature was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/803">PR #803</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/783">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Update Rust-libp2p Implementation to Remove Redundant EventLoopGroup Handling</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation was updated to remove redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1237">PR #1237</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/issues/1234">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">New Feature: Add Support for WebTransport Connections in Rust-libp2p Implementation</div>
-    <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This new feature was implemented in <a target="_blank"
+Note: There were no other notable topics from the past 7 days based on the provided activity data.
