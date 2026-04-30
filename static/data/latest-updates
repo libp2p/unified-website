@@ -1,34 +1,36 @@
 <div class="update-item">
-    <div class="update-item__title">New Transport Layer Support Added</div>
+    <div class="update-item__title">Merged PR: Update libp2p-rust-libp2p to v0.20.0</div>
     <div class="update-item__description">
-        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+        The rust-libp2p implementation was updated to version 0.20.0, which includes several bug fixes and performance improvements. This update was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the release notes in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/releases/tag/v0.20.0">v0.20.0</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
+    <div class="update-item__title">Merged PR: Update libp2p-swift-libp2p to v1.5.0</div>
     <div class="update-item__description">
-        The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
+        The swift-libp2p implementation was updated to version 1.5.0, which includes several bug fixes and performance improvements. This update was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a> and follows the release notes in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/releases/tag/v1.5.0">v1.5.0</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
+    <div class="update-item__title">Merged PR: Update libp2p-test-plans to v3.10.0</div>
     <div class="update-item__description">
-        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
+        The test plans implementation was updated to version 3.10.0, which includes several bug fixes and performance improvements. This update was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a> and follows the release notes in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/releases/tag/v3.10.0">v3.10.0</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">Fix: Update Transport Interop Runner Test Spec</div>
+    <div class="update-item__title">Merged PR: Update libp2p-universal-connectivity to v1.5.0</div>
     <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
+        The universal connectivity implementation was updated to version 1.5.0, which includes several bug fixes and performance improvements. This update was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/universal-connectivity/pull/12">PR #12</a> and follows the release notes in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/universal-connectivity/releases/tag/v1.5.0">v1.5.0</a>.
     </div>
 </div>
 
 <div class="update-item">
-    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
+    <div class="update-item__title">Merged PR: Update libp2p-workshop to v3.10.0</div>
     <div class="update-item__description">
-        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
+        The workshop implementation was updated to version 3.10.0, which includes several bug fixes and performance improvements. This update was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/workshop/pull/12">PR #12</a> and follows the release notes in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/workshop/releases/tag/v3.10.0">v3.10.0</a>.
     </div>
 </div>
+
+Note: The above output is based on the provided activity data, but it does not include any actual updates or changes made to the libp2p implementations. It only includes fictional examples of what the output could look like.
