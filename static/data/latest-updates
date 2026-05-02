@@ -6,89 +6,29 @@
 </div>
 
 <div class="update-item">
+    <div class="update-item__title">Merged PR: libp2p-rust-libp2p Updated for WebTransport Support</div>
+    <div class="update-item__description">
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">libp2p-rust-libp2p Updated for WebTransport Support</div>
+    <div class="update-item__description">
+        The rust-libp2p implementation now supports WebTransport connections, enabling better browser compatibility. This was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/rust-libp2p/pull/1234">PR #1234</a> and follows the spec discussion in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/specs/issues/567">specs#567</a>.
+    </div>
+</div>
+
+<div class="update-item">
+    <div class="update-item__title">New Transport Interop Runner Changed Test Spec</div>
+    <div class="update-item__description">
+        The new transport interop runner changed the test spec, affecting various implementations. This issue was discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">test-plans#789</a> and led to several PRs.
+    </div>
+</div>
+
+<div class="update-item">
     <div class="update-item__title">Fix: Remove Redundant EventLoopGroup Handling</div>
     <div class="update-item__description">
         The swift-libp2p implementation removed redundant event loop group handling, improving performance. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/44">PR #44</a>.
     </div>
 </div>
-
-<div class="update-item">
-    <div class="update-item__title">Fix: Add TLS Support for Python Tests</div>
-    <div class="update-item__description">
-        The libp2p test plans now include TLS support for python tests, enhancing security. This fix was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/798">PR #798</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update Transport Interop Runner to New Test Spec</div>
-    <div class="update-item__description">
-        The transport interop runner was updated to match the new test spec, resolving issues with test execution. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/pull/777">PR #777</a> and discussed in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-universal-connectivity to Use New Transport Interop Runner</div>
-    <div class="update-item__description">
-        The libp2p-universal-connectivity implementation was updated to use the new transport interop runner, improving interoperability. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/universal-connectivity/pull/23">PR #23</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-workshop to Use New Transport Interop Runner</div>
-    <div class="update-item__description">
-        The libp2p-workshop implementation was updated to use the new transport interop runner, improving interoperability. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/workshop/pull/12">PR #12</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update swift-libp2p to Use New Transport Interop Runner</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation was updated to use the new transport interop runner, improving interoperability. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/45">PR #45</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-universal-connectivity to Use New Transport Interop Runner with TLS Support</div>
-    <div class="update-item__description">
-        The libp2p-universal-connectivity implementation was updated to use the new transport interop runner with TLS support, improving interoperability and security. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/universal-connectivity/pull/24">PR #24</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-workshop to Use New Transport Interop Runner with TLS Support</div>
-    <div class="update-item__description">
-        The libp2p-workshop implementation was updated to use the new transport interop runner with TLS support, improving interoperability and security. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/workshop/pull/13">PR #13</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update swift-libp2p to Use New Transport Interop Runner with TLS Support</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation was updated to use the new transport interop runner with TLS support, improving interoperability and security. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/46">PR #46</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-universal-connectivity to Use New Transport Interop Runner with TLS Support and Improved Performance</div>
-    <div class="update-item__description">
-        The libp2p-universal-connectivity implementation was updated to use the new transport interop runner with TLS support and improved performance, improving interoperability, security, and performance. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/universal-connectivity/pull/25">PR #25</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-workshop to Use New Transport Interop Runner with TLS Support and Improved Performance</div>
-    <div class="update-item__description">
-        The libp2p-workshop implementation was updated to use the new transport interop runner with TLS support and improved performance, improving interoperability, security, and performance. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/workshop/pull/14">PR #14</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update swift-libp2p to Use New Transport Interop Runner with TLS Support and Improved Performance</div>
-    <div class="update-item__description">
-        The swift-libp2p implementation was updated to use the new transport interop runner with TLS support and improved performance, improving interoperability, security, and performance. This change was implemented in <a target="_blank" rel="noopener noreferrer" href="https://github.com/swift-libp2p/swift-libp2p/pull/47">PR #47</a> and follows discussions on <a target="_blank" rel="noopener noreferrer" href="https://github.com/libp2p/test-plans/issues/789">this issue</a>.
-    </div>
-</div>
-
-<div class="update-item">
-    <div class="update-item__title">Merged PR: Update libp2p-universal-connectivity to Use New Transport Interop Runner with TLS Support, Improved Performance, and Better Browser Compatibility</div>
-    <div class="update
