@@ -6,6 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    {# Subdomain Redirects #}
+    <script>
+        (function() {
+            var host = window.location.hostname;
+            var path = window.location.pathname;
+            var search = window.location.search;
+            var hash = window.location.hash;
+            
+            var redirects = {
+                'connectivity.libp2p.io': '/connectivity',
+                'docs.libp2p.io': '/docs',
+                'blog.libp2p.io': '/blog'
+            };
+            
+            if (redirects[host]) {
+                var sectionPath = redirects[host];
+                var finalPath = path;
+                
+                if (path === '/' || path === '') {
+                    finalPath = sectionPath + '/';
+                } else if (!path.startsWith(sectionPath)) {
+                    finalPath = sectionPath + path;
+                }
+                
+                window.location.replace('https://libp2p.io' + finalPath + search + hash);
+            }
+        })();
+    </script>
+
     {# Page title #}
     <title>{% block title %}{% if page.title is defined %}{{ page.title }}{% elif section is defined and section.title is defined %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %} | {{ config.extra.name }}</title>
 
