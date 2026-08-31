@@ -64,7 +64,7 @@ jobs:
             --key preview/${{ steps.vars.outputs.prefix }}/preview.car > head-object.log 2>&1
 
           # Extract CID from debug log (x-amz-meta-cid header)
-          CID=$(jq -r .Metadata.cid head-object.log | tr -d '\r')
+          CID=$(jq -r '.Metadata.Cid // .Metadata.cid' head-object.log | tr -d '\r')
           if [ -z "$CID" ]; then
             echo "Failed to extract CID from upload response"
             cat head-object.log
