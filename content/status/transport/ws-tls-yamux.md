@@ -1,6 +1,6 @@
 +++
 title = "ws - tls - yamux"
-weight = 12
+weight = 11
 [extra]
 combo = "ws - tls - yamux"
 type = "transport"

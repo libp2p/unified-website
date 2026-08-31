@@ -1,6 +1,6 @@
 +++
 title = "webrtc-direct"
-weight = 7
+weight = 6
 [extra]
 combo = "webrtc-direct"
 type = "transport"
