@@ -22,6 +22,6 @@ This section is open by default.
         </svg>
     </summary>
     <div class="details__content">
-        {{ body | safe }}
+        {{ body | markdown | safe }}
     </div>
 </details>
