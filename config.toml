@@ -145,6 +145,10 @@ name = "Docs"
 url = "/docs/"
 
 [[extra.nav]]
+name = "Connectivity"
+url = "/connectivity/"
+
+[[extra.nav]]
 name = "Projects"
 url = "/projects/"
 
