@@ -41,6 +41,6 @@ Types: note, tip, warning, danger, info
         {% if display_title %}
         <strong class="alert__title">{{ display_title }}</strong>
         {% endif %}
-        {{ body | safe }}
+        {{ body | markdown | safe }}
     </div>
 </div>
