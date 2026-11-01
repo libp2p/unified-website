@@ -26,9 +26,9 @@ second
 [is shown in a diagram here](https://github.com/libp2p/specs/tree/master/connections#upgrading-connections).
 
 First, the security protocol is negotiated, then this protocol is used to perform a cryptographic
-handshake. libp2p currently supports [Noise](/docs/noise/) and [TLS 1.3](/docs/tls/).
+handshake. libp2p currently supports [Noise](@/docs/noise.md) and [TLS 1.3](@/docs/tls.md).
 Once the cryptographic handshake completes, multistream-select runs again on top of
-the secured connection to negotiate a steam multiplexer, like [yamux](/docs/yamux/) or [mplex](/docs/mplex/).
+the secured connection to negotiate a steam multiplexer, like [yamux](@/docs/yamux.md) or [mplex](@/docs/mplex.md).
 
 ## Early muxer negotiation
 

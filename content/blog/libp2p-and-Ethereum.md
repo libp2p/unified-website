@@ -46,7 +46,7 @@ Prior to the Merge, Ethereum solely used devp2p, a dedicated networking stack. T
 
 At Devcon 2, David Dias from Protocol Labs gave a talk titled "libp2p ❤ devp2p: IPFS and Ethereum Networking". He gave an overview of libp2p and demonstrated running the EVM in a browser connecting to a go-ethereum node using libp2p.
 
-![Early libp2p and Ethereum collaboration](/img/blog/eth-libp2p-2016.png)
+{{ img(src="img/blog/eth-libp2p-2016.png", alt="Early libp2p and Ethereum collaboration") }}
 
 ### The Integration
 

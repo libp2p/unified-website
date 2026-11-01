@@ -15,12 +15,12 @@ Before two peers can transmit data, the communication channel they
 establish needs to be secured. By design,
 libp2p supports many different transports (TCP, QUIC, WebSocket, WebTransport,
 etc.). Some transports have built-in encryption at the transport layer
-like [QUIC](/docs/quic/), while other transports (e.g. TCP, WebSocket)
+like [QUIC](@/docs/quic.md), while other transports (e.g. TCP, WebSocket)
 lack native security and require a security handshake after the transport connection has been
 established.
 
 ## Secure channels in libp2p
 
-libp2p specifies two security protocols, [TLS 1.3](/docs/tls/) and [Noise](/docs/noise/).
+libp2p specifies two security protocols, [TLS 1.3](@/docs/tls.md) and [Noise](@/docs/noise.md).
 After the handshake has finished, we need to negotiate a
-[stream multiplexer](/docs/multiplexing-overview/) for the connection.
+[stream multiplexer](@/docs/multiplexing-overview.md) for the connection.

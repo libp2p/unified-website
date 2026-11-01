@@ -38,7 +38,7 @@ For building implementations, we use Makefiles and Docker container images with 
 
 Right now, the system tests 6 different libp2p implementations and runs about 1700 tests. The tests are also run on each PR in Go, Rust, JS, Nim, and Zig libp2p.
 
-![Multidim Interop coverage matrix](/img/blog/multidim-interop-coverage.png)
+{{ img(src="img/blog/multidim-interop-coverage.png", alt="Multidim Interop coverage matrix") }}
 
 See the latest full run at the [libp2p Status Page](https://libp2p.io/status).
 

@@ -10,7 +10,7 @@ category = "secure channels"
 +++
 
 TLS (Transport Layer Security) is one of the security handshakes used to secure transports
-that don't have built-in security (e.g. TCP, WebSocket). [Noise](/docs/noise/), an alternative to
+that don't have built-in security (e.g. TCP, WebSocket). [Noise](@/docs/noise.md), an alternative to
 TLS, is also another security handshake used to secure transports.
 
 ## What is TLS?

@@ -446,6 +446,6 @@ sudo wget https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd
 
 ## Next Steps
 
-- [Write a Performance Test Application](/docs/write-a-perf-test-app/)
-- [Write a Transport Test Application](/docs/write-a-transport-test-app/)
-- [Write a Hole-Punch Test Application](/docs/write-a-hole-punch-test-app/)
+- [Write a Performance Test Application](@/docs/write-a-perf-test-app.md)
+- [Write a Transport Test Application](@/docs/write-a-transport-test-app.md)
+- [Write a Hole-Punch Test Application](@/docs/write-a-hole-punch-test-app.md)

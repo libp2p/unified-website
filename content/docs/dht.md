@@ -172,7 +172,7 @@ libp2p mitigates these through:
 - Query responses validated against the original key
 - Disjoint lookup paths in some implementations
 
-For more details, see the [Security Considerations](/docs/security-considerations/) guide.
+For more details, see the [Security Considerations](@/docs/security-considerations.md) guide.
 
 ## Implementation Details
 
@@ -187,6 +187,6 @@ Different libp2p implementations may have varying DHT parameters:
 
 ## Further Reading
 
-- [Kademlia DHT guide](/docs/kademlia-dht/) — Detailed Kademlia implementation specifics
+- [Kademlia DHT guide](@/docs/kademlia-dht.md) — Detailed Kademlia implementation specifics
 - [libp2p DHT specification](https://github.com/libp2p/specs/tree/master/kad-dht) — Technical specification
 - [Original Kademlia paper](https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf) — Academic paper by Maymounkov and Mazières
