@@ -35,13 +35,13 @@ Direct connections are especially useful for video and audio calling, because th
 
 However, the reality of public internet networking—given routers, NAT layers, VPNs, and firewalls—is such that p2p connectivity is riddled with challenges. These are commonly overcome by running additional infrastructure such as signaling, [STUN](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols), and [TURN](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Protocols) servers, some of which are standardized as part of WebRTC.
 
-While WebRTC is a solution to peer-to-peer connectivity in the context of browsers. Libp2p encompasses a wider scope with building blocks for constructing peer-to-peer apps that support WebRTC in addition to [other transports, such as QUIC, TCP, WebSocket, WebTransport](/docs/browser-connectivity/), and essentially form a mesh topology:
+While WebRTC is a solution to peer-to-peer connectivity in the context of browsers. Libp2p encompasses a wider scope with building blocks for constructing peer-to-peer apps that support WebRTC in addition to [other transports, such as QUIC, TCP, WebSocket, WebTransport](@/docs/browser-connectivity.md), and essentially form a mesh topology:
 
-![mesh topology](/webrtc-guide/mesh.png)
+{{ img(src="webrtc-guide/mesh.png", alt="mesh topology") }}
 
 Another benefit of WebRTC and libp2p is that it allows you to dial a js-libp2p peer in the browser from a js-libp2p in Node.js.
 
-The diagram above illustrates a mesh topology with libp2p, whereby each peer is identified by a [Peer ID](/docs/peers/) that is derived from a public key. When you create a new peer libp2p will first create a new public-private key pair, unless you provide one. Each Peer can have multiple addresses depending on the transport protocols it can be dialed with, e.g. WebRTC in the browser, which can also change.
+The diagram above illustrates a mesh topology with libp2p, whereby each peer is identified by a [Peer ID](@/docs/peers.md) that is derived from a public key. When you create a new peer libp2p will first create a new public-private key pair, unless you provide one. Each Peer can have multiple addresses depending on the transport protocols it can be dialed with, e.g. WebRTC in the browser, which can also change.
 
 ## Peer-to-peer connections: when two aren't enough to tango
 
@@ -65,11 +65,11 @@ The following diagrams visualize the connection flow between two browsers using 
 
 The first diagram illustrates the peer discovery and establishment of a relayed connection between the two browsers:
 
-![WebRTC connection flow diagram](/webrtc-guide/sequence-part-1.png)
+{{ img(src="webrtc-guide/sequence-part-1.png", alt="WebRTC connection flow diagram") }}
 
 The second diagram, which continues from the first, illustrates the SDP handshake via the Circuit Relay:
 
-![WebRTC connection flow diagram](/webrtc-guide/sequence-part-2.png)
+{{ img(src="webrtc-guide/sequence-part-2.png", alt="WebRTC connection flow diagram") }}
 
 The connection flow seems complex, but thankfully, libp2p abstracts away some of that complexity and the rest is explained in this guide.
 
@@ -86,10 +86,10 @@ Either way, there are several noteworthy things about the connection flow:
 
 This guide assumes a basic understanding of libp2p concepts such as:
 
-- [Peer ID](/docs/peers/#peer-id)
-- [Multiaddresses (often abbreviated multiaddr)](/docs/addressing/)
-- [Libp2p transports](/docs/transports-overview/)
-- [GossipSub](/docs/pubsub/)
+- [Peer ID](@/docs/peers.md#peer-id)
+- [Multiaddresses (often abbreviated multiaddr)](@/docs/addressing.md)
+- [Libp2p transports](@/docs/transports-overview.md)
+- [GossipSub](@/docs/pubsub.md)
 
 Besides that, most of this guide focuses on js-libp2p, i.e. JavaScript.
 
@@ -173,14 +173,14 @@ const libp2p = await createLibp2p({
 });
 ```
 
-The `createLibp2p` invocation creates a libp2p peer which has its associated key pair and [Peer ID](/docs/peers/#peer-id) with support for the WebSocket , WebTransport and WebRTC transports, as well as the [identify protocol](/docs/protocols/#identify). It also uses noise to ensure all connections are encrypted, and yamux as the stream multiplexer for the relayed connection.
+The `createLibp2p` invocation creates a libp2p peer which has its associated key pair and [Peer ID](@/docs/peers.md#peer-id) with support for the WebSocket , WebTransport and WebRTC transports, as well as the [identify protocol](@/docs/protocols.md#identify). It also uses noise to ensure all connections are encrypted, and yamux as the stream multiplexer for the relayed connection.
 
 {% alert(type="note") %}
 **Why is yamux needed?**
 
-You may notice that the above js-libp2p configuration adds yamux as the stream multiplexer. While both WebRTC and WebTransport come with native [stream multiplexing](/docs/multiplexing-overview/), yamux is still required for WebSockets to multiplex streams on the circuit relay connection.
+You may notice that the above js-libp2p configuration adds yamux as the stream multiplexer. While both WebRTC and WebTransport come with native [stream multiplexing](@/docs/multiplexing-overview.md), yamux is still required for WebSockets to multiplex streams on the circuit relay connection.
 
-![diagram showing circuit relay](/webrtc-guide/circuit-relay-diagram.png)
+{{ img(src="webrtc-guide/circuit-relay-diagram.png", alt="diagram showing circuit relay") }}
 
 When a browser initiates the connection to another browser over a circuit relay, the underlying WebSocket stream to the relay is multiplexed by yamux and encrypted by Noise. In the case of WebTransport it is multiplexed and encrypted natively. Either way, the relayed connection between the two browsers must be encrypted by noise otherwise the relay could eavesdrop on the traffic. Once the relayed connection between the browsers is encrypted, it also requires yamux to create a stream for the signaling protocol.
 {% end %}
@@ -196,11 +196,11 @@ In this step, you connect the browser js-libp2p peer to the node.js relay peer.
 
 Open the frontend in your browser (or use the one open from the previous step) and enter the loopback WebSocket multiaddr of the relay, i.e. `/ip4/127.0.0.1/tcp/9001/ws/p2p/12D3KooWQtCgYCZ7JZQoe7Ao6KP5CDMnmEiURqMoarfBgJwbnCPQ`
 
-![Screenshot showing the multiaddr in the UI](/webrtc-guide/connect-to-relay.png)
+{{ img(src="webrtc-guide/connect-to-relay.png", alt="Screenshot showing the multiaddr in the UI") }}
 
 Now click Connect and the peer should appear in the peer List:
 
-![Screenshot showing the connected peer in the UI](/webrtc-guide/connected-to-relay.png)
+{{ img(src="webrtc-guide/connected-to-relay.png", alt="Screenshot showing the connected peer in the UI") }}
 
 Congratulations, you have now established a WebSocket connection to the relay.
 
@@ -255,7 +255,7 @@ For each network interface the relay binds to, there are two addresses: **one TC
 
 Observe that the beginning of the multiaddr is the same as the relay, followed by `/p2p-circuit/p2p/BROWSER_PEER_ID`. This multiaddr can be used by other browser peers (capable of WebTransport) to connect to the first browser window using the relay:
 
-![diagram showing circuit relay](/webrtc-guide/circuit-relay-diagram.png)
+{{ img(src="webrtc-guide/circuit-relay-diagram.png", alt="diagram showing circuit relay") }}
 
 By adding a `circuitRelayTransport` and configuring a `/p2p-circuit` listen address, js-libp2p was able to create circuit relay reservation (time and bandwidth-constrained) on the relay.
 
@@ -367,7 +367,7 @@ Copy the first multiaddr that contains: `.../ws/p2p/RELAY_PEER_ID/p2p-circuit/we
 
 Once the connection succeeds, the WebRTC connection count in both browsers is **1** and both browsers are connected to the relay as well as the other browser Peer ID:
 
-![browsers connected](/webrtc-guide/browsers-connected.png)
+{{ img(src="webrtc-guide/browsers-connected.png", alt="browsers connected") }}
 
 Congratulations! You have successfully established a direct connection between two browsers.
 
@@ -379,11 +379,11 @@ In the previous steps, you worked through the process of establishing a WebRTC c
 
 In this step, PubSub peer discovery is introduced so the browsers can exchange their multiaddrs and discover each other automatically (with the help of the relay).
 
-In libp2p, PubSub is implemented with the [GossipSub protocol](/docs/pubsub/), which provides an efficient way for mesh networks to exchange messages.
+In libp2p, PubSub is implemented with the [GossipSub protocol](@/docs/pubsub.md), which provides an efficient way for mesh networks to exchange messages.
 
 For PubSub peer discovery to work, both frontend and the relay must use the same topic. As soon as the frontend discovers its own multiaddrs, it publishes it in a message to the discovery topic. The relay, which is also listening to the discovery topic, gossips the message to other browser peers connected to it, which in turn, establish direct WebRTC connections. From a high level, it looks as follows:
 
-![PubSub Peer discovery](/webrtc-guide/pubsub-discovery.png)
+{{ img(src="webrtc-guide/pubsub-discovery.png", alt="PubSub Peer discovery") }}
 
 In the `src/index.js` file, update the call to `createLibp2p` as follows:
 

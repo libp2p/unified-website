@@ -37,7 +37,7 @@ The core idea is that AutoTLS enables reliable browser-based clients to connect 
 
 Blockchains using libp2p, such as Ethereum, Celestia, and Filecoin, could integrate AutoTLS and improve access to chain state for browser-based [light clients](https://ethereum.org/en/developers/docs/nodes-and-clients/light-clients/#why-are-light-clients-important) and wallets. This would promote client-side transaction and state verification.
 
-![Chains using libp2p](/img/blog/autotls/networks-using-libp2p.jpg)
+{{ img(src="img/blog/autotls/networks-using-libp2p.jpg", alt="Chains using libp2p") }}
 
 Though it remains to be seen how practical browser-based light clients will be, we're already seeing interest in AutoTLS from the community. For example, AutoTLS has already proven to be instrumental for the [Celestia Lumina client implementation](https://github.com/eigerco/lumina), a Rust implementation of Celestia's data availability node, which compiles to WASM. When [running in a browser](https://lumina.rs/), it can reliably connect to more capable bridge and full Celestia nodes with TLS certificates issued by AutoTLS. What's more, the [ProbeLab team](https://probelab.io/) has integrated AutoTLS into [Ants Watch](https://github.com/probe-lab/ants-watch), which monitors the Celestia DHT, and already have [insight into the distribution](https://probelab.io/celestia/dht/2025-02/#lightnode-population) of browser-based Lumina clients in the network.
 
@@ -49,25 +49,25 @@ With that in mind, let's explore the challenges of browser-node connectivity.
 
 Historically, the Web relied solely on unencrypted HTTP as the default transport, undermining user privacy and exposing users to MITM attacks. With the advent of TLS, HTTPS, and automated Certificate Authorities like Let's Encrypt, encryption is now the norm. So much so that [Chrome warns users "Not secure"](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/) when they're visiting a site over an unencrypted HTTP connection, or produce "mixed-content" errors when a page tries to fetch unencrypted subresources.
 
-![Chrome warning](/img/blog/autotls/computer-says-no.png)
+{{ img(src="img/blog/autotls/computer-says-no.png", alt="Chrome warning") }}
 
-In libp2p, [all connections are encrypted](/docs/secure-channels-overview/) by default, using either Noise or TLS.
+In libp2p, [all connections are encrypted](@/docs/secure-channels-overview.md) by default, using either Noise or TLS.
 
 For as long as libp2p has existed, browser-node connectivity has been a challenge. Browsers do not consider libp2p's encryption layer for WebSocket connections as part of "[Secure Context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts)", leaving us with browser-negotiated TLS encryption as the only viable option.
 
 Up until recently, configuring a libp2p node to be connectable from browsers required additional effort, as node operators had to own and manually configure a domain name and obtain a TLS certificate signed by a certificate authority (CA).
 
-Recent investments in [WebTransport](/docs/browser-connectivity#webtransport) and [WebRTC](/docs/browser-connectivity#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
+Recent investments in [WebTransport](@/docs/browser-connectivity.md#webtransport) and [WebRTC](@/docs/browser-connectivity.md#webrtc) helped circumvent this problem, by removing the need for CA-signed TLS certificate, but they have their own drawbacks outlined below.
 
-Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 5 round trips to establish a connection](/docs/browser-connectivity#websocket), no support for backpressure on streams (except for [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
+Experience has shown that WebSockets are still the most common and reliable way to establish a bidirectional streaming connection from a browser. That's not to say that WebSockets are perfect. Most notably, in libp2p, [Secure WebSockets require 5 round trips to establish a connection](@/docs/browser-connectivity.md#websocket), no support for backpressure on streams (except for [`WebSocketStream` in Chrome](https://developer.chrome.com/docs/capabilities/web-apis/websocketstream)), and Secure WebSockets in libp2p require [double encryption](https://github.com/libp2p/specs/pull/625), which is inefficient.
 
-By comparison, [WebTransport requires 3 round trips](/docs/browser-connectivity#webtransport), which is why we believe WebTransport is well positioned to be the recommended transport for browser-node connectivity, alas, only once WebTransport is stable and widely supported by browsers.
+By comparison, [WebTransport requires 3 round trips](@/docs/browser-connectivity.md#webtransport), which is why we believe WebTransport is well positioned to be the recommended transport for browser-node connectivity, alas, only once WebTransport is stable and widely supported by browsers.
 
 ## How AutoTLS works
 
 With AutoTLS, the end result is:
 
-1. Your libp2p node, identified by a [PeerID](/docs/peers/#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
+1. Your libp2p node, identified by a [PeerID](@/docs/peers.md#peer-id), has a wild card certificate for `*.<PeerID>.libp2p.direct`.
 2. The authoritative DNS server of `libp2p.direct` (part of the AutoTLS service) maps DNS names to your libp2p node's IP addresses statelessly.
 
 > **Note:** `<PeerID>` is [base36 encoded](https://cid.ipfs.tech/#k51qzi5uqu5dh72mdzh50ohq411bo2tzdcdirjw0597vujl9w4hmkn4r8550r0) to keep the DNS label length under 63 characters ([RFC 1034](https://tools.ietf.org/html/rfc1034#page-7)).
@@ -96,7 +96,7 @@ AutoTLS has two main components:
 
 The following diagram illustrates the AutoTLS DNS-01 challenge broker in action:
 
-![AutoTLS](/img/blog/autotls/auto-tls-1.svg)
+{{ img(src="img/blog/autotls/auto-tls-1.svg", alt="AutoTLS") }}
 
 ### AutoTLS DNS server
 
@@ -106,7 +106,7 @@ Its main role is to map DNS names to the libp2p node's IP addresses statelessly.
 
 The trick here is that the **IP address is encoded in the DNS name**. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate.
 
-![AutoTLS part 2](/img/blog/autotls/auto-tls-2.svg)
+{{ img(src="img/blog/autotls/auto-tls-2.svg", alt="AutoTLS part 2") }}
 
 ## Bringing it all together
 
@@ -122,13 +122,13 @@ This multiaddr can be dialed from any browser with `js-libp2p`. You can see this
 
 ### What about other browser transports?
 
-Solving the problem of browser-node connectivity has been a goal for the libp2p project. In recent years, libp2p introduced support for both [WebTransport](/blog/webtransport) and [WebRTC](/blog/libp2p-webrtc-browser-to-server) to solve this problem with varying degrees of success.
+Solving the problem of browser-node connectivity has been a goal for the libp2p project. In recent years, libp2p introduced support for both [WebTransport](@/blog/webtransport.md) and [WebRTC](@/blog/libp2p-webrtc-browser-to-server.md) to solve this problem with varying degrees of success.
 
 While these transports have their own strengths and weaknesses, they all share the same goal: enabling browser-node connectivity.
 
 ### WebTransport
 
-[Two years ago, the libp2p project bet on the promise of WebTransport](/blog/webtransport) and it's been a bumpy road.
+[Two years ago, the libp2p project bet on the promise of WebTransport](@/blog/webtransport.md) and it's been a bumpy road.
 
 WebTransport has a lot of promise. It's a modern browser protocol based on QUIC (which we already heavily rely on in libp2p), which allows bidirectional streaming communication with many modern improvements over WebSockets. Most notably:
 

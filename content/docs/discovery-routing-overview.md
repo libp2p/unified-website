@@ -45,16 +45,16 @@ implementation, discovery and routing usually happen concurrently.
 libp2p provides a set of modules for different network-level functionality,
 including peer discovery and routing. Peers in libp2p can discover other
 peers using various mechanisms, such as exchanging peer
-[multiaddresses](/docs/addressing/) over the
+[multiaddresses](@/docs/addressing.md) over the
 network, querying a directory service, or using a distributed hash table (DHT)
 to store and retrieve information about available peers.
 
 These methods include, but are not limited to:
 
-- [Rendezvous](/docs/rendezvous/): a protocol that allows peers to exchange peer multiaddresses
+- [Rendezvous](@/docs/rendezvous.md): a protocol that allows peers to exchange peer multiaddresses
   in a secure and private manner.
-- [mDNS](/docs/mdns/): a multicast Domain Name System (DNS) protocol that allows peers to
+- [mDNS](@/docs/mdns.md): a multicast Domain Name System (DNS) protocol that allows peers to
   discover other peers on the local network.
-- [DHT](/docs/kademlia-dht/): Distributed Hash Table, libp2p uses a DHT called Kademlia, it assigns
+- [DHT](@/docs/kademlia-dht.md): Distributed Hash Table, libp2p uses a DHT called Kademlia, it assigns
   each piece of content a unique identifier and stores the content on the peer whose
   identifier is closest to the content's identifier.

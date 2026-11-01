@@ -12,7 +12,7 @@ tags = ["browser", "transport", "webrtc"]
 author = "David DiMaria"
 header_image = "/img/blog/libp2p_WebRTC_blog_header.png"
 +++
-This is the second entry in the Universal Browser Connectivity series on how libp2p achieves browser connectivity. Read about WebTransport in the [first post](/blog/2022-12-19-libp2p-webtransport).
+This is the second entry in the Universal Browser Connectivity series on how libp2p achieves browser connectivity. Read about WebTransport in the [first post](@/blog/webtransport.md).
 
 ## Overview
 
@@ -20,7 +20,7 @@ The [libp2p project](/) supports many transport protocols across a variety of im
 
 Historically, libp2p has bridged these runtime environments with different node connectivity options in varying degrees:
 - server node to server node via TCP and QUIC
-- browser node to public server node via WebSockets and, more recently, [WebTransport](/blog/2022-12-19-libp2p-webtransport)
+- browser node to public server node via WebSockets and, more recently, [WebTransport](@/blog/webtransport.md)
 - browser node to browser node (via less than ideal solutions)
 
 Today our focus is on advancements in the **browser to public server** use case...
@@ -41,7 +41,7 @@ In most cases, peers directly connect to other peers, improving privacy and requ
 
 ## WebRTC in libp2p
 
-![WebRTC Browser to Server Diagram](/img/blog/webrtc_browser_to_server_diagram.png)
+{{ img(src="img/blog/webrtc_browser_to_server_diagram.png", alt="WebRTC Browser to Server Diagram") }}
 
 Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways. Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the RTCDataChannels.
 
@@ -124,7 +124,7 @@ const node = await createLibp2p({
 
 ## Alternative transports
 
-WebRTC is just one option for connecting browsers to libp2p nodes. libp2p supports a variety of transports, and choosing the right one for your use case is an important consideration. The [libp2p connectivity guide](/docs/browser-connectivity) was designed to help developers consider the available options.
+WebRTC is just one option for connecting browsers to libp2p nodes. libp2p supports a variety of transports, and choosing the right one for your use case is an important consideration. The [libp2p connectivity guide](@/docs/browser-connectivity.md) was designed to help developers consider the available options.
 
 ### WebSocket
 
@@ -132,7 +132,7 @@ The WebSocket protocol allows for the opening of a two-way socket between a brow
 
 ### WebTransport
 
-[WebTransport](/blog/2022-12-19-libp2p-webtransport) is the new kid on the block for communication in the browser. WebTransport has many of the same benefits as WebRTC, such as fast, secure, and multiplexed connections, without requiring servers to implement the stack. Additionally, WebTransport requires fewer roundtrips to establish a connection than WebRTC, making it the preferred choice when supported.
+[WebTransport](@/blog/webtransport.md) is the new kid on the block for communication in the browser. WebTransport has many of the same benefits as WebRTC, such as fast, secure, and multiplexed connections, without requiring servers to implement the stack. Additionally, WebTransport requires fewer roundtrips to establish a connection than WebRTC, making it the preferred choice when supported.
 
 Currently, it is only implemented in Chrome and is still under development. Until WebTransport is supported by all major browsers, WebRTC can serve as a good fallback option.
 
@@ -148,10 +148,10 @@ WebRTC offers the capability for browsers to connect to browsers. The [WebRTC br
 
 ## Resources and how you can help contribute
 
-- [WebRTC Docs](/docs/webrtc-browser-connectivity/)
-- [WebRTC Connectivity](/docs/browser-connectivity#webrtc)
+- [WebRTC Docs](@/docs/webrtc-browser-connectivity.md)
+- [WebRTC Connectivity](@/docs/browser-connectivity.md#webrtc)
 - [WebRTC Spec](https://github.com/libp2p/specs/tree/master/webrtc)
 
-If you would like to contribute, please [connect with the libp2p maintainers](/get-involved/).
+If you would like to contribute, please [connect with the libp2p maintainers](@/get-involved/_index.md).
 
 Thank you for reading!

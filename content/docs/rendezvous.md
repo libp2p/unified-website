@@ -26,11 +26,11 @@ point of failure into the network. This can be contrasted with fully decentraliz
 solutions like DHT and Gossipsub. DHT (Distributed Hash Table) and Gossipsub are
 decentralized alternatives to Rendezvous.
 
-[DHT](/docs/kademlia-dht/) is a distributed network protocol used to store and
+[DHT](@/docs/kademlia-dht.md) is a distributed network protocol used to store and
 retrieve data in a P2P network efficiently. It is like a hash table mapping keys
 to values, allowing for fast lookups and efficient data distribution across the network.
 
-[Gossipsub](/docs/pubsub/), on the other hand, is a pub-sub (publish-subscribe) protocol
+[Gossipsub](@/docs/pubsub.md), on the other hand, is a pub-sub (publish-subscribe) protocol
 that is used to distribute messages and data across a network. It uses a gossip-based
 mechanism to propagate messages throughout the network, allowing fast and efficient
 distribution without relying on a central control point.
@@ -75,7 +75,7 @@ The rendezvous protocol runs over libp2p streams using the protocol ID `/rendezv
 
 ### Rendezvous and publish-subscribe
 
-For effective discovery, rendezvous can be combined with [libp2p publish/subscribe](/docs/pubsub/).
+For effective discovery, rendezvous can be combined with [libp2p publish/subscribe](@/docs/pubsub.md).
 At a basic level, rendezvous can bootstrap pubsub by discovering peers subscribed to a topic. The rendezvous would
 be responsible for publishing packets, subscribing, or unsubscribing from packet shapes.
 

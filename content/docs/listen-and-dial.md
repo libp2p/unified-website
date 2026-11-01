@@ -31,7 +31,7 @@ reach them. Because each transport will likely require its own address scheme,
 libp2p uses a convention called a "multiaddress" or `multiaddr` to encode
 many different addressing schemes.
 
-The [addressing doc](/docs/addressing/) goes into more detail, but an overview
+The [addressing doc](@/docs/addressing.md) goes into more detail, but an overview
 of how multiaddresses work is helpful for understanding the dial and listen
 interfaces.
 
@@ -46,14 +46,14 @@ has the advantage of being explicit about the protocols that are being
 described. With the multiaddr, you can see at a glance that the `198.51.100.0`
 address belongs to the IPv4 protocol, and the `6543` belongs to TCP.
 
-For more complex examples, see [addressing](/docs/addressing/).
+For more complex examples, see [addressing](@/docs/addressing.md).
 
 Both dial and listen deal with multiaddresses. When listening, you give the
 transport the address you'd like to listen on, and when dialing you provide the
 address to dial to.
 
 When dialing a remote peer, the multiaddress should include the
-[PeerId](/docs/peers/#peer-id) of the peer you're trying to reach.
+[PeerId](@/docs/peers.md#peer-id) of the peer you're trying to reach.
 This lets libp2p establish a secure communication channel
 and prevents impersonation.
 
@@ -65,7 +65,7 @@ An example multiaddress that includes a `PeerId`:
 
 The `/p2p/QmcEPrat8ShnCph8WjkREzt5CPXF2RwhYxYBALDcLC1iV6` component uniquely
 identifies the remote peer using the hash of its public key.
-For more, see the [peer identity content](/docs/peers/#peer-id).
+For more, see the [peer identity content](@/docs/peers.md#peer-id).
 
 {% alert(type="tip") %}
 When peer routing is enabled, you can dial peers using just their PeerId,
@@ -81,7 +81,7 @@ in a web browser.
 
 The libp2p component responsible for managing the transports is called the
 switch, which also coordinates
-[protocol negotiation](/docs/protocols/#protocol-negotiation),
+[protocol negotiation](@/docs/protocols.md#protocol-negotiation),
 stream multiplexing,
 establishing secure communication and other forms of
 "connection upgrading".

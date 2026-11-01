@@ -80,7 +80,7 @@ The most critical change for our peer-to-peer use case is the new verification o
 
 Option (2) allows us to use WebTransport on *any* libp2p node without manual configuration!
 
-It works because when setting up a WebTransport server, the libp2p node will generate a self-signed TLS certificate and calculate the certificate hash. It then advertises the following [multiaddress](/docs/addressing/) to the network:
+It works because when setting up a WebTransport server, the libp2p node will generate a self-signed TLS certificate and calculate the certificate hash. It then advertises the following [multiaddress](@/docs/addressing.md) to the network:
 
 `/ip4/1.2.3.4/udp/4001/quic/webtransport/certhash/<hash>`
 
@@ -91,7 +91,7 @@ The `certhash` component of the multiaddress tells the browser the certificate h
 1. The browser dials a regular HTTP/3 connection to the server, verifying the certificate either by its chain of trust or by the certificate's hash.
 2. The browser sends an `Extended CONNECT` request on an HTTP/3 stream, requesting establishing a WebTransport session. If the server sends a `200` HTTP status, the WebTransport session is successfully established.
 
-![WebTransport Diagram](/img/blog/WebTransport-blog-post-diagram-1.png)
+{{ img(src="img/blog/WebTransport-blog-post-diagram-1.png", alt="WebTransport Diagram") }}
 
 Both sides can now open streams (both bidirectional and unidirectional) and send (unreliable) HTTP datagrams.
 
@@ -138,10 +138,10 @@ Yes, please! WebTransport already works between browsers and servers in applicat
 
 ## Resources and How you can help contribute
 
-- [Documentation on WebTransport](/docs/webtransport/)
-- [Connectivity site section on the protocol](/docs/browser-connectivity#webtransport)
+- [Documentation on WebTransport](@/docs/webtransport.md)
+- [Connectivity site section on the protocol](@/docs/browser-connectivity.md#webtransport)
 - [Specification on WebTransport](https://github.com/libp2p/specs/tree/master/webtransport)
 
-If you would like to contribute, please [connect with the libp2p maintainers](/get-involved/).
+If you would like to contribute, please [connect with the libp2p maintainers](@/get-involved/_index.md).
 
 Thank you for reading!

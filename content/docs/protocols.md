@@ -13,7 +13,7 @@ There are protocols everywhere you look when you're writing network applications
 especially thick with them.
 
 The kind of protocols this article is concerned with are the ones built with libp2p itself,
-using the core libp2p abstractions like transport, [peer identity](/docs/peers/#peer-id), [addressing](/docs/addressing/), and so on.
+using the core libp2p abstractions like transport, [peer identity](@/docs/peers.md#peer-id), [addressing](@/docs/addressing.md), and so on.
 
 Throughout this article, we'll call this kind of protocol that is built with libp2p
 a **libp2p protocol**, but you may also see them referred to as "wire protocols" or "application protocols".
@@ -186,7 +186,7 @@ The basic identify protocol works by establishing a new stream to a peer using t
 shown in the table above.
 
 When the remote peer opens the new stream, they will fill out an [`Identify` protobuf message][identify_proto] containing
-information about themselves, such as their public key, which is used to derive their [PeerId](/docs/peers/).
+information about themselves, such as their public key, which is used to derive their [PeerId](@/docs/peers.md).
 
 Importantly, the `Identify` message includes an `observedAddr` field that contains the multiaddr that
 the peer observed the request coming in on. This helps peers determine their NAT status, since it allows them to
@@ -230,5 +230,5 @@ check out the [Distributed Hash Tables guide][dht] on the IPFS documentation sit
 [relay_go]: https://github.com/libp2p/go-libp2p-circuit
 
 libp2p provides a protocol for tunneling traffic through relay peers when two peers are unable to connect to each other
-directly. See the [Circuit Relay documentation](/docs/circuit-relay/) for more information on working with relays, including notes on relay
+directly. See the [Circuit Relay documentation](@/docs/circuit-relay.md) for more information on working with relays, including notes on relay
 addresses and how to enable automatic relay connection when behind an intractable NAT.

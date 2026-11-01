@@ -1,0 +1,11 @@
+{#
+Image Shortcode
+
+Builds the image URL from base_url, so it works when the site is served
+under a sub-path (e.g. libp2p.github.io/unified-website/) as well as at the root.
+
+Usage:
+{{ img(src="img/blog/example.png", alt="Description") }}
+#}
+
+<img src="{{ get_url(path=src) }}" alt="{{ alt | default(value='') }}">

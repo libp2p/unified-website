@@ -21,7 +21,7 @@ libp2p uses WebRTC to enable browsers to connect directly to other public nodes 
 
 ### The WebRTC handshake
 
-Unlike other transport protocols like [QUIC](/docs/quic/) and TCP, browsers are not able to establish
+Unlike other transport protocols like [QUIC](@/docs/quic.md) and TCP, browsers are not able to establish
 direct connections (e.g. by opening a TCP or QUIC connection) to server nodes. Instead,
 they rely on the WebRTC standard for p2p connections. The WebRTC standard involves
 a complex handshake mechanism to establish a connection:

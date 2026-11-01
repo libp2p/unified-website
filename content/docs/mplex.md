@@ -18,7 +18,7 @@ is now considered critical for a stream multiplexer.
 
 mplex runs over a reliable, ordered pipe between two peers, such as a TCP connection.
 Peers can open, write to, close, and reset a stream. mplex uses a message-based framing
-layer like [yamux](/docs/yamux/), enabling it to multiplex different
+layer like [yamux](@/docs/yamux.md), enabling it to multiplex different
 data streams, including stream-oriented data and other types of messages.
 
 ### Drawbacks

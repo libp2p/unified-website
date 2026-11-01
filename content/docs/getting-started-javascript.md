@@ -112,7 +112,7 @@ const node = await createLibp2p({
 
 While multiplexers are not strictly required, they are highly recommended as they improve the effectiveness and efficiency of connections for the various protocols libp2p runs.
 
-Looking at the [available stream multiplexing](https://github.com/libp2p/js-libp2p/blob/master/doc/CONFIGURATION.md#stream-multiplexing) modules, js-libp2p supports `@chainsafe/libp2p-yamux` and `@libp2p/mplex`, but [mplex](/docs/mplex/) is [deprecated](https://github.com/libp2p/specs/issues/553) so we will use [Yamux](/docs/yamux/) here. You can install `@chainsafe/libp2p-yamux` and add it to your libp2p node as follows in the next example.
+Looking at the [available stream multiplexing](https://github.com/libp2p/js-libp2p/blob/master/doc/CONFIGURATION.md#stream-multiplexing) modules, js-libp2p supports `@chainsafe/libp2p-yamux` and `@libp2p/mplex`, but [mplex](@/docs/mplex.md) is [deprecated](https://github.com/libp2p/specs/issues/553) so we will use [Yamux](@/docs/yamux.md) here. You can install `@chainsafe/libp2p-yamux` and add it to your libp2p node as follows in the next example.
 
 ```sh
 npm install @chainsafe/libp2p-yamux

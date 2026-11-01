@@ -51,7 +51,7 @@ go-libp2p provides metrics and Grafana dashboards for all major subsystems. Chec
 
 To discover metrics, type `libp2p_(libp2p-package-name)_` in the Prometheus UI and find available metrics from autocomplete.
 
-![Prometheus UI](/img/blog/metrics-in-go-libp2p-prometheus-ui.png)
+{{ img(src="img/blog/metrics-in-go-libp2p-prometheus-ui.png", alt="Prometheus UI") }}
 
 ## Impact
 

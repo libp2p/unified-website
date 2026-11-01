@@ -93,7 +93,7 @@ a hole punching phase.
 
 ### Phase I: Preparation
 
-1. [AutoNAT](/docs/autonat/): Determine whether a node is dialable,
+1. [AutoNAT](@/docs/autonat.md): Determine whether a node is dialable,
    as in, discover if a node is behind a NAT or firewall.
 
    > This is equivalent to the
@@ -120,7 +120,7 @@ a hole punching phase.
       for the closest peers to its Peer ID or choose a subset of the public nodes
       it is already connected to.
 
-3. [Circuit Relay](/docs/circuit-relay/): Connect to and request
+3. [Circuit Relay](@/docs/circuit-relay.md): Connect to and request
    reservations with the discovered relay nodes. A node can advertise itself as
    being reachable through a remote relay node.
 
@@ -139,7 +139,7 @@ a hole punching phase.
 
 ### Phase II: Hole punching
 
-1. [Circuit Relay](/docs/circuit-relay/): Establish a secure relay connection
+1. [Circuit Relay](@/docs/circuit-relay.md): Establish a secure relay connection
    through the public relay node. Node `A` establishes a direct connection with
    the relay node. Node `B` then requests a relayed connection to node `A` through
    the relay node, creating a bi-directional channel and uses TLS to secure the

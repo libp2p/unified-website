@@ -11,7 +11,7 @@ category = "nat traversal"
 
 ## Overview
 
-The internet is composed of countless networks, bound together into shared address spaces by foundational [transport protocols](/docs/transports-overview/).
+The internet is composed of countless networks, bound together into shared address spaces by foundational [transport protocols](@/docs/transports-overview.md).
 
 As traffic moves between network boundaries, it's very common for a process called Network Address Translation to occur. Network Address Translation (NAT) maps an address from one address space to another.
 
