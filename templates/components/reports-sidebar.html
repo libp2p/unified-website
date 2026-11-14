@@ -1,5 +1,4 @@
 {# Sidebar Navigation for Reports Section #}
-{% import "macros.html" as macros %}
 {% set reports_section = get_section(path="reports/_index.md") %}
 
 <aside class="sidebar" id="sidebar">
@@ -21,7 +20,7 @@
                     {# Pages in subsection #}
                     {% for page in subsection.pages %}
                     <li class="sidebar__item">
-                        <a href="{{ macros::rel_link(permalink=page.permalink) }}"
+                        <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}"
                            class="sidebar__link {% if current_path == page.path %}sidebar__link--active{% endif %}">
                             {{ page.title }}
                         </a>

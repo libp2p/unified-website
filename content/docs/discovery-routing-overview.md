@@ -34,11 +34,11 @@ use that information to discover new peers in the vicinity. Additionally, a peer
 use both peer routing and peer discovery mechanisms in parallel to find new peers and
 route data to them.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 In practice, the distinction between peer routing and peer
 discovery is not always clear-cut, and it's worth noting that in a real-world
 implementation, discovery and routing usually happen concurrently.
-{% end %}
+{% </alert> %}
 
 ## Discovery and routing in libp2p
 

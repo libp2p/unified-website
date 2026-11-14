@@ -90,9 +90,9 @@ amount of network traffic under control; each peer only forwards messages to a
 few other peers, rather than all of them. Each peer has a target number of peers
 it wants to be connected to.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Throughout this guide, numbers highlighted can be configured by the developer.
-{% end %}
+{% </alert> %}
 
 The peering degree (also called the *network degree* or *D*) controls the
 trade-off between speed, reliability, resilience and efficiency of the network.

@@ -41,7 +41,7 @@ In most cases, peers directly connect to other peers, improving privacy and requ
 
 ## WebRTC in libp2p
 
-{{ img(src="img/blog/webrtc_browser_to_server_diagram.png", alt="WebRTC Browser to Server Diagram") }}
+{{<img src="img/blog/webrtc_browser_to_server_diagram.png" alt="WebRTC Browser to Server Diagram" />}}
 
 Connecting from a browser to a public server in the WebRTC implementation in libp2p has some similarities but differs in several ways. Many of the features supported in the WebRTC standard, such as video, audio, and centralized STUN and Turn servers, are not needed in libp2p. The primary WebRTC component that libp2p leverages is the RTCDataChannels.
 
@@ -73,9 +73,9 @@ The browser and server then engage in a DTLS handshake to open a DTLS connection
 
 Once the DTLS and Noise handshakes are complete, DTLS-encrypted SCTP data is ready to be exchanged over the UDP socket.
 
-{% alert(type="tip") %}
+{% <alert type="tip"> %}
 Unlike standard WebRTC, signaling is completely removed in libp2p browser-to-server communication, and Signal Channels are not needed. Removing signaling results in fewer roundtrips to establish a Data Channel and reduces complexity.
-{% end %}
+{% </alert> %}
 
 ### Multiaddress
 

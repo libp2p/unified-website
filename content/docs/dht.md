@@ -86,9 +86,9 @@ PUT_VALUE(key, value) → Stores value at nodes closest to key
 GET_VALUE(key) → Retrieves value from nodes closest to key
 ```
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 For security, libp2p requires that stored records be signed and validates signatures on retrieval. This prevents malicious nodes from injecting false data.
-{% end %}
+{% </alert> %}
 
 ### ADD_PROVIDER / GET_PROVIDERS
 
@@ -131,9 +131,9 @@ When a new node joins the network, it needs to populate its routing table:
 3. This lookup populates the routing table with nodes across the ID space
 4. The node may perform additional random lookups to further diversify its routing table
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 Bootstrap nodes are critical infrastructure. If a node cannot reach any bootstrap nodes, it cannot join the DHT network.
-{% end %}
+{% </alert> %}
 
 ## Client vs Server Mode
 
@@ -155,9 +155,9 @@ Client mode nodes:
 - Are not included in other nodes' routing tables
 - Suitable for nodes behind NAT or with limited resources
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 By default, libp2p implementations typically start in client mode and may automatically switch to server mode if they detect they have a publicly reachable address.
-{% end %}
+{% </alert> %}
 
 ## Security Considerations
 

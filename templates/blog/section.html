@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}Blog{% endblock %}
 
 {% block body_class %}blog{% endblock %}
@@ -22,7 +20,7 @@
         {% if page.taxonomies.tags %}
             {% for tag in page.taxonomies.tags %}
                 {% if tag not in all_tags %}
-                    {% set_global all_tags = all_tags | concat(with=tag) %}
+                    {% set_global all_tags = [...all_tags, tag] %}
                 {% endif %}
             {% endfor %}
         {% endif %}
@@ -30,9 +28,9 @@
 
     {% if all_tags | length > 0 %}
     <div class="blog-filters">
-        <a href="{{ macros::rel_link(permalink=section.permalink) }}" class="blog-filters__tag blog-filters__tag--active">All</a>
+        <a href="{{<rel_link permalink={section.permalink} config={config} current_path={current_path or "/"} />}}" class="blog-filters__tag blog-filters__tag--active">All</a>
         {% for tag in all_tags | sort %}
-            <a href="{{ macros::rel_link(permalink=get_taxonomy_url(kind='tags', name=tag)) }}" class="blog-filters__tag">
+            <a href="{{<rel_link permalink={get_taxonomy_url(kind='tags', name=tag)} config={config} current_path={current_path or "/"} />}}" class="blog-filters__tag">
                 {{ tag }}
             </a>
         {% endfor %}
@@ -43,16 +41,16 @@
     <div class="blog-grid">
         {% for page in paginator.pages %}
             <article class="blog-card {% if loop.first and paginator.current_index == 1 %}blog-card--featured{% endif %}">
-                <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="blog-card__link">
+                <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}" class="blog-card__link">
                     {% if page.extra.header_video %}
                     <div class="blog-card__image">
                         <video autoplay loop muted playsinline>
-                            <source src="{{ macros::rel_link(permalink=page.extra.header_video) }}" type="video/mp4">
+                            <source src="{{<rel_link permalink={page.extra.header_video} config={config} current_path={current_path or "/"} />}}" type="video/mp4">
                         </video>
                     </div>
                     {% elif page.extra.header_image %}
                     <div class="blog-card__image">
-                        <img src="{{ macros::rel_link(permalink=page.extra.header_image) }}" alt="{{ page.title }}" loading="lazy">
+                        <img src="{{<rel_link permalink={page.extra.header_image} config={config} current_path={current_path or "/"} />}}" alt="{{ page.title }}" loading="lazy">
                     </div>
                     {% endif %}
                     <div class="blog-card__body">
@@ -78,7 +76,7 @@
                         {% endif %}
                         {% if page.taxonomies.tags %}
                         <div class="blog-card__tags">
-                            {% for tag in page.taxonomies.tags | slice(end=3) %}
+                            {% for tag in page.taxonomies.tags[:3] %}
                             <span class="blog-card__tag">{{ tag }}</span>
                             {% endfor %}
                         </div>

@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ page.title }}{% endblock %}
 
 {% block body_class %}reports{% endblock %}
@@ -25,7 +23,7 @@
                                 {% set ancestor = get_section(path=ancestor_path) %}
                                 <span class="breadcrumbs__separator">/</span>
                                 <span class="breadcrumbs__item">
-                                    <a href="{{ macros::rel_link(permalink=ancestor.permalink) }}">{{ ancestor.title }}</a>
+                                    <a href="{{<rel_link permalink={ancestor.permalink} config={config} current_path={current_path or "/"} />}}">{{ ancestor.title }}</a>
                                 </span>
                             {% endif %}
                         {% endfor %}
@@ -63,7 +61,7 @@
                     {# Previous/Next navigation #}
                     <nav class="report-nav">
                         {% if page.earlier %}
-                        <a href="{{ macros::rel_link(permalink=page.earlier.permalink) }}" class="report-nav__link report-nav__link--prev">
+                        <a href="{{<rel_link permalink={page.earlier.permalink} config={config} current_path={current_path or "/"} />}}" class="report-nav__link report-nav__link--prev">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
@@ -74,7 +72,7 @@
                         </a>
                         {% endif %}
                         {% if page.later %}
-                        <a href="{{ macros::rel_link(permalink=page.later.permalink) }}" class="report-nav__link report-nav__link--next">
+                        <a href="{{<rel_link permalink={page.later.permalink} config={config} current_path={current_path or "/"} />}}" class="report-nav__link report-nav__link--next">
                             <div class="report-nav__text">
                                 <span class="report-nav__label">Next</span>
                                 <span class="report-nav__title">{{ page.later.title }}</span>

@@ -32,7 +32,7 @@ Many routers support automatic configuration protocols for port forwarding, most
 If your router supports one of those protocols, libp2p will attempt to automatically configure a port mapping that will
 allow it to listen for incoming traffic. This is usually the simplest option if supported by the network and libp2p implementation.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 Support for automatic NAT configuration varies by libp2p implementation.
 Check the [current implementation status](https://github.com/libp2p/libp2p#implementations) for details.
-{% end %}
+{% </alert> %}

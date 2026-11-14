@@ -41,29 +41,29 @@ We had a great event with 12 different sessions focusing on topics such as publi
 ### Highlighted Talks
 
 #### Funding and Project update by Juan Benet
-{% youtube(id="6-X1wcygmsI") %}
+{% <youtube id="6-X1wcygmsI"> %}
 libp2p funding and project update
-{% end %}
+{% </youtube> %}
 
 #### Revolutionizing Data Governance with libp2p by TechieTeee
-{% youtube(id="BBLRX6AkMOs") %}
+{% <youtube id="BBLRX6AkMOs"> %}
 Data governance with libp2p
-{% end %}
+{% </youtube> %}
 
 #### Probing libp2p Networks with Filecoin Station by Miroslav Bajtoš
-{% youtube(id="iMWeMq1UwqE") %}
+{% <youtube id="iMWeMq1UwqE"> %}
 Network probing with Filecoin Station
-{% end %}
+{% </youtube> %}
 
 #### Programming Peer-to-Peer Scenarios with Aqua
-{% youtube(id="jsqEM6MuUKI") %}
+{% <youtube id="jsqEM6MuUKI"> %}
 Peer-to-peer programming with Aqua
-{% end %}
+{% </youtube> %}
 
 #### Gitcoin and Open Source Funding Mechanism by Sov from Gitcoin
-{% youtube(id="3XIoD6X-n-s") %}
+{% <youtube id="3XIoD6X-n-s"> %}
 Open source funding mechanisms
-{% end %}
+{% </youtube> %}
 
 ### Full Playlist
 

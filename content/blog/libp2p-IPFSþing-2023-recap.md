@@ -32,9 +32,9 @@ The goals of the libp2p contributors attending IPFS þing 2023 were to:
 
 Max Inden (rust-libp2p maintainer)
 
-{% youtube(id="4v-iIB0C9_8") %}
+{% <youtube id="4v-iIB0C9_8"> %}
 Universal Connectivity demonstrator app
-{% end %}
+{% </youtube> %}
 
 Max's talk about the Universal Connectivity demonstrator app broke the record for the most people involved! The live demo showed a go-libp2p node talking to a rust-libp2p node talking to a laptop talking to js-libp2p browsers using a variety of transports including QUIC, WebRTC Direct, WebRTC, and WebTransport.
 
@@ -42,9 +42,9 @@ Max's talk about the Universal Connectivity demonstrator app broke the record fo
 
 Max Inden & Marco Munizaga
 
-{% youtube(id="2h9jth3nvJw") %}
+{% <youtube id="2h9jth3nvJw"> %}
 Performance benchmarking and optimization
-{% end %}
+{% </youtube> %}
 
 Watch Max and Marco describe how libp2p maintainers think about and measure performance, plus learn about some optimizations in the latest versions.
 
@@ -52,9 +52,9 @@ Watch Max and Marco describe how libp2p maintainers think about and measure perf
 
 Marten Seemann & Marco Munizaga
 
-{% youtube(id="Ixyo1G2tJZE") %}
+{% <youtube id="Ixyo1G2tJZE"> %}
 HTTP over libp2p
-{% end %}
+{% </youtube> %}
 
 Marten and Marco demonstrated using js-libp2p and service workers to intercept normal HTTP calls in the browser and re-route them over libp2p connections.
 
@@ -62,9 +62,9 @@ Marten and Marco demonstrated using js-libp2p and service workers to intercept n
 
 Marten Seemann & Marco Munizaga
 
-{% youtube(id="aDHymXQJ4bs") %}
+{% <youtube id="aDHymXQJ4bs"> %}
 Building a minimal libp2p stack
-{% end %}
+{% </youtube> %}
 
 Marten and Marco showed how simple it is to create a compatible libp2p stack out of a QUIC library, the libp2p TLS extension and some code for peer ID encoding.
 
@@ -72,9 +72,9 @@ Marten and Marco showed how simple it is to create a compatible libp2p stack out
 
 Gui Michel (Research Engineer at Protocol Labs)
 
-{% youtube(id="OHrtv1jz2Jc") %}
+{% <youtube id="OHrtv1jz2Jc"> %}
 libp2p DHT ecosystem
-{% end %}
+{% </youtube> %}
 
 This talk covered improvements to the DHT to enable more applications to participate.
 

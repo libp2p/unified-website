@@ -19,7 +19,7 @@ Rendezvous points are typically nodes that are well-connected and stable in
 a network and can handle large amounts of traffic and data. They
 serve as a hub for nodes to discover.
 
-{% details(summary="Rendezvous is not decentralized") %}
+{% <details summary="Rendezvous is not decentralized"> %}
 It is important to note that Rendezvous is not decentralized but rather
 federated. While this has its use cases, it also introduces a single
 point of failure into the network. This can be contrasted with fully decentralized
@@ -34,13 +34,13 @@ to values, allowing for fast lookups and efficient data distribution across the 
 that is used to distribute messages and data across a network. It uses a gossip-based
 mechanism to propagate messages throughout the network, allowing fast and efficient
 distribution without relying on a central control point.
-{% end %}
+{% </details> %}
 
 ## Rendezvous in libp2p
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 The current rendezvous implementation replaces the initial ws-star-rendezvous implementation with rendezvous daemons and a fleet of p2p-circuit relays.
-{% end %}
+{% </alert> %}
 
 The libp2p rendezvous protocol can be used for different use cases. E.g. it can
 be used during bootstrap to discover circuit relays that provide connectivity
@@ -83,6 +83,6 @@ Pubsub can also be used as a mechanism for building rendezvous services, where a
 of rendezvous points can federate using pubsub for internal distribution while still
 providing a simple interface to clients.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the rendezvous [technical specification](https://github.com/libp2p/specs/blob/master/rendezvous/README.md) for more details.
-{% end %}
+{% </alert> %}

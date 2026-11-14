@@ -12,9 +12,9 @@ The libp2p documentation site aims to provide a comprehensive guide about libp2p
 
 This site is an essential resource for developers who want to learn about the capabilities and features of libp2p, as well as for those who are already familiar with libp2p and are looking for more advanced guidance. Whether you are just getting started with P2P networking, or you are an experienced developer looking to build the next generation of distributed applications, the libp2p documentation has something for you.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 If you have any questions or suggestions as you navigate the documentation, please don’t hesitate to <a href="../get-involved/">reach out</a>, or help improve the documentation by <a href="https://github.com/libp2p/unified-website">contributing to the site</a>.
-{% end %}
+{% </alert> %}
 
 To get started, let’s begin with an overview of libp2p and its key features and capabilities.
 
@@ -34,9 +34,9 @@ libp2p was initially developed as part of the [InterPlanetary File System (IPFS)
 
 > Discovering and connecting with other peers is a key challenge in P2P networking. In the past, each P2P application had to develop its own solution for this problem, leading to a lack of reusable, well-documented P2P protocols. IPFS looked to existing research and networking applications for inspiration, but found few code implementations that were usable and adaptable. Many of the existing implementations had poor documentation, restrictive licensing, outdated code, no point of contact, were closed source, deprecated, lacked specifications, had unfriendly APIs, or were tightly coupled with specific use cases and not upgradeable. As a result, developers often had to reinvent the wheel each time they needed P2P protocols, rather than being able to reuse existing solutions.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 libp2p was designed to address the limitations of traditional P2P networking approaches and these existing network models, with the goal of enabling the distributed web.
-{% end %}
+{% </alert> %}
 
 ### Why libp2p?
 

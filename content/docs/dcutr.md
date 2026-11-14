@@ -41,6 +41,6 @@ dctur and its holepunching success rates.
 
 A helpful resource for understanding how NAT traversal works is [this blog post](https://tailscale.com/blog/how-nat-traversal-works/) by Tailscale.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the DCUtR [technical specification](https://github.com/libp2p/specs/blob/master/relay/DCUtR.md) for more details.
-{% end %}
+{% </alert> %}

@@ -37,7 +37,7 @@ The core idea is that AutoTLS enables reliable browser-based clients to connect 
 
 Blockchains using libp2p, such as Ethereum, Celestia, and Filecoin, could integrate AutoTLS and improve access to chain state for browser-based [light clients](https://ethereum.org/en/developers/docs/nodes-and-clients/light-clients/#why-are-light-clients-important) and wallets. This would promote client-side transaction and state verification.
 
-{{ img(src="img/blog/autotls/networks-using-libp2p.jpg", alt="Chains using libp2p") }}
+{{<img src="img/blog/autotls/networks-using-libp2p.jpg" alt="Chains using libp2p" />}}
 
 Though it remains to be seen how practical browser-based light clients will be, we're already seeing interest in AutoTLS from the community. For example, AutoTLS has already proven to be instrumental for the [Celestia Lumina client implementation](https://github.com/eigerco/lumina), a Rust implementation of Celestia's data availability node, which compiles to WASM. When [running in a browser](https://lumina.rs/), it can reliably connect to more capable bridge and full Celestia nodes with TLS certificates issued by AutoTLS. What's more, the [ProbeLab team](https://probelab.io/) has integrated AutoTLS into [Ants Watch](https://github.com/probe-lab/ants-watch), which monitors the Celestia DHT, and already have [insight into the distribution](https://probelab.io/celestia/dht/2025-02/#lightnode-population) of browser-based Lumina clients in the network.
 
@@ -49,7 +49,7 @@ With that in mind, let's explore the challenges of browser-node connectivity.
 
 Historically, the Web relied solely on unencrypted HTTP as the default transport, undermining user privacy and exposing users to MITM attacks. With the advent of TLS, HTTPS, and automated Certificate Authorities like Let's Encrypt, encryption is now the norm. So much so that [Chrome warns users "Not secure"](https://blog.google/products/chrome/milestone-chrome-security-marking-http-not-secure/) when they're visiting a site over an unencrypted HTTP connection, or produce "mixed-content" errors when a page tries to fetch unencrypted subresources.
 
-{{ img(src="img/blog/autotls/computer-says-no.png", alt="Chrome warning") }}
+{{<img src="img/blog/autotls/computer-says-no.png" alt="Chrome warning" />}}
 
 In libp2p, [all connections are encrypted](@/docs/secure-channels-overview.md) by default, using either Noise or TLS.
 
@@ -96,7 +96,7 @@ AutoTLS has two main components:
 
 The following diagram illustrates the AutoTLS DNS-01 challenge broker in action:
 
-{{ img(src="img/blog/autotls/auto-tls-1.svg", alt="AutoTLS") }}
+{{<img src="img/blog/autotls/auto-tls-1.svg" alt="AutoTLS" />}}
 
 ### AutoTLS DNS server
 
@@ -106,7 +106,7 @@ Its main role is to map DNS names to the libp2p node's IP addresses statelessly.
 
 The trick here is that the **IP address is encoded in the DNS name**. Dots are substituted with dashes to ensure the TLS certificate remains valid. The benefit of this approach is that whenever a libp2p node's IP address changes, it's resolvable without coordination. This keeps the DNS server stateless and simple to operate.
 
-{{ img(src="img/blog/autotls/auto-tls-2.svg", alt="AutoTLS part 2") }}
+{{<img src="img/blog/autotls/auto-tls-2.svg" alt="AutoTLS part 2" />}}
 
 ## Bringing it all together
 

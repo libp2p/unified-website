@@ -71,15 +71,15 @@ There are currently two solutions for obtaining TLS certificates:
 
 2. **IP Certificates**: Let's Encrypt is [starting to support IP certificates](https://letsencrypt.org/2025/01/16/6-day-and-ip-certs/). While these are great and remove a dependency on libp2p.direct, they are not usable unless the node can run on port 80 or 443 which is a difficult restriction.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Having browsers connect to LAN-based nodes via Secure WebSockets is difficult since domain name approaches are sometimes blocked due to DNS Rebinding attack protections, and getting IP certificates for LAN addresses doesn't make sense for global CAs.
-{% end %}
+{% </alert> %}
 
 ### WebSocket Implementation Status
 
-{% support_matrix(data="go-libp2p:supported,rust-libp2p:supported,js-libp2p:supported,Chrome:supported,Firefox:supported,Safari:supported") %}
+{% <support_matrix data="go-libp2p:supported,rust-libp2p:supported,js-libp2p:supported,Chrome:supported,Firefox:supported,Safari:supported"> %}
 WebSocket is widely supported but requires TLS certificates for secure contexts.
-{% end %}
+{% </support_matrix> %}
 
 ### Further Reading
 
@@ -152,9 +152,9 @@ Step 2 and 3 can potentially be run in parallel, although a bug in Chrome's WebT
 
 ### WebTransport Implementation Status
 
-{% support_matrix(data="go-libp2p:supported,js-libp2p (browser):supported,rust-libp2p (Wasm):supported,Chrome:supported,Firefox:supported,Safari:wip,rust-libp2p (native):planned,js-libp2p (Node.js):planned") %}
+{% <support_matrix data="go-libp2p:supported,js-libp2p (browser):supported,rust-libp2p (Wasm):supported,Chrome:supported,Firefox:supported,Safari:wip,rust-libp2p (native):planned,js-libp2p (Node.js):planned"> %}
 WebTransport browser support is growing rapidly.
-{% end %}
+{% </support_matrix> %}
 
 ### Further Reading
 
@@ -214,10 +214,10 @@ As WebRTC is built to facilitate video conferencing between browsers, browsers a
 ### WebRTC Implementation Status
 
 **WebRTC Direct (Browser → Node):**
-{{ support_matrix(data="go-libp2p:supported,rust-libp2p:supported,Chrome:supported,Firefox:supported,Safari:supported,js-libp2p (Node.js):wip") }}
+{{<support_matrix data="go-libp2p:supported,rust-libp2p:supported,Chrome:supported,Firefox:supported,Safari:supported,js-libp2p (Node.js):wip" />}}
 
 **WebRTC (Browser → Browser):**
-{{ support_matrix(data="js-libp2p:supported,Chrome:supported,Firefox:supported,Safari:supported,go-libp2p:wip,rust-libp2p:planned") }}
+{{<support_matrix data="js-libp2p:supported,Chrome:supported,Firefox:supported,Safari:supported,go-libp2p:wip,rust-libp2p:planned" />}}
 
 ### Further Reading
 
