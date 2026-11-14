@@ -207,7 +207,7 @@ The libp2p team will review and add approved events to the calendar.
 
 ### Prerequisites
 
-- [Zola](https://www.getzola.org/documentation/getting-started/installation/) v0.17 or later
+- [Zola](https://www.getzola.org/documentation/getting-started/installation/) v0.23.6 or later
 
 ### Development Server
 
