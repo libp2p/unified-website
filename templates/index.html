@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ config.title }}{% endblock %}
 {% block og_title %}{{ config.title }}{% endblock %}
 
@@ -19,7 +17,7 @@
                 Run your network applications free from runtime and address services, independently of their location.
             </p>
             <div class="hero__actions">
-                <a href="{{ macros::rel() }}docs/" class="btn btn-primary btn--lg">
+                <a href="{{<rel config={config} current_path={current_path or "/"} />}}docs/" class="btn btn-primary btn--lg">
                     Get Started
                 </a>
                 <a href="{{ config.extra.github }}" class="btn btn-outline btn--lg" target="_blank" rel="noopener noreferrer">
@@ -28,11 +26,11 @@
                     </svg>
                     View on GitHub
                 </a>
-                <a href="{{ macros::rel() }}reports/annual-reports/2025/" class="btn btn-pink btn--lg">
+                <a href="{{<rel config={config} current_path={current_path or "/"} />}}reports/annual-reports/2025/" class="btn btn-pink btn--lg">
                     Read our 2025 Annual Report
                 </a>
             </div>
-            <img src="{{ macros::rel() }}img/powered-by-arrow.svg"
+            <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/powered-by-arrow.svg"
                  alt=""
                  class="hero__arrow"
                  aria-hidden="true">
@@ -59,7 +57,7 @@
 <section class="logo-wall"
          data-logos='{{ config.extra.logos | json_encode() | safe }}'
          data-speed="50"
-         data-base-path="{{ macros::rel() }}">
+         data-base-path="{{<rel config={config} current_path={current_path or "/"} />}}">
     <div class="logo-wall__row" data-row="0"></div>
     <div class="logo-wall__row" data-row="1"></div>
 </section>
@@ -167,35 +165,35 @@
         <div class="implementations__grid">
             <a href="{{ config.extra.go_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-go.svg" alt="Go">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-go.svg" alt="Go">
                 </div>
                 <h3 class="impl-card__name">go-libp2p</h3>
                 <p class="impl-card__desc">The implementation in Golang</p>
             </a>
             <a href="{{ config.extra.rust_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-rust.svg" alt="Rust">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-rust.svg" alt="Rust">
                 </div>
                 <h3 class="impl-card__name">rust-libp2p</h3>
                 <p class="impl-card__desc">High-performance Rust implementation</p>
             </a>
             <a href="{{ config.extra.js_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-js.svg" alt="JavaScript">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-js.svg" alt="JavaScript">
                 </div>
                 <h3 class="impl-card__name">js-libp2p</h3>
                 <p class="impl-card__desc">For browsers and Node.js</p>
             </a>
             <a href="{{ config.extra.nim_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-nim.svg" alt="Nim">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-nim.svg" alt="Nim">
                 </div>
                 <h3 class="impl-card__name">nim-libp2p</h3>
                 <p class="impl-card__desc">The Nim reference implementation</p>
             </a>
             <a href="{{ config.extra.py_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-py.svg" alt="Nim">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-py.svg" alt="Nim">
                 </div>
                 <h3 class="impl-card__name">py-libp2p</h3>
                 <p class="impl-card__desc">The AI-friendly Python v1.0 Coming Soon!</p>
@@ -233,7 +231,7 @@
             <a href="{{ config.extra.luma_calendar }}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
                 View Full Calendar
             </a>
-            <a href="{{ macros::rel() }}get-involved/" class="btn btn-outline">
+            <a href="{{<rel config={config} current_path={current_path or "/"} />}}get-involved/" class="btn btn-outline">
                 Get Involved
             </a>
         </div>
@@ -249,7 +247,7 @@
                 Check out our docs and tutorials to get started with libp2p.
             </p>
             <div class="cta__actions">
-                <a href="{{ macros::rel() }}docs/getting-started/" class="btn btn-primary btn--lg">
+                <a href="{{<rel config={config} current_path={current_path or "/"} />}}docs/getting-started/" class="btn btn-primary btn--lg">
                     Read the Guides
                 </a>
                 <a href="{{ config.extra.specs_url }}" class="btn btn-outline-white btn--lg" target="_blank" rel="noopener noreferrer">
@@ -262,5 +260,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ macros::rel() }}js/logo-wall.js"></script>
+<script src="{{<rel config={config} current_path={current_path or "/"} />}}js/logo-wall.js"></script>
 {% endblock %}

@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ section.title }}{% endblock %}
 
 {% block body_class %}docs{% endblock %}
@@ -27,7 +25,7 @@
             <div class="docs-landing__sections">
                 {% for subsection_path in section.subsections %}
                     {% set subsection = get_section(path=subsection_path) %}
-                    <a href="{{ macros::rel_link(permalink=subsection.permalink) }}" class="docs-section-card">
+                    <a href="{{<rel_link permalink={subsection.permalink} config={config} current_path={current_path or "/"} />}}" class="docs-section-card">
                         <div class="docs-section-card__icon">
                             {% if "concepts" in subsection.path %}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -58,7 +56,7 @@
 
                 {# Also show standalone pages #}
                 {% for page in section.pages %}
-                    <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="docs-section-card">
+                    <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}" class="docs-section-card">
                         <div class="docs-section-card__icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -106,7 +104,7 @@
                 <ul class="page-list">
                     {% for page in section.pages %}
                         <li>
-                            <a href="{{ macros::rel_link(permalink=page.permalink) }}">
+                            <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}">
                                 <strong>{{ page.title }}</strong>
                                 {% if page.description %}
                                     <span>{{ page.description }}</span>
@@ -127,7 +125,7 @@
                     {% for subsection_path in section.subsections %}
                         {% set subsection = get_section(path=subsection_path) %}
                         <li>
-                            <a href="{{ macros::rel_link(permalink=subsection.permalink) }}">
+                            <a href="{{<rel_link permalink={subsection.permalink} config={config} current_path={current_path or "/"} />}}">
                                 <strong>{{ subsection.title }}</strong>
                                 {% if subsection.description %}
                                     <span>{{ subsection.description }}</span>

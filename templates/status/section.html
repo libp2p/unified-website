@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ section.title }}{% endblock %}
 
 {% block body_class %}status{% endblock %}
@@ -126,7 +124,7 @@
                 <ul class="page-list">
                     {% for page in section.pages %}
                     <li>
-                        <a href="{{ macros::rel_link(permalink=page.permalink) }}">
+                        <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}">
                             <strong>{{ page.title }}</strong>
                         </a>
                     </li>

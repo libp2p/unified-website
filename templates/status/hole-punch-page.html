@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ page.title }} - Hole Punch Status{% endblock %}
 
 {% block body_class %}status{% endblock %}
@@ -44,12 +42,12 @@
 
             {%- for test in data["hole-punch"].results -%}
                 {%- if test.relay == target_relay -%}
-                    {%- set_global hp_filtered = hp_filtered | concat(with=test) -%}
+                    {%- set_global hp_filtered = [...hp_filtered, test] -%}
                     {%- if test.dialer not in hp_dialers -%}
-                        {%- set_global hp_dialers = hp_dialers | concat(with=test.dialer) -%}
+                        {%- set_global hp_dialers = [...hp_dialers, test.dialer] -%}
                     {%- endif -%}
                     {%- if test.listener not in hp_listeners -%}
-                        {%- set_global hp_listeners = hp_listeners | concat(with=test.listener) -%}
+                        {%- set_global hp_listeners = [...hp_listeners, test.listener] -%}
                     {%- endif -%}
                 {%- endif -%}
             {%- endfor -%}
@@ -99,7 +97,7 @@
                                     {%- for test in hp_filtered -%}
                                         {%- if test.dialer == dialer and test.listener == listener -%}
                                             {%- set result_item = test.transport ~ ":" ~ test.status -%}
-                                            {%- set_global cell_results = cell_results | concat(with=result_item) -%}
+                                            {%- set_global cell_results = [...cell_results, result_item] -%}
                                         {%- endif -%}
                                     {%- endfor -%}
 

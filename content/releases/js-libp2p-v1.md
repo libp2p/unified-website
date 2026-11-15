@@ -46,13 +46,13 @@ WebTransport is a new web standard built on top of QUIC that allows establishing
 
 We've made an 80%+ improvement in the time it takes to establish a connection between two js-libp2p nodes.
 
-{{ img(src="img/blog/js-libp2p-v1-latency-improvements.png", alt="Latency Improvements") }}
+{{<img src="img/blog/js-libp2p-v1-latency-improvements.png" alt="Latency Improvements" />}}
 
 ### Increasing throughput
 
 Currently js-libp2p has the highest throughput of any of the libp2p implementations, averaging 2.06GB/s on both uploads and downloads!
 
-{{ img(src="img/blog/js-libp2p-v1-throughput-improvements.png", alt="Throughput Improvements") }}
+{{<img src="img/blog/js-libp2p-v1-throughput-improvements.png" alt="Throughput Improvements" />}}
 
 ### Reducing Dependencies
 

@@ -23,9 +23,9 @@ services and Chrome in 2014, and was later standardized by the IETF in
 1. Head-of-line blocking (HoL blocking): TCP is a single byte stream exposed by the
    kernel, so streams layered on top of TCP experience head-of-line (HoL) blocking.
 
-   {% alert(type="info") %}
+   {% <alert type="info"> %}
    In TCP, head-of-line blocking occurs when a single packet is lost, and packets delivered after that need to wait in the kernel buffer until a retransmission for the lost packet is received.
-   {% end %}
+   {% </alert> %}
 
 2. Ossification: Because the header of TCP packet is not encrypted, middleboxes can
    inspect and modify TCP header fields and may break unexpectedly when they encounter
@@ -101,9 +101,9 @@ certificate, which they sign using their host's private key. This is the same wa
 IDs are authenticated in the
 [libp2p TLS handshake](https://github.com/libp2p/specs/blob/master/tls/tls.md).
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 To be clear, there is no additional security handshake and stream muxer needed as QUIC provides all of this by default. This also means that establishing a libp2p connection between two nodes using QUIC only takes a single RTT.
-{% end %}
+{% </alert> %}
 
 Following the multiaddress format, a standard QUIC connection will
 look like: `/ip4/192.0.2.0/udp/65432/quic-v1/`.
@@ -125,9 +125,9 @@ The multiaddress for a QUIC listener accepting RFC 9000 connections looks like t
 Nodes that support multiple versions can offer them on the same port.
 QUIC long header packets contain the version number, which enables the QUIC stack to handle multiple versions.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 With the upcoming [Compatible Version Negotiation for QUIC](https://datatracker.ietf.org/doc/draft-ietf-quic-version-negotiation/) specification, it will become possible to do a version upgrade between two compatible versions without incurring any round-trip penalty.
-{% end %}
+{% </alert> %}
 
 ## References
 

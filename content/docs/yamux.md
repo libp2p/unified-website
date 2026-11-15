@@ -27,9 +27,9 @@ This helps prevent the sender from overwhelming the receiver,
 especially when the receiver has limited resources or needs to
 process complex data.
 
-{% alert(type="warning") %}
+{% <alert type="warning"> %}
 **Yamux should be used over mplex in libp2p**, as mplex doesn't provide a mechanism to apply backpressure on the stream level.
-{% end %}
+{% </alert> %}
 
 ### Resources
 

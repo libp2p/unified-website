@@ -40,11 +40,11 @@ Breaking changes to your protocol's wire format or semantics should result in a 
 number. See the [protocol negotiation section](#protocol-negotiation) for more information about
 how version selection works during the dialing and listening process.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 While libp2p will technically accept any string as a valid protocol id,
 using the recommended path structure with a version component is both
 developer-friendly and enables [easier matching by version](#using-a-match-function).
-{% end %}
+{% </alert> %}
 
 #### Handler functions
 
@@ -164,9 +164,9 @@ PING /ipfs/QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG/ping (QmYwAPJzv5CZsnA6
 32 bytes from QmYwAPJzv5CZsnA625s3Xf2nemtYgPpHdWEz79ojWnPbdG: time=11.34ms
 ```
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the ping [technical specification](https://github.com/libp2p/specs/blob/master/ping/ping.md) for more details.
-{% end %}
+{% </alert> %}
 
 ### Identify
 

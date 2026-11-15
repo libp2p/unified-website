@@ -44,13 +44,13 @@ choice of muxer is negotiated between the nodes during the initial connection ha
 This negotiation protocol allows libp2p to adopt new muxers in the future while
 maintaining backward compatibility with existing muxers.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 For developers building libp2p applications, interaction with stream muxers is typically
 limited to the initial configuration phase. The libp2p stack automatically handles the
 negotiation and setup of the muxer, ensuring that all connections are stream-multiplexed
 and allowing for the seamless transmission of multiple streams of data over a single
 connection.
-{% end %}
+{% </alert> %}
 
 Currently, libp2p supports two stream muxers, [mplex](@/docs/mplex.md)
 and [yamux](@/docs/yamux.md). However, many of the

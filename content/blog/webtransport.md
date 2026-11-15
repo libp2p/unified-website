@@ -91,7 +91,7 @@ The `certhash` component of the multiaddress tells the browser the certificate h
 1. The browser dials a regular HTTP/3 connection to the server, verifying the certificate either by its chain of trust or by the certificate's hash.
 2. The browser sends an `Extended CONNECT` request on an HTTP/3 stream, requesting establishing a WebTransport session. If the server sends a `200` HTTP status, the WebTransport session is successfully established.
 
-{{ img(src="img/blog/WebTransport-blog-post-diagram-1.png", alt="WebTransport Diagram") }}
+{{<img src="img/blog/WebTransport-blog-post-diagram-1.png" alt="WebTransport Diagram" />}}
 
 Both sides can now open streams (both bidirectional and unidirectional) and send (unreliable) HTTP datagrams.
 
@@ -120,9 +120,9 @@ WebTransport is supported in two libp2p implementations as an experimental featu
 - go-libp2p as of v0.23.0
 - js-libp2p through the js-libp2p-webtransport npm package
 
-{% youtube(id="Dt42Ss6X_Vk") %}
+{% <youtube id="Dt42Ss6X_Vk"> %}
 WebTransport demo from libp2p Day
-{% end %}
+{% </youtube> %}
 
 ## Can I use this right now?
 

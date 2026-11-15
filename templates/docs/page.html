@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ page.title }}{% endblock %}
 
 {% block body_class %}docs{% endblock %}
@@ -25,7 +23,7 @@
                                 {% set ancestor = get_section(path=ancestor_path) %}
                                 <span class="breadcrumbs__separator">/</span>
                                 <span class="breadcrumbs__item">
-                                    <a href="{{ macros::rel_link(permalink=ancestor.permalink) }}">{{ ancestor.title }}</a>
+                                    <a href="{{<rel_link permalink={ancestor.permalink} config={config} current_path={current_path or "/"} />}}">{{ ancestor.title }}</a>
                                 </span>
                             {% endif %}
                         {% endfor %}
@@ -63,7 +61,7 @@
                     {# Previous/Next navigation #}
                     <nav class="doc-nav">
                         {% if page.earlier %}
-                        <a href="{{ macros::rel_link(permalink=page.earlier.permalink) }}" class="doc-nav__link doc-nav__link--prev">
+                        <a href="{{<rel_link permalink={page.earlier.permalink} config={config} current_path={current_path or "/"} />}}" class="doc-nav__link doc-nav__link--prev">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="15 18 9 12 15 6"></polyline>
                             </svg>
@@ -74,7 +72,7 @@
                         </a>
                         {% endif %}
                         {% if page.later %}
-                        <a href="{{ macros::rel_link(permalink=page.later.permalink) }}" class="doc-nav__link doc-nav__link--next">
+                        <a href="{{<rel_link permalink={page.later.permalink} config={config} current_path={current_path or "/"} />}}" class="doc-nav__link doc-nav__link--next">
                             <div class="doc-nav__text">
                                 <span class="doc-nav__label">Next</span>
                                 <span class="doc-nav__title">{{ page.later.title }}</span>
@@ -128,8 +126,8 @@
 
 {% block scripts %}
 {# Load Mermaid if needed #}
-{% if page.content is containing("mermaid") %}
-<script src="{{ macros::rel() }}js/mermaid.min.js"></script>
+{% if page.content is containing(pat="mermaid") %}
+<script src="{{<rel config={config} current_path={current_path or "/"} />}}js/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad: true, theme: 'neutral'});</script>
 {% endif %}
 

@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ page.title }}{% endblock %}
 {% block og_type %}article{% endblock %}
 
@@ -8,7 +6,7 @@
     {% if page.extra.header_image %}
     <meta property="og:image" content="{{ page.extra.header_image | safe }}">
     {% else %}
-    <meta property="og:image" content="{{ macros::rel_link(permalink='/img/og-image.png') }}">
+    <meta property="og:image" content="{{<rel_link permalink="/img/og-image.png" config={config} current_path={current_path or "/"} />}}">
     {% endif %}
 {% endblock %}
 
@@ -33,7 +31,7 @@
         "name": "libp2p",
         "logo": {
             "@type": "ImageObject",
-            "url": "{{ macros::rel_link(permalink='/img/logo_small.png') }}"
+            "url": "{{<rel_link permalink="/img/logo_small.png" config={config} current_path={current_path or "/"} />}}"
         }
     }
 }
@@ -45,12 +43,12 @@
 {% if page.extra.header_video %}
 <div class="blog-post-hero">
     <video autoplay loop muted playsinline class="blog-post-hero__video">
-        <source src="{{ macros::rel_link(permalink=page.extra.header_video) }}" type="video/mp4">
+        <source src="{{<rel_link permalink={page.extra.header_video} config={config} current_path={current_path or "/"} />}}" type="video/mp4">
     </video>
 </div>
 {% elif page.extra.header_image %}
 <div class="blog-post-hero">
-    <img src="{{ macros::rel_link(permalink=page.extra.header_image) }}" alt="{{ page.title }}" class="blog-post-hero__image">
+    <img src="{{<rel_link permalink={page.extra.header_image} config={config} current_path={current_path or "/"} />}}" alt="{{ page.title }}" class="blog-post-hero__image">
 </div>
 {% endif %}
 
@@ -60,7 +58,7 @@
     {% if page.taxonomies.tags %}
     <div class="blog-post-header__tags">
         {% for tag in page.taxonomies.tags %}
-        <a href="{{ macros::rel_link(permalink=get_taxonomy_url(kind='tags', name=tag)) }}" class="blog-post-header__tag">
+        <a href="{{<rel_link permalink={get_taxonomy_url(kind='tags', name=tag)} config={config} current_path={current_path or "/"} />}}" class="blog-post-header__tag">
             {{ tag }}
         </a>
         {% endfor %}
@@ -123,13 +121,13 @@
     {# Previous/Next navigation #}
     <nav class="blog-post-nav">
         {% if page.earlier %}
-        <a href="{{ macros::rel_link(permalink=page.earlier.permalink) }}" class="blog-post-nav__link blog-post-nav__link--prev">
+        <a href="{{<rel_link permalink={page.earlier.permalink} config={config} current_path={current_path or "/"} />}}" class="blog-post-nav__link blog-post-nav__link--prev">
             <span class="blog-post-nav__label">Previous Post</span>
             <span class="blog-post-nav__title">{{ page.earlier.title }}</span>
         </a>
         {% endif %}
         {% if page.later %}
-        <a href="{{ macros::rel_link(permalink=page.later.permalink) }}" class="blog-post-nav__link blog-post-nav__link--next">
+        <a href="{{<rel_link permalink={page.later.permalink} config={config} current_path={current_path or "/"} />}}" class="blog-post-nav__link blog-post-nav__link--next">
             <span class="blog-post-nav__label">Next Post</span>
             <span class="blog-post-nav__title">{{ page.later.title }}</span>
         </a>
@@ -140,8 +138,8 @@
 
 {% block scripts %}
 {# Load Mermaid if needed #}
-{% if page.content is containing("mermaid") %}
-<script src="{{ macros::rel() }}js/mermaid.min.js"></script>
+{% if page.content is containing(pat="mermaid") %}
+<script src="{{<rel config={config} current_path={current_path or "/"} />}}js/mermaid.min.js"></script>
 <script>mermaid.initialize({startOnLoad: true, theme: 'neutral'});</script>
 {% endif %}
 {% endblock %}

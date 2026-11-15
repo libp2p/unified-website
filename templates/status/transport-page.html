@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ page.title }} - Transport Status{% endblock %}
 
 {% block body_class %}status{% endblock %}
@@ -49,12 +47,12 @@
                 {%- endif -%}
 
                 {%- if test_combo == combo -%}
-                    {%- set_global filtered_results = filtered_results | concat(with=test) -%}
+                    {%- set_global filtered_results = [...filtered_results, test] -%}
                     {%- if test.dialer not in combo_dialers -%}
-                        {%- set_global combo_dialers = combo_dialers | concat(with=test.dialer) -%}
+                        {%- set_global combo_dialers = [...combo_dialers, test.dialer] -%}
                     {%- endif -%}
                     {%- if test.listener not in combo_listeners -%}
-                        {%- set_global combo_listeners = combo_listeners | concat(with=test.listener) -%}
+                        {%- set_global combo_listeners = [...combo_listeners, test.listener] -%}
                     {%- endif -%}
                     {%- if test.status == "pass" -%}
                         {%- set_global combo_passed = combo_passed + 1 -%}

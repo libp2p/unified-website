@@ -13,9 +13,9 @@ category = "transports"
 
 WebRTC is a general-purpose framework that enables real-time communication capabilities in browsers and mobile applications. WebRTC is unique because it allows browsers to directly connect without the need for intermediate servers, enabling audio, video, and generic data to be exchanged between endpoints.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 WebRTC in libp2p is implemented, available and documented in [js-libp2p](https://github.com/libp2p/js-libp2p/tree/master/packages/transport-webrtc) and [go-libp2p](https://github.com/libp2p/go-libp2p/tree/master/p2p/transport/webrtc).
-{% end %}
+{% </alert> %}
 
 libp2p uses WebRTC to enable browsers to connect directly to other public nodes in the network. There are two different transports specified for WebRTC: [WebRTC transport](https://github.com/libp2p/specs/tree/master/webrtc#browser-to-public-server) and [WebRTC direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md#browser-to-server).
 
@@ -88,6 +88,6 @@ The libp2p WebRTC specifications exist here:
 - [WebRTC](https://github.com/libp2p/specs/blob/master/webrtc/webrtc.md)
 - [WebRTC Direct](https://github.com/libp2p/specs/blob/master/webrtc/webrtc-direct.md)
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the WebRTC [technical specification](https://github.com/libp2p/specs/tree/master/webrtc) for more details.
-{% end %}
+{% </alert> %}
