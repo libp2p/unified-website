@@ -30,4 +30,4 @@ All of this ships in 17 implementations, including Go, Rust, JS, Python, Nim and
 
 Agent-to-agent communication needs a network layer that is open, encrypted and resilient. We joined AAIF to work on these problems with the wider community, and we will do it in the open.
 
-To get involved, start here: https://libp2p.io/get-involved/
+To get involved, [start here](https://libp2p.io/get-involved/).
