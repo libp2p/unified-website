@@ -1,18 +1,21 @@
-name: Deploy to Production (main)
+name: Deploy to EC2
 
 on:
-  schedule:
-    - cron: '0 6 * * *'  # 6am UTC daily
   push:
     branches: [main]
+  schedule:
+    - cron: '0 6 * * *' # Publish data refreshed by the scheduled content workflows
   workflow_dispatch:
-  workflow_call:
 
 permissions:
   contents: read
 
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -31,68 +34,61 @@ jobs:
           TZ=UTC git show -s --date=iso-local --format='%h %cd' HEAD > ./static/data/version
 
       - name: Build Zola site
-        run: zola build --base-url="https://${{ vars.LIBP2P_DOMAIN }}/"
-
-      - name: Install ipfs-car
-        run: npm install -g ipfs-car
-
-      - name: Create CAR archive of public folder
-        run: ipfs-car pack ./public --output libp2p.car
-
-      - name: Configure AWS credentials for Filebase
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.FILEBASE_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.FILEBASE_SECRET_KEY }}
-          AWS_DEFAULT_REGION: us-east-1   # Filebase ignores region, but required
+          LIBP2P_DOMAIN: ${{ vars.LIBP2P_DOMAIN }}
         run: |
-          echo "AWS credentials exported as env vars"
-          aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-          aws configure set default.region $AWS_DEFAULT_REGION
-          aws configure list
+          test -n "$LIBP2P_DOMAIN" || { echo "Set repository variable LIBP2P_DOMAIN"; exit 1; }
+          zola build --base-url="https://${LIBP2P_DOMAIN}/"
 
-      - name: Upload CAR to production bucket (with import=car)
-        id: upload
+      - name: Upload site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: public/
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: public/
+
+      - name: Configure SSH
         env:
-          AWS_EC2_METADATA_DISABLED: true
+          EC2_SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          EC2_KNOWN_HOSTS: ${{ secrets.EC2_KNOWN_HOSTS }}
         run: |
-          aws --endpoint https://s3.filebase.com \
-            s3 cp libp2p.car \
-            s3://${{ vars.FILEBASE_BUCKET_PROD }}/ \
-            --metadata 'import=car'
-          aws --endpoint https://s3.filebase.com \
-            s3api head-object \
-            --bucket ${{ vars.FILEBASE_BUCKET_PROD }} \
-            --key libp2p.car > head-object.log 2>&1
+          test -n "$EC2_SSH_PRIVATE_KEY" || { echo "Set secret EC2_SSH_PRIVATE_KEY"; exit 1; }
+          test -n "$EC2_KNOWN_HOSTS" || { echo "Set secret EC2_KNOWN_HOSTS"; exit 1; }
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$EC2_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$EC2_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
 
-          # Extract CID from debug log (x-amz-meta-cid header)
-          CID=$(jq -r '.Metadata.Cid // .Metadata.cid' head-object.log | tr -d '\r')
-          if [ -z "$CID" ]; then
-            echo "Failed to extract CID from upload response"
-            cat head-object.log
-            exit 1
-          fi
-          echo "cid=$CID" >> $GITHUB_OUTPUT
-
-      - name: Publish IPNS record
+      - name: Deploy release and switch live site
+        env:
+          EC2_HOST: ${{ vars.EC2_HOST }}
+          EC2_USER: ${{ vars.EC2_USER }}
+          EC2_DEPLOY_PATH: ${{ vars.EC2_DEPLOY_PATH }}
         run: |
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
-            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=libp2p.myfilebase.site&ttl=1m"
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
-            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=docs-libp2p.myfilebase.site&ttl=1m"
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
-            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=connectivity-libp2p.myfilebase.site&ttl=1m"
-          curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.FILEBASE_IPFS_RPC_API_KEY }}" \
-            "https://rpc.filebase.io/api/v0/name/publish?arg=/ipfs/${{ steps.upload.outputs.cid }}&key=blog-libp2p.myfilebase.site&ttl=1m"
+          test -n "$EC2_HOST" || { echo "Set repository variable EC2_HOST"; exit 1; }
+          test -n "$EC2_USER" || { echo "Set repository variable EC2_USER"; exit 1; }
+          test -n "$EC2_DEPLOY_PATH" || { echo "Set repository variable EC2_DEPLOY_PATH"; exit 1; }
+          RELEASE_PATH="$EC2_DEPLOY_PATH/releases/$GITHUB_SHA"
+          SSH_CMD="ssh -i $HOME/.ssh/id_ed25519 -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o StrictHostKeyChecking=yes"
+
+          $SSH_CMD "$EC2_USER@$EC2_HOST" "mkdir -p '$RELEASE_PATH'"
+          rsync -az --delete \
+            -e "$SSH_CMD" \
+            public/ "$EC2_USER@$EC2_HOST:$RELEASE_PATH/"
+          $SSH_CMD "$EC2_USER@$EC2_HOST" \
+            "ln -sfn '$RELEASE_PATH' '$EC2_DEPLOY_PATH/current.next' && mv -Tf '$EC2_DEPLOY_PATH/current.next' '$EC2_DEPLOY_PATH/current'"
 
       - name: Announce production deployment
-        run: |
-          echo "::notice title=Production Deployed::"
-          echo "Version: $(cat ./static/data/version)"
-          echo "Root CID: ${{ steps.upload.outputs.cid }}"
-          echo "View site: https://libp2p.myfilebase.site/"
-          # Optional: add IPNS update, GitHub deployment, Slack notification, etc. here
+        run: echo "::notice title=Production Deployed::${{ github.sha }}"
