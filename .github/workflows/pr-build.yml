@@ -29,8 +29,4 @@ jobs:
           TZ=UTC git show -s --date=iso-local --format='%h %cd' HEAD > ./static/data/version
 
       - name: Build Zola site
-        env:
-          LIBP2P_DOMAIN: ${{ vars.LIBP2P_DOMAIN }}
-        run: |
-          test -n "$LIBP2P_DOMAIN" || { echo "Set repository variable LIBP2P_DOMAIN"; exit 1; }
-          zola build --base-url="https://${LIBP2P_DOMAIN}/"
+        run: zola build
