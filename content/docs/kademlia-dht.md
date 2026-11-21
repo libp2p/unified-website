@@ -12,7 +12,7 @@ category = "peer discovery/routing"
 ## Overview
 
 The Kademlia Distributed Hash Table (DHT), or Kad-DHT, is a distributed hash table
-that is designed for P2P networks. Itis a subsystem based on the
+that is designed for P2P networks. It is a subsystem based on the
 [Kademlia whitepaper](https://pdos.csail.mit.edu/~petar/papers/maymounkov-kademlia-lncs.pdf).
 
 Kad-DHT offers a way to find nodes and data on the network by using a
