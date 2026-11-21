@@ -10,7 +10,7 @@ tags = ["testing", "libp2p", "interoperability", "performance"]
 
 [extra]
 author = "Dave Grantham"
-header_video = "/img/blog/unified-testing-animation.mp4"
+header_video = "/img/blog/test-plans-animation.mp4"
 +++
 
 The libp2p ecosystem spans multiple programming languages, transports, and protocols. Testing interoperability across this diverse landscape has always been challenging. Today, we're announcing a complete rewrite of the [unified-testing repository](https://github.com/libp2p/unified-testing) that fundamentally improves how we test libp2p implementations.
