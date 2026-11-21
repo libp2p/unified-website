@@ -35,7 +35,7 @@ jobs:
           echo "GraphQL API calls remaining: $REMAINING"
           if [ "$REMAINING" -lt 500 ]; then
             echo "::warning::Rate limit too low ($REMAINING), skipping run"
-            echo "SKIP_RUN=true" >> $GITHUB_ENV
+            echo "SKIP_RUN=true" >> "$GITHUB_ENV"
           fi
 
       - name: Fetch activity data from repositories
@@ -90,9 +90,9 @@ jobs:
 
           if git diff --staged --quiet; then
             echo "No changes to commit"
-            echo "changes_committed=false" >> $GITHUB_OUTPUT
+            echo "changes_committed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m "chore: update daily activity summary [skip ci]"
             git push
-            echo "changes_committed=true" >> $GITHUB_OUTPUT
+            echo "changes_committed=true" >> "$GITHUB_OUTPUT"
           fi
