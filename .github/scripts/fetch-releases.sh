@@ -50,13 +50,6 @@ get_short_name() {
     esac
 }
 
-# Map implementation name to GitHub org/repo
-get_repo_path() {
-    local url="$1"
-    # Extract org/repo from https://github.com/ORG/REPO/releases.atom
-    echo "$url" | sed -E 's|https://github.com/([^/]+/[^/]+)/releases\.atom|\1|'
-}
-
 # Basic HTML to markdown conversion
 html_to_markdown() {
     sed -E \
@@ -97,7 +90,6 @@ detect_security() {
 for impl in "${!FEEDS[@]}"; do
     feed_url="${FEEDS[$impl]}"
     short_name=$(get_short_name "$impl")
-    repo_path=$(get_repo_path "$feed_url")
 
     echo ""
     echo "Processing $impl ($feed_url)..."

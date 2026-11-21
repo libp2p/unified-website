@@ -1,5 +1,6 @@
 #!/bin/bash
 # config.sh - Shared configuration for activity summary scripts
+# shellcheck disable=SC2034  # these arrays are read by the scripts that source this file
 
 # Repository list - used for fetching activity and validating links
 REPOS=(

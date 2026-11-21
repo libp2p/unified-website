@@ -78,7 +78,7 @@ jobs:
           # Check if there are changes
           if git diff --cached --quiet; then
             echo "→ No changes to commit"
-            echo "changes_committed=false" >> $GITHUB_OUTPUT
+            echo "changes_committed=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -91,4 +91,4 @@ jobs:
 
           git push origin main
           echo "✓ Changes committed and pushed"
-          echo "changes_committed=true" >> $GITHUB_OUTPUT
+          echo "changes_committed=true" >> "$GITHUB_OUTPUT"

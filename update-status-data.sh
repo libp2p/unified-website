@@ -6,7 +6,7 @@
 set -euo pipefail
 
 TEMP_FILE=$(mktemp)
-trap "rm -f $TEMP_FILE" EXIT
+trap 'rm -f "$TEMP_FILE"' EXIT
 
 # Download to temporary file
 curl -fsSL "https://results.s3.filebase.com/results.yaml" \
