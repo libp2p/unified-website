@@ -7,7 +7,11 @@ on:
 permissions:
   contents: read
 
+env:
+  ZOLA_VERSION: 0.23.6
+
 jobs:
+  # Templates, shortcodes and internal (@/...) links.
   build:
     runs-on: ubuntu-latest
     steps:
@@ -16,14 +20,8 @@ jobs:
         with:
           fetch-depth: 0   # Zola sometimes benefits from full history
 
-      # Things zola build does not catch: corrupted characters, and images or
-      # videos a page points at that are missing from static/.
-      - name: Check content
-        run: python3 .github/scripts/check-content.py
-
       - name: Install Zola
         run: |
-          ZOLA_VERSION=0.23.6
           curl -fsSL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
             | sudo tar xzf - -C /usr/local/bin
           zola --version
@@ -35,3 +33,54 @@ jobs:
 
       - name: Build Zola site
         run: zola build
+
+  # Things zola build does not catch: corrupted characters, and images or
+  # videos a page points at that are missing from static/.
+  content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check content
+        run: python3 .github/scripts/check-content.py
+
+  # The shell scripts and workflows that keep the site's data up to date.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Lint shell scripts
+        run: git ls-files '*.sh' | xargs shellcheck --severity=warning
+
+      - name: Lint workflows
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ./actionlint -color
+
+  # External links. Reported, never blocking: other sites rate-limit and go
+  # down, and that should not fail an unrelated pull request.
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Zola
+        run: |
+          curl -fsSL "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            | sudo tar xzf - -C /usr/local/bin
+
+      - name: Check external links
+        run: |
+          zola check 2>&1 | tee check.log || true
+          broken=$(grep -c 'Broken link' check.log || true)
+          {
+            echo "### External links: ${broken} broken"
+            grep 'Broken link' check.log | sed -E "s|^ *[0-9]+\. Broken link in ${PWD}/|- |" || true
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$broken" != 0 ]; then
+            echo "::warning::${broken} broken external links (not blocking). See this job's summary."
+          fi
