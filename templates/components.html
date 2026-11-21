@@ -1,0 +1,153 @@
+{% component rel(config: map, current_path: string) -%}
+{%- set parts = current_path | split(pat="/") -%}
+{%- set prefix = ["../" for part in parts if part != ""] | join(sep="") -%}
+{{- prefix -}}
+{%- endcomponent rel %}
+{% component abs_url(config: map, path: string) -%}
+{{- config.base_url | trim_end(pat="/") -}}{{- path -}}
+{%- endcomponent abs_url %}
+{% component rel_link(permalink: string, config: map, current_path: string) -%}
+{%- set base = config.base_url | trim_end(pat="/") -%}
+{%- if base != "" -%}
+{%- set path = permalink | trim_start(pat=base) -%}
+{%- else -%}
+{%- set path = permalink -%}
+{%- endif -%}
+{%- set path = path | trim_start(pat="/") -%}
+{%- set parts = current_path | split(pat="/") -%}
+{%- set prefix = ["../" for part in parts if part != ""] | join(sep="") -%}
+{{- prefix -}}{{- path -}}
+{%- endcomponent rel_link %}
+{% component format_stars(count: integer) -%}
+{%- if count >= 1000 -%}
+{%- set thousands = count / 1000 -%}
+{%- set rounded = thousands | round(precision=1) -%}
+{%- if rounded == rounded | round(precision=0) -%}
+{{ rounded | round(precision=0) }}k
+{%- else -%}
+{{ rounded }}k
+{%- endif -%}
+{%- else -%}
+{{ count }}
+{%- endif -%}
+{%- endcomponent format_stars %}
+{% component alert(type: string = "note", title: string = "") %}
+{%- set alert_type = type -%}
+{%- set icon = "" -%}
+{%- set default_title = "" -%}
+{%- if alert_type == "note" or alert_type == "info" -%}
+{%- set icon = "&#128712;" -%}
+{%- set default_title = "Note" -%}
+{%- elif alert_type == "tip" or alert_type == "success" -%}
+{%- set icon = "&#128161;" -%}
+{%- set default_title = "Tip" -%}
+{%- elif alert_type == "warning" or alert_type == "caution" -%}
+{%- set icon = "&#9888;" -%}
+{%- set default_title = "Warning" -%}
+{%- elif alert_type == "danger" or alert_type == "error" -%}
+{%- set icon = "&#128721;" -%}
+{%- set default_title = "Danger" -%}
+{%- endif -%}
+{%- set display_title = title or default_title -%}
+<div class="alert alert--{{ alert_type }}">
+<span class="alert__icon">{{ icon | safe }}</span>
+<div class="alert__content">
+{% if display_title %}<strong class="alert__title">{{ display_title }}</strong>{% endif %}
+{{ body | safe }}
+</div>
+</div>
+{% endcomponent alert %}
+{% component details(summary: string = "Details", open: bool = false) %}
+<details class="details" {% if open %}open{% endif %}>
+<summary class="details__summary">
+<span class="details__title">{{ summary }}</span>
+<svg class="details__icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="6 9 12 15 18 9"></polyline>
+</svg>
+</summary>
+<div class="details__content">{{ body | safe }}</div>
+</details>
+{% endcomponent details %}
+{% component email(address: string, text: string = "") %}
+{%- set link_text = text or address -%}
+{%- set reversed = address | reverse -%}
+<a href="mailto:{{ address }}" class="email-link" data-email="{{ reversed }}">{{ link_text }}</a>
+{% endcomponent email %}
+{% component img(src: string, alt: string = "") %}
+<img src="{{ get_url(path=src) }}" alt="{{ alt }}">
+{% endcomponent img %}
+{% component js_peer_embed(base: string = "", height: integer = 650) %}
+<div class="js-peer-container">
+<div class="js-peer-notice">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" y1="16" x2="12" y2="12"></line>
+<line x1="12" y1="8" x2="12.01" y2="8"></line>
+</svg>
+<span>This interactive demo requires HTTPS and a modern browser with WebRTC support.</span>
+</div>
+<iframe src="{{ base }}js-peer/index.html" width="100%" height="{{ height }}" allow="camera; microphone" class="js-peer-iframe" loading="lazy" title="libp2p js-peer chat demo"></iframe>
+</div>
+{% endcomponent js_peer_embed %}
+{% component mermaid(caption: string = "") %}
+<figure class="mermaid-container">
+<pre class="mermaid">{{ body | trim }}</pre>
+{% if caption %}<figcaption class="mermaid-caption">{{ caption }}</figcaption>{% endif %}
+</figure>
+{% endcomponent mermaid %}
+{% component support_matrix(data: string = "") %}
+{%- set body_text = body or "" -%}
+{%- set lines = [] -%}
+{%- if data -%}
+{%- set lines = data | split(pat=",") -%}
+{%- elif body_text -%}
+{%- set lines = body_text | trim | split(pat="\n") -%}
+{%- endif -%}
+<div class="support-matrix">
+<div class="support-matrix__grid">
+{% for line in lines %}
+{% set line_trimmed = line | trim %}
+{% if line_trimmed and ":" in line_trimmed %}
+{% set parts = line_trimmed | split(pat=":") %}
+{% if parts | length >= 2 %}
+{% set impl_name = parts[0] | trim %}
+{% set status = parts[1] | trim | lower %}
+{% set status_class = "unknown" %}
+{% set status_icon = "?" %}
+{% set status_label = "Unknown" %}
+{% if status == "supported" or status == "yes" or status == "true" %}
+{% set status_class = "pass" %}{% set status_icon = "&#10003;" %}{% set status_label = "Supported" %}
+{% elif status == "not-supported" or status == "no" or status == "false" %}
+{% set status_class = "fail" %}{% set status_icon = "&#10005;" %}{% set status_label = "Not Supported" %}
+{% elif status == "wip" or status == "in-progress" %}
+{% set status_class = "wip" %}{% set status_icon = "&#9881;" %}{% set status_label = "In Progress" %}
+{% elif status == "partial" %}
+{% set status_class = "partial" %}{% set status_icon = "&#9711;" %}{% set status_label = "Partial" %}
+{% elif status == "na" or status == "n/a" %}
+{% set status_class = "na" %}{% set status_icon = "&#8212;" %}{% set status_label = "N/A" %}
+{% endif %}
+<div class="support-matrix__item">
+<span class="support-matrix__impl">{{ impl_name }}</span>
+<span class="support-matrix__status support-matrix__status--{{ status_class }}" title="{{ status_label }}">{{ status_icon | safe }}</span>
+</div>
+{% endif %}
+{% endif %}
+{% endfor %}
+</div>
+{% if body_text and not ":" in body_text %}<p class="support-matrix__note">{{ body_text | trim }}</p>{% endif %}
+</div>
+{% endcomponent support_matrix %}
+{% component video(src: string, poster: string = "", controls: bool = true, autoplay: bool = false, loop: bool = false, muted: bool = false, caption: string = "") %}
+<figure class="video-container video-container--native">
+<video {% if poster %}poster="{{ poster }}"{% endif %} {% if controls %}controls{% endif %} {% if autoplay %}autoplay{% endif %} {% if loop %}loop{% endif %} {% if muted %}muted{% endif %} playsinline preload="metadata">
+<source src="{{ src }}" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+{% if caption %}<figcaption class="video-caption">{{ caption }}</figcaption>{% endif %}
+</figure>
+{% endcomponent video %}
+{% component youtube(id: string, title: string = "YouTube video", start: integer = 0, autoplay: bool = false) %}
+<div class="video-container video-container--youtube">
+<iframe src="https://www.youtube-nocookie.com/embed/{{ id }}{% if start > 0 %}?start={{ start }}{% endif %}{% if autoplay %}&amp;autoplay=1{% endif %}" title="{{ title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+</div>
+{% endcomponent youtube %}

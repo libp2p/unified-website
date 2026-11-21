@@ -10,7 +10,7 @@ category = "secure channels"
 +++
 
 TLS (Transport Layer Security) is one of the security handshakes used to secure transports
-that don't have built-in security (e.g. TCP, WebSocket). [Noise](/docs/noise/), an alternative to
+that don't have built-in security (e.g. TCP, WebSocket). [Noise](@/docs/noise.md), an alternative to
 TLS, is also another security handshake used to secure transports.
 
 ## What is TLS?
@@ -53,6 +53,6 @@ When processing the TLS certificate, nodes derive the peer ID from the public ke
 they received. The node initiating the connection checks that it matches the peer ID of the node
 it intended to connect to.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the TLS [technical specification](https://github.com/libp2p/specs/blob/master/tls/tls.md) for more details.
-{% end %}
+{% </alert> %}

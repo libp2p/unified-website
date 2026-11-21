@@ -63,9 +63,9 @@ Take two nodes, `A` and `B`, that would like to dial each other:
 1. The first packet of both nodes (e.g., in the case of TCP, an SYN)
    passes through their respective routers.
 2. The routers add a 5-tuple to their router's state table.
-   {% alert(type="info") %}
+   {% <alert type="info"> %}
    A router state table (routing table) is data store within a router that lists the routes to particular network destinations. The 5-tuple structure includes the source IP address, source port, destination IP address, destination port, and transport protocol.
-   {% end %}
+   {% </alert> %}
 3. `PacketA` and `PacketB` "punch holes" into their respective routers'
    firewalls.
 4. Both packets arrive at the opposite router.
@@ -76,9 +76,9 @@ Take two nodes, `A` and `B`, that would like to dial each other:
    The same occurs with `B`'s packet; upon arriving at `Router_A`, it matches
    a 5-tuple in `Router_A`'s state table and thus forwards the packet to `A`.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 This process assumes a mechanism to synchronize `A` and `B` simultaneously.
-{% end %}
+{% </alert> %}
 
 ## Hole punching in libp2p
 
@@ -93,7 +93,7 @@ a hole punching phase.
 
 ### Phase I: Preparation
 
-1. [AutoNAT](/docs/autonat/): Determine whether a node is dialable,
+1. [AutoNAT](@/docs/autonat.md): Determine whether a node is dialable,
    as in, discover if a node is behind a NAT or firewall.
 
    > This is equivalent to the
@@ -120,7 +120,7 @@ a hole punching phase.
       for the closest peers to its Peer ID or choose a subset of the public nodes
       it is already connected to.
 
-3. [Circuit Relay](/docs/circuit-relay/): Connect to and request
+3. [Circuit Relay](@/docs/circuit-relay.md): Connect to and request
    reservations with the discovered relay nodes. A node can advertise itself as
    being reachable through a remote relay node.
 
@@ -139,7 +139,7 @@ a hole punching phase.
 
 ### Phase II: Hole punching
 
-1. [Circuit Relay](/docs/circuit-relay/): Establish a secure relay connection
+1. [Circuit Relay](@/docs/circuit-relay.md): Establish a secure relay connection
    through the public relay node. Node `A` establishes a direct connection with
    the relay node. Node `B` then requests a relayed connection to node `A` through
    the relay node, creating a bi-directional channel and uses TLS to secure the

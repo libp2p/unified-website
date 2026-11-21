@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ section.title }} - {{ config.title }}{% endblock %}
 {% block og_title %}{{ section.title }} - {{ config.title }}{% endblock %}
 
@@ -20,35 +18,35 @@
         <div class="projects-section__grid">
             <a href="{{ config.extra.go_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-go.svg" alt="Go">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-go.svg" alt="Go">
                 </div>
                 <h3 class="impl-card__name">go-libp2p</h3>
                 <p class="impl-card__desc">The implementation in Golang</p>
             </a>
             <a href="{{ config.extra.rust_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-rust.svg" alt="Rust">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-rust.svg" alt="Rust">
                 </div>
                 <h3 class="impl-card__name">rust-libp2p</h3>
                 <p class="impl-card__desc">High-performance Rust implementation</p>
             </a>
             <a href="{{ config.extra.js_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-js.svg" alt="JavaScript">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-js.svg" alt="JavaScript">
                 </div>
                 <h3 class="impl-card__name">js-libp2p</h3>
                 <p class="impl-card__desc">For browsers and Node.js</p>
             </a>
             <a href="{{ config.extra.nim_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-nim.svg" alt="Nim">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-nim.svg" alt="Nim">
                 </div>
                 <h3 class="impl-card__name">nim-libp2p</h3>
                 <p class="impl-card__desc">The Nim reference implementation</p>
             </a>
             <a href="{{ config.extra.py_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-py.svg" alt="Python">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-py.svg" alt="Python">
                 </div>
                 <h3 class="impl-card__name">py-libp2p</h3>
                 <p class="impl-card__desc">The AI-friendly Python implementation</p>
@@ -67,49 +65,49 @@
         <div class="projects-section__grid">
             <a href="{{ config.extra.cpp_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/cpp-lang.svg" alt="C++">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/cpp-lang.svg" alt="C++">
                 </div>
                 <h3 class="impl-card__name">cpp-libp2p</h3>
                 <p class="impl-card__desc">C++ implementation</p>
             </a>
             <a href="{{ config.extra.swift_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/swift-lang.svg" alt="Swift">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/swift-lang.svg" alt="Swift">
                 </div>
                 <h3 class="impl-card__name">swift-libp2p</h3>
                 <p class="impl-card__desc">Swift implementation for Apple platforms</p>
             </a>
             <a href="{{ config.extra.jvm_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/jvm-lang.svg" alt="JVM">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/jvm-lang.svg" alt="JVM">
                 </div>
                 <h3 class="impl-card__name">jvm-libp2p</h3>
                 <p class="impl-card__desc">Java/Kotlin implementation</p>
             </a>
             <a href="{{ config.extra.zig_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-zig.svg" alt="Zig">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-zig.svg" alt="Zig">
                 </div>
                 <h3 class="impl-card__name">zig-libp2p</h3>
                 <p class="impl-card__desc">Zig implementation</p>
             </a>
             <a href="{{ config.extra.dotnet_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/dotnet-lang.svg" alt=".NET">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/dotnet-lang.svg" alt=".NET">
                 </div>
                 <h3 class="impl-card__name">dotnet-libp2p</h3>
                 <p class="impl-card__desc">.NET implementation by Nethermind</p>
             </a>
             <a href="{{ config.extra.c_libp2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/c-lang.svg" alt="C">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/c-lang.svg" alt="C">
                 </div>
                 <h3 class="impl-card__name">c-libp2p</h3>
                 <p class="impl-card__desc">C implementation by Pier Two</p>
             </a>
             <a href="{{ config.extra.litep2p }}" class="impl-card" target="_blank" rel="noopener noreferrer">
                 <div class="impl-card__logo">
-                    <img src="{{ macros::rel() }}img/lang-rust.svg" alt="Rust">
+                    <img src="{{<rel config={config} current_path={current_path or "/"} />}}img/lang-rust.svg" alt="Rust">
                 </div>
                 <h3 class="impl-card__name">litep2p</h3>
                 <p class="impl-card__desc">Alternative Rust implementation by Parity</p>
@@ -210,7 +208,7 @@
 
                     {% if page.title and page.title != page.extra.version %}
                     <h3 class="release-item__title">
-                        <a href="{{ macros::rel_link(permalink=page.permalink) }}">{{ page.title }}</a>
+                        <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}">{{ page.title }}</a>
                     </h3>
                     {% endif %}
 
@@ -221,7 +219,7 @@
                     {% endif %}
 
                     <div class="release-item__links">
-                        <a href="{{ macros::rel_link(permalink=page.permalink) }}" class="release-item__link">
+                        <a href="{{<rel_link permalink={page.permalink} config={config} current_path={current_path or "/"} />}}" class="release-item__link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>

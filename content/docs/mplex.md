@@ -18,7 +18,7 @@ is now considered critical for a stream multiplexer.
 
 mplex runs over a reliable, ordered pipe between two peers, such as a TCP connection.
 Peers can open, write to, close, and reset a stream. mplex uses a message-based framing
-layer like [yamux](/docs/yamux/), enabling it to multiplex different
+layer like [yamux](@/docs/yamux.md), enabling it to multiplex different
 data streams, including stream-oriented data and other types of messages.
 
 ### Drawbacks
@@ -30,7 +30,7 @@ mplex does not have any flow control.
 
 mplex also doesn't limit how many streams a peer can open.
 
-{% alert(type="warning") %}
+{% <alert type="warning"> %}
 **If you need a dedicated muxer, Yamux should be used (overall, QUIC should be preferred over TCP).** Yamux natively supports flow control, it is better suited for applications that require the transfer of large amounts of data.
 
 Until recently, the reason mplex was still supported was compatibility with js-libp2p,
@@ -38,8 +38,8 @@ which didn't have yamux support.
 Now that
 [js-libp2p has gained yamux support](https://github.com/ChainSafe/js-libp2p-yamux/releases/tag/v1.0.0),
 mplex should only be used to provide backward-compatibility with legacy nodes.
-{% end %}
+{% </alert> %}
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the mplex [technical specification](https://github.com/libp2p/specs/tree/master/mplex) for more details.
-{% end %}
+{% </alert> %}

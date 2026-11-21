@@ -46,9 +46,9 @@ libp2p is a very modular framework, which allows javascript devs to target diffe
 
 Because every application is different, we recommend configuring your libp2p node with just the modules you need. You can even make more than one configuration, if you want to target multiple javascript runtimes with different features.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 In a production application, it may make sense to create a separate npm module for your libp2p node, which will give you one place to manage the libp2p dependencies for all your javascript projects. In that case, you should not depend on `libp2p` directly in your application. Instead you'd depend on your libp2p configuration module, which would in turn depend on `libp2p` and whatever modules (transports, etc) you might need.
-{% end %}
+{% </alert> %}
 
 If you're new to libp2p, we recommend configuring your node in stages, as this can make troubleshooting configuration issues much easier. In this tutorial, we'll do just that. If you're more experienced with libp2p, you may wish to jump to the [Configuration readme](https://github.com/libp2p/js-libp2p/blob/master/doc/CONFIGURATION.md).
 
@@ -112,7 +112,7 @@ const node = await createLibp2p({
 
 While multiplexers are not strictly required, they are highly recommended as they improve the effectiveness and efficiency of connections for the various protocols libp2p runs.
 
-Looking at the [available stream multiplexing](https://github.com/libp2p/js-libp2p/blob/master/doc/CONFIGURATION.md#stream-multiplexing) modules, js-libp2p supports `@chainsafe/libp2p-yamux` and `@libp2p/mplex`, but [mplex](/docs/mplex/) is [deprecated](https://github.com/libp2p/specs/issues/553) so we will use [Yamux](/docs/yamux/) here. You can install `@chainsafe/libp2p-yamux` and add it to your libp2p node as follows in the next example.
+Looking at the [available stream multiplexing](https://github.com/libp2p/js-libp2p/blob/master/doc/CONFIGURATION.md#stream-multiplexing) modules, js-libp2p supports `@chainsafe/libp2p-yamux` and `@libp2p/mplex`, but [mplex](@/docs/mplex.md) is [deprecated](https://github.com/libp2p/specs/issues/553) so we will use [Yamux](@/docs/yamux.md) here. You can install `@chainsafe/libp2p-yamux` and add it to your libp2p node as follows in the next example.
 
 ```sh
 npm install @chainsafe/libp2p-yamux

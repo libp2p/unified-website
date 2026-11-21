@@ -44,18 +44,18 @@ choice of muxer is negotiated between the nodes during the initial connection ha
 This negotiation protocol allows libp2p to adopt new muxers in the future while
 maintaining backward compatibility with existing muxers.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 For developers building libp2p applications, interaction with stream muxers is typically
 limited to the initial configuration phase. The libp2p stack automatically handles the
 negotiation and setup of the muxer, ensuring that all connections are stream-multiplexed
 and allowing for the seamless transmission of multiple streams of data over a single
 connection.
-{% end %}
+{% </alert> %}
 
-Currently, libp2p supports two stream muxers, [mplex](/docs/mplex/)
-and [yamux](/docs/yamux/). However, many of the
-[transport protocols](/docs/transports-overview/) available in the libp2p stack
-come with native streams, such as [QUIC](/docs/quic/),
-[WebTransport](/docs/webtransport/), and
-[WebRTC](/docs/webrtc/), and in these cases, libp2p
+Currently, libp2p supports two stream muxers, [mplex](@/docs/mplex.md)
+and [yamux](@/docs/yamux.md). However, many of the
+[transport protocols](@/docs/transports-overview.md) available in the libp2p stack
+come with native streams, such as [QUIC](@/docs/quic.md),
+[WebTransport](@/docs/webtransport.md), and
+[WebRTC](@/docs/webrtc.md), and in these cases, libp2p
 **does not need to perform stream multiplexing** as the protocol already provides it.

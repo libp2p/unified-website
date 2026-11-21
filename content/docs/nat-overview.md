@@ -11,7 +11,7 @@ category = "nat traversal"
 
 ## Overview
 
-The internet is composed of countless networks, bound together into shared address spaces by foundational [transport protocols](/docs/transports-overview/).
+The internet is composed of countless networks, bound together into shared address spaces by foundational [transport protocols](@/docs/transports-overview.md).
 
 As traffic moves between network boundaries, it's very common for a process called Network Address Translation to occur. Network Address Translation (NAT) maps an address from one address space to another.
 
@@ -32,7 +32,7 @@ Many routers support automatic configuration protocols for port forwarding, most
 If your router supports one of those protocols, libp2p will attempt to automatically configure a port mapping that will
 allow it to listen for incoming traffic. This is usually the simplest option if supported by the network and libp2p implementation.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 Support for automatic NAT configuration varies by libp2p implementation.
 Check the [current implementation status](https://github.com/libp2p/libp2p#implementations) for details.
-{% end %}
+{% </alert> %}

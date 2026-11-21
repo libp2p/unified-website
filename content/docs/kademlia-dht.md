@@ -19,7 +19,7 @@ Kad-DHT offers a way to find nodes and data on the network by using a
 [routing table](https://en.wikipedia.org/wiki/Routing_table) that organizes peers based
 on how similar their keys are.
 
-{% details(summary="A deeper look") %}
+{% <details summary="A deeper look"> %}
 The routing table is organized based on a prefix length and a distance metric.
 The prefix length helps to group similar keys, and the distance metric helps to
 find the closest peers to a specific key in the routing table. The table maintains
@@ -45,7 +45,7 @@ SHA-256 hashes are similar).
 
 This design allows for efficient and effective lookups in the routing table when
 trying to find nodes or data that share similar prefixes.
-{% end %}
+{% </details> %}
 
 If you are considering adopting a DHT for your application, the [ProbeLab](https://probelab.io) team has written a [blog post](https://probelab.io/blog/libp2p-dht-configuration-guide/) how to properly configure it.
 
@@ -72,6 +72,6 @@ ID and looking it up via the peer routing process. The node then adds the closes
 discovers to its routing table and repeats the process multiple times. This process also
 includes looking up its own peer ID to improve awareness of nodes close to itself.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the Kademlia DHT [technical specification](https://github.com/libp2p/specs/tree/master/kad-dht) for more details.
-{% end %}
+{% </alert> %}

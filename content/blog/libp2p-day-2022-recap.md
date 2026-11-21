@@ -34,7 +34,7 @@ The goals of libp2p Day were to:
 
 First-class support for WebTransport enables libp2p nodes running in the browser to connect directly with peers on a host machine. WebRTC browser-to-server has also made significant progress.
 
-Check out the [new libp2p connectivity guide](/docs/browser-connectivity).
+Check out the [new libp2p connectivity guide](@/docs/browser-connectivity.md).
 
 #### libp2p Interoperability
 
@@ -50,9 +50,9 @@ With the growing demand for libp2p + HTTP, the team has started drafting an HTTP
 
 Max Inden (rust-libp2p maintainer, Software Engineer at Protocol Labs)
 
-{% youtube(id="J7ZWbpo2AZk") %}
+{% <youtube id="J7ZWbpo2AZk"> %}
 Max introduced libp2p by giving an overview of the supported transport protocols, secure channels, and multiplexing mechanisms.
-{% end %}
+{% </youtube> %}
 
 Max introduced libp2p covering transport protocols, secure channels, multiplexing mechanisms, how libp2p traverses NATs, discovers peers, uses Kademlia for peer-to-peer routing, and GossipSub for pub/sub messaging.
 

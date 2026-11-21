@@ -15,7 +15,7 @@ header_image = "/img/blog/annual-report-banner.svg"
 
 #### **Get involved with libp2p**
 
-* Read the full [libp2p 2025 Report](/reports/annual-reports/2025/)
+* Read the full [libp2p 2025 Report](@/reports/annual-reports/2025.md)
 * Join a [libp2p community call](https://luma.com/libp2p?tag=community)
 * Join our [Discord](https://discord.gg/MRRgEFMAVN)
 * Explore the [libp2p Github](https://github.com/libp2p)

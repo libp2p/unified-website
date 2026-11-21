@@ -39,9 +39,9 @@ And this is the most optimistic assumption. In case the peer doesn't support the
 
 ### TCP Implementation Status
 
-{% support_matrix(data="go-libp2p:supported,rust-libp2p:supported,js-libp2p (Node.js):supported,Chrome:not-supported,Firefox:not-supported,Safari:not-supported") %}
+{% <support_matrix data="go-libp2p:supported,rust-libp2p:supported,js-libp2p (Node.js):supported,Chrome:not-supported,Firefox:not-supported,Safari:not-supported"> %}
 TCP connections cannot be made from browsers due to security restrictions.
-{% end %}
+{% </support_matrix> %}
 
 ---
 
@@ -69,9 +69,9 @@ For resumed connections, QUIC even supports a **0-RTT handshake**, although we'r
 
 ### QUIC Implementation Status
 
-{% support_matrix(data="go-libp2p:supported,rust-libp2p:supported,js-libp2p (Node.js):wip,Chrome:not-supported,Firefox:not-supported,Safari:not-supported") %}
+{% <support_matrix data="go-libp2p:supported,rust-libp2p:supported,js-libp2p (Node.js):wip,Chrome:not-supported,Firefox:not-supported,Safari:not-supported"> %}
 Native QUIC support in Node.js is still pending. See the [tracking issue](https://github.com/nodejs/node/pull/44325).
-{% end %}
+{% </support_matrix> %}
 
 ---
 
@@ -107,9 +107,9 @@ Setting up the direct connection requires quite some effort, but it's worth it: 
 
 ### Hole Punching Implementation Status
 
-{% support_matrix(data="go-libp2p:supported,rust-libp2p:supported,js-libp2p:wip") %}
+{% <support_matrix data="go-libp2p:supported,rust-libp2p:supported,js-libp2p:wip"> %}
 js-libp2p hole punching support is in progress. See the [tracking issue](https://github.com/libp2p/js-libp2p/issues/1461).
-{% end %}
+{% </support_matrix> %}
 
 ### Further Reading
 

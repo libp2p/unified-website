@@ -16,11 +16,11 @@ allows peers to inform each other about their observed network addresses,
 sometimes these addresses are inaccessible as the peer may be located in a
 private network (i.e., behind a NAT or a firewall).
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 Advertising addresses that are not reachable is detrimental for the health of a
 P2P network, as other nodes will unsuccessfully try to dial those addresses wasting
 compute and network resources.
-{% end %}
+{% </alert> %}
 
 To prevent this problem of advertising and dialing unreachable addresses,
 libp2p has implemented a protocol called AutoNAT,
@@ -46,11 +46,11 @@ If most of these dial attempts are successful, the node can be reasonably sure
 that it is not behind a NAT. On the other hand, if most of these dial attempts fail,
 it strongly indicates that a NAT is blocking incoming connections.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Currently, AutoNAT cannot test individual addresses,
 but a [proposal](https://github.com/libp2p/specs/issues/503) for AutoNAT v2 aims to
 add this capability.
-{% end %}
+{% </alert> %}
 
 The AutoNAT protocol uses the protocol ID `/libp2p/autonat/1.0.0` and involves
 the exchange of `Dial` and `DialResponse` messages.
@@ -70,7 +70,7 @@ whether or not it is behind a NAT.
 > an error, the node is likely behind a NAT and may need to use a
 > relay server to communicate with other nodes in the network.
 
-{% alert(type="warning") %}
+{% <alert type="warning"> %}
 To prevent
 [certain types of attacks](https://www.rfc-editor.org/rfc/rfc3489#section-12.1.1),
 libp2p implementations of AutoNAT must not dial any multiaddress that
@@ -81,8 +81,8 @@ IP address that arrives via a relayed connection).
 This is to prevent amplification attacks, in which an attacker provides many clients
 with the same faked MAPPED-ADDRESS
 that points to the intended target, causing all traffic to be focused on the target.
-{% end %}
+{% </alert> %}
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the AutoNAT [technical specification](https://github.com/libp2p/specs/blob/master/autonat/README.md) for more details.
-{% end %}
+{% </alert> %}

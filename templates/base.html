@@ -1,10 +1,38 @@
-{% import "macros.html" as macros %}
 <!DOCTYPE html>
 <html lang="{{ lang | default(value='en') }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {# Subdomain Redirects #}
+    <script>
+        (function() {
+            var host = window.location.hostname;
+            var path = window.location.pathname;
+            var search = window.location.search;
+            var hash = window.location.hash;
+            
+            var redirects = {
+                'connectivity.libp2p.io': '/connectivity',
+                'docs.libp2p.io': '/docs',
+                'blog.libp2p.io': '/blog'
+            };
+            
+            if (redirects[host]) {
+                var sectionPath = redirects[host];
+                var finalPath = path;
+                
+                if (path === '/' || path === '') {
+                    finalPath = sectionPath + '/';
+                } else if (!path.startsWith(sectionPath)) {
+                    finalPath = sectionPath + path;
+                }
+                
+                window.location.replace('https://libp2p.io' + finalPath + search + hash);
+            }
+        })();
+    </script>
 
     {# Page title #}
     <title>{% block title %}{% if page.title is defined %}{{ page.title }}{% elif section is defined and section.title is defined %}{{ section.title }}{% else %}{{ config.title }}{% endif %}{% endblock %} | {{ config.extra.name }}</title>
@@ -42,7 +70,7 @@
         <meta property="og:url" content="{{ section.permalink }}">
     {% endif %}
     {% block og_image %}
-        <meta property="og:image" content="{{ macros::abs_url(path='/img/og-image.png') }}">
+        <meta property="og:image" content="{{<abs_url path="/img/og-image.png" config={config} />}}">
     {% endblock %}
 
     {# Twitter Card tags #}
@@ -58,17 +86,17 @@
     {% endif %}
 
     {# Favicon #}
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ macros::abs_url(path='/img/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ macros::abs_url(path='/img/favicon-16x16.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ macros::abs_url(path='/img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{<abs_url path="/img/favicon-32x32.png" config={config} />}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{<abs_url path="/img/favicon-16x16.png" config={config} />}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{<abs_url path="/img/apple-touch-icon.png" config={config} />}}">
 
     {# RSS Feed #}
     {% if config.generate_feeds %}
-        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{ macros::rel() }}rss.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="{{<rel config={config} current_path={current_path or "/"} />}}rss.xml">
     {% endif %}
 
     {# Main stylesheet #}
-    <link rel="stylesheet" href="{{ macros::rel() }}main.css">
+    <link rel="stylesheet" href="{{<rel config={config} current_path={current_path or "/"} />}}main.css">
 
     {# Additional head content from child templates #}
     {% block head %}{% endblock %}
@@ -99,7 +127,7 @@
     {% include "components/footer.html" %}
 
     {# Common JavaScript #}
-    <script src="{{ macros::rel() }}js/common.js"></script>
+    <script src="{{<rel config={config} current_path={current_path or "/"} />}}js/common.js"></script>
 
     {# Additional scripts from child templates #}
     {% block scripts %}{% endblock %}

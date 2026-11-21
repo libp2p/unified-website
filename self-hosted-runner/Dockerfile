@@ -50,7 +50,7 @@ RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" \
     rm -rf /tmp/awscli.zip /tmp/aws
 
 # 3. Zola static site generator
-ENV ZOLA_VERSION=0.22.1
+ENV ZOLA_VERSION=0.23.6
 RUN curl -fsSL -o /tmp/zola.tar.gz \
       "https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz" && \
     tar xzf /tmp/zola.tar.gz -C /usr/local/bin zola && \

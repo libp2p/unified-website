@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}{{ page.title }} - Performance Status{% endblock %}
 
 {% block body_class %}status{% endblock %}
@@ -41,7 +39,7 @@
             {%- set_global perf_filtered = [] -%}
             {%- for r in data.perf.results -%}
                 {%- if r.dialer == target_dialer -%}
-                    {%- set_global perf_filtered = perf_filtered | concat(with=r) -%}
+                    {%- set_global perf_filtered = [...perf_filtered, r] -%}
                 {%- endif -%}
             {%- endfor -%}
 

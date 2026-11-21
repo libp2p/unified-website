@@ -30,6 +30,6 @@ and the cryptographic primitives used for encryption is specified in the
 The noise-libp2p protocol ID is `/noise`, and future versions may define new protocol IDs
 using the "/noise" prefix (e.g., `/noise/2`).
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 See the Noise [technical specification](https://github.com/libp2p/specs/tree/master/noise) for more details.
-{% end %}
+{% </alert> %}

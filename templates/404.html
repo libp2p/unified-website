@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-{% import "macros.html" as macros %}
-
 {% block title %}Page Not Found{% endblock %}
 
 {% block body_class %}error-page{% endblock %}
@@ -15,20 +13,20 @@
             The page you're looking for doesn't exist or has been moved.
         </p>
         <div class="error-actions">
-            <a href="{{ macros::rel() }}" class="btn btn-primary">
+            <a href="{{<rel config={config} current_path={current_path or "/"} />}}" class="btn btn-primary">
                 Go Home
             </a>
-            <a href="{{ macros::rel() }}docs/" class="btn btn-outline">
+            <a href="{{<rel config={config} current_path={current_path or "/"} />}}docs/" class="btn btn-outline">
                 Browse Docs
             </a>
         </div>
         <div class="error-links">
             <p>You might be looking for:</p>
             <ul>
-                <li><a href="{{ macros::rel() }}blog/">Blog</a></li>
-                <li><a href="{{ macros::rel() }}docs/">Docs</a></li>
-                <li><a href="{{ macros::rel() }}releases/">Releases</a></li>
-                <li><a href="{{ macros::rel() }}status/">Status</a></li>
+                <li><a href="{{<rel config={config} current_path={current_path or "/"} />}}blog/">Blog</a></li>
+                <li><a href="{{<rel config={config} current_path={current_path or "/"} />}}docs/">Docs</a></li>
+                <li><a href="{{<rel config={config} current_path={current_path or "/"} />}}releases/">Releases</a></li>
+                <li><a href="{{<rel config={config} current_path={current_path or "/"} />}}status/">Status</a></li>
                 <li><a href="{{ config.extra.specs_url }}" target="_blank" rel="noopener noreferrer">Specifications</a></li>
             </ul>
         </div>

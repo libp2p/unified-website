@@ -77,13 +77,13 @@ transport. If some other peer has taken over that IP address or port, it will be
 immediately obvious, since they will not have control over the key pair used to
 produce the Peer ID embedded in the address.
 
-For more on addresses in libp2p, see [Addressing](/docs/addressing/).
+For more on addresses in libp2p, see [Addressing](@/docs/addressing.md).
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 The multiaddr protocol for libp2p addresses was originally written `/ipfs` and was later renamed to `/p2p`.
 The two are equivalent and have the same binary representation in multiaddrs.
 Which one is rendered in the string format depends on the version of the multiaddr library in use.
-{% end %}
+{% </alert> %}
 
 ## Peer Info
 
@@ -100,10 +100,10 @@ addresses and associated metadata. The peer store works like a phone or address
 book; think of it like a universal multiaddr book that maintains the source of truth
 for all known peers.
 
-{% alert(type="info") %}
+{% <alert type="info"> %}
 Implementations may wish to persist a snapshot of the peer store on shutdown, so that
 they don't have to start with an empty peer store when they boot up the next time.
-{% end %}
+{% </alert> %}
 
 ### Peer Discovery
 

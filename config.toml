@@ -27,7 +27,6 @@ generate_sitemap = true
 insert_anchor_links = "heading"
 
 [markdown.highlighting]
-enabled = true
 theme = "monokai"
 
 # Taxonomies for blog
@@ -143,6 +142,10 @@ url = "/blog/"
 [[extra.nav]]
 name = "Docs"
 url = "/docs/"
+
+[[extra.nav]]
+name = "Connectivity"
+url = "/connectivity/"
 
 [[extra.nav]]
 name = "Projects"
