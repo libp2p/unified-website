@@ -16,6 +16,11 @@ jobs:
         with:
           fetch-depth: 0   # Zola sometimes benefits from full history
 
+      # Things zola build does not catch: corrupted characters, and images or
+      # videos a page points at that are missing from static/.
+      - name: Check content
+        run: python3 .github/scripts/check-content.py
+
       - name: Install Zola
         run: |
           ZOLA_VERSION=0.23.6
