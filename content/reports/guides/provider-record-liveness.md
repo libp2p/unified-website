@@ -21,6 +21,6 @@ with and without Hydra-Booster nodes.
 - **Raising the republish interval from 12 to 24 hours** could cut network overhead by ~25% without compromising availability.
 - **70% of the initial closest peers** stay among the K closest for 48+ hours.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full report in the [network-measurements repository](https://github.com/probe-lab/network-measurements/blob/main/results/rfm17-provider-record-liveness.md) (Cortes-Goicoechea & Bautista-Gomez, August 2022).
-{% end %}
+{% </alert> %}

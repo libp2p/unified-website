@@ -22,6 +22,6 @@ delivery — as a decentralized alternative to centralized web infrastructure.
 Authors: Dennis Trautwein, Aravindh Raman, Gareth Tyson, Ignacio Castro, Will Scott,
 Moritz Schubotz, Bela Gipp, and Yiannis Psaras.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full publication on the [ProbeLab site](https://probelab.io/publications/design-and-evaluation-of-ipfs-a-storage-layer-for-the-decentralized-web/) (ACM SIGCOMM 2022).
-{% end %}
+{% </alert> %}

@@ -25,6 +25,6 @@ rarely the right choice. This guide walks operators through tuning
 For anyone deploying or maintaining a libp2p-based network and looking for production-ready
 configuration guidance beyond the defaults.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full guide on the [ProbeLab blog](https://probelab.io/blog/libp2p-dht-configuration-guide/) (Yiannis Psarras & Dennis Trautwein, May 2026).
-{% end %}
+{% </alert> %}

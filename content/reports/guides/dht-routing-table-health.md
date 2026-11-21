@@ -24,6 +24,6 @@ actual versus theoretical peer distributions.
 The overall takeaway: DHT routing tables are surprisingly resilient despite high churn,
 keeping peers discoverable and routing information current.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full report in the [network-measurements repository](https://github.com/probe-lab/network-measurements/blob/main/results/rfm19-dht-routing-table-health.md) (Guillaume Michel, August 2022).
-{% end %}
+{% </alert> %}

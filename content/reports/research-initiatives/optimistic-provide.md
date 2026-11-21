@@ -26,6 +26,6 @@ a provide operation can safely stop.
 
 Shipped as the default in **Kubo v0.39.0** (February 2026).
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full write-up on the [ProbeLab blog](https://probelab.io/blog/optimistic-provide/) (Yiannis Psarras & Dennis Trautwein, March 2026).
-{% end %}
+{% </alert> %}

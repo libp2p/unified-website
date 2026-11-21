@@ -22,6 +22,6 @@ The authors validated GossipSub across **5,000+ virtual nodes on AWS**, demonstr
 resilience against the considered attacks. The protocol was subsequently adopted as the
 messaging layer for **Filecoin and Ethereum 2.0**.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full paper on [arXiv (2007.02754)](https://arxiv.org/abs/2007.02754) (Vyzovitis et al., 2020).
-{% end %}
+{% </alert> %}

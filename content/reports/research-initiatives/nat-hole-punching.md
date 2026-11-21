@@ -25,6 +25,6 @@ coordination server, and distributed Go and Rust clients.
 The findings produced three protocol-improvement proposals and surfaced address-reporting
 and IPv6 issues in libp2p implementations.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full report in the [network-measurements repository](https://github.com/probe-lab/network-measurements/blob/main/results/rfm15-nat-hole-punching.md), and the accompanying research paper on [arXiv (2510.27500)](https://arxiv.org/abs/2510.27500).
-{% end %}
+{% </alert> %}

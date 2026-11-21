@@ -24,6 +24,6 @@ from a European data center.
 start DHT lookups concurrently with Bitswap (only ~0.4% overhead), and explore selective
 broadcasting toward high-performing providers rather than network-wide flooding.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 Read the full report in the [network-measurements repository](https://github.com/probe-lab/network-measurements/blob/main/results/rfm16-bitswap-discovery-effectiveness.md) (Guillaume Michel, December 2022).
-{% end %}
+{% </alert> %}
