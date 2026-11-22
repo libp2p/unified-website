@@ -55,7 +55,7 @@ Not broken per se, but scattered `os.path` calls with no standardization — eve
 
 *Before PR #886: each module handled paths independently, with hardcoded platform branches or raw `os.path` calls.*
 
-![Before after path construction](/img/blog/py-libp2p-tmp-path-windows/diagram-01-before-after-path-construction.png)
+{{<img src="img/blog/py-libp2p-tmp-path-windows/diagram-01-before-after-path-construction.png" alt="Before after path construction" />}}
 
 ## The Solution
 
@@ -98,7 +98,7 @@ I also added proper handler cleanup in the logging module — closing `FileHandl
 
 *The audit script identifies remaining path anti-patterns and prioritizes them for migration in future PRs.*
 
-![Audit pipeline](/img/blog/py-libp2p-tmp-path-windows/diagram-02-audit-pipeline.png)
+{{<img src="img/blog/py-libp2p-tmp-path-windows/diagram-02-audit-pipeline.png" alt="Audit pipeline" />}}
 
 ## Before & After
 

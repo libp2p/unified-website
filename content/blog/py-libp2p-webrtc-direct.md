@@ -25,7 +25,7 @@ Ordinary WebRTC needs a **signaling** channel to swap SDP offers and answers bef
 
 *The WebRTC-Direct handshake. There is no signaling round trip; the listener learns everything it needs from the first STUN packet, and Noise authenticates what DTLS cannot.*
 
-![Webrtc direct handshake](/img/blog/py-libp2p-webrtc-direct/diagram-01-webrtc-direct-handshake.png)
+{{<img src="img/blog/py-libp2p-webrtc-direct/diagram-01-webrtc-direct-handshake.png" alt="Webrtc direct handshake" />}}
 
 In Python the WebRTC stack is [aiortc](https://github.com/aiortc/aiortc), with [aioice](https://github.com/aiortc/aioice) doing ICE underneath. Both are asyncio libraries. py-libp2p is built on trio.
 
@@ -87,7 +87,7 @@ The subtle case came in [PR #1447](https://github.com/libp2p/py-libp2p/pull/1447
 
 *The threading model. aiortc, aioice and the shared socket live on one asyncio thread; Noise and the connection handler run on trio; the bridge is the only crossing point.*
 
-![Webrtc two event loops](/img/blog/py-libp2p-webrtc-direct/diagram-02-webrtc-two-event-loops.png)
+{{<img src="img/blog/py-libp2p-webrtc-direct/diagram-02-webrtc-two-event-loops.png" alt="Webrtc two event loops" />}}
 
 The same PR fixed three other things the scaffold had wrong. `get_remote_fingerprint` read `pc._dtlsTransport._remote_certificate`, which aiortc does not have, so `dial()` could never succeed. The Noise roles were inverted: the spec makes the listener the Noise initiator. And `PatternXX.handshake_outbound` gained `remote_peer=None`, because a listener that initiates cannot know the dialer's peer ID in advance. It also added the first transport-level test that dials, listens, opens a stream and echoes.
 
@@ -146,7 +146,7 @@ Driving the mux with a real peer also surfaced two Windows-only failures. One wa
 
 *How one UDP socket serves many peers. STUN routes by ufrag, everything else by source address, and an unknown ufrag is the start of a new inbound dial.*
 
-![Webrtc udp mux dispatch](/img/blog/py-libp2p-webrtc-direct/diagram-03-webrtc-udp-mux-dispatch.png)
+{{<img src="img/blog/py-libp2p-webrtc-direct/diagram-03-webrtc-udp-mux-dispatch.png" alt="Webrtc udp mux dispatch" />}}
 
 Review found a real regression. My spec-path `dial()` passed the default ICE servers, which meant every dial contacted `stun.l.google.com` for candidates that never reach a STUN listener. I believed I had already reverted that. The edit had not applied, and the tests could not tell because their helper passed `ice_servers=[]`. The rate limiter also came from review. My in-flight cap only bounded connections after parsing. The merged version is a per-source-IP token bucket (burst 8, 4 per second, 4,096 tracked sources) that runs before any parsing or allocation.
 
@@ -174,7 +174,7 @@ Version 2 ([libp2p/specs#715](https://github.com/libp2p/specs/pull/715), by @doz
 
 *Version dispatch on first contact. v1 and v2 share one listener and one port; only the place the dialer's ICE password is recovered from differs.*
 
-![Webrtc v1 vs v2 credentials](/img/blog/py-libp2p-webrtc-direct/diagram-04-webrtc-v1-vs-v2-credentials.png)
+{{<img src="img/blog/py-libp2p-webrtc-direct/diagram-04-webrtc-v1-vs-v2-credentials.png" alt="Webrtc v1 vs v2 credentials" />}}
 
 [PR #1459](https://github.com/libp2p/py-libp2p/pull/1459) made the listener accept both versions and added an opt-in `webrtc_direct_dial_version=2` for the dialer. The default stayed at 1 because the spec PR was still open; it merged eight days later, on 11 September.
 
@@ -198,7 +198,7 @@ The py listener's log showed one ICE candidate pair reaching `SUCCEEDED` and the
 
 *The go → py stall. A connectivity check for a second candidate ran before the remote ICE credentials existed, crashed silently, and stranded the exact pair the dialer later nominated.*
 
-![Webrtc go dial race](/img/blog/py-libp2p-webrtc-direct/diagram-05-webrtc-go-dial-race.png)
+{{<img src="img/blog/py-libp2p-webrtc-direct/diagram-05-webrtc-go-dial-race.png" alt="Webrtc go dial race" />}}
 
 A full ICE agent like go-libp2p sends checks from every host candidate the instant it starts. aiortc only sets the remote credentials when it processes the inferred offer, slightly later. A check for a second candidate landed in that gap, hit `remote_password=None`, and raised `AttributeError` inside a fire-and-forget task that nothing was waiting on. That pair stayed `IN_PROGRESS` and was never retried. When go nominated exactly that pair, the listener had no succeeded pair to match, ICE never completed and DTLS never started. A window that small may also be why my earlier manual runs passed; I cannot prove that from the record.
 
@@ -217,7 +217,7 @@ The same diff deletes the `xfail` marker. The PR was opened at 07:51 UTC on 7 Se
 
 *The landing order. Six merge events carried eleven PRs; one PR in the chain was closed and absorbed rather than merged.*
 
-![Webrtc pr stack](/img/blog/py-libp2p-webrtc-direct/diagram-06-webrtc-pr-stack.png)
+{{<img src="img/blog/py-libp2p-webrtc-direct/diagram-06-webrtc-pr-stack.png" alt="Webrtc pr stack" />}}
 
 | PR | What it did | Opened | Merged | Size |
 |---|---|---|---|---|

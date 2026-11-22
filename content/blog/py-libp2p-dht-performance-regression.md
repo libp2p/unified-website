@@ -43,7 +43,7 @@ The discussion identified three possible approaches: allow a config override, fi
 
 *After PR #892 hardcoded LISTEN_MADDR to 127.0.0.1, DHT test nodes experienced connection retries during peer discovery, slowing tests by ~66%.*
 
-![Regression chain](/img/blog/py-libp2p-dht-performance-regression/diagram-01-regression-chain.png)
+{{<img src="img/blog/py-libp2p-dht-performance-regression/diagram-01-regression-chain.png" alt="Regression chain" />}}
 
 ## The Solution
 
@@ -74,7 +74,7 @@ Three design choices make this more than a simple `os.getenv()`:
 
 *The `LIBP2P_BIND` environment variable feeds through IPv4 validation before reaching LISTEN_MADDR. Invalid addresses fail safe to the secure default.*
 
-![Libp2p bind validation](/img/blog/py-libp2p-dht-performance-regression/diagram-02-libp2p-bind-validation.png)
+{{<img src="img/blog/py-libp2p-dht-performance-regression/diagram-02-libp2p-bind-validation.png" alt="Libp2p bind validation" />}}
 
 The test suite covers all edges: default behavior with no env var, `0.0.0.0` override, custom IP addresses like `192.168.1.100`, multiaddr construction validity, eight invalid address formats, seven valid address formats, and cleanup between tests via an `autouse` fixture that reloads the constants module.
 

@@ -51,7 +51,7 @@ ping-demo -d /ip4/0.0.0.0/tcp/42547/p2p/QmRShbR5...
 
 One example knew its real addresses. Seventeen others advertised a wildcard.
 
-![Migration landscape](/img/blog/py-libp2p-wildcard-bind-migration/diagram-01-migration-landscape.png)
+{{<img src="img/blog/py-libp2p-wildcard-bind-migration/diagram-01-migration-landscape.png" alt="Migration landscape" />}}
 
 *Before PR #892: only echo.py used the address validation module. All other examples hardcoded `0.0.0.0` for binding.*
 
@@ -93,7 +93,7 @@ My first attempt at fixing this was straightforward: find `0.0.0.0`, replace wit
 
 > All examples became localhost-only, breaking network accessibility.
 
-![Naive vs correct fix](/img/blog/py-libp2p-wildcard-bind-migration/diagram-02-naive-vs-correct-fix.png)
+{{<img src="img/blog/py-libp2p-wildcard-bind-migration/diagram-02-naive-vs-correct-fix.png" alt="Naive vs correct fix" />}}
 
 *Replacing `0.0.0.0` with `127.0.0.1` fixes the security issue but breaks network connectivity. Dynamic interface discovery solves both problems.*
 
@@ -144,7 +144,7 @@ For the rare case where wildcard binding is genuinely needed — like `network_d
 wildcard = get_wildcard_address(port)  # → Multiaddr("/ip4/0.0.0.0/tcp/8000")
 ```
 
-![After all migrated](/img/blog/py-libp2p-wildcard-bind-migration/diagram-03-after-all-migrated.png)
+{{<img src="img/blog/py-libp2p-wildcard-bind-migration/diagram-03-after-all-migrated.png" alt="After all migrated" />}}
 
 *After PR #892: all examples route through `address_validation.py`. The wildcard is preserved only for `network_discover.py`, which demonstrates it as an explicit feature.*
 
@@ -281,7 +281,7 @@ def test_examples_use_address_paradigm(self):
 
 This is the regression insurance: any future contributor who adds an example with `Multiaddr(f"/ip4/0.0.0.0/...")` instead of `get_available_interfaces()` will fail this test. The guard test also verifies that `network_discover.py` correctly demonstrates wildcard binding as an explicit feature, and that all documentation examples use the paradigm functions.
 
-![Testing pyramid](/img/blog/py-libp2p-wildcard-bind-migration/diagram-04-testing-pyramid.png)
+{{<img src="img/blog/py-libp2p-wildcard-bind-migration/diagram-04-testing-pyramid.png" alt="Testing pyramid" />}}
 
 *Three layers of verification: unit tests validate the address functions, guard tests scan source code for anti-patterns, and manual testing confirms all examples run end-to-end.*
 

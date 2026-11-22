@@ -63,7 +63,7 @@ An early `return True` on the first successful bind. The loop was there, but it 
 
 *Before PR #811: a hardcoded wildcard fed into a swarm that could only bind once.*
 
-![Before after address resolution](/img/blog/py-libp2p-dynamic-interface-discovery/diagram-01-before-after-address-resolution.png)
+{{<img src="img/blog/py-libp2p-dynamic-interface-discovery/diagram-01-before-after-address-resolution.png" alt="Before after address resolution" />}}
 
 ## The Solution
 
@@ -98,7 +98,7 @@ The utility module doesn't blindly depend on thin waist support. At import time,
 
 *The fallback strategy ensures the code works even without thin waist support in the multiaddr library.*
 
-![Fallback strategy](/img/blog/py-libp2p-dynamic-interface-discovery/diagram-02-fallback-strategy.png)
+{{<img src="img/blog/py-libp2p-dynamic-interface-discovery/diagram-02-fallback-strategy.png" alt="Fallback strategy" />}}
 
 This means existing deployments won't break. The new code is strictly additive — if the thin waist helpers aren't available, you get the same behavior as before.
 
