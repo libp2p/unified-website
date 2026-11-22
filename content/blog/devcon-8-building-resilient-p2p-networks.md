@@ -8,7 +8,7 @@ slug = "devcon-8-building-resilient-p2p-networks"
 tags = ["libp2p", "Devcon"]
 
 [extra]
-author = "libp2p"
+author = "Anurag Pandey"
 header_image = "/img/blog/Resilient-Networking-Hub.png"
 +++
 
