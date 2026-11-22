@@ -44,7 +44,7 @@ This distinction matters because different components in the stack need differen
 
 *Before PR #1080, `get_addrs()` always appended the `/p2p/{peer_id}` suffix — callers needing raw transport addresses had to strip it manually.*
 
-![Before conflated addressing](/img/blog/py-libp2p-transport-addresses-peer-identity/diagram-01-before-conflated-addressing.png)
+{{<img src="img/blog/py-libp2p-transport-addresses-peer-identity/diagram-01-before-conflated-addressing.png" alt="Before conflated addressing" />}}
 
 ## The Problem: One Method, Two Concerns
 
@@ -78,7 +78,7 @@ The TODO comment at line 318 had been noticed before. [Discussion #716](https://
 
 *Discussion #716 analyzed three approaches. Option B was chosen for backward compatibility and clean separation, with a path for future deprecation.*
 
-![Three options](/img/blog/py-libp2p-transport-addresses-peer-identity/diagram-02-three-options.png)
+{{<img src="img/blog/py-libp2p-transport-addresses-peer-identity/diagram-02-three-options.png" alt="Three options" />}}
 
 **Option A — Remove the /p2p suffix from `get_addrs()`** — was the purist's fix. It would align py-libp2p with the spec and with go-libp2p immediately. But it was a breaking change. Every test, example, and downstream application that relied on `get_addrs()` returning peer-stamped addresses would break. In a library used by IPFS and Filecoin infrastructure, breaking changes require careful deprecation cycles.
 
@@ -141,7 +141,7 @@ def get_addrs(self) -> list[multiaddr.Multiaddr]:
 
 *After PR #1080, `get_transport_addrs()` returns raw addresses for transport-layer consumers, while `get_addrs()` composes on top of it for identity-aware consumers.*
 
-![After separated layers](/img/blog/py-libp2p-transport-addresses-peer-identity/diagram-03-after-separated-layers.png)
+{{<img src="img/blog/py-libp2p-transport-addresses-peer-identity/diagram-03-after-separated-layers.png" alt="After separated layers" />}}
 
 Three properties make this design deliberate:
 

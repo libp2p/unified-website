@@ -30,7 +30,7 @@ The **WebSocket transport** is especially important because it's one of the few 
 
 Before PR #964, py-libp2p's WebSocket transport was a 229-line implementation in `transport.py`. It could dial a `ws://` or `wss://` multiaddr and listen for incoming connections. The connection class wrapped a `trio-websocket` handle with basic read/write/close. There was no configuration beyond TLS context and handshake timeout, no connection tracking, and no way to route connections through a proxy.
 
-![Before minimal transport](/img/blog/py-libp2p-websocket-transport/diagram-01-before-minimal-transport.png)
+{{<img src="img/blog/py-libp2p-websocket-transport/diagram-01-before-minimal-transport.png" alt="Before minimal transport" />}}
 
 *Before PR #964, py-libp2p's WebSocket transport had only basic dial/listen in 229 lines, with no proxy, connection management, AutoTLS, or interop testing.*
 
@@ -64,7 +64,7 @@ Three architectural decisions shaped the implementation.
 
 **Go-style factory functions on Python dataclasses.** Rather than a monolithic constructor with 15 parameters, PR #964 adopts Go's functional options pattern. Each concern gets a factory function that returns a `WebsocketConfig` dataclass:
 
-![Factory config pattern](/img/blog/py-libp2p-websocket-transport/diagram-02-factory-config-pattern.png)
+{{<img src="img/blog/py-libp2p-websocket-transport/diagram-02-factory-config-pattern.png" alt="Factory config pattern" />}}
 
 *Go-inspired factory functions create `WebsocketConfig` dataclasses that validate on construction and compose via `combine_configs()` — last non-default value wins.*
 
@@ -76,7 +76,7 @@ Three architectural decisions shaped the implementation.
 
 The implementation spans 9 modules in `libp2p/transport/websocket/`:
 
-![After full architecture](/img/blog/py-libp2p-websocket-transport/diagram-03-after-full-architecture.png)
+{{<img src="img/blog/py-libp2p-websocket-transport/diagram-03-after-full-architecture.png" alt="After full architecture" />}}
 
 *After PR #964, the WebSocket transport spans 9 modules with connection management, SOCKS proxy support, AutoTLS, advanced TLS configuration, and per-connection statistics.*
 
@@ -122,7 +122,7 @@ def get_addrs(self) -> tuple[Multiaddr, ...]:
         return (Multiaddr(f"/ip4/127.0.0.1/tcp/{port}/{protocol}"),)
 ```
 
-![Security upgrade sequence](/img/blog/py-libp2p-websocket-transport/diagram-04-security-upgrade-sequence.png)
+{{<img src="img/blog/py-libp2p-websocket-transport/diagram-04-security-upgrade-sequence.png" alt="Security upgrade sequence" />}}
 
 *The Swarm sets the background nursery on the WebSocket transport before signaling readiness. The listener's critical fix: handing connections to the TransportUpgrader for Noise security negotiation instead of consuming them locally.*
 

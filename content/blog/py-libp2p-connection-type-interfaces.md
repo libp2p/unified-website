@@ -42,7 +42,7 @@ The problems showed up in three distinct places, each revealing the same underly
 
 **Impact:** Anyone implementing NAT traversal, hole punching, or address-based filtering would hit these walls. The `type: ignore` hacks weren't just code smells — they were barriers to building reliable relay and NAT traversal features.
 
-![Before encapsulation violations](/img/blog/py-libp2p-connection-type-interfaces/diagram-01-before-encapsulation-violations.png)
+{{<img src="img/blog/py-libp2p-connection-type-interfaces/diagram-01-before-encapsulation-violations.png" alt="Before encapsulation violations" />}}
 
 *Before PR #1127, determining connection type required breaking encapsulation with `type: ignore` hacks or fragile string parsing of multiaddr paths.*
 
@@ -122,7 +122,7 @@ def get_connection_type(self) -> ConnectionType:
 
 The `hasattr` checks provide graceful degradation — if a connection doesn't implement the methods, the system returns safe defaults rather than crashing.
 
-![After delegation chain](/img/blog/py-libp2p-connection-type-interfaces/diagram-02-after-delegation-chain.png)
+{{<img src="img/blog/py-libp2p-connection-type-interfaces/diagram-02-after-delegation-chain.png" alt="After delegation chain" />}}
 
 *After PR #1127, every connection layer exposes `get_connection_type()` and `get_transport_addresses()`. Each layer delegates to the one below, maintaining clean encapsulation.*
 
@@ -222,7 +222,7 @@ if conn.get_connection_type() == ConnectionType.DIRECT:
     self._peer_reachability[peer_id] = True
 ```
 
-![Ipv4 vs dualstack](/img/blog/py-libp2p-connection-type-interfaces/diagram-03-ipv4-vs-dualstack.png)
+{{<img src="img/blog/py-libp2p-connection-type-interfaces/diagram-03-ipv4-vs-dualstack.png" alt="Ipv4 vs dualstack" />}}
 
 *PR #1132 replaced hardcoded `ip4` lookups with `extract_ip_from_multiaddr()`, which tries IPv4 first for backward compatibility, then falls back to IPv6.*
 

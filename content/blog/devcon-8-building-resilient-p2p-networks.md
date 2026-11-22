@@ -9,7 +9,7 @@ tags = ["libp2p", "Devcon"]
 
 [extra]
 author = "Anurag Pandey"
-header_image = "/img/blog/Resilient-Networking-Hub.png"
+header_image = "/img/blog/resilient-networking-hub.png"
 +++
 
 *Resilient Networking Hub · November 3–6, 2026*
@@ -20,7 +20,7 @@ At Devcon 8 in Mumbai, the libp2p-led Resilient Networking Hub convened maintain
 
 Contributors from libp2p, Ethereum client networking, IPFS, Swarm, and related projects shared their work and compared approaches to resilience. Together, the sessions highlighted the engineering and community work that helps open networks remain useful under real conditions.
 
-![The Resilient Networking Hub at Devcon 8](/img/blog/resilient-networking-hub-1.jpg)
+{{<img src="img/blog/resilient-networking-hub-1.jpg" alt="The Resilient Networking Hub at Devcon 8" />}}
 
 ## Start with the connection
 
@@ -34,7 +34,7 @@ That is why interoperability came up throughout the program. Shouki Tsuda’s se
 
 The opening day also made space for maintainers to introduce their work. Daniel Thompson, Shouki Tsuda, Sumanjeet, Soham Bhoir, and Yash Saini took part in the maintainer meet-up and Network Lab sessions. Their work spans JavaScript libp2p, Haskell-libp2p, py-libp2p, GossipSub, WebRTC connectivity, and network simulation. Kazuma Sengoku’s session on user-controlled keys, private membership proofs, and shared time added a privacy perspective to how peers can coordinate. Banri Yanahama and Ryosuke Kaga led a formal verification workshop, exploring how to reason about protocol correctness. For participants, meeting the people behind the tools made it easier to move from a general networking question to a concrete project, test, or contribution.
 
-![Participants taking part in a Resilient Networking Hub session](/img/blog/resilient-networking-hub-2.jpg)
+{{<img src="img/blog/resilient-networking-hub-2.jpg" alt="Participants taking part in a Resilient Networking Hub session" />}}
 
 ## Resilience means planning for failure
 
@@ -46,7 +46,7 @@ The Hub’s conversations about permissionless network resilience brought this i
 
 These examples make resilience tangible. A network that works only while every expected service is reachable has not yet answered the most important question. The harder test is whether people can still use it when some of those services or paths disappear.
 
-![A discussion about peer-to-peer network resilience at the Hub](/img/blog/reseilient-networking-hub-3.jpg)
+{{<img src="img/blog/reseilient-networking-hub-3.jpg" alt="A discussion about peer-to-peer network resilience at the Hub" />}}
 
 ## Ethereum networking is part of Ethereum resilience
 
@@ -86,7 +86,7 @@ The wider IPFS ecosystem includes projects such as Kubo, Boxo, Helia, and IPFS C
 
 The deeper point is that infrastructure choices affect who can keep a service running. A self-hosted node, a replicated dataset, or a local cache can give applications more options when a central provider is unavailable. They do not remove operational work, but they can reduce reliance on any single operator.
 
-![A session on operating IPFS infrastructure at the Hub](/img/blog/resilient-networking-hub-4.jpeg)
+{{<img src="img/blog/resilient-networking-hub-4.jpeg" alt="A session on operating IPFS infrastructure at the Hub" />}}
 
 ## Media is a network resilience test
 
@@ -100,7 +100,7 @@ Decentralized storage and distribution introduce practical design choices. Swarm
 
 That same question appears in applications beyond media. A healthcare tool, a research archive, or a community service may need local storage and later synchronization. A network that can keep data available across nodes and recover after an outage gives those applications more room to operate in the real world.
 
-![Contributors and attendees gathered at Devcon 8](/img/blog/resilient-networking-hub5.jpg)
+{{<img src="img/blog/resilient-networking-hub5.jpg" alt="Contributors and attendees gathered at Devcon 8" />}}
 
 ## What the four days made clear
 
